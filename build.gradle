@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id "org.jetbrains.intellij" version "0.4.16"
+}
+
+group pluginGroup
+version pluginVersion
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+patchPluginXml {
+    version = project.version
+}
+
+intellij {
+    version ideaVersion
+    type ideaType
+    pluginName pluginName
+    updateSinceUntilBuild = false
+    downloadSources Boolean.valueOf(sources)
+
+    plugins 'java'
+}

@@ -1,0 +1,17 @@
+<idea-plugin url="www.jetbrains.com">
+    <id>org.jetbrains.plugins.template</id>
+    <name>Template</name>
+    <version>1.0.0</version>
+    <vendor>JetBrains</vendor>
+    <idea-version since-build="201"/>
+    <description>Demonstrates various aspects of interacting with project model</description>
+
+    <!-- Product and plugin compatibility requirements -->
+    <!-- http://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_dependencies.html?search=depend#dependency-declaration-in-pluginxml -->
+    <depends>com.intellij.modules.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="org.jetbrains.plugins.template.MyApplicationService" />
+        <projectService serviceImplementation="org.jetbrains.plugins.template.MyProjectService" />
+    </extensions>
+</idea-plugin>
