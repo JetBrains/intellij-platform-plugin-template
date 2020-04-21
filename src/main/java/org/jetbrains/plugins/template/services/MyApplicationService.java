@@ -1,4 +1,4 @@
-package org.jetbrains.plugins.template;
+package org.jetbrains.plugins.template.services;
 
 public class MyApplicationService {
     public MyApplicationService() {

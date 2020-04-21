@@ -1,1 +1,3 @@
-# intellij-plugin-template
+IntelliJ Plugin Template
+========================
+

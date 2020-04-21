@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id "org.jetbrains.intellij" version "0.4.16"
+    id 'org.jetbrains.intellij' version '0.4.18'
 }
 
 group pluginGroup
@@ -12,16 +12,25 @@ repositories {
     mavenCentral()
 }
 
-patchPluginXml {
-    version = project.version
-}
+
+// https://github.com/JetBrains/gradle-intellij-plugin
 
 intellij {
+    pluginName pluginName
     version ideaVersion
     type ideaType
-    pluginName pluginName
-    updateSinceUntilBuild = false
+    plugins = ['java']
+//    updateSinceUntilBuild = false
     downloadSources Boolean.valueOf(sources)
 
-    plugins 'java'
+}
+
+patchPluginXml {
+    version project.version
+//    sinceBuild sinceBuild
+}
+
+publishPlugin {
+    token 'ssdfhasdfASDaq23jhnasdkjh'
+    channels 'nightly'
 }
