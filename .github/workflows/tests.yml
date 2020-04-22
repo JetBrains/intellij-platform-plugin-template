@@ -1,17 +1,33 @@
+# GitHub Actions Workflow created for testing the plugin in three steps:
+# - test using Gradle tasks, such as tes and verifyPlugin,
+# - test building process by preparing the artifact using buildPlugin Gradle task,
+# - run IntelliJ Plugin Verifier.
+#
+# Workflow is triggered on push or pull request event.
+#
+# Docs:
+# - GitHub Actions: https://help.github.com/en/actions
+# - IntelliJ Plugin Verifier GitHub Action: https://github.com/ChrisCarini/intellij-platform-plugin-verifier-action
+
 name: Tests
 on: [push, pull_request]
 
 jobs:
+
+  # Run verifyPlugin and test Gradle tasks.
   test:
     name: Test
     runs-on: ubuntu-latest
     steps:
+      # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v2
+      # Setup Java 1.8 environment for the next steps
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      # Cache Gradle dependencies
       - name: Setup Cache
         uses: actions/cache@v1
         with:
@@ -19,21 +35,29 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+      # Run verifyPlugin Gradle task
       - name: Verify Plugin
         run: ./gradlew verifyPlugin --no-daemon
+      # Run test Gradle task
       - name: Run Tests
         run: ./gradlew test --no-daemon
+
+  # Build plugin with buildPlugin Gradle task and provide artifact for the next workflow jobs.
+  # Requires test job to be passed.
   build:
     name: Build
     needs: test
     runs-on: ubuntu-latest
     steps:
+      # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v2
+      # Setup Java 1.8 environment for the next steps
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+      # Cache Gradle dependencies
       - name: Setup Cache
         uses: actions/cache@v1
         with:
@@ -41,26 +65,34 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+      # Set VERSION and NAME environment variables for the steps reading properties directly from Gradle setup
       - name: Export Properties
         run: |
           echo "::set-env name=VERSION::$(./gradlew properties --no-daemon --console=plain -q | grep "^version:" | awk '{printf $2}')"
           echo "::set-env name=NAME::$(./gradlew properties --no-daemon --console=plain -q | grep "^name:" | awk '{printf $2}')"
+      # Build artifact using buildPlugin Gradle task
       - name: Build Plugin
         run: ./gradlew buildPlugin --no-daemon
+      # Upload plugin artifact to make it available in the next jobs
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
           name: plugin-artifact
           path: ./build/distributions/${{ env.NAME }}-${{ env.VERSION }}.zip
+
+  # Verify built plugin using IntelliJ Plugin Verifier tool.
+  # Requires build job to be passed.
   verify:
     name: Verify
     needs: build
     runs-on: ubuntu-latest
     steps:
+      # Download plugin artifact provided by the previous job
       - name: Download artifact
         uses: actions/download-artifact@v1
         with:
           name: plugin-artifact
+      # Run IntelliJ Plugin Verifier action using GitHub Action
       - name: Verify Plugin
         id: verify
         uses: ChrisCarini/intellij-platform-plugin-verifier-action@v0.0.2
@@ -69,6 +101,7 @@ jobs:
           ide-versions: |
             ideaIC:2020.1
 #            ideaIC:LATEST-EAP-SNAPSHOT
+      # Print the output of the verify step
       - name: Print Logs
         run: |
           echo "The verifier log file [${{steps.verify.outputs.verification-output-log-filename}}] contents : " ;
