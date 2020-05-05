@@ -6,18 +6,17 @@ import com.intellij.openapi.components.ServiceManager
 import org.jetbrains.plugins.template.services.MyApplicationService
 
 internal class MyDynamicPluginListener : DynamicPluginListener {
+
     override fun beforePluginLoaded(pluginDescriptor: IdeaPluginDescriptor) {
         ServiceManager.getService(MyApplicationService::class.java)
     }
 
-    override fun pluginLoaded(pluginDescriptor: IdeaPluginDescriptor) {
-        println("xx")
-    }
+    override fun pluginLoaded(pluginDescriptor: IdeaPluginDescriptor) {}
 
     override fun beforePluginUnload(pluginDescriptor: IdeaPluginDescriptor, isUpdate: Boolean) {}
 
-    override fun checkUnloadPlugin(pluginDescriptor: IdeaPluginDescriptor) {
-    }
+    override fun checkUnloadPlugin(pluginDescriptor: IdeaPluginDescriptor) {}
 
     override fun pluginUnloaded(pluginDescriptor: IdeaPluginDescriptor, isUpdate: Boolean) {}
+
 }
