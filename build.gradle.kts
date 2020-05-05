@@ -1,9 +1,14 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("java")                                      // Compiles Java source files
-    id("org.jetbrains.kotlin.jvm") version "1.3.72" // Kotlin plugins for Gradle
-    id("org.jetbrains.intellij") version "0.4.18"   // gradle-intellij-plugin
+    // Java support
+    id("java")
+    // Kotlin support
+    id("org.jetbrains.kotlin.jvm") version "1.3.72"
+    // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
+    id("org.jetbrains.intellij") version "0.4.18"
+    // detekt linter - read more: https://detekt.github.io/detekt/kotlindsl.html
+    id("io.gitlab.arturbosch.detekt") version "1.8.0"
 }
 
 // Import variables from gradle.properties file
@@ -31,9 +36,11 @@ listOf("compileKotlin", "compileTestKotlin").forEach {
 // Configure project's dependencies
 repositories {
     mavenCentral()
+    jcenter()
 }
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.8.0")
 }
 
 // Configure gradle-intellij-plugin plugin. Read more: https://github.com/JetBrains/gradle-intellij-plugin
@@ -41,16 +48,21 @@ intellij {
     pluginName = pluginName
     version = ideaVersion
     type = ideaType
-    updateSinceUntilBuild = false
+    updateSinceUntilBuild = true
     downloadSources = sources.toBoolean()
     setPlugins("java")
+}
+
+// Configure detekt plugin. Read more: https://detekt.github.io/detekt/kotlindsl.html
+detekt {
+    config = files("./detekt-config.yml")
 }
 
 tasks {
     patchPluginXml {
         version(pluginVersion)
+        sinceBuild(ideaVersion)
 //        changeNotes("")
-//    sinceBuild sinceBuild
     }
 
 //    publishPlugin {

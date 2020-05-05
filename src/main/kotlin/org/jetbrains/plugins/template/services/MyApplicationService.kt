@@ -7,5 +7,4 @@ class MyApplicationService {
     init {
         println(TemplateBundle.message("applicationService"))
     }
-
 }

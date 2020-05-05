@@ -11,12 +11,11 @@ internal class MyDynamicPluginListener : DynamicPluginListener {
         ServiceManager.getService(MyApplicationService::class.java)
     }
 
-    override fun pluginLoaded(pluginDescriptor: IdeaPluginDescriptor) {}
+    override fun pluginLoaded(pluginDescriptor: IdeaPluginDescriptor) = Unit
 
-    override fun beforePluginUnload(pluginDescriptor: IdeaPluginDescriptor, isUpdate: Boolean) {}
+    override fun beforePluginUnload(pluginDescriptor: IdeaPluginDescriptor, isUpdate: Boolean) = Unit
 
-    override fun checkUnloadPlugin(pluginDescriptor: IdeaPluginDescriptor) {}
+    override fun checkUnloadPlugin(pluginDescriptor: IdeaPluginDescriptor) = Unit
 
-    override fun pluginUnloaded(pluginDescriptor: IdeaPluginDescriptor, isUpdate: Boolean) {}
-
+    override fun pluginUnloaded(pluginDescriptor: IdeaPluginDescriptor, isUpdate: Boolean) = Unit
 }
