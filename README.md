@@ -43,7 +43,18 @@ TODO
 
 ## Release Flow
 
-TODO
+### Changelog
+
+When delivering a new release, it is important to let your audience know what is the updated version offering.
+The best way of handling that is to attach the changelog.
+
+Changelog is a curated list containing information of any new features, fixes, deprecations, and so on.
+If provided, such list would be available in a couple of places: [CHANGELOG.md](./CHANGELOG.md) file,
+[Releases page][releases], [What's new][marketplace-plugin-page] section in Marketplace's Plugin page
+and inside of the Plugin Manager's item details. 
+
+There many different methods of handling the project's changelog. One of them, used in the current template project,
+is the [Keep a Changelog][keep-a-changelog] approach.
 
 ## Useful Links
 
@@ -51,11 +62,14 @@ TODO
 - [IntelliJ SDK Code Samples][code-samples]
 - [JetBrains Platform Slack][slack]
 - [IntelliJ IDEA Open API and Plugin Development][forum]
+- [Keep a Changelog][keep-a-changelog]
 - [GitHub Actions][gh-actions]
 
 [gh-template]: https://help.github.com/en/enterprise/2.20/user/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template
 [gh-actions]: https://help.github.com/en/actions
 [sdk-docs]: https://www.jetbrains.org/intellij/sdk/docs
 [code-samples]: https://github.com/JetBrains/intellij-sdk-code-samples
+[releases]: https://github.com/JetBrains/intellij-plugin-template/releases
 [slack]: https://plugins.jetbrains.com/slack
 [forum]: https://intellij-support.jetbrains.com/hc/en-us/community/topics/200366979-IntelliJ-IDEA-Open-API-and-Plugin-Development
+[keep-a-changelog]: https://keepachangelog.com
