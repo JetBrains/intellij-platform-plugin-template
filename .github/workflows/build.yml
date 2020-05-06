@@ -91,7 +91,7 @@ jobs:
 #    runs-on: ubuntu-latest
 #    steps:
 #      # Download plugin artifact provided by the previous job
-#      - name: Download artifact
+#      - name: Download Artifact
 #        uses: actions/download-artifact@v1
 #        with:
 #          name: plugin-artifact
@@ -126,19 +126,33 @@ jobs:
         run: |
           echo "::set-env name=VERSION::$(./gradlew properties --no-daemon --console=plain -q | grep "^version:" | awk '{printf $2}')"
           echo "::set-env name=NAME::$(./gradlew properties --no-daemon --console=plain -q | grep "^name:" | awk '{printf $2}')"
+      # Create new release draft - which is not publicly visible and requires manual acceptance
+      - name: Create Release Draft
+        id: createDraft
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ env.VERSION }}
+          release_name: v${{ env.VERSION }}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: true
       # Download plugin artifact provided by the previous job
-      - name: Download artifact
+      - name: Download Artifact
         uses: actions/download-artifact@v1
         with:
           name: plugin-artifact
-      # Create new release draft - which is not publicly visible and requires manual acceptance
-      - name: Create Release Draft
-        uses: softprops/action-gh-release@v1
-        with:
-          name: v${{ env.VERSION }}
-          tag_name: v${{ env.VERSION }}
-          body_path: CHANGELOG.md
-          draft: true
-          files: plugin-artifact.zip
+      # Upload artifact as a release asset
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.createDraft.outputs.upload_url }}
+          asset_path: plugin-artifact.zip
+          asset_name: plugin-artifact-${{ env.VERSION }}.zip
+          asset_content_type: application/zip
