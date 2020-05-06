@@ -15,6 +15,8 @@ plugins {
 val pluginGroup: String by project
 val pluginName: String by project
 val pluginVersion: String by project
+val pluginSinceBuild: String by project
+val pluginUntilBuild: String by project
 val ideaVersion: String by project
 val ideaType: String by project
 val sources: String by project
@@ -61,7 +63,8 @@ detekt {
 tasks {
     patchPluginXml {
         version(pluginVersion)
-        sinceBuild(ideaVersion)
+        sinceBuild(pluginSinceBuild)
+        untilBuild(pluginUntilBuild)
 //        changeNotes("")
     }
 
