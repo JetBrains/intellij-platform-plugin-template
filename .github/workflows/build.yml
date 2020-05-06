@@ -153,6 +153,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.createDraft.outputs.upload_url }}
-          asset_path: plugin-artifact.zip
+          asset_path: ./plugin-artifact.zip
           asset_name: ${{ needs.build.outputs.artifact }}
           asset_content_type: application/zip
