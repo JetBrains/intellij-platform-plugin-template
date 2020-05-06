@@ -14,43 +14,47 @@ on: [push, pull_request]
 
 jobs:
 
-#  # Run verifyPlugin and test Gradle tasks.
-#  test:
-#    name: Test
-#    runs-on: ubuntu-latest
-#    steps:
-#      # Check out current repository
-#      - name: Fetch Sources
-#        uses: actions/checkout@v2
-#      # Setup Java 1.8 environment for the next steps
-#      - name: Setup Java
-#        uses: actions/setup-java@v1
-#        with:
-#          java-version: 1.8
-#      # Cache Gradle dependencies
-#      - name: Setup Cache
-#        uses: actions/cache@v1
-#        with:
-#          path: ~/.gradle/caches
-#          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-#          restore-keys: |
-#            ${{ runner.os }}-gradle-
-#      # Run detekt
-#      - name: Run Linter
-#        run: ./gradlew detekt
-#      # Run verifyPlugin Gradle task
-#      - name: Verify Plugin
-#        run: ./gradlew verifyPlugin --no-daemon
-#      # Run test Gradle task
-#      - name: Run Tests
-#        run: ./gradlew test --no-daemon
+  # Run verifyPlugin and test Gradle tasks.
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      # Check out current repository
+      - name: Fetch Sources
+        uses: actions/checkout@v2
+      # Setup Java 1.8 environment for the next steps
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
+      # Cache Gradle dependencies
+      - name: Setup Cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      # Run detekt
+      - name: Run Linter
+        run: ./gradlew detekt
+      # Run verifyPlugin Gradle task
+      - name: Verify Plugin
+        run: ./gradlew verifyPlugin --no-daemon
+      # Run test Gradle task
+      - name: Run Tests
+        run: ./gradlew test --no-daemon
 
   # Build plugin with buildPlugin Gradle task and provide artifact for the next workflow jobs.
   # Requires test job to be passed.
   build:
     name: Build
-#    needs: test
+    needs: test
     runs-on: ubuntu-latest
+    outputs:
+      name: ${{ steps.properties.outputs.name }}
+      version: ${{ steps.properties.outputs.version }}
+      artifact: ${{ steps.properties.outputs.name }}-${{ steps.properties.outputs.version }}.zip
     steps:
       # Check out current repository
       - name: Fetch Sources
@@ -70,9 +74,10 @@ jobs:
             ${{ runner.os }}-gradle-
       # Set VERSION and NAME environment variables for the steps reading properties directly from Gradle setup
       - name: Export Properties
+        id: properties
         run: |
-          echo "::set-env name=VERSION::$(./gradlew properties --no-daemon --console=plain -q | grep "^version:" | awk '{printf $2}')"
-          echo "::set-env name=NAME::$(./gradlew properties --no-daemon --console=plain -q | grep "^name:" | awk '{printf $2}')"
+          echo "::set-output name=name::$(./gradlew properties --no-daemon --console=plain -q | grep "^version:" | awk '{printf $2}')"
+          echo "::set-output name=version::$(./gradlew properties --no-daemon --console=plain -q | grep "^name:" | awk '{printf $2}')"
       # Build artifact using buildPlugin Gradle task
       - name: Build Plugin
         run: ./gradlew buildPlugin --no-daemon
@@ -81,51 +86,46 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: plugin-artifact
-          path: ./build/distributions/${{ env.NAME }}-${{ env.VERSION }}.zip
+          path: ./build/distributions/${{ steps.properties.outputs.artifact }}
 
-#  # Verify built plugin using IntelliJ Plugin Verifier tool.
-#  # Requires build job to be passed.
-#  verify:
-#    name: Verify
-#    needs: build
-#    runs-on: ubuntu-latest
-#    steps:
-#      # Download plugin artifact provided by the previous job
-#      - name: Download Artifact
-#        uses: actions/download-artifact@v1
-#        with:
-#          name: plugin-artifact
-#      # Run IntelliJ Plugin Verifier action using GitHub Action
-#      - name: Verify Plugin
-#        id: verify
-#        uses: ChrisCarini/intellij-platform-plugin-verifier-action@v0.0.2
-#        with:
-#          plugin-location: plugin-artifact.zip
-#          ide-versions: |
-#            ideaIC:2020.1
-##            ideaIC:LATEST-EAP-SNAPSHOT
-#      # Print the output of the verify step
-#      - name: Print Logs
-#        run: |
-#          echo "The verifier log file [${{steps.verify.outputs.verification-output-log-filename}}] contents : " ;
-#          cat ${{steps.verify.outputs.verification-output-log-filename}}
+  # Verify built plugin using IntelliJ Plugin Verifier tool.
+  # Requires build job to be passed.
+  verify:
+    name: Verify
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      # Download plugin artifact provided by the previous job
+      - name: Download Artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: plugin-artifact
+      # Run IntelliJ Plugin Verifier action using GitHub Action
+      - name: Verify Plugin
+        id: verify
+        uses: ChrisCarini/intellij-platform-plugin-verifier-action@v0.0.2
+        with:
+          plugin-location: plugin-artifact.zip
+          ide-versions: |
+            ideaIC:2020.1
+#            ideaIC:LATEST-EAP-SNAPSHOT
+      # Print the output of the verify step
+      - name: Print Logs
+        run: |
+          echo "The verifier log file [${{steps.verify.outputs.verification-output-log-filename}}] contents : " ;
+          cat ${{steps.verify.outputs.verification-output-log-filename}}
 
   # Prepare a draft release for GitHub Releases page for the manual verification.
   # If accepted and published, release workflow would be triggered.
   releaseDraft:
     name: Release Draft
-    needs: build
-#    needs: verify
+#    if: github.ref == 'refs/heads/master'
+    needs: [build, verify]
     runs-on: ubuntu-latest
     steps:
       # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v2
-      # Set VERSION and NAME environment variables for the steps reading properties directly from Gradle setup
-      - name: Export Properties
-        run: |
-          echo "::set-env name=VERSION::$(./gradlew properties --no-daemon --console=plain -q | grep "^version:" | awk '{printf $2}')"
-          echo "::set-env name=NAME::$(./gradlew properties --no-daemon --console=plain -q | grep "^name:" | awk '{printf $2}')"
       # Create new release draft - which is not publicly visible and requires manual acceptance
       - name: Create Release Draft
         id: createDraft
@@ -133,8 +133,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ env.VERSION }}
-          release_name: v${{ env.VERSION }}
+          tag_name: v${{ needs.build.outputs.version }}
+          release_name: v${{ needs.build.outputs.version }}
           body: |
             Changes in this Release
             - First Change
@@ -154,5 +154,5 @@ jobs:
         with:
           upload_url: ${{ steps.createDraft.outputs.upload_url }}
           asset_path: plugin-artifact.zip
-          asset_name: plugin-artifact-${{ env.VERSION }}.zip
+          asset_name: ${{ needs.build.outputs.artifact }}
           asset_content_type: application/zip
