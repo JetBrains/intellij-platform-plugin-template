@@ -137,7 +137,7 @@ jobs:
         with:
           name: v${{ env.VERSION }}
           tag_name: v${{ env.VERSION }}
-          body_path: RELEASE.md
+          body_path: CHANGELOG.md
           draft: true
           files: plugin-artifact.zip
         env:
