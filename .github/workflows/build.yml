@@ -76,8 +76,8 @@ jobs:
       - name: Export Properties
         id: properties
         run: |
-          echo "::set-output name=name::$(./gradlew properties --no-daemon --console=plain -q | grep "^version:" | awk '{printf $2}')"
-          echo "::set-output name=version::$(./gradlew properties --no-daemon --console=plain -q | grep "^name:" | awk '{printf $2}')"
+          echo "::set-output name=version::$(./gradlew properties --no-daemon --console=plain -q | grep "^version:" | awk '{printf $2}')"
+          echo "::set-output name=name::$(./gradlew properties --no-daemon --console=plain -q | grep "^name:" | awk '{printf $2}')"
       # Build artifact using buildPlugin Gradle task
       - name: Build Plugin
         run: ./gradlew buildPlugin --no-daemon
