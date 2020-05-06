@@ -114,6 +114,8 @@ jobs:
   # If accepted and published, release workflow would be triggered.
   releaseDraft:
     name: Release Draft
+    needs: build
+#    needs: verify
     runs-on: ubuntu-latest
     steps:
       # Check out current repository
