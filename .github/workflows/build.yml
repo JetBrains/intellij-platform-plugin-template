@@ -129,7 +129,7 @@ jobs:
       - name: Fetch Sources
         uses: actions/checkout@v2
       # Remove old release drafts by using the curl request for the available releases with draft flag
-      - name: Remove Old Release Dr
+      - name: Remove Old Release Drafts
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -144,10 +144,9 @@ jobs:
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VERSION: ${{ needs.build.outputs.version }}
         with:
-          tag_name: v$VERSION
-          release_name: v$VERSION
+          tag_name: v${{ needs.build.outputs.version }}
+          release_name: v${{ needs.build.outputs.version }}
           body: |
             Changes in this Release
             - First Change
