@@ -82,11 +82,9 @@ jobs:
       # Upload plugin artifact to make it available in the next jobs
       - name: Upload artifact
         uses: actions/upload-artifact@v1
-        env:
-          ARTIFACT: ${{ needs.build.outputs.artifact }}
         with:
           name: plugin-artifact
-          path: ./build/distributions/$ARTIFACT
+          path: ./build/distributions/${{ needs.build.outputs.artifact }}
 
   # Verify built plugin using IntelliJ Plugin Verifier tool.
   # Requires build job to be passed.
@@ -104,10 +102,8 @@ jobs:
       - name: Verify Plugin
         id: verify
         uses: ChrisCarini/intellij-platform-plugin-verifier-action@v0.0
-        env:
-          ARTIFACT: ${{ needs.build.outputs.artifact }}
         with:
-          plugin-location: plugin-artifact/$ARTIFACT
+          plugin-location: plugin-artifact/${{ needs.build.outputs.artifact }}
           ide-versions: |
             ideaIC:2020.1
 #            ideaIC:LATEST-EAP-SNAPSHOT
@@ -146,10 +142,9 @@ jobs:
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NAME: ${{ needs.build.outputs.version }}
           VERSION: ${{ needs.build.outputs.version }}
         with:
-          tag_name: v$NAME
+          tag_name: v$VERSION
           release_name: v$VERSION
           body: |
             Changes in this Release
@@ -167,10 +162,8 @@ jobs:
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ARTIFACT: ${{ needs.build.outputs.artifact }}
-          UPLOAD_URL: ${{ steps.createDraft.outputs.upload_url }}
         with:
-          upload_url: $UPLOAD_URL
-          asset_path: ./plugin-artifact/$ARTIFACT
-          asset_name: $ARTIFACT
+          upload_url: ${{ steps.createDraft.outputs.upload_url }}
+          asset_path: ./plugin-artifact/${{ needs.build.outputs.artifact }}
+          asset_name: ${{ needs.build.outputs.artifact }}
           asset_content_type: application/zip
