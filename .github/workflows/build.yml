@@ -54,6 +54,7 @@ jobs:
       name: ${{ steps.properties.outputs.name }}
       version: ${{ steps.properties.outputs.version }}
       artifact: ${{ steps.properties.outputs.name }}-${{ steps.properties.outputs.version }}.zip
+      changelog: ${{ steps.properties.outputs.changelog }}
     steps:
       # Check out current repository
       - name: Fetch Sources
@@ -76,6 +77,7 @@ jobs:
         run: |
           echo "::set-output name=version::$(./gradlew properties --no-daemon --console=plain -q | grep "^version:" | awk '{printf $2}')"
           echo "::set-output name=name::$(./gradlew properties --no-daemon --console=plain -q | grep "^name:" | awk '{printf $2}')"
+          echo "::set-output name=changelog::$(./gradlew buildChangelog --no-daemon)"
       # Build artifact using buildPlugin Gradle task
       - name: Build Plugin
         run: ./gradlew buildPlugin --no-daemon
@@ -101,7 +103,7 @@ jobs:
       # Run IntelliJ Plugin Verifier action using GitHub Action
       - name: Verify Plugin
         id: verify
-        uses: ChrisCarini/intellij-platform-plugin-verifier-action@v0.0
+        uses: ChrisCarini/intellij-platform-plugin-verifier-action@v0.0.2
         with:
           plugin-location: plugin-artifact/${{ needs.build.outputs.artifact }}
           ide-versions: |
