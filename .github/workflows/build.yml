@@ -133,11 +133,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          curl -H 'Authorization: Bearer $GITHUB_TOKEN' https://api.github.com/repos/$GITHUB_REPOSITORY/releases \
+          curl -H "Authorization: Bearer $GITHUB_TOKEN" "https://api.github.com/repos/$GITHUB_REPOSITORY/releases \
             | tr '\r\n' ' ' \
             | jq '.[] | select(.draft == true) | .id' \
             | xargs -I '{}' \
-          curl -X DELETE -H 'Authorization: Bearer $GITHUB_TOKEN' https://api.github.com/repos/$GITHUB_REPOSITORY/releases/{}
+          curl -X DELETE -H "Authorization: Bearer $GITHUB_TOKEN" https://api.github.com/repos/$GITHUB_REPOSITORY/releases/{}
       # Create new release draft - which is not publicly visible and requires manual acceptance
       - name: Create Release Draft
         id: createDraft
