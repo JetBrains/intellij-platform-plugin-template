@@ -126,7 +126,7 @@ jobs:
       # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v2
-      # Remove old release drafts
+      # Remove old release drafts by using the curl request for the available releases with draft flag
       - name: Remove Old Release Drats
         run: |
           curl -X 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
