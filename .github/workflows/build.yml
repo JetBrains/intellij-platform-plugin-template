@@ -33,8 +33,7 @@ jobs:
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+          restore-keys: ${{ runner.os }}-gradle-
       # Run detekt
       - name: Run Linter
         run: ./gradlew detekt
@@ -70,8 +69,7 @@ jobs:
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
+          restore-keys: ${{ runner.os }}-gradle-
       # Set VERSION and NAME environment variables for the steps reading properties directly from Gradle setup
       - name: Export Properties
         id: properties
@@ -84,9 +82,11 @@ jobs:
       # Upload plugin artifact to make it available in the next jobs
       - name: Upload artifact
         uses: actions/upload-artifact@v1
+        env:
+          ARTIFACT: ${{ needs.build.outputs.artifact }}
         with:
           name: plugin-artifact
-          path: ./build/distributions/${{ steps.properties.outputs.artifact }}
+          path: ./build/distributions/$ARTIFACT
 
   # Verify built plugin using IntelliJ Plugin Verifier tool.
   # Requires build job to be passed.
@@ -103,17 +103,21 @@ jobs:
       # Run IntelliJ Plugin Verifier action using GitHub Action
       - name: Verify Plugin
         id: verify
-        uses: ChrisCarini/intellij-platform-plugin-verifier-action@v0.0.2
+        uses: ChrisCarini/intellij-platform-plugin-verifier-action@v0.0
+        env:
+          ARTIFACT: ${{ needs.build.outputs.artifact }}
         with:
-          plugin-location: plugin-artifact/${{ needs.build.outputs.artifact }}
+          plugin-location: plugin-artifact/$ARTIFACT
           ide-versions: |
             ideaIC:2020.1
 #            ideaIC:LATEST-EAP-SNAPSHOT
       # Print the output of the verify step
       - name: Print Logs
+        env:
+          OUTPUT_LOG: ${{ steps.verify.outputs.verification-output-log-filename }}
         run: |
-          echo "The verifier log file [${{steps.verify.outputs.verification-output-log-filename}}] contents : " ;
-          cat ${{steps.verify.outputs.verification-output-log-filename}}
+          echo "The verifier log file [$OUTPUT_LOG] contents : " ;
+          cat $OUTPUT_LOG
 
   # Prepare a draft release for GitHub Releases page for the manual verification.
   # If accepted and published, release workflow would be triggered.
@@ -127,24 +131,26 @@ jobs:
       - name: Fetch Sources
         uses: actions/checkout@v2
       # Remove old release drafts by using the curl request for the available releases with draft flag
-      - name: Remove Old Release Drats
+      - name: Remove Old Release Dr
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          curl -X 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-              https://api.github.com/repos/${{ GITHUB_REPOSITORY }}/releases \
+          curl -H 'Authorization: Bearer $GITHUB_TOKEN' https://api.github.com/repos/$GITHUB_REPOSITORY/releases \
             | tr '\r\n' ' ' \
             | jq '.[] | select(.draft == true) | .id' \
             | xargs -I '{}' \
-          curl -X DELETE -X 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-              https://api.github.com/repos/${{ GITHUB_REPOSITORY }}/releases/{}
+          curl -X DELETE -H 'Authorization: Bearer $GITHUB_TOKEN' https://api.github.com/repos/$GITHUB_REPOSITORY/releases/{}
       # Create new release draft - which is not publicly visible and requires manual acceptance
       - name: Create Release Draft
         id: createDraft
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NAME: ${{ needs.build.outputs.version }}
+          VERSION: ${{ needs.build.outputs.version }}
         with:
-          tag_name: v${{ needs.build.outputs.version }}
-          release_name: v${{ needs.build.outputs.version }}
+          tag_name: v$NAME
+          release_name: v$VERSION
           body: |
             Changes in this Release
             - First Change
@@ -161,8 +167,10 @@ jobs:
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ARTIFACT: ${{ needs.build.outputs.artifact }}
+          UPLOAD_URL: ${{ steps.createDraft.outputs.upload_url }}
         with:
-          upload_url: ${{ steps.createDraft.outputs.upload_url }}
-          asset_path: ./plugin-artifact/${{ needs.build.outputs.artifact }}
-          asset_name: ${{ needs.build.outputs.artifact }}
+          upload_url: $UPLOAD_URL
+          asset_path: ./plugin-artifact/$ARTIFACT
+          asset_name: $ARTIFACT
           asset_content_type: application/zip
