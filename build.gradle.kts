@@ -1,3 +1,4 @@
+import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -6,7 +7,7 @@ plugins {
     // Kotlin support
     id("org.jetbrains.kotlin.jvm") version "1.3.72"
     // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
-    id("org.jetbrains.intellij") version "0.4.18"
+    id("org.jetbrains.intellij") version "0.4.20"
     // detekt linter - read more: https://detekt.github.io/detekt/kotlindsl.html
     id("io.gitlab.arturbosch.detekt") version "1.8.0"
 }
@@ -58,6 +59,12 @@ intellij {
 // Configure detekt plugin. Read more: https://detekt.github.io/detekt/kotlindsl.html
 detekt {
     config = files("./detekt-config.yml")
+
+    reports {
+        html.enabled = false
+        xml.enabled = false
+        txt.enabled = false
+    }
 }
 
 tasks {
@@ -72,4 +79,8 @@ tasks {
 //        token("ssdfhasdfASDaq23jhnasdkjh")
 //        channels("nightly")
 //    }
+
+    withType<Detekt> {
+        this.jvmTarget = "1.8"
+    }
 }
