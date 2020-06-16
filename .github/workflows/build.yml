@@ -90,7 +90,7 @@ jobs:
         run: |
           echo "::set-output name=version::$(./gradlew properties --no-daemon --console=plain -q | grep "^version:" | awk '{printf $2}')"
           echo "::set-output name=name::$(./gradlew properties --no-daemon --console=plain -q | grep "^name:" | awk '{printf $2}')"
-          echo "::set-output name=changelog::$(./gradlew getChangelog --no-daemon --console=plain -q)"
+          echo "::set-output name=changelog::$(./gradlew getChangelog --no-daemon --unreleased --no-header --console=plain -q)"
       # Build artifact using buildPlugin Gradle task
       - name: Build Plugin
         run: ./gradlew buildPlugin --no-daemon
