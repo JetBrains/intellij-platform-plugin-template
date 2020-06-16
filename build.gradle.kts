@@ -1,4 +1,5 @@
 import io.gitlab.arturbosch.detekt.Detekt
+import org.jetbrains.changelog.closure
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -7,9 +8,11 @@ plugins {
     // Kotlin support
     id("org.jetbrains.kotlin.jvm") version "1.3.72"
     // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
-    id("org.jetbrains.intellij") version "0.4.20"
+    id("org.jetbrains.intellij") version "0.4.21"
+    // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
+    id("org.jetbrains.changelog") version "0.3.0"
     // detekt linter - read more: https://detekt.github.io/detekt/kotlindsl.html
-    id("io.gitlab.arturbosch.detekt") version "1.8.0"
+    id("io.gitlab.arturbosch.detekt") version "1.10.0-RC1"
 }
 
 // Import variables from gradle.properties file
@@ -25,17 +28,6 @@ val sources: String by project
 group = pluginGroup
 version = pluginVersion
 
-// Set the compatibility versions to 1.8
-tasks.withType<JavaCompile> {
-    sourceCompatibility = "1.8"
-    targetCompatibility = "1.8"
-}
-listOf("compileKotlin", "compileTestKotlin").forEach {
-    tasks.getByName<KotlinCompile>(it) {
-        kotlinOptions.jvmTarget = "1.8"
-    }
-}
-
 // Configure project's dependencies
 repositories {
     mavenCentral()
@@ -43,7 +35,7 @@ repositories {
 }
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.8.0")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.10.0-RC1")
 }
 
 // Configure gradle-intellij-plugin plugin. Read more: https://github.com/JetBrains/gradle-intellij-plugin
@@ -68,19 +60,27 @@ detekt {
 }
 
 tasks {
+    // Set the compatibility versions to 1.8
+    withType<JavaCompile> {
+        sourceCompatibility = "1.8"
+        targetCompatibility = "1.8"
+    }
+    listOf("compileKotlin", "compileTestKotlin").forEach {
+        getByName<KotlinCompile>(it) {
+            kotlinOptions.jvmTarget = "1.8"
+        }
+    }
+
+    withType<Detekt> {
+        jvmTarget = "1.8"
+    }
+
     patchPluginXml {
         version(pluginVersion)
         sinceBuild(pluginSinceBuild)
         untilBuild(pluginUntilBuild)
-//        changeNotes("")
-    }
-
-//    publishPlugin {
-//        token("ssdfhasdfASDaq23jhnasdkjh")
-//        channels("nightly")
-//    }
-
-    withType<Detekt> {
-        this.jvmTarget = "1.8"
+        changeNotes(closure {
+            changelog.getUnreleased().toHTML()
+        })
     }
 }
