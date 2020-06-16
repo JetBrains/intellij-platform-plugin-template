@@ -92,11 +92,9 @@ jobs:
           echo "::set-output name=name::$(./gradlew properties --no-daemon --console=plain -q | grep "^name:" | awk '{printf $2}')"
 
           CHANGELOG=$(./gradlew getChangelog --no-daemon --unreleased --no-header --console=plain -q)
-          echo $CHANGELOG
           CHANGELOG="${CHANGELOG//'%'/'%25'}"
           CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
           CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
-          echo $CHANGELOG
           echo "::set-output name=changelog::$CHANGELOG"
       # Build artifact using buildPlugin Gradle task
       - name: Build Plugin
@@ -141,7 +139,7 @@ jobs:
   # If accepted and published, release workflow would be triggered.
   releaseDraft:
     name: Release Draft
-#    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'
     needs: [build, verify]
     runs-on: ubuntu-latest
     steps:
