@@ -91,7 +91,7 @@ jobs:
           echo "::set-output name=version::$(./gradlew properties --no-daemon --console=plain -q | grep "^version:" | awk '{printf $2}')"
           echo "::set-output name=name::$(./gradlew properties --no-daemon --console=plain -q | grep "^name:" | awk '{printf $2}')"
 
-          CHANGELOG=(./gradlew getChangelog --no-daemon --unreleased --no-header --console=plain -q)
+          CHANGELOG=`./gradlew getChangelog --no-daemon --unreleased --no-header --console=plain -q`
           CHANGELOG="${CHANGELOG//'%'/'%25'}"
           CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
           CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
