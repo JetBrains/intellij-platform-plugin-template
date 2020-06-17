@@ -21,9 +21,10 @@ val pluginName: String by project
 val pluginVersion: String by project
 val pluginSinceBuild: String by project
 val pluginUntilBuild: String by project
-val ideaVersion: String by project
-val ideaType: String by project
-val sources: String by project
+
+val platformType: String by project
+val platformVersion: String by project
+val platformDownloadSources: String by project
 
 group = pluginGroup
 version = pluginVersion
@@ -38,17 +39,19 @@ dependencies {
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.10.0-RC1")
 }
 
-// Configure gradle-intellij-plugin plugin. Read more: https://github.com/JetBrains/gradle-intellij-plugin
+// Configure gradle-intellij-plugin plugin.
+// Read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
     pluginName = pluginName
-    version = ideaVersion
-    type = ideaType
+    version = platformVersion
+    type = platformType
+    downloadSources = platformDownloadSources.toBoolean()
     updateSinceUntilBuild = true
-    downloadSources = sources.toBoolean()
     setPlugins("java")
 }
 
-// Configure detekt plugin. Read more: https://detekt.github.io/detekt/kotlindsl.html
+// Configure detekt plugin.
+// Read more: https://detekt.github.io/detekt/kotlindsl.html
 detekt {
     config = files("./detekt-config.yml")
 
