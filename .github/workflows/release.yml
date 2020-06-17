@@ -4,18 +4,21 @@ on:
     types: [published]
 
 jobs:
-  patchChangelog:
-    name: Patch Changelog
+  release:
+    name: Publish Plugin
     runs-on: ubuntu-latest
     steps:
+
       # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v2
+
       # Setup Java 1.8 environment for the next steps
       - name: Setup Java
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+
       # Cache Gradle dependencies
       - name: Setup Cache
         uses: actions/cache@v1
@@ -23,39 +26,22 @@ jobs:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle-
-      # Set environment variables
-      - name: Export Properties
-        id: properties
-        run: |
-          echo "::set-output name=version::$(./gradlew properties --no-daemon --console=plain -q | grep "^version:" | awk '{printf $2}')"
-      # Patch Changelog using gradle-changelog-plugin
-      - name: Patch Changelog
-        run: ./gradlew patchChangelog --no-daemon
-      # Prepare git commit
-      - name: Commit files
+
+      # Publish plugin to the Marketplace
+      - name: Publish Plugin
         env:
-          VERSION: ${{ steps.properties.outputs.version }}
+          PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
+        run: ./gradlew publishPlugin
+
+      # Commit patched Changelog
+      - name: Commit files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -m "Update changelog to $VERSION" -a
+          git commit -m "Update changelog" -a
+
+      # Push changes
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
-  release:
-    name: Release to Marketplace
-    runs-on: ubuntu-latest
-    steps:
-      - name: Fetch Sources
-        uses: actions/checkout@v2
-      - name: Setup Java
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
-#      - name: Deploy Plugin
-#        env:
-#          GRADLE_PUBLISH_KEY: ${{ secrets.gradle_publish_key }}
-#          GRADLE_PUBLISH_SECRET: ${{ secrets.gradle_publish_secret }}
-#        run: ./gradlew publishPlugins -Pgradle.publish.key=$GRADLE_PUBLISH_KEY -Pgradle.publish.secret=$GRADLE_PUBLISH_SECRET --no-daemon
