@@ -52,7 +52,9 @@ jobs:
         run: ./gradlew detekt
       # Run verifyPlugin Gradle task
       - name: Verify Plugin
-        run: ./gradlew verifyPlugin --no-daemon
+        run: |
+          ./gradlew patchChangelog --no-daemon
+          ./gradlew verifyPlugin --no-daemon
       # Run test Gradle task
       - name: Run Tests
         run: ./gradlew test --no-daemon
@@ -141,7 +143,7 @@ jobs:
   # If accepted and published, release workflow would be triggered.
   releaseDraft:
     name: Release Draft
-    if: github.ref == 'refs/heads/master'
+#    if: github.ref == 'refs/heads/master'
     needs: [build, verify]
     runs-on: ubuntu-latest
     steps:
