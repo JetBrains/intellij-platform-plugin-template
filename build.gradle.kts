@@ -80,7 +80,12 @@ tasks {
         sinceBuild(pluginSinceBuild)
         untilBuild(pluginUntilBuild)
         changeNotes(closure {
-            changelog.getUnreleased().toHTML()
+            changelog.getLatest().toHTML()
         })
+    }
+
+    publishPlugin {
+        dependsOn("patchChangelog")
+        token(System.getenv("PUBLISH_TOKEN"))
     }
 }
