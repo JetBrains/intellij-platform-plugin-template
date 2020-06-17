@@ -40,7 +40,7 @@ jobs:
 
           # Replace template package name in project files with $GROUP
           sed -i '' "s/org.jetbrains.plugins.template/$GROUP/g" gradle.properties
-          find . -type f -exec sed -i '' "s/org.jetbrains.plugins.template/$GROUP/g" {} +
+          find src -type f -exec sed -i '' "s/org.jetbrains.plugins.template/$GROUP/g" {} +
 
           # Move content
           mkdir -p src/main/kotlin/${GROUP//.//}
