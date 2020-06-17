@@ -80,7 +80,7 @@ tasks {
         sinceBuild(pluginSinceBuild)
         untilBuild(pluginUntilBuild)
         changeNotes(closure {
-            changelog.getUnreleased().toHTML()
+            changelog.get().toHTML()
         })
     }
 }

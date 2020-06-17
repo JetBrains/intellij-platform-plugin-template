@@ -84,7 +84,7 @@ jobs:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle-
-      # Set VERSION and NAME environment variables for the steps reading properties directly from Gradle setup
+      # Set environment variables
       - name: Export Properties
         id: properties
         run: |
@@ -98,7 +98,9 @@ jobs:
           echo "::set-output name=changelog::$CHANGELOG"
       # Build artifact using buildPlugin Gradle task
       - name: Build Plugin
-        run: ./gradlew buildPlugin --no-daemon
+        run: |
+          ./gradlew patchChangelog --no-daemon
+          ./gradlew buildPlugin --no-daemon
       # Upload plugin artifact to make it available in the next jobs
       - name: Upload artifact
         uses: actions/upload-artifact@v1
