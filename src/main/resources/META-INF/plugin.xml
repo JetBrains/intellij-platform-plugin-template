@@ -5,8 +5,8 @@
     <description>Demonstrates various aspects of interacting with project model</description>
 
     <!-- Product and plugin compatibility requirements -->
-    <!-- http://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_dependencies.html?search=depend#dependency-declaration-in-pluginxml -->
-    <depends>com.intellij.java</depends>
+    <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="org.jetbrains.plugins.template.services.MyApplicationService"/>

@@ -1,7 +1,7 @@
 name: Release
 on:
   release:
-    types: [published]
+    types: [prereleased, released]
 
 jobs:
   release:
