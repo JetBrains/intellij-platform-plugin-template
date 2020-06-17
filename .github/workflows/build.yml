@@ -1,9 +1,11 @@
-# GitHub Actions Workflow created for testing the plugin in three steps:
-# - test using Gradle tasks, such as tes and verifyPlugin,
-# - test building process by preparing the artifact using buildPlugin Gradle task,
-# - run IntelliJ Plugin Verifier.
+# GitHub Actions Workflow created for testing and preparing the plugin release in following steps:
+# - validate Gradle Wrapper,
+# - run test and verifyPlugin tasks,
+# - run buildPlugin task and prepare artifact for the further tests,
+# - run IntelliJ Plugin Verifier,
+# - create a draft release.
 #
-# Workflow is triggered on push or pull request event.
+# Workflow is triggered on push and pull_request events.
 #
 # Docs:
 # - GitHub Actions: https://help.github.com/en/actions
@@ -156,7 +158,7 @@ jobs:
   # If accepted and published, release workflow would be triggered.
   releaseDraft:
     name: Release Draft
-#    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master'
     needs: [build, verify]
     runs-on: ubuntu-latest
     steps:

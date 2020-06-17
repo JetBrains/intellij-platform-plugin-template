@@ -2,7 +2,6 @@
     <id>org.jetbrains.plugins.template</id>
     <name>Template</name>
     <vendor>JetBrains</vendor>
-    <description>Demonstrates various aspects of interacting with project model</description>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->

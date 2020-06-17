@@ -1,10 +1,10 @@
 package org.jetbrains.plugins.template.services
 
-import org.jetbrains.plugins.template.TemplateBundle
+import org.jetbrains.plugins.template.MyBundle
 
 class MyApplicationService {
 
     init {
-        println(TemplateBundle.message("applicationService"))
+        println(MyBundle.message("applicationService"))
     }
 }

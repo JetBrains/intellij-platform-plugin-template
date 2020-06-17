@@ -5,9 +5,9 @@ import org.jetbrains.annotations.NonNls
 import org.jetbrains.annotations.PropertyKey
 
 @NonNls
-private const val BUNDLE = "messages.TemplateBundle"
+private const val BUNDLE = "messages.MyBundle"
 
-object TemplateBundle : DynamicBundle(BUNDLE) {
+object MyBundle : DynamicBundle(BUNDLE) {
 
     @Suppress("SpreadOperator")
     @JvmStatic
