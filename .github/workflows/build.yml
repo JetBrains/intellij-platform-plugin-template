@@ -53,11 +53,11 @@ jobs:
       # Run verifyPlugin Gradle task
       - name: Verify Plugin
         run: |
-          ./gradlew patchChangelog --no-daemon
-          ./gradlew verifyPlugin --no-daemon
+          ./gradlew patchChangelog
+          ./gradlew verifyPlugin
       # Run test Gradle task
       - name: Run Tests
-        run: ./gradlew test --no-daemon
+        run: ./gradlew test
 
   # Build plugin with buildPlugin Gradle task and provide artifact for the next workflow jobs.
   # Requires test job to be passed.
@@ -90,10 +90,10 @@ jobs:
       - name: Export Properties
         id: properties
         run: |
-          echo "::set-output name=version::$(./gradlew properties --no-daemon --console=plain -q | grep "^version:" | awk '{printf $2}')"
-          echo "::set-output name=name::$(./gradlew properties --no-daemon --console=plain -q | grep "^name:" | awk '{printf $2}')"
+          echo "::set-output name=version::$(./gradlew properties --console=plain -q | grep "^version:" | awk '{printf $2}')"
+          echo "::set-output name=name::$(./gradlew properties --console=plain -q | grep "^name:" | awk '{printf $2}')"
 
-          CHANGELOG=$(./gradlew getChangelog --no-daemon --unreleased --no-header --console=plain -q)
+          CHANGELOG=$(./gradlew getChangelog --unreleased --no-header --console=plain -q)
           CHANGELOG="${CHANGELOG//'%'/'%25'}"
           CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
           CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
@@ -101,8 +101,8 @@ jobs:
       # Build artifact using buildPlugin Gradle task
       - name: Build Plugin
         run: |
-          ./gradlew patchChangelog --no-daemon
-          ./gradlew buildPlugin --no-daemon
+          ./gradlew patchChangelog
+          ./gradlew buildPlugin
       # Upload plugin artifact to make it available in the next jobs
       - name: Upload artifact
         uses: actions/upload-artifact@v1
