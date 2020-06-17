@@ -14,7 +14,7 @@ jobs:
   template-cleanup:
     name: Template Cleanup
     runs-on: ubuntu-latest
-    if: github.repository != 'hsz/intellij-plugin-template'
+    if: github.repository != 'JetBrains/intellij-plugin-template'
     steps:
 
       # Check out current repository

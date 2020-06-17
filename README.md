@@ -1,7 +1,7 @@
 # IntelliJ Plugin Template
 
 [![official JetBrains project](https://jb.gg/badges/official.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
-![Build](https://github.com/hsz/intellij-plugin-template/workflows/Build/badge.svg)
+![Build](https://github.com/JetBrains/intellij-plugin-template/workflows/Build/badge.svg)
 
 <!-- Plugin description -->
 **IntelliJ Plugin Template** is a repository that provides a pure boilerplate for creating a plugin project with ease

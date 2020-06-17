@@ -1,6 +1,6 @@
 # %NAME%
 
-![Build](https://github.com/hsz/intellij-plugin-template/workflows/Build/badge.svg)
+![Build](https://github.com/JetBrains/intellij-plugin-template/workflows/Build/badge.svg)
 
 <!-- Plugin description -->
 This Fancy IntelliJ Plugin is going to be your implementation of the brilliant ideas that you have.
