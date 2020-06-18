@@ -92,13 +92,74 @@ platformDownloadSources = true
 Listed properties define the plugin itself or configure the [gradle-intellij-plugin][gradle-intellij-plugin] - check
 its documentation for more details. 
 
-## Plugin Manifest File
+## Plugin Template Structure
 
-TODO
+Generated IntelliJ Template repository contains following content structure:
+
+```
+.
+├── CHANGELOG.md            Full changes history.
+├── LICENSE                 License, MIT by default
+├── README.md               README
+├── build                   Output build directory
+├── build.gradle.kts        Gradle configuration
+├── detekt-config.yml       Detekt configuration
+├── gradle
+│   └── wrapper             Gradle Wrapper
+├── gradle.properties       Gradle configuration properties
+├── gradlew                 *nix Gradle Wrapper binary
+├── gradlew.bat             Windows Gradle Wrapper binary
+└── src                     Plugin sources
+    └── main
+        ├── kotlin          Kotlin source files
+        ├── java            Java source files
+        └── resources       Resources - plugin.xml, icons, messages
+```
+
+Beside of the configuration files, the most important part is the `src` directory containing our implementation
+and plugin's manifest - [plugin.xml][file:plugin.xml].
+
+## Plugin Configuration File
+
+Plugin Configuration File is a [plugin.xml][file:plugin.xml] file located in the `/src/main/resources/META-INF`
+directory. It describes the overall information about the plugin, its dependencies, extensions, and listeners.
+
+```xml
+<idea-plugin>
+    <id>org.jetbrains.plugins.template</id>
+    <name>Template</name>
+    <vendor>JetBrains</vendor>
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="..."/>
+        <projectService serviceImplementation="..."/>
+    </extensions>
+
+    <projectListeners>
+        <listener class="..." topic="..."/>
+    </projectListeners>
+</idea-plugin>
+```
+
+You can read more about that file in [IntelliJ Platform SDK DevGuide][docs:plugin.xml].
 
 ## Sample Code
 
-TODO
+The prepared template is aiming to provide as less code as possible, because it is barely possible to fulfill
+the requirements of the various types of the plugins (language support, build tools, VCS related tools) with some
+general scaffold. Having that in mind, it contains few following files:
+
+```
+.
+├── MyBundle.kt                         Bundle class providing access to the resources messages
+├── listeners
+│   ├── MyDynamicPluginListener.kt      Dynamic Plugin listener - notifies about the dynamic plugin lifecycle
+│   └── MyProjectManagerListener.kt     Project Manager listener - notifies about the project open event
+└── services
+    ├── MyApplicationService.kt         Application level service available for all projects
+    └── MyProjectService.kt             Project level service
+```
 
 ## Continuous Integration
 
@@ -128,9 +189,11 @@ Cannot find org.jetbrains.plugins.template. Note that you need to upload the plu
 ## Useful Links
 
 - [IntelliJ Platform SDK DevGuide][docs]
+- [IntelliJ Platform UI Guidelines][ij-ui-guidelines]
+- [Kotlin UI DSL][docs:kotlin-ui-dsl]
 - [IntelliJ SDK Code Samples][code-samples]
 - [JetBrains Platform Slack][slack]
-- [IntelliJ IDEA Open API and Plugin Development][forum]
+- [IntelliJ IDEA Open API and Plugin Development Forum][forum]
 - [Keep a Changelog][keep-a-changelog]
 - [GitHub Actions][gh-actions]
 
@@ -148,12 +211,16 @@ Cannot find org.jetbrains.plugins.template. Note that you need to upload the plu
 [download-ij]: https://www.jetbrains.com/idea/download
 [gradle]: https://gradle.org
 [gradle-kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
+[ij-ui-guidelines]: https://jetbrains.github.io/ui
 
 [docs]: https://www.jetbrains.org/intellij/sdk/docs
 [docs:intro]: https://www.jetbrains.org/intellij/sdk/docs/intro/intellij_platform.html
 [docs:using-gradle]: https://www.jetbrains.org/intellij/sdk/docs/tutorials/build_system.html
 [docs:publishing]: https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/publishing_plugin.html
+[docs:kotlin-ui-dsl]: https://www.jetbrains.org/intellij/sdk/docs/user_interface_components/kotlin_ui_dsl.html
+[docs:plugin.xml]: https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_configuration_file.html
 
 [file:getting-started_use-this-template.png]: ./.github/readme/getting-started_use-this-template.png
 [file:gradle.properties]: ./gradle.properties
 [file:template_cleanup.yml]: ./.github/workflows/template-cleanup.yml
+[file:plugin.xml]: ./src/main/resources/META-INF/plugin.xml
