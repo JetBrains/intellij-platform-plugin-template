@@ -12,6 +12,8 @@ developers by preconfiguring the project scaffold, CI and linking to the proper 
 everything in the most straightforward manner.
 <!-- Plugin description end -->
 
+If you're still not sure, what is this about - read our introduction of [What is the IntelliJ Platform?][docs:intro]
+
 We can highlight here the following parts:
 
 - Gradle configuration
@@ -31,18 +33,62 @@ idea behind the GitHub Templates: by creating a new project using the current te
 and no reference to this repository - it is the cut corner for creating a new repository with copy-pasting the content
 or cloning repositories and clearing the history by your own.
 
-The only thing that you have to do is clicking the **Use this template** button.
+The only thing that you have to do is clicking the <kbd>Use this template</kbd> button.
 
 ![Use this template][file:getting-started_use-this-template.png]
 
 After creating your blank project from the template, there will be the [Template Cleanup][file:template_cleanup.yml]
-workflow triggered to override or remove template-specific configuration, like plugin name, current changelog, etc.
+workflow triggered to override or remove the template-specific configuration, like plugin name, current changelog, etc.
+When done, project is ready to be cloned on your local environment and opened with the [IntelliJ IDEA][download-ij].
 
-As a last step, it is required to manually specify the `pluginName` and `pluginGroup` in the `gradle.properties` file.
+As the last step, you have to manually review the configuration variables described in the
+[gradle.properties][file:gradle.properties] file, *optionally* move sources from the *com.github.username.repository*
+package to the one that fits you the most and start implementing your ideas.
 
 ## Gradle
 
-TODO
+The recommended way of the plugin development is using the [Gradle][gradle] setup with
+[gradle-intellij-plugin][gradle-intellij-plugin] installed. The gradle-intellij-plugin provides tasks to run the IDE
+with your plugin and to publish your plugin to the Marketplace Repository. 
+
+IntelliJ Plugin Template project provides already preconfigured Gradle configuration, however feel free to follow
+the [Using Gradle][docs:using-gradle] articles for better understanding and customisation of your build.
+
+The most significant parts of the current configuration are:
+- Configuration written with [Gradle Kotlin DSL][gradle-kotlin-dsl]
+- Kotlin support with possibility to write Java code
+- Plugin XML patching with the latest *change notes* from the `CHANGELOG.md` file
+- Plugin XML patching with the *description* from the `README.md` file
+- Code linting with [detekt][detekt]
+- [Plugin publishing][docs:publishing] using token
+
+Project specific configuration file - [gradle.properties][file:gradle.properties] - contains:
+
+```properties
+pluginGroup = org.jetbrains.plugins.template
+pluginName = Template
+pluginVersion = 0.0.2
+pluginSinceBuild = 193
+pluginUntilBuild = 202
+
+platformType = IC
+platformVersion = 2020.1
+platformDownloadSources = true
+```
+
+
+
+| Property name | Description |
+| ------------- | ----------- |
+| `pluginGroup` | Package name - after *using* the template, will be set to `com.gtihub.username.repo`. |
+| `pluginName`  | Name of the plugin displayed in the Marketplace and Plugins Repository.                           |
+| `pluginVersion` | Current version of the plugin. |
+| `pluginSinceBuild` | `since-build` attribute of the <idea-version> tag. |
+| `pluginUntilBuild` | `until-build` attribute of the <idea-version> tag. |
+| `platformType` | The type of IDE distribution. |
+| `platformVersion` |  |
+| `platformDownloadSources` |  |
+
 
 ## Sample Code
 
@@ -79,7 +125,7 @@ Cannot find org.jetbrains.plugins.template. Note that you need to upload the plu
 
 ## Useful Links
 
-- [IntelliJ Platform SDK DevGuide][sdk-docs]
+- [IntelliJ Platform SDK DevGuide][docs]
 - [IntelliJ SDK Code Samples][code-samples]
 - [JetBrains Platform Slack][slack]
 - [IntelliJ IDEA Open API and Plugin Development][forum]
@@ -88,13 +134,23 @@ Cannot find org.jetbrains.plugins.template. Note that you need to upload the plu
 
 [gh-template]: https://help.github.com/en/enterprise/2.20/user/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template
 [gh-actions]: https://help.github.com/en/actions
-[sdk-docs]: https://www.jetbrains.org/intellij/sdk/docs
 [code-samples]: https://github.com/JetBrains/intellij-sdk-code-samples
+[gradle-intellij-plugin]: https://github.com/JetBrains/gradle-intellij-plugin
 [releases]: https://github.com/JetBrains/intellij-plugin-template/releases
 [marketplace-plugin-page]: https://plugins.jetbrains.com/plugin/0-TODO
 [slack]: https://plugins.jetbrains.com/slack
 [forum]: https://intellij-support.jetbrains.com/hc/en-us/community/topics/200366979-IntelliJ-IDEA-Open-API-and-Plugin-Development
 [keep-a-changelog]: https://keepachangelog.com
+[detekt]: https://detekt.github.io/detekt
+[download-ij]: https://www.jetbrains.com/idea/download
+[gradle]: https://gradle.org
+[gradle-kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
+
+[docs]: https://www.jetbrains.org/intellij/sdk/docs
+[docs:intro]: https://www.jetbrains.org/intellij/sdk/docs/intro/intellij_platform.html
+[docs:using-gradle]: https://www.jetbrains.org/intellij/sdk/docs/tutorials/build_system.html
+[docs:publishing]: https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/publishing_plugin.html
 
 [file:getting-started_use-this-template.png]: ./.github/readme/getting-started_use-this-template.png
+[file:gradle.properties]: ./gradle.properties
 [file:template_cleanup.yml]: ./.github/workflows/template-cleanup.yml
