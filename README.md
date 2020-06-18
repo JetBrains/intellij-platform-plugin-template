@@ -14,17 +14,18 @@ everything in the most straightforward manner.
 
 If you're still not sure, what is this about - read our introduction of [What is the IntelliJ Platform?][docs:intro]
 
-We can highlight here the following parts:
+We can highlight the following parts of the template project:
 
-- Gradle configuration
-- Sample code:
+- [Gradle Configuration](#gradle-configuration)
+- [Plugin Manifest File](#plugin-manifest-file)
+- [Sample Code](#sample-code):
   - listeners - project and dynamic plugin lifecycle
   - services - project- and application-related services 
   - actions - basic action with shortcut binding
-- Plugin Manifest file
-- README Template
-- CI based on GitHub actions
-- Release and changelog maintenance flow
+- [Continuous Integration](#continuous-integration) based on the GitHub Actions
+- [Release Flow](#release-flow) using the GitHub Releases
+- [Changelog Maintenance](#changelog) with the Gradle Changelog Plugin
+- [Publishing Plugin](#publishing-plugin) with the Gradle IntelliJ Plugin
 
 ## Getting Started
 
@@ -45,7 +46,7 @@ As the last step, you have to manually review the configuration variables descri
 [gradle.properties][file:gradle.properties] file, *optionally* move sources from the *com.github.username.repository*
 package to the one that fits you the most and start implementing your ideas.
 
-## Gradle
+## Gradle Configuration
 
 The recommended way of the plugin development is using the [Gradle][gradle] setup with
 [gradle-intellij-plugin][gradle-intellij-plugin] installed. The gradle-intellij-plugin provides tasks to run the IDE
@@ -57,8 +58,9 @@ the [Using Gradle][docs:using-gradle] articles for better understanding and cust
 The most significant parts of the current configuration are:
 - Configuration written with [Gradle Kotlin DSL][gradle-kotlin-dsl]
 - Kotlin support with possibility to write Java code
-- Plugin XML patching with the latest *change notes* from the `CHANGELOG.md` file
-- Plugin XML patching with the *description* from the `README.md` file
+- Integration with [gradle-changelog-plugin][gradle-changelog-plugin] for the automated patching of the change notes and
+  description consumed from `CHANGELOG.md` and `README.md` files
+- Integration with [gradle-intellij-plugin][gradle-intellij-plugin] for the better development impressions
 - Code linting with [detekt][detekt]
 - [Plugin publishing][docs:publishing] using token
 
@@ -76,25 +78,25 @@ platformVersion = 2020.1
 platformDownloadSources = true
 ```
 
+| Property name             | Description                                                                           |
+| ------------------------- | ------------------------------------------------------------------------------------- |
+| `pluginGroup`             | Package name - after *using* the template, will be set to `com.gtihub.username.repo`. |
+| `pluginName`              | Name of the plugin displayed in the Marketplace and Plugins Repository.               |
+| `pluginVersion`           | Current version of the plugin.                                                        |
+| `pluginSinceBuild`        | `since-build` attribute of the <idea-version> tag.                                    |
+| `pluginUntilBuild`        | `until-build` attribute of the <idea-version> tag.                                    |
+| `platformType`            | The type of IDE distribution.                                                         |
+| `platformVersion`         | The version of the IntelliJ Platform IDE that will be used to build the plugin.       |
+| `platformDownloadSources` | Download IDE sources while initializing Gradle build.                                 |
 
+Listed properties define the plugin itself or configure the [gradle-intellij-plugin][gradle-intellij-plugin] - check
+its documentation for more details. 
 
-| Property name | Description |
-| ------------- | ----------- |
-| `pluginGroup` | Package name - after *using* the template, will be set to `com.gtihub.username.repo`. |
-| `pluginName`  | Name of the plugin displayed in the Marketplace and Plugins Repository.                           |
-| `pluginVersion` | Current version of the plugin. |
-| `pluginSinceBuild` | `since-build` attribute of the <idea-version> tag. |
-| `pluginUntilBuild` | `until-build` attribute of the <idea-version> tag. |
-| `platformType` | The type of IDE distribution. |
-| `platformVersion` |  |
-| `platformDownloadSources` |  |
-
-
-## Sample Code
+## Plugin Manifest File
 
 TODO
 
-## Plugin Manifest File
+## Sample Code
 
 TODO
 
@@ -119,7 +121,7 @@ and inside of the Plugin Manager's item details.
 There are many different methods of handling the project's changelog. One of them, used in the current template project,
 is the [Keep a Changelog][keep-a-changelog] approach.
 
-# Publishing Plugin
+## Publishing Plugin
 
 Cannot find org.jetbrains.plugins.template. Note that you need to upload the plugin to the repository at least once manually (to specify options like the license, repository URL etc.). Follow the instructions: https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/publishing_plugin.html
 
@@ -136,6 +138,7 @@ Cannot find org.jetbrains.plugins.template. Note that you need to upload the plu
 [gh-actions]: https://help.github.com/en/actions
 [code-samples]: https://github.com/JetBrains/intellij-sdk-code-samples
 [gradle-intellij-plugin]: https://github.com/JetBrains/gradle-intellij-plugin
+[gradle-changelog-plugin]: https://github.com/JetBrains/gradle-changelog-plugin
 [releases]: https://github.com/JetBrains/intellij-plugin-template/releases
 [marketplace-plugin-page]: https://plugins.jetbrains.com/plugin/0-TODO
 [slack]: https://plugins.jetbrains.com/slack
