@@ -34,13 +34,13 @@ jobs:
           GROUP="com.github.$ACTOR.$SAFE_NAME"
 
           # Replace placeholders in the template-cleanup files
-          sed -i '' "s/%NAME%/$NAME/g" .github/template-cleanup/*
-          sed -i '' "s/%REPOSITORY%/${GITHUB_REPOSITORY/\//\\/}/g" .github/template-cleanup/*
-          sed -i '' "s/%GROUP%/$GROUP/g" .github/template-cleanup/*
+          sed -i "s/%NAME%/$NAME/g" .github/template-cleanup/*
+          sed -i "s/%REPOSITORY%/${GITHUB_REPOSITORY/\//\\/}/g" .github/template-cleanup/*
+          sed -i "s/%GROUP%/$GROUP/g" .github/template-cleanup/*
 
           # Replace template package name in project files with $GROUP
-          sed -i '' "s/org.jetbrains.plugins.template/$GROUP/g" gradle.properties
-          find src -type f -exec sed -i '' "s/org.jetbrains.plugins.template/$GROUP/g" {} +
+          sed -i "s/org.jetbrains.plugins.template/$GROUP/g" gradle.properties
+          find src -type f -exec sed -i "s/org.jetbrains.plugins.template/$GROUP/g" {} +
 
           # Move content
           mkdir -p src/main/kotlin/${GROUP//.//}
