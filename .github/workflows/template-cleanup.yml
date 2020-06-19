@@ -1,4 +1,4 @@
-# GitHub Actions Workflow responsible for cleaning up the IntelliJ Plugin Template repository from
+# GitHub Actions Workflow responsible for cleaning up the IntelliJ Platform Plugin Template repository from
 # the template-specific files and configurations. This workflow is supposed to be triggered automatically
 # when a new template-based repository has been created.
 
@@ -10,11 +10,11 @@ on:
 
 jobs:
 
-  # Run cleaning process only if workflow is triggered by the non-JetBrains/intellij-plugin-template repository.
+  # Run cleaning process only if workflow is triggered by the non-JetBrains/intellij-platform-plugin-template repository.
   template-cleanup:
     name: Template Cleanup
     runs-on: ubuntu-latest
-    if: github.repository != 'JetBrains/intellij-plugin-template'
+    if: github.repository != 'JetBrains/intellij-platform-plugin-template'
     steps:
 
       # Check out current repository

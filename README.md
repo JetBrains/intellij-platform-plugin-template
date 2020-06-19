@@ -1,12 +1,14 @@
-# IntelliJ Plugin Template
+# IntelliJ Platform Plugin Template
 
 [![official JetBrains project](https://jb.gg/badges/official.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
-![Build](https://github.com/JetBrains/intellij-plugin-template/workflows/Build/badge.svg)
+![Build](https://github.com/JetBrains/intellij-platform-plugin-template/workflows/Build/badge.svg)
 [![Slack](https://img.shields.io/badge/Slack-%23intellij--plugin--template-blue)](https://plugins.jetbrains.com/slack)
 
 <!-- Plugin description -->
-**IntelliJ Plugin Template** is a repository that provides a pure boilerplate for creating a plugin project with ease
-designed as a **GitHub Template Repository** (check the [Creating a repository from a template][gh-template] article).
+**IntelliJ Platform Plugin Template** is a repository that provides a pure boilerplate for creating a plugin project
+with ease designed as a **GitHub Template Repository** (check the [Creating a repository from a template][gh-template]
+article).
+
 The main goal for this Template is to speed up the setup phase of the plugin development for the new as well as existing
 developers by preconfiguring the project scaffold, CI and linking to the proper documentation pages and keeping
 everything in the most straightforward manner.
@@ -52,8 +54,8 @@ The recommended way of the plugin development is using the [Gradle][gradle] setu
 [gradle-intellij-plugin][gradle-intellij-plugin] installed. The gradle-intellij-plugin provides tasks to run the IDE
 with your plugin and to publish your plugin to the Marketplace Repository. 
 
-IntelliJ Plugin Template project provides already preconfigured Gradle configuration, however feel free to follow
-the [Using Gradle][docs:using-gradle] articles for better understanding and customisation of your build.
+IntelliJ Platform Plugin Template project provides already preconfigured Gradle configuration, however feel free
+to follow the [Using Gradle][docs:using-gradle] articles for better understanding and customisation of your build.
 
 The most significant parts of the current configuration are:
 - Configuration written with [Gradle Kotlin DSL][gradle-kotlin-dsl]
@@ -121,7 +123,7 @@ and plugin's manifest - [plugin.xml][file:plugin.xml].
 
 ## Plugin Configuration File
 
-Plugin Configuration File is a [plugin.xml][file:plugin.xml] file located in the `/src/main/resources/META-INF`
+Plugin Configuration File is a [plugin.xml][file:plugin.xml] file located in the `src/main/resources/META-INF`
 directory. It describes the overall information about the plugin, its dependencies, extensions, and listeners.
 
 ```xml
@@ -154,14 +156,19 @@ general scaffold. Having that in mind, it contains few following files:
 .
 ├── MyBundle.kt                         Bundle class providing access to the resources messages
 ├── listeners
-│   ├── MyDynamicPluginListener.kt      Dynamic Plugin listener - notifies about the dynamic plugin lifecycle
-│   └── MyProjectManagerListener.kt     Project Manager listener - notifies about the project open event
+│   ├── MyDynamicPluginListener.kt      Dynamic Plugin listener - handles plugin lifecycle events
+│   └── MyProjectManagerListener.kt     Project Manager listener - handles project lifecycle
 └── services
     ├── MyApplicationService.kt         Application level service available for all projects
     └── MyProjectService.kt             Project level service
 ```
 
+Above files location is `src/main/kotlin`, which indicates the used language - if you will decide to use Java instead,
+sources should be located in `src/main/java` directory. 
+
 ## Continuous Integration
+
+Continuous Integration depends on the GitHub Actions, which is a set of workflows 
 
 Unit tests
 Detekt
@@ -202,7 +209,7 @@ Cannot find org.jetbrains.plugins.template. Note that you need to upload the plu
 [code-samples]: https://github.com/JetBrains/intellij-sdk-code-samples
 [gradle-intellij-plugin]: https://github.com/JetBrains/gradle-intellij-plugin
 [gradle-changelog-plugin]: https://github.com/JetBrains/gradle-changelog-plugin
-[releases]: https://github.com/JetBrains/intellij-plugin-template/releases
+[releases]: https://github.com/JetBrains/intellij-platform-plugin-template/releases
 [marketplace-plugin-page]: https://plugins.jetbrains.com/plugin/0-TODO
 [slack]: https://plugins.jetbrains.com/slack
 [forum]: https://intellij-support.jetbrains.com/hc/en-us/community/topics/200366979-IntelliJ-IDEA-Open-API-and-Plugin-Development

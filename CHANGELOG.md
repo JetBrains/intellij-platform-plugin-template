@@ -1,6 +1,6 @@
 <!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
-# IntelliJ Plugin Template Changelog
+# IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
 ### Added
