@@ -22,13 +22,13 @@ We can highlight the following parts of the template project:
 - [Plugin Template Structure](#plugin-template-structure)
 - [Plugin Configuration File](#plugin-configuration-file)
 - [Sample Code](#sample-code):
-  - listeners - project and dynamic plugin lifecycle
-  - services - project- and application-related services 
-  - actions - basic action with shortcut binding
+    - listeners - project and dynamic plugin lifecycle
+    - services - project- and application-related services 
+    - actions - basic action with shortcut binding
 - [Continuous Integration](#continuous-integration) based on the GitHub Actions
-- [Release Flow](#release-flow) using the GitHub Releases
-- [Changelog Maintenance](#changelog) with the Gradle Changelog Plugin
-- [Publishing Plugin](#publishing-plugin) with the Gradle IntelliJ Plugin
+    - [Changelog Maintenance](#changelog-maintenance) with the Gradle Changelog Plugin
+    - [Release Flow](#release-flow) using the GitHub Releases
+    - [Publishing Plugin](#publishing-plugin) with the Gradle IntelliJ Plugin
 
 ## Getting Started
 
@@ -169,29 +169,68 @@ sources should be located in `src/main/java` directory.
 
 ## Continuous Integration
 
-Continuous Integration depends on the GitHub Actions, which is a set of workflows that let to automate your testing
-and releasing process.
+Continuous Integration depends on the [GitHub Actions][gh:actions], which is a set of workflows that let to automate
+your testing and releasing process. Thanks to such automation, you can delegate the testing and verification phases
+to the CI and focus on the development (and writing more tests).
 
-Unit tests
-Detekt
-verifyPlugin
-intellij-plugin-verifier
+In `.github/workflows` directory you may find the following GitHub Actions Workflows defined:
 
-## Release Flow
+- [Build](.github/workflows/build.yml)
+    - Triggered on `push` and `pull_request` events
+    - Runs Gradle Wrapper Validation Action to verify the wrapper's checksum
+    - Runs verifyPlugin and test Gradle tasks
+    - Builds plugin with buildPlugin Gradle task and provide the artifact for the next workflow jobs
+    - Verifies built plugin using IntelliJ Plugin Verifier tool
+    - Prepares a draft release for GitHub Releases page for the manual verification 
+- [Release](.github/workflows/release.yml)
+    - Triggered on `released` event
+    - Publishes the plugin to the Marketplace using `PUBLISH_TOKEN` provided token
+    - Patches the Changelog and commits
+- [Template Cleanup](.github/workflows/template-cleanup.yml) 
+    - Triggered once on `push` event when a new template-based repository has been created
+    - Overrides scaffold with files from `.github/template-cleanup` directory
+    - Overrides JetBrains-specific sentences or package names with the ones specific to the target repository
+    - Removes redundant files
 
-### Changelog
+Each Workflow file has an accurate documentation provided, so don't hesitate to look through their sources.
 
-When delivering a new release, it is essential to let your audience know what the updated version offering is.
-The best way of handling that is to attach the changelog.
+### Changelog Maintenance
+
+When delivering a new release, it is essential to let your audience know what the updated version is offering.
+The best way of handling that is to attach the release note.
 
 The changelog is a curated list containing information of any new features, fixes, deprecations.
 If provided, such list would be available in a couple of places: [CHANGELOG.md](./CHANGELOG.md) file,
 [Releases page][gh:releases], [What's new][jb:plugin-page] section in Marketplace's Plugin page
-and inside of the Plugin Manager's item details. 
-There are many different methods of handling the project's changelog. One of them, used in the current template project,
-is the [Keep a Changelog][keep-a-changelog] approach.
+and inside of the Plugin Manager's item details.
 
-## Publishing Plugin
+There are many methods of handling the project's changelog. One of them, used in the current template project,
+is the [Keep a Changelog][keep-a-changelog] approach, which brings underneath rules:
+
+> **Guiding Principles**
+> - Changelogs are for humans, not machines.
+> - There should be an entry for every single version.
+> - The same types of changes should be grouped.
+> - Versions and sections should be linkable.
+> - The latest version comes first.
+> - The release date of each version is displayed.
+> - Mention whether you follow Semantic Versioning.
+>
+> **Types of changes**
+> - `Added` for new features.
+> - `Changed` for changes in existing functionality.
+> - `Deprecated` for soon-to-be removed features.
+> - `Removed` for now removed features.
+> - `Fixed` for any bug fixes.
+> - `Security` in case of vulnerabilities.
+>
+> <small> Ref.: https://keepachangelog.com/en/1.0.0/ </small>
+
+### Release Flow
+
+
+
+### Publishing Plugin
 
 Cannot find org.jetbrains.plugins.template. Note that you need to upload the plugin to the repository at least once manually (to specify options like the license, repository URL etc.). Follow the instructions: https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/publishing_plugin.html
 

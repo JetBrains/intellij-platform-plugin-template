@@ -30,7 +30,7 @@ jobs:
       - name: Gradle Wrapper Validation
         uses: gradle/wrapper-validation-action@v1
 
-  # Run verifyPlugin and test Gradle tasks.
+  # Run verifyPlugin and test Gradle tasks
   test:
     name: Test
     needs: gradleValidation
@@ -67,8 +67,8 @@ jobs:
       - name: Run Tests
         run: ./gradlew test
 
-  # Build plugin with buildPlugin Gradle task and provide artifact for the next workflow jobs.
-  # Requires test job to be passed.
+  # Build plugin with buildPlugin Gradle task and provide the artifact for the next workflow jobs
+  # Requires test job to be passed
   build:
     name: Build
     needs: test
@@ -122,8 +122,8 @@ jobs:
           name: plugin-artifact
           path: ./build/distributions/${{ needs.build.outputs.artifact }}
 
-  # Verify built plugin using IntelliJ Plugin Verifier tool.
-  # Requires build job to be passed.
+  # Verify built plugin using IntelliJ Plugin Verifier tool
+  # Requires build job to be passed
   verify:
     name: Verify
     needs: build
@@ -154,8 +154,8 @@ jobs:
           echo "The verifier log file [$OUTPUT_LOG] contents : " ;
           cat $OUTPUT_LOG
 
-  # Prepare a draft release for GitHub Releases page for the manual verification.
-  # If accepted and published, release workflow would be triggered.
+  # Prepare a draft release for GitHub Releases page for the manual verification
+  # If accepted and published, release workflow would be triggered
   releaseDraft:
     name: Release Draft
     if: github.ref == 'refs/heads/master'

@@ -2,7 +2,7 @@
 # the template-specific files and configurations. This workflow is supposed to be triggered automatically
 # when a new template-based repository has been created.
 
-name: Tempalte Cleanup
+name: Template Cleanup
 on:
   push:
     branches:
