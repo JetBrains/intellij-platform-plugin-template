@@ -2,7 +2,7 @@
 
 [![official JetBrains project](https://jb.gg/badges/official.svg)][jb:confluence-on-gh]
 ![Build](https://github.com/JetBrains/intellij-platform-plugin-template/workflows/Build/badge.svg)
-[![Slack](https://img.shields.io/badge/Slack-%23intellij--plugin--template-blue)][jb:slack]
+[![Slack](https://img.shields.io/badge/Slack-%23intellij--platform--plugin--template-blue)][jb:slack]
 
 <!-- Plugin description -->
 **IntelliJ Platform Plugin Template** is a repository that provides a pure boilerplate for creating a plugin project
@@ -39,7 +39,7 @@ or cloning repositories and clearing the history by your own.
 
 The only thing that you have to do is clicking the <kbd>Use this template</kbd> button.
 
-![Use this template][file:getting-started_use-this-template.png]
+![Use this template][file:use-this-template.png]
 
 After creating your blank project from the template, there will be the [Template Cleanup][file:template_cleanup.yml]
 workflow triggered to override or remove the template-specific configuration, like plugin name, current changelog, etc.
@@ -72,7 +72,7 @@ Project specific configuration file - [gradle.properties][file:gradle.properties
 ```properties
 pluginGroup = org.jetbrains.plugins.template
 pluginName = Template
-pluginVersion = 0.0.2
+pluginVersion = 0.0.1
 pluginSinceBuild = 193
 pluginUntilBuild = 202
 
@@ -173,7 +173,7 @@ Continuous Integration depends on the [GitHub Actions][gh:actions], which is a s
 your testing and releasing process. Thanks to such automation, you can delegate the testing and verification phases
 to the CI and focus on the development (and writing more tests).
 
-In `.github/workflows` directory you may find the following GitHub Actions Workflows defined:
+In `.github/workflows` directory you may find the following GitHub Actions workflows defined:
 
 - [Build](.github/workflows/build.yml)
     - Triggered on `push` and `pull_request` events
@@ -192,7 +192,7 @@ In `.github/workflows` directory you may find the following GitHub Actions Workf
     - Overrides JetBrains-specific sentences or package names with the ones specific to the target repository
     - Removes redundant files
 
-Each Workflow file has an accurate documentation provided, so don't hesitate to look through their sources.
+Each workflow file has an accurate documentation provided, so don't hesitate to look through their sources.
 
 ### Changelog Maintenance
 
@@ -224,15 +224,41 @@ is the [Keep a Changelog][keep-a-changelog] approach, which brings underneath ru
 > - `Fixed` for any bug fixes.
 > - `Security` in case of vulnerabilities.
 >
-> <small> Ref.: https://keepachangelog.com/en/1.0.0/ </small>
+> Ref.: https://keepachangelog.com/en/1.0.0/
 
 ### Release Flow
 
+Releasing process depends on the already described workflows - when your main branch receives a new Pull Request
+or a regular push, [Build](.github/workflows/build.yml) workflow tests your plugin at different angles and prepares
+a draft release.
 
+![Release draft][file:draft-release.png]
+
+Draft release is a working copy of a release, which you can review, before publishing. It has predefined title
+and git tag name, which is the current plugin's version - i.e. `v0.0.1`. Changelog is provided automatically using
+the [gradle-changelog-plugin][gh:gradle-changelog-plugin]. There is also an artifact file with built plugin attached.
+Every next *Build* overrides (or creates one if absent) such a draft to keep your *Releases* page clean.
+
+By editing the draft and using the <kbd>Publish release</kbd> button, GitHub will tag your repository with the given
+version and add new entry to the Releases tab. In the next steps, it will notify users that are *watching* repository
+and trigger the final [Release](.github/workflows/release.yml) workflow.
 
 ### Publishing Plugin
 
-Cannot find org.jetbrains.plugins.template. Note that you need to upload the plugin to the repository at least once manually (to specify options like the license, repository URL etc.). Follow the instructions: https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/publishing_plugin.html
+Releasing plugin to the Marketplace is a straightforward operation which uses `publishPlugin` Gradle task provided
+by the [gradle-intellij-plugin][gh:gradle-intellij-plugin]. [Release](.github/workflows/release.yml) workflow automates
+that process by running the task, when a new release appears in the GitHub Releases section.
+
+Authorization process relies on the `PUBLISH_TOKEN` secret environment variable, which has to be provided
+in the repository Settings in the Secrets section.
+
+![Settings > Secrets][file:settings-secrets.png]
+
+You can find out how to get that token in the [Providing Your Hub Permanent Token to Gradle][docs:token] article.
+
+> **Important:**
+> Before using the automated deployment process, it is required to manually create a new plugin in the Marketplace
+to specify options like the license, repository URL etc. Follow the [Publishing a Plugin][docs:publishing] instructions.
 
 ## Useful Links
 
@@ -250,11 +276,14 @@ Cannot find org.jetbrains.plugins.template. Note that you need to upload the plu
 [docs:kotlin-ui-dsl]: https://www.jetbrains.org/intellij/sdk/docs/user_interface_components/kotlin_ui_dsl.html
 [docs:plugin.xml]: https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_configuration_file.html
 [docs:publishing]: https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/publishing_plugin.html
+[docs:token]: https://www.jetbrains.org/intellij/sdk/docs/tutorials/build_system/deployment.html#providing-your-hub-permanent-token-to-gradle
 [docs:using-gradle]: https://www.jetbrains.org/intellij/sdk/docs/tutorials/build_system.html
 
-[file:getting-started_use-this-template.png]: ./.github/readme/getting-started_use-this-template.png
+[file:use-this-template.png]: .github/readme/use-this-template.png
+[file:draft-release.png]: .github/readme/draft-release.png
 [file:gradle.properties]: ./gradle.properties
 [file:plugin.xml]: ./src/main/resources/META-INF/plugin.xml
+[file:settings-secrets.png]: .github/readme/settings-secrets.png
 [file:template_cleanup.yml]: ./.github/workflows/template-cleanup.yml
 
 [gh:actions]: https://help.github.com/en/actions
