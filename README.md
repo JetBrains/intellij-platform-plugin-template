@@ -1,12 +1,12 @@
 # IntelliJ Platform Plugin Template
 
-[![official JetBrains project](https://jb.gg/badges/official.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
+[![official JetBrains project](https://jb.gg/badges/official.svg)][jb:confluence-on-gh]
 ![Build](https://github.com/JetBrains/intellij-platform-plugin-template/workflows/Build/badge.svg)
-[![Slack](https://img.shields.io/badge/Slack-%23intellij--plugin--template-blue)](https://plugins.jetbrains.com/slack)
+[![Slack](https://img.shields.io/badge/Slack-%23intellij--plugin--template-blue)][jb:slack]
 
 <!-- Plugin description -->
 **IntelliJ Platform Plugin Template** is a repository that provides a pure boilerplate for creating a plugin project
-with ease designed as a **GitHub Template Repository** (check the [Creating a repository from a template][gh-template]
+with ease designed as a **GitHub Template Repository** (check the [Creating a repository from a template][gh:template]
 article).
 
 The main goal for this Template is to speed up the setup phase of the plugin development for the new as well as existing
@@ -19,7 +19,8 @@ If you're still not sure, what is this about - read our introduction of [What is
 We can highlight the following parts of the template project:
 
 - [Gradle Configuration](#gradle-configuration)
-- [Plugin Manifest File](#plugin-manifest-file)
+- [Plugin Template Structure](#plugin-template-structure)
+- [Plugin Configuration File](#plugin-configuration-file)
 - [Sample Code](#sample-code):
   - listeners - project and dynamic plugin lifecycle
   - services - project- and application-related services 
@@ -42,7 +43,7 @@ The only thing that you have to do is clicking the <kbd>Use this template</kbd> 
 
 After creating your blank project from the template, there will be the [Template Cleanup][file:template_cleanup.yml]
 workflow triggered to override or remove the template-specific configuration, like plugin name, current changelog, etc.
-When done, project is ready to be cloned on your local environment and opened with the [IntelliJ IDEA][download-ij].
+When done, project is ready to be cloned on your local environment and opened with the [IntelliJ IDEA][jb:download-ij].
 
 As the last step, you have to manually review the configuration variables described in the
 [gradle.properties][file:gradle.properties] file, *optionally* move sources from the *com.github.username.repository*
@@ -51,8 +52,8 @@ package to the one that fits you the most and start implementing your ideas.
 ## Gradle Configuration
 
 The recommended way of the plugin development is using the [Gradle][gradle] setup with
-[gradle-intellij-plugin][gradle-intellij-plugin] installed. The gradle-intellij-plugin provides tasks to run the IDE
-with your plugin and to publish your plugin to the Marketplace Repository. 
+[gradle-intellij-plugin][gh:gradle-intellij-plugin] installed. The gradle-intellij-plugin provides tasks to run
+the IDE with your plugin and to publish your plugin to the Marketplace Repository. 
 
 IntelliJ Platform Plugin Template project provides already preconfigured Gradle configuration, however feel free
 to follow the [Using Gradle][docs:using-gradle] articles for better understanding and customisation of your build.
@@ -60,9 +61,9 @@ to follow the [Using Gradle][docs:using-gradle] articles for better understandin
 The most significant parts of the current configuration are:
 - Configuration written with [Gradle Kotlin DSL][gradle-kotlin-dsl]
 - Kotlin support with possibility to write Java code
-- Integration with [gradle-changelog-plugin][gradle-changelog-plugin] for the automated patching of the change notes and
-  description consumed from `CHANGELOG.md` and `README.md` files
-- Integration with [gradle-intellij-plugin][gradle-intellij-plugin] for the better development impressions
+- Integration with [gradle-changelog-plugin][gh:gradle-changelog-plugin] for the automated patching of the change notes
+  and description consumed from `CHANGELOG.md` and `README.md` files
+- Integration with [gradle-intellij-plugin][gh:gradle-intellij-plugin] for the better development impressions
 - Code linting with [detekt][detekt]
 - [Plugin publishing][docs:publishing] using token
 
@@ -91,8 +92,8 @@ platformDownloadSources = true
 | `platformVersion`         | The version of the IntelliJ Platform IDE that will be used to build the plugin.       |
 | `platformDownloadSources` | Download IDE sources while initializing Gradle build.                                 |
 
-Listed properties define the plugin itself or configure the [gradle-intellij-plugin][gradle-intellij-plugin] - check
-its documentation for more details. 
+Listed properties define the plugin itself or configure the [gradle-intellij-plugin][gh:gradle-intellij-plugin]
+- check its documentation for more details. 
 
 ## Plugin Template Structure
 
@@ -168,7 +169,8 @@ sources should be located in `src/main/java` directory.
 
 ## Continuous Integration
 
-Continuous Integration depends on the GitHub Actions, which is a set of workflows 
+Continuous Integration depends on the GitHub Actions, which is a set of workflows that let to automate your testing
+and releasing process.
 
 Unit tests
 Detekt
@@ -184,7 +186,7 @@ The best way of handling that is to attach the changelog.
 
 The changelog is a curated list containing information of any new features, fixes, deprecations.
 If provided, such list would be available in a couple of places: [CHANGELOG.md](./CHANGELOG.md) file,
-[Releases page][releases], [What's new][marketplace-plugin-page] section in Marketplace's Plugin page
+[Releases page][gh:releases], [What's new][jb:plugin-page] section in Marketplace's Plugin page
 and inside of the Plugin Manager's item details. 
 There are many different methods of handling the project's changelog. One of them, used in the current template project,
 is the [Keep a Changelog][keep-a-changelog] approach.
@@ -196,38 +198,41 @@ Cannot find org.jetbrains.plugins.template. Note that you need to upload the plu
 ## Useful Links
 
 - [IntelliJ Platform SDK DevGuide][docs]
-- [IntelliJ Platform UI Guidelines][ij-ui-guidelines]
+- [IntelliJ Platform UI Guidelines][jb:ui-guidelines]
 - [Kotlin UI DSL][docs:kotlin-ui-dsl]
-- [IntelliJ SDK Code Samples][code-samples]
-- [JetBrains Platform Slack][slack]
-- [IntelliJ IDEA Open API and Plugin Development Forum][forum]
+- [IntelliJ SDK Code Samples][gh:code-samples]
+- [JetBrains Platform Slack][jb:slack]
+- [IntelliJ IDEA Open API and Plugin Development Forum][jb:forum]
 - [Keep a Changelog][keep-a-changelog]
-- [GitHub Actions][gh-actions]
-
-[gh-template]: https://help.github.com/en/enterprise/2.20/user/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template
-[gh-actions]: https://help.github.com/en/actions
-[code-samples]: https://github.com/JetBrains/intellij-sdk-code-samples
-[gradle-intellij-plugin]: https://github.com/JetBrains/gradle-intellij-plugin
-[gradle-changelog-plugin]: https://github.com/JetBrains/gradle-changelog-plugin
-[releases]: https://github.com/JetBrains/intellij-platform-plugin-template/releases
-[marketplace-plugin-page]: https://plugins.jetbrains.com/plugin/0-TODO
-[slack]: https://plugins.jetbrains.com/slack
-[forum]: https://intellij-support.jetbrains.com/hc/en-us/community/topics/200366979-IntelliJ-IDEA-Open-API-and-Plugin-Development
-[keep-a-changelog]: https://keepachangelog.com
-[detekt]: https://detekt.github.io/detekt
-[download-ij]: https://www.jetbrains.com/idea/download
-[gradle]: https://gradle.org
-[gradle-kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
-[ij-ui-guidelines]: https://jetbrains.github.io/ui
+- [GitHub Actions][gh:actions]
 
 [docs]: https://www.jetbrains.org/intellij/sdk/docs
 [docs:intro]: https://www.jetbrains.org/intellij/sdk/docs/intro/intellij_platform.html
-[docs:using-gradle]: https://www.jetbrains.org/intellij/sdk/docs/tutorials/build_system.html
-[docs:publishing]: https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/publishing_plugin.html
 [docs:kotlin-ui-dsl]: https://www.jetbrains.org/intellij/sdk/docs/user_interface_components/kotlin_ui_dsl.html
 [docs:plugin.xml]: https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_configuration_file.html
+[docs:publishing]: https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/publishing_plugin.html
+[docs:using-gradle]: https://www.jetbrains.org/intellij/sdk/docs/tutorials/build_system.html
 
 [file:getting-started_use-this-template.png]: ./.github/readme/getting-started_use-this-template.png
 [file:gradle.properties]: ./gradle.properties
-[file:template_cleanup.yml]: ./.github/workflows/template-cleanup.yml
 [file:plugin.xml]: ./src/main/resources/META-INF/plugin.xml
+[file:template_cleanup.yml]: ./.github/workflows/template-cleanup.yml
+
+[gh:actions]: https://help.github.com/en/actions
+[gh:code-samples]: https://github.com/JetBrains/intellij-sdk-code-samples
+[gh:gradle-changelog-plugin]: https://github.com/JetBrains/gradle-changelog-plugin
+[gh:gradle-intellij-plugin]: https://github.com/JetBrains/gradle-intellij-plugin
+[gh:releases]: https://github.com/JetBrains/intellij-platform-plugin-template/releases
+[gh:template]: https://help.github.com/en/enterprise/2.20/user/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template
+
+[jb:confluence-on-gh]: https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub
+[jb:download-ij]: https://www.jetbrains.com/idea/download
+[jb:forum]: https://intellij-support.jetbrains.com/hc/en-us/community/topics/200366979-IntelliJ-IDEA-Open-API-and-Plugin-Development
+[jb:plugin-page]: https://plugins.jetbrains.com/plugin/0-TODO
+[jb:slack]: https://plugins.jetbrains.com/slack
+[jb:ui-guidelines]: https://jetbrains.github.io/ui
+
+[keep-a-changelog]: https://keepachangelog.com
+[detekt]: https://detekt.github.io/detekt
+[gradle]: https://gradle.org
+[gradle-kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
