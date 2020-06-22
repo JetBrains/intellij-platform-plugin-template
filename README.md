@@ -43,11 +43,12 @@ The only thing that you have to do is clicking the <kbd>Use this template</kbd> 
 
 After creating your blank project from the template, there will be the [Template Cleanup][file:template_cleanup.yml]
 workflow triggered to override or remove the template-specific configuration, like plugin name, current changelog, etc.
-When done, project is ready to be cloned on your local environment and opened with the [IntelliJ IDEA][jb:download-ij].
+When done, the project is ready to be cloned on your local environment and opened with
+the [IntelliJ IDEA][jb:download-ij].
 
 As the last step, you have to manually review the configuration variables described in the
 [gradle.properties][file:gradle.properties] file, *optionally* move sources from the *com.github.username.repository*
-package to the one that fits you the most and start implementing your ideas.
+package to the one that fits you the most, and start implementing your ideas.
 
 ## Gradle Configuration
 
@@ -55,19 +56,19 @@ The recommended way of the plugin development is using the [Gradle][gradle] setu
 [gradle-intellij-plugin][gh:gradle-intellij-plugin] installed. The gradle-intellij-plugin provides tasks to run
 the IDE with your plugin and to publish your plugin to the Marketplace Repository. 
 
-IntelliJ Platform Plugin Template project provides already preconfigured Gradle configuration, however feel free
-to follow the [Using Gradle][docs:using-gradle] articles for better understanding and customisation of your build.
+IntelliJ Platform Plugin Template project provides already preconfigured Gradle configuration - feel free to follow
+the [Using Gradle][docs:using-gradle] articles for better understanding and customisation of your build.
 
 The most significant parts of the current configuration are:
-- Configuration written with [Gradle Kotlin DSL][gradle-kotlin-dsl]
-- Kotlin support with possibility to write Java code
+- Configuration is written with [Gradle Kotlin DSL][gradle-kotlin-dsl]
+- Kotlin support with a possibility to write Java code
 - Integration with [gradle-changelog-plugin][gh:gradle-changelog-plugin] for the automated patching of the change notes
   and description consumed from `CHANGELOG.md` and `README.md` files
-- Integration with [gradle-intellij-plugin][gh:gradle-intellij-plugin] for the better development impressions
+- Integration with [gradle-intellij-plugin][gh:gradle-intellij-plugin] for better development impressions
 - Code linting with [detekt][detekt]
-- [Plugin publishing][docs:publishing] using token
+- [Plugin publishing][docs:publishing] using the token
 
-Project specific configuration file - [gradle.properties][file:gradle.properties] - contains:
+Project-specific configuration file - [gradle.properties][file:gradle.properties] - contains:
 
 ```properties
 pluginGroup = org.jetbrains.plugins.template
@@ -85,7 +86,7 @@ platformDownloadSources = true
 | ------------------------- | ------------------------------------------------------------------------------------- |
 | `pluginGroup`             | Package name - after *using* the template, will be set to `com.gtihub.username.repo`. |
 | `pluginName`              | Name of the plugin displayed in the Marketplace and Plugins Repository.               |
-| `pluginVersion`           | Current version of the plugin.                                                        |
+| `pluginVersion`           | The current version of the plugin.                                                        |
 | `pluginSinceBuild`        | `since-build` attribute of the <idea-version> tag.                                    |
 | `pluginUntilBuild`        | `until-build` attribute of the <idea-version> tag.                                    |
 | `platformType`            | The type of IDE distribution.                                                         |
@@ -97,7 +98,7 @@ Listed properties define the plugin itself or configure the [gradle-intellij-plu
 
 ## Plugin Template Structure
 
-Generated IntelliJ Template repository contains following content structure:
+Generated IntelliJ Template repository contains the following content structure:
 
 ```
 .
@@ -149,7 +150,7 @@ You can read more about that file in [IntelliJ Platform SDK DevGuide][docs:plugi
 
 ## Sample Code
 
-The prepared template is aiming to provide as less code as possible, because it is barely possible to fulfill
+The prepared template is aiming to provide as less code as possible because it is barely possible to fulfil
 the requirements of the various types of the plugins (language support, build tools, VCS related tools) with some
 general scaffold. Having that in mind, it contains few following files:
 
@@ -160,7 +161,7 @@ general scaffold. Having that in mind, it contains few following files:
 │   ├── MyDynamicPluginListener.kt      Dynamic Plugin listener - handles plugin lifecycle events
 │   └── MyProjectManagerListener.kt     Project Manager listener - handles project lifecycle
 └── services
-    ├── MyApplicationService.kt         Application level service available for all projects
+    ├── MyApplicationService.kt         Application-level service available for all projects
     └── MyProjectService.kt             Project level service
 ```
 
@@ -204,7 +205,7 @@ If provided, such list would be available in a couple of places: [CHANGELOG.md](
 [Releases page][gh:releases], [What's new][jb:plugin-page] section in Marketplace's Plugin page
 and inside of the Plugin Manager's item details.
 
-There are many methods of handling the project's changelog. One of them, used in the current template project,
+There are many methods for handling the project's changelog. One of them, used in the current template project,
 is the [Keep a Changelog][keep-a-changelog] approach, which brings underneath rules:
 
 > **Guiding Principles**
@@ -234,20 +235,20 @@ a draft release.
 
 ![Release draft][file:draft-release.png]
 
-Draft release is a working copy of a release, which you can review, before publishing. It has predefined title
-and git tag name, which is the current plugin's version - i.e. `v0.0.1`. Changelog is provided automatically using
+The draft release is a working copy of a release, which you can review, before publishing. It has a predefined title
+and git tag name, which is the current plugin's version - i.e. `v0.0.1`. The changelog is provided automatically using
 the [gradle-changelog-plugin][gh:gradle-changelog-plugin]. There is also an artifact file with built plugin attached.
 Every next *Build* overrides (or creates one if absent) such a draft to keep your *Releases* page clean.
 
 By editing the draft and using the <kbd>Publish release</kbd> button, GitHub will tag your repository with the given
-version and add new entry to the Releases tab. In the next steps, it will notify users that are *watching* repository
+version and add a new entry to the Releases tab. In the next steps, it will notify users that are *watching* repository
 and trigger the final [Release](.github/workflows/release.yml) workflow.
 
 ### Publishing Plugin
 
 Releasing plugin to the Marketplace is a straightforward operation which uses `publishPlugin` Gradle task provided
 by the [gradle-intellij-plugin][gh:gradle-intellij-plugin]. [Release](.github/workflows/release.yml) workflow automates
-that process by running the task, when a new release appears in the GitHub Releases section.
+that process by running the task when a new release appears in the GitHub Releases section.
 
 Authorization process relies on the `PUBLISH_TOKEN` secret environment variable, which has to be provided
 in the repository Settings in the Secrets section.
