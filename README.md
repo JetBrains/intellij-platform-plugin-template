@@ -146,7 +146,6 @@ general scaffold. Having that in mind, it contains few following files:
 .
 ├── MyBundle.kt                         Bundle class providing access to the resources messages
 ├── listeners
-│   ├── MyDynamicPluginListener.kt      Dynamic Plugin listener - handles plugin lifecycle events
 │   └── MyProjectManagerListener.kt     Project Manager listener - handles project lifecycle
 └── services
     ├── MyApplicationService.kt         Application-level service available for all projects

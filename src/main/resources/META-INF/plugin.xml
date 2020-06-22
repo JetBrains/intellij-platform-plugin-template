@@ -15,7 +15,5 @@
     <projectListeners>
         <listener class="org.jetbrains.plugins.template.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
-        <listener class="org.jetbrains.plugins.template.listeners.MyDynamicPluginListener"
-                  topic="com.intellij.ide.plugins.DynamicPluginListener"/>
     </projectListeners>
 </idea-plugin>
