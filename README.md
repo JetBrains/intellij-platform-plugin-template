@@ -70,18 +70,6 @@ The most significant parts of the current configuration are:
 
 Project-specific configuration file - [gradle.properties][file:gradle.properties] - contains:
 
-```properties
-pluginGroup = org.jetbrains.plugins.template
-pluginName = Template
-pluginVersion = 0.0.1
-pluginSinceBuild = 193
-pluginUntilBuild = 202
-
-platformType = IC
-platformVersion = 2020.1
-platformDownloadSources = true
-```
-
 | Property name             | Description                                                                           |
 | ------------------------- | ------------------------------------------------------------------------------------- |
 | `pluginGroup`             | Package name - after *using* the template, will be set to `com.gtihub.username.repo`. |
@@ -105,19 +93,19 @@ Generated IntelliJ Template repository contains the following content structure:
 ├── CHANGELOG.md            Full changes history.
 ├── LICENSE                 License, MIT by default
 ├── README.md               README
-├── build                   Output build directory
+├── build/                  Output build directory
 ├── build.gradle.kts        Gradle configuration
 ├── detekt-config.yml       Detekt configuration
 ├── gradle
-│   └── wrapper             Gradle Wrapper
+│   └── wrapper/            Gradle Wrapper
 ├── gradle.properties       Gradle configuration properties
 ├── gradlew                 *nix Gradle Wrapper binary
 ├── gradlew.bat             Windows Gradle Wrapper binary
 └── src                     Plugin sources
     └── main
-        ├── kotlin          Kotlin source files
-        ├── java            Java source files
-        └── resources       Resources - plugin.xml, icons, messages
+        ├── kotlin/         Kotlin source files
+        ├── java/           Java source files
+        └── resources/      Resources - plugin.xml, icons, messages
 ```
 
 Beside of the configuration files, the most important part is the `src` directory containing our implementation
