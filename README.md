@@ -4,6 +4,8 @@
 ![Build](https://github.com/JetBrains/intellij-platform-plugin-template/workflows/Build/badge.svg)
 [![Slack](https://img.shields.io/badge/Slack-%23intellij--platform--plugin--template-blue)][jb:slack]
 
+> **TL;DR:** Click the <kbd>Use the template</kbd> button and clone it in the IntelliJ IDEA.
+
 <!-- Plugin description -->
 **IntelliJ Platform Plugin Template** is a repository that provides a pure boilerplate for creating a plugin project
 with ease designed as a **GitHub Template Repository** (check the [Creating a repository from a template][gh:template]
@@ -165,10 +167,10 @@ In `.github/workflows` directory you may find the following GitHub Actions workf
 
 - [Build](.github/workflows/build.yml)
     - Triggered on `push` and `pull_request` events
-    - Runs Gradle Wrapper Validation Action to verify the wrapper's checksum
-    - Runs verifyPlugin and test Gradle tasks
-    - Builds plugin with buildPlugin Gradle task and provide the artifact for the next workflow jobs
-    - Verifies built plugin using IntelliJ Plugin Verifier tool
+    - Runs *Gradle Wrapper Validation Action* to verify the wrapper's checksum
+    - Runs `verifyPlugin` and test Gradle tasks
+    - Builds plugin with `buildPlugin` Gradle task and provide the artifact for the next workflow jobs
+    - Verifies built plugin using *IntelliJ Plugin Verifier* tool
     - Prepares a draft release for GitHub Releases page for the manual verification 
 - [Release](.github/workflows/release.yml)
     - Triggered on `released` event
@@ -193,26 +195,8 @@ If provided, such list would be available in a couple of places: [CHANGELOG.md](
 and inside of the Plugin Manager's item details.
 
 There are many methods for handling the project's changelog. One of them, used in the current template project,
-is the [Keep a Changelog][keep-a-changelog] approach, which brings underneath rules:
-
-> **Guiding Principles**
-> - Changelogs are for humans, not machines.
-> - There should be an entry for every single version.
-> - The same types of changes should be grouped.
-> - Versions and sections should be linkable.
-> - The latest version comes first.
-> - The release date of each version is displayed.
-> - Mention whether you follow Semantic Versioning.
->
-> **Types of changes**
-> - `Added` for new features.
-> - `Changed` for changes in existing functionality.
-> - `Deprecated` for soon-to-be removed features.
-> - `Removed` for now removed features.
-> - `Fixed` for any bug fixes.
-> - `Security` in case of vulnerabilities.
->
-> Ref.: https://keepachangelog.com/en/1.0.0/
+is the [Keep a Changelog][keep-a-changelog] approach, which brings the *Guiding Principles* and *Types of Changes*
+that mey help you with the proper crafting of the change notes.
 
 ### Release Flow
 
