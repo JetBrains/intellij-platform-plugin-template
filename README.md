@@ -4,91 +4,94 @@
 ![Build](https://github.com/JetBrains/intellij-platform-plugin-template/workflows/Build/badge.svg)
 [![Slack](https://img.shields.io/badge/Slack-%23intellij--platform--plugin--template-blue)][jb:slack]
 
-> **TL;DR:** Click the <kbd>Use the template</kbd> button and clone it in the IntelliJ IDEA.
+> **TL;DR:** Click the <kbd>Use the template</kbd> button and clone it in IntelliJ IDEA.
 
 <!-- Plugin description -->
-**IntelliJ Platform Plugin Template** is a repository that provides a pure boilerplate for creating a plugin project
-with ease designed as a **GitHub Template Repository** (check the [Creating a repository from a template][gh:template]
-article).
+**IntelliJ Platform Plugin Template** is a repository that provides a pure boilerplate template to make it easier
+to create a plugin project that is designed as a **GitHub Template Repository**
+(check the [Creating a repository from a template][gh:template] article).
 
-The main goal for this Template is to speed up the setup phase of the plugin development for the new as well as existing
-developers by preconfiguring the project scaffold, CI and linking to the proper documentation pages and keeping
-everything in the most straightforward manner.
+The main goal of this template is to speed up the setup phase of plugin development for both new and experienced
+developers by preconfiguring the project scaffold and CI, linking to the proper documentation pages, and keeping
+everything organized.
 <!-- Plugin description end -->
 
-If you're still not sure, what is this about - read our introduction of [What is the IntelliJ Platform?][docs:intro]
+If you're still not quite sure what this is all about, read our introduction:
+[What is the IntelliJ Platform?][docs:intro]
 
-We can highlight the following parts of the template project:
+In this README, we will highlight the following elements of template-project creation:
 
-- [Gradle Configuration](#gradle-configuration)
-- [Plugin Template Structure](#plugin-template-structure)
-- [Plugin Configuration File](#plugin-configuration-file)
-- [Sample Code](#sample-code):
-    - listeners - project and dynamic plugin lifecycle
-    - services - project- and application-related services 
-    - actions - basic action with shortcut binding
-- [Continuous Integration](#continuous-integration) based on the GitHub Actions
+- [Gradle configuration]#gradle-configuration)
+- [Plugin template structure](#plugin-template-structure)
+- [Plugin Configuration file](#plugin-configuration-file)
+- [Sample code](#sample-code):
+    - listeners – project and dynamic plugin lifecycle
+    - services – project-related and application-related services
+    - actions – basic action with shortcut binding
+- [Continuous Integration](#continuous-integration) based on GitHub Actions
     - [Changelog Maintenance](#changelog-maintenance) with the Gradle Changelog Plugin
-    - [Release Flow](#release-flow) using the GitHub Releases
-    - [Publishing Plugin](#publishing-plugin) with the Gradle IntelliJ Plugin
+    - [Release Flow](#release-flow) using GitHub Releases
+    - [Publishing the Plugin](#publishing-plugin) with the Gradle IntelliJ Plugin
 
-## Getting Started
+## Getting started
 
-Before diving into the plugin development and everything that happens around, it is worth mentioning the fundamental
-idea behind the GitHub Templates: by creating a new project using the current template, you start with no history
-and no reference to this repository - it is the cut corner for creating a new repository with copy-pasting the content
-or cloning repositories and clearing the history by your own.
+Before diving into plugin development and everything related to it, a fundamental aspect of GitHub Templates is worth
+mentioning. By creating a new project using the current template, you start with no history and no reference to this
+repository. This allows you to create a new repository easily without having to copy and paste previous content,
+clone repositories, or clear the history manually.
 
-The only thing that you have to do is clicking the <kbd>Use this template</kbd> button.
+All you have to do is click the <kbd>Use this template</kbd> button.
 
 ![Use this template][file:use-this-template.png]
 
-After creating your blank project from the template, there will be the [Template Cleanup][file:template_cleanup.yml]
-workflow triggered to override or remove the template-specific configuration, like plugin name, current changelog, etc.
-When done, the project is ready to be cloned on your local environment and opened with
-the [IntelliJ IDEA][jb:download-ij].
+After using the template to create your blank project, the [Template Cleanup][file:template_cleanup.yml] workflow
+will be triggered to override or remove any template-specific configurations, such as the plugin name,
+current changelog, etc. Once this is complete, the project is ready to be cloned to your local environment and opened
+with [IntelliJ IDEA][jb:download-ij].
 
-As the last step, you have to manually review the configuration variables described in the
-[gradle.properties][file:gradle.properties] file, *optionally* move sources from the *com.github.username.repository*
-package to the one that fits you the most, and start implementing your ideas.
+For the last step, you have to manually review the configuration variables described
+in the [gradle.properties][file:gradle.properties] file and *optionally* move sources
+from the *com.github.username.repository* package to the one that works best for you. Then you can get to work
+implementing your ideas.
 
-## Gradle Configuration
+## Gradle configuration
 
-The recommended way of the plugin development is using the [Gradle][gradle] setup with
-[gradle-intellij-plugin][gh:gradle-intellij-plugin] installed. The gradle-intellij-plugin provides tasks to run
-the IDE with your plugin and to publish your plugin to the Marketplace Repository. 
+The recommended method for plugin development involves using the [Gradle][gradle] setup
+with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] installed. The gradle-intellij-plugin makes it possible
+to run the IDE with your plugin and to publish your plugin to the Marketplace Repository.
 
-IntelliJ Platform Plugin Template project provides already preconfigured Gradle configuration - feel free to follow
-the [Using Gradle][docs:using-gradle] articles for better understanding and customisation of your build.
+A project built using the IntelliJ Platform Plugin Template includes a Gradle configuration that’s already been set up.
+Feel free to read through the [Using Gradle][docs:using-gradle] articles to get a better understanding of your build
+and to learn how to customize it.
 
 The most significant parts of the current configuration are:
-- Configuration is written with [Gradle Kotlin DSL][gradle-kotlin-dsl]
-- Kotlin support with a possibility to write Java code
-- Integration with [gradle-changelog-plugin][gh:gradle-changelog-plugin] for the automated patching of the change notes
-  and description consumed from `CHANGELOG.md` and `README.md` files
-- Integration with [gradle-intellij-plugin][gh:gradle-intellij-plugin] for better development impressions
-- Code linting with [detekt][detekt]
-- [Plugin publishing][docs:publishing] using the token
+- Configuration written with [Gradle Kotlin DSL][gradle-kotlin-dsl].
+- Kotlin support, with the option to write Java code.
+- Integration with the [gradle-changelog-plugin][gh:gradle-changelog-plugin], which automatically patches the change
+  notes and description based on the `CHANGELOG.md` and `README.md` files.
+- Integration with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] for smoother development.
+- Code linting with [detekt][detekt].
+- [Plugin publishing][docs:publishing] using the token.
 
-Project-specific configuration file - [gradle.properties][file:gradle.properties] - contains:
+The project-specific configuration file – [gradle.properties][file:gradle.properties] – contains:
 
-| Property name             | Description                                                                           |
-| ------------------------- | ------------------------------------------------------------------------------------- |
-| `pluginGroup`             | Package name - after *using* the template, will be set to `com.gtihub.username.repo`. |
-| `pluginName`              | Name of the plugin displayed in the Marketplace and Plugins Repository.               |
-| `pluginVersion`           | The current version of the plugin.                                                        |
-| `pluginSinceBuild`        | `since-build` attribute of the <idea-version> tag.                                    |
-| `pluginUntilBuild`        | `until-build` attribute of the <idea-version> tag.                                    |
-| `platformType`            | The type of IDE distribution.                                                         |
-| `platformVersion`         | The version of the IntelliJ Platform IDE that will be used to build the plugin.       |
-| `platformDownloadSources` | Download IDE sources while initializing Gradle build.                                 |
+| Property name             | Description                                                                                |
+| ------------------------- | ------------------------------------------------------------------------------------------ |
+| `pluginGroup`             | Package name - after *using* the template, this will be set to `com.gtihub.username.repo`. |
+| `pluginName`              | Plugin name displayed in the Marketplace and the Plugins Repository.                       |
+| `pluginVersion`           | The current version of the plugin.                                                         |
+| `pluginSinceBuild`        | The `since-build` attribute of the <idea-version> tag.                                     |
+| `pluginUntilBuild`        | The `until-build` attribute of the <idea-version> tag.                                     |
+| `platformType`            | The type of IDE distribution.                                                              |
+| `platformVersion`         | The version of the IntelliJ Platform IDE that will be used to build the plugin.            |
+| `platformDownloadSources` | IDE sources downloaded while initializing Gradle build.                                    |
 
-Listed properties define the plugin itself or configure the [gradle-intellij-plugin][gh:gradle-intellij-plugin]
-- check its documentation for more details. 
+The properties listed define the plugin itself or configure the [gradle-intellij-plugin][gh:gradle-intellij-plugin] –
+check its documentation for more details.
 
-## Plugin Template Structure
+## Plugin template structure
 
-Generated IntelliJ Template repository contains the following content structure:
+A generated IntelliJ Template repository contains the following content structure:
 
 ```
 .
@@ -110,13 +113,12 @@ Generated IntelliJ Template repository contains the following content structure:
         └── resources/      Resources - plugin.xml, icons, messages
 ```
 
-Beside of the configuration files, the most important part is the `src` directory containing our implementation
-and plugin's manifest - [plugin.xml][file:plugin.xml].
+In addition to the configuration files, the most important part is the `src` directory, which contains our
+implementation and the manifest for our plugin – [plugin.xml][file:plugin.xml].
 
-## Plugin Configuration File
-
-Plugin Configuration File is a [plugin.xml][file:plugin.xml] file located in the `src/main/resources/META-INF`
-directory. It describes the overall information about the plugin, its dependencies, extensions, and listeners.
+## Plugin Configuration file
+The Plugin Configuration file is a [plugin.xml][file:plugin.xml] file located in the `src/main/resources/META-INF`
+directory. It provides general information about the plugin, its dependencies, extensions, and listeners.
 
 ```xml
 <idea-plugin>
@@ -136,13 +138,13 @@ directory. It describes the overall information about the plugin, its dependenci
 </idea-plugin>
 ```
 
-You can read more about that file in [IntelliJ Platform SDK DevGuide][docs:plugin.xml].
+You can read more about this file in [IntelliJ Platform SDK DevGuide][docs:plugin.xml].
 
 ## Sample Code
 
-The prepared template is aiming to provide as less code as possible because it is barely possible to fulfil
-the requirements of the various types of the plugins (language support, build tools, VCS related tools) with some
-general scaffold. Having that in mind, it contains few following files:
+The prepared template provides as little code as possible because it is impossible for a general scaffold to fulfil
+all the specific requirements of the various types of the plugins (language support, build tools, VCS related tools).
+Keeping that in mind, the template does contain the following files:
 
 ```
 .
@@ -154,83 +156,85 @@ general scaffold. Having that in mind, it contains few following files:
     └── MyProjectService.kt             Project level service
 ```
 
-Above files location is `src/main/kotlin`, which indicates the used language - if you will decide to use Java instead,
-sources should be located in `src/main/java` directory. 
+These files are located in `src/main/kotlin`. This location indicates the language being used. So if you decide to use
+Java instead, sources should be located in the `src/main/java` directory.
 
 ## Continuous Integration
 
-Continuous Integration depends on the [GitHub Actions][gh:actions], which is a set of workflows that let to automate
-your testing and releasing process. Thanks to such automation, you can delegate the testing and verification phases
-to the CI and focus on the development (and writing more tests).
+Continuous Integration depends on [GitHub Actions][gh:actions], which are a set of workflows that make it possible
+to automate your testing and release process. Thanks to such automation, you can delegate the testing and verification
+phases to the CI and instead focus on development (and writing more tests).
 
-In `.github/workflows` directory you may find the following GitHub Actions workflows defined:
+In the `.github/workflows` directory, you can find definitions for the following GitHub Actions workflows:
 
 - [Build](.github/workflows/build.yml)
-    - Triggered on `push` and `pull_request` events
-    - Runs *Gradle Wrapper Validation Action* to verify the wrapper's checksum
-    - Runs `verifyPlugin` and test Gradle tasks
-    - Builds plugin with `buildPlugin` Gradle task and provide the artifact for the next workflow jobs
-    - Verifies built plugin using *IntelliJ Plugin Verifier* tool
-    - Prepares a draft release for GitHub Releases page for the manual verification 
+    - Triggered on `push` and `pull_request` events.
+    - Runs the *Gradle Wrapper Validation Action* to verify the wrapper's checksum.
+    - Runs the `verifyPlugin` and `test` Gradle tasks.
+    - Builds the plugin with the `buildPlugin` Gradle task and provides the artifact for the next jobs in the workflow.
+    - Verifies the plugin using the *IntelliJ Plugin Verifier* tool.
+    - Prepares a draft release of the GitHub Releases page for manual verification.
 - [Release](.github/workflows/release.yml)
-    - Triggered on `released` event
-    - Publishes the plugin to the Marketplace using `PUBLISH_TOKEN` provided token
-    - Patches the Changelog and commits
+    - Triggered on `released` event.
+    - Publishes the plugin to the Marketplace using the provided `PUBLISH_TOKEN`.
+    - Patches the Changelog and commits.
 - [Template Cleanup](.github/workflows/template-cleanup.yml) 
-    - Triggered once on `push` event when a new template-based repository has been created
-    - Overrides scaffold with files from `.github/template-cleanup` directory
-    - Overrides JetBrains-specific sentences or package names with the ones specific to the target repository
-    - Removes redundant files
+    - Triggered once on `push` event when a new template-based repository has been created.
+    - Overrides the scaffold with files from `.github/template-cleanup` directory.
+    - Overrides JetBrains-specific sentences or package names with the ones specific to the target repository.
+    - Removes redundant files.
 
-Each workflow file has an accurate documentation provided, so don't hesitate to look through their sources.
+All of the workflow files have accurate documentation, so don't hesitate to look through their sources.
 
 ### Changelog Maintenance
 
-When delivering a new release, it is essential to let your audience know what the updated version is offering.
-The best way of handling that is to attach the release note.
+When releasing an update, it is essential to let your audience know what the new version offers. The best way to do this
+is to attach a release note.
 
-The changelog is a curated list containing information of any new features, fixes, deprecations.
-If provided, such list would be available in a couple of places: [CHANGELOG.md](./CHANGELOG.md) file,
-[Releases page][gh:releases], [What's new][jb:plugin-page] section in Marketplace's Plugin page
+The changelog is a curated list that contains information about any new features, fixes, and deprecations.
+When they are provided, these lists are available in a few different places: the [CHANGELOG.md](./CHANGELOG.md) file,
+the [Releases page][gh:releases], the [What's new][jb:plugin-page] section of the Marketplace Plugin page,
 and inside of the Plugin Manager's item details.
 
 There are many methods for handling the project's changelog. One of them, used in the current template project,
-is the [Keep a Changelog][keep-a-changelog] approach, which brings the *Guiding Principles* and *Types of Changes*
-that mey help you with the proper crafting of the change notes.
+is the [Keep a Changelog][keep-a-changelog] approach, which brings both the Guiding Principles and the Types of Changes
+that can help you craft your change notes properly.
 
 ### Release Flow
 
-Releasing process depends on the already described workflows - when your main branch receives a new Pull Request
-or a regular push, [Build](.github/workflows/build.yml) workflow tests your plugin at different angles and prepares
+The release process depends on the workflows already described above. When your main branch receives a new pull request
+or a regular push, the [Build](.github/workflows/build.yml) workflow tests your plugin at different angles and prepares
 a draft release.
 
 ![Release draft][file:draft-release.png]
 
-The draft release is a working copy of a release, which you can review, before publishing. It has a predefined title
-and git tag name, which is the current plugin's version - i.e. `v0.0.1`. The changelog is provided automatically using
-the [gradle-changelog-plugin][gh:gradle-changelog-plugin]. There is also an artifact file with built plugin attached.
-Every next *Build* overrides (or creates one if absent) such a draft to keep your *Releases* page clean.
+The draft release is a working copy of a release, which you can review before publishing. It includes a predefined title
+and git tag name, which is the current version of the plugin, for example, `v0.0.1`. The changelog is provided
+automatically using the [gradle-changelog-plugin][gh:gradle-changelog-plugin]. An artifact file is also built with
+the plugin attached. Every new Build overrides (or creates one if absent) the previous draft to keep your *Releases*
+page clean.
 
-By editing the draft and using the <kbd>Publish release</kbd> button, GitHub will tag your repository with the given
-version and add a new entry to the Releases tab. In the next steps, it will notify users that are *watching* repository
-and trigger the final [Release](.github/workflows/release.yml) workflow.
+When you edit the draft and use the <kbd>Publish release</kbd> button, GitHub will tag your repository with the given
+version and add a new entry to the Releases tab. Next, it will notify users that are *watching* the repository, and it
+will trigger the final [Release](.github/workflows/release.yml) workflow.
 
-### Publishing Plugin
+### Publishing the plugin
 
-Releasing plugin to the Marketplace is a straightforward operation which uses `publishPlugin` Gradle task provided
-by the [gradle-intellij-plugin][gh:gradle-intellij-plugin]. [Release](.github/workflows/release.yml) workflow automates
-that process by running the task when a new release appears in the GitHub Releases section.
+Releasing a plugin to the Marketplace is a straightforward operation that uses the `publishPlugin` Gradle task
+provided by the [gradle-intellij-plugin][gh:gradle-intellij-plugin]. The [Release](.github/workflows/release.yml)
+workflow automates this process by running the task when a new release appears in the GitHub Releases section.
 
-Authorization process relies on the `PUBLISH_TOKEN` secret environment variable, which has to be provided
-in the repository Settings in the Secrets section.
+The Authorization process relies on the `PUBLISH_TOKEN` secret environment variable, which has to be acquired
+through the Secrets section of the repository Settings.
 
 ![Settings > Secrets][file:settings-secrets.png]
 
 You can find out how to get that token in the [Providing Your Hub Permanent Token to Gradle][docs:token] article.
 
 > **Important:**
-> Before using the automated deployment process, it is required to manually create a new plugin in the Marketplace
-to specify options like the license, repository URL etc. Follow the [Publishing a Plugin][docs:publishing] instructions.
+> Before using the automated deployment process, it is necessary to manually create a new plugin in the Marketplace
+> to specify options like the license, repository URL, etc. Please follow
+> the [Publishing a Plugin][docs:publishing] instructions.
 
 ## Useful Links
 
