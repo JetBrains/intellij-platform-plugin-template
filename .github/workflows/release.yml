@@ -17,6 +17,8 @@ jobs:
       # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.release.tag_name }}
 
       # Setup Java 1.8 environment for the next steps
       - name: Setup Java
