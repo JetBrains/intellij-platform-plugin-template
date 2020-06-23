@@ -2,7 +2,7 @@
 
 # IntelliJ Platform Plugin Template Changelog
 
-## [0.1.0]
+## [Unreleased]
 ### Changed
 - README proofreading
 - GitHub Actions - Update IDE versions for the Plugin Verifier
