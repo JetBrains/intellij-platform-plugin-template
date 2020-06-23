@@ -143,8 +143,9 @@ jobs:
         with:
           plugin-location: plugin-artifact/${{ needs.build.outputs.artifact }}
           ide-versions: |
-            ideaIC:2020.1
-#            ideaIC:LATEST-EAP-SNAPSHOT
+            ideaIC:2019.3.5
+            ideaIC:2020.1.2
+            ideaIC:LATEST-EAP-SNAPSHOT
 
       # Print the output of the verify step
       - name: Print Logs
