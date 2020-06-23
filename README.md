@@ -14,6 +14,8 @@ to create a plugin project that is designed as a **GitHub Template Repository**
 The main goal of this template is to speed up the setup phase of plugin development for both new and experienced
 developers by preconfiguring the project scaffold and CI, linking to the proper documentation pages, and keeping
 everything organized.
+
+[gh:template]: https://help.github.com/en/enterprise/2.20/user/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template
 <!-- Plugin description end -->
 
 If you're still not quite sure what this is all about, read our introduction:
@@ -21,7 +23,7 @@ If you're still not quite sure what this is all about, read our introduction:
 
 In this README, we will highlight the following elements of template-project creation:
 
-- [Gradle configuration]#gradle-configuration)
+- [Gradle configuration](#gradle-configuration)
 - [Plugin template structure](#plugin-template-structure)
 - [Plugin Configuration file](#plugin-configuration-file)
 - [Sample code](#sample-code):
@@ -31,7 +33,7 @@ In this README, we will highlight the following elements of template-project cre
 - [Continuous Integration](#continuous-integration) based on GitHub Actions
     - [Changelog Maintenance](#changelog-maintenance) with the Gradle Changelog Plugin
     - [Release Flow](#release-flow) using GitHub Releases
-    - [Publishing the Plugin](#publishing-plugin) with the Gradle IntelliJ Plugin
+    - [Publishing the Plugin](#publishing-the-plugin) with the Gradle IntelliJ Plugin
 
 ## Getting started
 
@@ -267,7 +269,6 @@ You can find out how to get that token in the [Providing Your Hub Permanent Toke
 [gh:gradle-changelog-plugin]: https://github.com/JetBrains/gradle-changelog-plugin
 [gh:gradle-intellij-plugin]: https://github.com/JetBrains/gradle-intellij-plugin
 [gh:releases]: https://github.com/JetBrains/intellij-platform-plugin-template/releases
-[gh:template]: https://help.github.com/en/enterprise/2.20/user/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template
 
 [jb:confluence-on-gh]: https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub
 [jb:download-ij]: https://www.jetbrains.com/idea/download
