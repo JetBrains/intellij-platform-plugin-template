@@ -2,7 +2,11 @@
 
 # IntelliJ Platform Plugin Template Changelog
 
-## [Unreleased]
+## [0.1.0]
+### Changed
+- README proofreading
+- GitHub Actions - Update IDE versions for the Plugin Verifier
+- Update platformVersion to 2020.1.2
 
 ## [0.0.2]
 ### Added
