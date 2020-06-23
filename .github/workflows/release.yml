@@ -26,14 +26,6 @@ jobs:
         with:
           java-version: 1.8
 
-      # Cache Gradle dependencies
-      - name: Setup Cache
-        uses: actions/cache@v1
-        with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle-
-
       # Publish the plugin to the Marketplace
       - name: Publish Plugin
         env:
