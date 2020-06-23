@@ -195,7 +195,7 @@ is to attach a release note.
 
 The changelog is a curated list that contains information about any new features, fixes, and deprecations.
 When they are provided, these lists are available in a few different places: the [CHANGELOG.md](./CHANGELOG.md) file,
-the [Releases page][gh:releases], the [What's new][jb:plugin-page] section of the Marketplace Plugin page,
+the [Releases page][gh:releases], the *What's new* section of the Marketplace Plugin page,
 and inside of the Plugin Manager's item details.
 
 There are many methods for handling the project's changelog. One of them, used in the current template project,
@@ -273,7 +273,6 @@ You can find out how to get that token in the [Providing Your Hub Permanent Toke
 [jb:confluence-on-gh]: https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub
 [jb:download-ij]: https://www.jetbrains.com/idea/download
 [jb:forum]: https://intellij-support.jetbrains.com/hc/en-us/community/topics/200366979-IntelliJ-IDEA-Open-API-and-Plugin-Development
-[jb:plugin-page]: https://plugins.jetbrains.com/plugin/0-TODO
 [jb:slack]: https://plugins.jetbrains.com/slack
 [jb:ui-guidelines]: https://jetbrains.github.io/ui
 
