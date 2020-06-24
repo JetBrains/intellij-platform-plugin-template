@@ -48,7 +48,11 @@ intellij {
     type = platformType
     downloadSources = platformDownloadSources.toBoolean()
     updateSinceUntilBuild = true
-    setPlugins("java")
+
+//  Plugin Dependencies:
+//  https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_dependencies.html
+//
+//  setPlugins("java")
 }
 
 // Configure detekt plugin.
