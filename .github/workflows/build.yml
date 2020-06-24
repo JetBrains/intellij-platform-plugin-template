@@ -147,7 +147,6 @@ jobs:
           ide-versions: |
             ideaIC:2019.3
             ideaIC:2020.1
-            ideaIC:LATEST-EAP-SNAPSHOT
 
       # Print the output of the verify step
       - name: Print Logs
