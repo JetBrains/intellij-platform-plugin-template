@@ -10,6 +10,8 @@
 # Docs:
 # - GitHub Actions: https://help.github.com/en/actions
 # - IntelliJ Plugin Verifier GitHub Action: https://github.com/ChrisCarini/intellij-platform-plugin-verifier-action
+#
+## JBIJPPTPL
 
 name: Build
 on: [push, pull_request]
