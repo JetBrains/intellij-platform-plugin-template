@@ -43,6 +43,9 @@ jobs:
           find src -type f -exec sed -i "s/org.jetbrains.plugins.template/$GROUP/g" {} +
           find src -type f -exec sed -i "s/JetBrains/$ACTOR/g" {} +
 
+          # Remove lines marked with #REMOVE-IN-CLEANUP#
+          find . -type f -exec sed -i '/#REMOVE-IN-CLEANUP#/'
+
           # Move content
           mkdir -p src/main/kotlin/${GROUP//.//}
           cp -R .github/template-cleanup/* .
