@@ -12,6 +12,7 @@ jobs:
   release:
     name: Publish Plugin
     runs-on: ubuntu-latest
+    if: github.repository != 'JetBrains/intellij-platform-plugin-template' #REMOVE-IN-CLEANUP#
     steps:
 
       # Check out current repository
