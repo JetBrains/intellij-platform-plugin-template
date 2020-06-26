@@ -3,6 +3,8 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+
+## [0.1.0]
 ### Added
 - `settings.gradle.kts` for the [performance purposes](https://docs.gradle.org/current/userguide/organizing_gradle_projects.html#always_define_a_settings_file)
 - `#REMOVE-ON-CLEANUP#` token to mark content to be removed with **Template Cleanup** workflow
