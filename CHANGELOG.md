@@ -3,6 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Changed
+- `pluginUntilBuild` set to the correct format: `201.*`
+
 ### Fixed
 - GitHub Actions - Template Cleanup - fixed adding files to git
 - Update Template plugin name on cleanup
