@@ -3,6 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Fixed
+- GitHub Actions - Template Cleanup - fixed adding files to git
+- Update Template plugin name on cleanup
 
 ## [0.1.0]
 ### Added

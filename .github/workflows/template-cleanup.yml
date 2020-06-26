@@ -39,8 +39,8 @@ jobs:
           sed -i "s/%GROUP%/$GROUP/g" .github/template-cleanup/*
 
           # Replace template package name in project files with $GROUP
-          sed -i "s/org.jetbrains.plugins.template/$GROUP/g" gradle.properties
           find src -type f -exec sed -i "s/org.jetbrains.plugins.template/$GROUP/g" {} +
+          find src -type f -exec sed -i "s/Template/$NAME/g" {} +
           find src -type f -exec sed -i "s/JetBrains/$ACTOR/g" {} +
 
           # Remove lines marked with #REMOVE-ON-CLEANUP#
