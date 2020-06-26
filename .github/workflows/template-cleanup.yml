@@ -62,7 +62,8 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -m "Template cleanup" -a
+          git add .
+          git commit -m "Template cleanup"
 
       # Push changes
       - name: Push changes
