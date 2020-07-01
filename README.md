@@ -1,6 +1,7 @@
 # IntelliJ Platform Plugin Template
 
 [![official JetBrains project](https://jb.gg/badges/official.svg)][jb:confluence-on-gh]
+[![Twitter Follow](https://img.shields.io/twitter/follow/JBPlatform?style=flat)](https://twitter.com/JBPlatform/)
 ![Build](https://github.com/JetBrains/intellij-platform-plugin-template/workflows/Build/badge.svg)
 [![Slack](https://img.shields.io/badge/Slack-%23intellij--platform--plugin--template-blue)][jb:slack]
 
