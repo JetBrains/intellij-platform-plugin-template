@@ -3,6 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+- JetBrains Plugin badges and TODO list for the end users
+
 ### Changed
 - `pluginUntilBuild` set to the correct format: `201.*`
 
