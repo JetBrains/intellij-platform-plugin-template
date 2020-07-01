@@ -21,6 +21,8 @@ everything organized.
 If you're still not quite sure what this is all about, read our introduction:
 [What is the IntelliJ Platform?][docs:intro]
 
+> **TIP**: Click the <kbd>Watch</kbd> button on the top to be notified about releases containing new features and fixes.
+
 In this README, we will highlight the following elements of template-project creation:
 
 - [Gradle configuration](#gradle-configuration)
