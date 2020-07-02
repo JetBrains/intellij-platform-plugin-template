@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Added
 - JetBrains Plugin badges and TODO list for the end users
+- `ktlint` integration
 
 ### Changed
 - `pluginUntilBuild` set to the correct format: `201.*`
