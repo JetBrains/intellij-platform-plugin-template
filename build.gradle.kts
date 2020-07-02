@@ -59,6 +59,7 @@ intellij {
 // Read more: https://detekt.github.io/detekt/kotlindsl.html
 detekt {
     config = files("./detekt-config.yml")
+    buildUponDefaultConfig = true
 
     reports {
         html.enabled = false

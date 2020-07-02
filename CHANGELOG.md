@@ -8,10 +8,12 @@
 
 ### Changed
 - `pluginUntilBuild` set to the correct format: `201.*`
+- Bump detekt dependency to `1.10.0`
 
 ### Fixed
 - GitHub Actions - Template Cleanup - fixed adding files to git
 - Update Template plugin name on cleanup
+- Set `buildUponDefaultConfig = true` in detekt configuration
 
 ## [0.1.0]
 ### Added
