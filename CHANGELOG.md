@@ -3,6 +3,8 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Fixed
+- Remove vendor website from `plugin.xml`
 
 ## [0.2.0]
 ### Added

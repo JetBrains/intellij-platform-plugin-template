@@ -1,4 +1,4 @@
-<idea-plugin url="www.jetbrains.com">
+<idea-plugin>
     <id>org.jetbrains.plugins.template</id>
     <name>Template</name>
     <vendor>JetBrains</vendor>
