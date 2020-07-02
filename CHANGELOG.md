@@ -3,6 +3,8 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+
+## [0.2.0]
 ### Added
 - JetBrains Plugin badges and TODO list for the end users
 - `ktlint` integration
