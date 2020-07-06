@@ -81,7 +81,7 @@ The project-specific configuration file [gradle.properties][file:gradle.properti
 
 | Property name             | Description                                                                                |
 | ------------------------- | ------------------------------------------------------------------------------------------ |
-| `pluginGroup`             | Package name - after *using* the template, this will be set to `com.gtihub.username.repo`. |
+| `pluginGroup`             | Package name - after *using* the template, this will be set to `com.github.username.repo`. |
 | `pluginName`              | Plugin name displayed in the Marketplace and the Plugins Repository.                       |
 | `pluginVersion`           | The current version of the plugin.                                                         |
 | `pluginSinceBuild`        | The `since-build` attribute of the <idea-version> tag.                                     |
