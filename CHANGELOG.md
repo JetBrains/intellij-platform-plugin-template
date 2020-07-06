@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Fixed
 - Remove vendor website from `plugin.xml`
+- Update Template Cleanup workflow test to avoid running it on forks
 
 ## [0.2.0]
 ### Added
