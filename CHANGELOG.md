@@ -3,6 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Changed
+- Update `org.jetbrains.changelog` dependency to `v0.3.3`
+
 ### Fixed
 - Remove vendor website from `plugin.xml`
 - Update Template Cleanup workflow test to avoid running it on forks
