@@ -3,6 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+- Set publish channel depending on the plugin version, i.e. `1.0.0-beta` -> `beta` channel
+
 ### Changed
 - Update `org.jetbrains.changelog` dependency to `v0.3.3`
 
