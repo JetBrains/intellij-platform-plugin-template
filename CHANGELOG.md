@@ -9,6 +9,7 @@
 ### Changed
 - Update `org.jetbrains.changelog` dependency to `v0.3.3`
 - Update Gradle Wrapper to `v6.5.1`
+- Run GitHub Actions Release workflow on `prereleased` event
 
 ### Fixed
 - Remove vendor website from `plugin.xml`
