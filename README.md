@@ -181,6 +181,7 @@ In the `.github/workflows` directory, you can find definitions for the following
 - [Release](.github/workflows/release.yml)
     - Triggered on `released` event.
     - Publishes the plugin to the Marketplace using the provided `PUBLISH_TOKEN`.
+    - Sets publish channel depending on the plugin version, i.e. `1.0.0-beta` -> `beta` channel.
     - Patches the Changelog and commits.
 - [Template Cleanup](.github/workflows/template-cleanup.yml) 
     - Triggered once on `push` event when a new template-based repository has been created.
@@ -226,6 +227,9 @@ Releasing a plugin to the Marketplace is a straightforward operation that uses t
 provided by the [gradle-intellij-plugin][gh:gradle-intellij-plugin]. The [Release](.github/workflows/release.yml)
 workflow automates this process by running the task when a new release appears in the GitHub Releases section.
 
+> **TIP**: Set a suffix to the plugin version to publish it in the custom repository channel, i.e. `v1.0.0-beta` will
+> push your plugin to the `beta` [release channel][docs:release-channel].
+
 The authorization process relies on the `PUBLISH_TOKEN` secret environment variable, which has to be acquired
 through the Secrets section of the repository Settings.
 
@@ -254,6 +258,7 @@ You can find out how to get that token in the [Providing Your Hub Permanent Toke
 [docs:kotlin-ui-dsl]: https://www.jetbrains.org/intellij/sdk/docs/user_interface_components/kotlin_ui_dsl.html
 [docs:plugin.xml]: https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_configuration_file.html
 [docs:publishing]: https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/publishing_plugin.html
+[docs:release-channel]: https://www.jetbrains.org/intellij/sdk/docs/tutorials/build_system/deployment.html#specifying-a-release-channel
 [docs:token]: https://www.jetbrains.org/intellij/sdk/docs/tutorials/build_system/deployment.html#providing-your-hub-permanent-token-to-gradle
 [docs:using-gradle]: https://www.jetbrains.org/intellij/sdk/docs/tutorials/build_system.html
 
