@@ -3,6 +3,8 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+
+## [0.3.0]
 ### Added
 - Set publish channel depending on the plugin version, i.e. `1.0.0-beta` -> `beta` channel
 
