@@ -10,6 +10,7 @@
 - Update `org.jetbrains.changelog` dependency to `v0.3.3`
 - Update Gradle Wrapper to `v6.5.1`
 - Run GitHub Actions Release workflow on `prereleased` event
+- GitHub Actions - Release - separate changelog related job from the release
 
 ### Fixed
 - Remove vendor website from `plugin.xml`
