@@ -249,6 +249,7 @@ You can find out how to get that token in the [Providing Your Hub Permanent Toke
 - [Kotlin UI DSL][docs:kotlin-ui-dsl]
 - [IntelliJ SDK Code Samples][gh:code-samples]
 - [JetBrains Platform Slack][jb:slack]
+- [JetBrains Platform Twitter][jb:twitter]
 - [IntelliJ IDEA Open API and Plugin Development Forum][jb:forum]
 - [Keep a Changelog][keep-a-changelog]
 - [GitHub Actions][gh:actions]
