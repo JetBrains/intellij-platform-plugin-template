@@ -1,8 +1,8 @@
 # IntelliJ Platform Plugin Template
 
 [![official JetBrains project](https://jb.gg/badges/official.svg)][jb:confluence-on-gh]
-[![Twitter Follow](https://img.shields.io/twitter/follow/JBPlatform?style=flat)](https://twitter.com/JBPlatform/)
-![Build](https://github.com/JetBrains/intellij-platform-plugin-template/workflows/Build/badge.svg)
+[![Twitter Follow](https://img.shields.io/twitter/follow/JBPlatform?style=flat)][jb:twitter]
+[![Build](https://github.com/JetBrains/intellij-platform-plugin-template/workflows/Build/badge.svg)][gh:build]
 [![Slack](https://img.shields.io/badge/Slack-%23intellij--platform--plugin--template-blue)][jb:slack]
 
 > **TL;DR:** Click the <kbd>Use this template</kbd> button and clone it in IntelliJ IDEA.
@@ -274,12 +274,14 @@ You can find out how to get that token in the [Providing Your Hub Permanent Toke
 [gh:gradle-changelog-plugin]: https://github.com/JetBrains/gradle-changelog-plugin
 [gh:gradle-intellij-plugin]: https://github.com/JetBrains/gradle-intellij-plugin
 [gh:releases]: https://github.com/JetBrains/intellij-platform-plugin-template/releases
+[gh:build]: https://github.com/JetBrains/intellij-platform-plugin-template/actions?query=workflow%3ABuild
 
 [jb:confluence-on-gh]: https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub
 [jb:download-ij]: https://www.jetbrains.com/idea/download
 [jb:forum]: https://intellij-support.jetbrains.com/hc/en-us/community/topics/200366979-IntelliJ-IDEA-Open-API-and-Plugin-Development
 [jb:slack]: https://plugins.jetbrains.com/slack
 [jb:ui-guidelines]: https://jetbrains.github.io/ui
+[jb:twitter]: https://twitter.com/JBPlatform
 
 [keep-a-changelog]: https://keepachangelog.com
 [detekt]: https://detekt.github.io/detekt
