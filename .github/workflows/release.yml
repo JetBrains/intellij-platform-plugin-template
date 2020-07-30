@@ -51,7 +51,7 @@ jobs:
         with:
           java-version: 1.8
 
-      # Publish the plugin to the Marketplace
+      # Update Unreleased section with the current version
       - name: Patch Changelog
         run: ./gradlew patchChangelog
 
