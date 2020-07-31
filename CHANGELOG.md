@@ -3,6 +3,18 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+## [0.3.1]
 ### Changed
 - GitHub Actions - run plugin verifier against 2019.3 2020.1 2020.2
 
