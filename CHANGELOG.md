@@ -6,6 +6,9 @@
 ### Changed
 - GitHub Actions - run plugin verifier against 2019.3 2020.1 2020.2
 
+### Fixed
+- GitHub Actions - Plugin Verifier broken for artifacts with whitespaces in name
+
 ## [0.3.0]
 ### Added
 - Set publish channel depending on the plugin version, i.e. `1.0.0-beta` -> `beta` channel
