@@ -78,8 +78,9 @@ jobs:
     outputs:
       name: ${{ steps.properties.outputs.name }}
       version: ${{ steps.properties.outputs.version }}
-      artifact: ${{ steps.properties.outputs.name }}-${{ steps.properties.outputs.version }}.zip
       changelog: ${{ steps.properties.outputs.changelog }}
+      artifact: ${{ steps.properties.outputs.changelog }}
+      artifactEscaped: ${{ steps.properties.outputs.changelog }}
     steps:
 
       # Check out current repository
@@ -104,13 +105,18 @@ jobs:
       - name: Export Properties
         id: properties
         run: |
-          echo "::set-output name=version::$(./gradlew properties --console=plain -q | grep "^version:" | cut -f2- -d ' ')"
-          echo "::set-output name=name::$(./gradlew properties --console=plain -q | grep "^name:" | cut -f2- -d ' ')"
-
+          VERSION="$(./gradlew properties --console=plain -q | grep "^version:" | cut -f2- -d ' ')"
+          NAME="$(./gradlew properties --console=plain -q | grep "^name:" | cut -f2- -d ' ')"
+          ARTIFACT="$(./gradlew properties --console=plain -q | grep "^name:" | cut -f2- -d ' ')"
           CHANGELOG=$(./gradlew getChangelog --unreleased --no-header --console=plain -q)
           CHANGELOG="${CHANGELOG//'%'/'%25'}"
           CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
           CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
+
+          echo "::set-output name=version::$VERSION"
+          echo "::set-output name=name::$NAME"
+          echo "::set-output name=artifact::$ARTIFACT"
+          echo "::set-output name=artifactEscaped::${ARTIFACT// /\\ }"
           echo "::set-output name=changelog::$CHANGELOG"
 
       # Build artifact using buildPlugin Gradle task
@@ -143,7 +149,7 @@ jobs:
         id: verify
         uses: ChrisCarini/intellij-platform-plugin-verifier-action@v0.0.2
         with:
-          plugin-location: "\"plugin-artifact/${{ needs.build.outputs.artifact }}\""
+          plugin-location: plugin-artifact/${{ needs.build.outputs.artifactEscaped }}
           ide-versions: |
             ideaIC:2019.3
             ideaIC:2020.1
