@@ -79,8 +79,8 @@ jobs:
       name: ${{ steps.properties.outputs.name }}
       version: ${{ steps.properties.outputs.version }}
       changelog: ${{ steps.properties.outputs.changelog }}
-      artifact: ${{ steps.properties.outputs.changelog }}
-      artifactEscaped: ${{ steps.properties.outputs.changelog }}
+      artifact: ${{ steps.properties.outputs.artifact }}
+      artifactEscaped: ${{ steps.properties.outputs.artifactEscaped }}
     steps:
 
       # Check out current repository
