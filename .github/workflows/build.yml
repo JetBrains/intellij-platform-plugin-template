@@ -107,17 +107,14 @@ jobs:
         run: |
           VERSION="$(./gradlew properties --console=plain -q | grep "^version:" | cut -f2- -d ' ')"
           NAME="$(./gradlew properties --console=plain -q | grep "^name:" | cut -f2- -d ' ')"
-          ARTIFACT="$(./gradlew properties --console=plain -q | grep "^name:" | cut -f2- -d ' ')"
-          CHANGELOG=$(./gradlew getChangelog --unreleased --no-header --console=plain -q)
-          CHANGELOG="${CHANGELOG//'%'/'%25'}"
-          CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
-          CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
+          CHANGELOG=$(./gradlew getChangelog --unreleased --no-header --console=plain -q | jq -sRr @uri)
+          ARTIFACT="${NAME}-${VERSION}.zip"
 
           echo "::set-output name=version::$VERSION"
           echo "::set-output name=name::$NAME"
+          echo "::set-output name=changelog::$CHANGELOG"
           echo "::set-output name=artifact::$ARTIFACT"
           echo "::set-output name=artifactEscaped::${ARTIFACT// /\\ }"
-          echo "::set-output name=changelog::$CHANGELOG"
 
       # Build artifact using buildPlugin Gradle task
       - name: Build Plugin
