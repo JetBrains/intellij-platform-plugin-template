@@ -80,7 +80,6 @@ jobs:
       version: ${{ steps.properties.outputs.version }}
       changelog: ${{ steps.properties.outputs.changelog }}
       artifact: ${{ steps.properties.outputs.artifact }}
-      artifactEscaped: ${{ steps.properties.outputs.artifactEscaped }}
     steps:
 
       # Check out current repository
@@ -114,7 +113,6 @@ jobs:
           echo "::set-output name=name::$NAME"
           echo "::set-output name=changelog::$CHANGELOG"
           echo "::set-output name=artifact::$ARTIFACT"
-          echo "::set-output name=artifactEscaped::${ARTIFACT// /\\ }"
 
       # Build artifact using buildPlugin Gradle task
       - name: Build Plugin
@@ -146,7 +144,7 @@ jobs:
         id: verify
         uses: ChrisCarini/intellij-platform-plugin-verifier-action@v0.0.2
         with:
-          plugin-location: plugin-artifact/${{ needs.build.outputs.artifactEscaped }}
+          plugin-location: plugin-artifact/*.zip
           ide-versions: |
             ideaIC:2019.3
             ideaIC:2020.1
