@@ -38,7 +38,6 @@ repositories {
     jcenter()
 }
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.10.0")
 }
 
