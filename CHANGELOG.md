@@ -9,6 +9,7 @@
 ### Changed
 - Gradle - remove kotlin("stdlib-jdk8") dependency to decrease the plugin artifact size
 - Dependencies - bump ktlint to 9.3.0
+- GitHub Actions - make *Update Changelog* job dependent on the *Publish Plugin*
 
 ## [0.3.1]
 ### Changed

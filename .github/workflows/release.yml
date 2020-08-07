@@ -36,6 +36,7 @@ jobs:
   # Patch changelog, commit and push to the current repository
   changelog:
     name: Update Changelog
+    needs: release
     runs-on: ubuntu-latest
     steps:
 
