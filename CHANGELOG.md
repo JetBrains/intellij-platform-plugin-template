@@ -11,6 +11,9 @@
 - Dependencies - bump ktlint to 9.3.0
 - GitHub Actions - make *Update Changelog* job dependent on the *Publish Plugin*
 
+### Fixed
+- Resolve ktlint reports
+
 ## [0.3.1]
 ### Changed
 - GitHub Actions - run plugin verifier against 2019.3 2020.1 2020.2
