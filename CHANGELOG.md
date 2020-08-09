@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Added
 - Better handling of the Gradle plugin description extraction from the README file
+- GitHub Actions - cache Gradle Wrapper
 
 ### Changed
 - Gradle - remove kotlin("stdlib-jdk8") dependency to decrease the plugin artifact size
