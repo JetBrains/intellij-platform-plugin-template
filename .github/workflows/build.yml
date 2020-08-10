@@ -15,7 +15,6 @@
 
 name: Build
 on: [push, pull_request]
-
 jobs:
 
   # Run Gradle Wrapper Validation Action to verify the wrapper's checksum
@@ -37,17 +36,12 @@ jobs:
     name: Test
     needs: gradleValidation
     runs-on: ubuntu-latest
+    container: gradle:jdk8
     steps:
 
       # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v2
-
-      # Setup Java 1.8 environment for the next steps
-      - name: Setup Java
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
 
       # Cache Gradle dependencies
       - name: Setup Cache
@@ -77,6 +71,7 @@ jobs:
     name: Build
     needs: test
     runs-on: ubuntu-latest
+    container: gradle:jdk8
     outputs:
       name: ${{ steps.properties.outputs.name }}
       version: ${{ steps.properties.outputs.version }}
@@ -87,12 +82,6 @@ jobs:
       # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v2
-
-      # Setup Java 1.8 environment for the next steps
-      - name: Setup Java
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
 
       # Cache Gradle dependencies
       - name: Setup Cache

@@ -12,6 +12,7 @@ jobs:
   release:
     name: Publish Plugin
     runs-on: ubuntu-latest
+    container: gradle:jdk8
     if: github.repository != 'JetBrains/intellij-platform-plugin-template'
     steps:
 
@@ -20,12 +21,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.event.release.tag_name }}
-
-      # Setup Java 1.8 environment for the next steps
-      - name: Setup Java
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
 
       # Publish the plugin to the Marketplace
       - name: Publish Plugin
@@ -38,6 +33,7 @@ jobs:
     name: Update Changelog
     needs: release
     runs-on: ubuntu-latest
+    container: gradle:jdk8
     steps:
 
       # Check out current repository
@@ -45,12 +41,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.event.release.tag_name }}
-
-      # Setup Java 1.8 environment for the next steps
-      - name: Setup Java
-        uses: actions/setup-java@v1
-        with:
-          java-version: 1.8
 
       # Update Unreleased section with the current version
       - name: Patch Changelog
