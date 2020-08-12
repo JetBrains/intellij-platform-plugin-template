@@ -3,6 +3,10 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Changed
+- Simplify and optimize GitHub Actions
+
+## [0.3.1]
 ### Added
 - Better handling of the Gradle plugin description extraction from the README file
 - GitHub Actions - cache Gradle Wrapper
