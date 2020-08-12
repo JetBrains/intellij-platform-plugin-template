@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Changed
 - Simplify and optimize GitHub Actions
+- Gradle Wrapper upgrade to v6.6
 
 ## [0.3.1]
 ### Added
