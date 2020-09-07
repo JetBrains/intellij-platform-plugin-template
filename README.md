@@ -87,7 +87,7 @@ A generated IntelliJ Platform Plugin Template repository contains the following 
 ├── build.gradle.kts        Gradle configuration
 ├── detekt-config.yml       Detekt configuration
 ├── gradle
-│   └── wrapper/            Gradle Wrapper
+│   └── wrapper/            Gradle Wrapper
 ├── gradle.properties       Gradle configuration properties
 ├── gradlew                 *nix Gradle Wrapper binary
 ├── gradlew.bat             Windows Gradle Wrapper binary
@@ -131,7 +131,7 @@ The prepared template provides as little code as possible because it is impossib
 .
 ├── MyBundle.kt                         Bundle class providing access to the resources messages
 ├── listeners
-│   └── MyProjectManagerListener.kt     Project Manager listener - handles project lifecycle
+│   └── MyProjectManagerListener.kt     Project Manager listener - handles project lifecycle
 └── services
     ├── MyApplicationService.kt         Application-level service available for all projects
     └── MyProjectService.kt             Project level service
@@ -163,7 +163,7 @@ In the `.github/workflows` directory, you can find definitions for the following
     - Overrides JetBrains-specific sentences or package names with ones specific to the target repository.
     - Removes redundant files.
 
-All of the workflow files have accurate documentation, so it's a good idea to take a look through their sources.
+All the workflow files have accurate documentation, so it's a good idea to take a look through their sources.
 
 ### Changelog maintenance
 
@@ -194,7 +194,7 @@ The authorization process relies on the `PUBLISH_TOKEN` secret environment varia
 
 ![Settings > Secrets][file:settings-secrets.png]
 
-You can find out how to get that token in the [Providing Your Hub Permanent Token to Gradle][docs:token] article.
+You can get that token in the [My Tokens][jb:my-tokens] tab within your Marketplace profile dashboard.
 
 > **Important:**
 > Before using the automated deployment process, it is necessary to manually create a new plugin in the Marketplace
@@ -219,7 +219,6 @@ You can find out how to get that token in the [Providing Your Hub Permanent Toke
 [docs:plugin.xml]: https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_configuration_file.html
 [docs:publishing]: https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/publishing_plugin.html
 [docs:release-channel]: https://www.jetbrains.org/intellij/sdk/docs/tutorials/build_system/deployment.html#specifying-a-release-channel
-[docs:token]: https://www.jetbrains.org/intellij/sdk/docs/tutorials/build_system/deployment.html#providing-your-hub-permanent-token-to-gradle
 [docs:using-gradle]: https://www.jetbrains.org/intellij/sdk/docs/tutorials/build_system.html
 
 [file:use-this-template.png]: .github/readme/use-this-template.png
@@ -239,6 +238,7 @@ You can find out how to get that token in the [Providing Your Hub Permanent Toke
 [jb:confluence-on-gh]: https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub
 [jb:download-ij]: https://www.jetbrains.com/idea/download
 [jb:forum]: https://intellij-support.jetbrains.com/hc/en-us/community/topics/200366979-IntelliJ-IDEA-Open-API-and-Plugin-Development
+[jb:my-tokens]: https://plugins.jetbrains.com/author/me/tokens
 [jb:slack]: https://plugins.jetbrains.com/slack
 [jb:ui-guidelines]: https://jetbrains.github.io/ui
 [jb:twitter]: https://twitter.com/JBPlatform
