@@ -13,9 +13,9 @@ plugins {
     // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
     id("org.jetbrains.changelog") version "0.4.0"
     // detekt linter - read more: https://detekt.github.io/detekt/kotlindsl.html
-    id("io.gitlab.arturbosch.detekt") version "1.11.0"
+    id("io.gitlab.arturbosch.detekt") version "1.12.0"
     // ktlint linter - read more: https://github.com/JLLeitschuh/ktlint-gradle
-    id("org.jlleitschuh.gradle.ktlint") version "9.3.0"
+    id("org.jlleitschuh.gradle.ktlint") version "9.4.0"
 }
 
 // Import variables from gradle.properties file
@@ -38,7 +38,7 @@ repositories {
     jcenter()
 }
 dependencies {
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.11.0")
+    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.12.0")
 }
 
 // Configure gradle-intellij-plugin plugin.

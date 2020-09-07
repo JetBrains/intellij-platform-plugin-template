@@ -6,9 +6,10 @@
 ### Changed
 - Simplify and optimize GitHub Actions
 - Gradle Wrapper upgrade to v6.6
-- Update Gradle plugin `gradle-intellij-plugin` to 0.4.22
-- Dependencies - bump org.jetbrains.kotlin.jvm to 1.4.0
-- Dependencies - bump io.gitlab.arturbosch.detekt to 1.11.0
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to 1.4.0
+- Dependencies - upgrade `org.jetbrains.intellij` to 0.4.22
+- Dependencies - upgrade `io.gitlab.arturbosch.detekt` to 1.12.0
+- Dependencies - upgrade `org.jlleitschuh.gradle.ktlint` to 9.4.0
 
 ## [0.3.1]
 ### Added
