@@ -83,15 +83,15 @@ jobs:
       - name: Fetch Sources
         uses: actions/checkout@v2
 
-      # Cache Gradle dependencies
-      - name: Setup Cache
+      # Cache Gradle Dependencies
+      - name: Setup Gradle Dependencies Cache
         uses: actions/cache@v2
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-caches-${{ hashFiles('**/*.gradle', '**/*.gradle.kts') }}
 
       # Cache Gradle Wrapper
-      - name: Setup Cache
+      - name: Setup Gradle Wrapper Cache
         uses: actions/cache@v2
         with:
           path: ~/.gradle/wrapper
