@@ -49,7 +49,6 @@ jobs:
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-caches-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle-caches-
 
       # Cache Gradle Wrapper
       - name: Setup Cache
@@ -90,7 +89,6 @@ jobs:
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-caches-${{ hashFiles('**/*.gradle') }}
-          restore-keys: ${{ runner.os }}-gradle-caches-
 
       # Cache Gradle Wrapper
       - name: Setup Cache
