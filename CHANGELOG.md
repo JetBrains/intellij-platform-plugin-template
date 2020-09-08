@@ -11,6 +11,7 @@
 - Dependencies - upgrade `org.jetbrains.changelog` to 0.5.0
 - Dependencies - upgrade `io.gitlab.arturbosch.detekt` to 1.12.0
 - Dependencies - upgrade `org.jlleitschuh.gradle.ktlint` to 9.4.0
+- Rename `master` branch to `main`
 
 ### Fixed
 - GitHub Actions - cache Gradle dependencies and wrapper separately
