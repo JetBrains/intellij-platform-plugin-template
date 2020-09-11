@@ -3,6 +3,11 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Changed
+- GitHub Actions: allow releasing plugin even for the base project
+
+### Fixed
+- `pluginName` variable name collision with `intellij` closure getter in Gradle configuration #29
 
 ## [0.3.2]
 ### Changed
