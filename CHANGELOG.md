@@ -3,6 +3,8 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+
+## [0.3.2]
 ### Changed
 - Simplify and optimize GitHub Actions
 - Gradle Wrapper upgrade to 6.6.1
