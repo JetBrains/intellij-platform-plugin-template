@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Changed
 - GitHub Actions: allow releasing plugin even for the base project
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to 1.4.10
 
 ### Fixed
 - `pluginName` variable name collision with `intellij` closure getter in Gradle configuration #29
