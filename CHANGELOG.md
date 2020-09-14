@@ -6,6 +6,7 @@
 ### Changed
 - GitHub Actions: allow releasing plugin even for the base project
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to 1.4.10
+- Dependencies - upgrade `io.gitlab.arturbosch.detekt` to 1.13.1
 
 ### Fixed
 - `pluginName` variable name collision with `intellij` closure getter in Gradle configuration #29
