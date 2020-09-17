@@ -36,8 +36,13 @@ jobs:
     name: Test
     needs: gradleValidation
     runs-on: ubuntu-latest
-    container: gradle:jdk8
     steps:
+
+      # Setup Java 1.8 environment for the next steps
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
 
       # Check out current repository
       - name: Fetch Sources
@@ -71,13 +76,18 @@ jobs:
     name: Build
     needs: test
     runs-on: ubuntu-latest
-    container: gradle:jdk8
     outputs:
       name: ${{ steps.properties.outputs.name }}
       version: ${{ steps.properties.outputs.version }}
       changelog: ${{ steps.properties.outputs.changelog }}
       artifact: ${{ steps.properties.outputs.artifact }}
     steps:
+      
+      # Setup Java 1.8 environment for the next steps
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 1.8
 
       # Check out current repository
       - name: Fetch Sources
