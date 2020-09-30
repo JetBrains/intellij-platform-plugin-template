@@ -3,6 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+- Opt-out flag for bundling Kotlin standard library by default
+
 ### Changed
 - GitHub Actions: allow releasing plugin even for the base project
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to 1.4.10
