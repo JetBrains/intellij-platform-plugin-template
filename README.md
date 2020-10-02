@@ -77,15 +77,15 @@ The properties listed define the plugin itself or configure the [gradle-intellij
 ### Dependency on the Kotlin standard library
 
 Since Kotlin 1.4, a dependency on a standard library (`stdlib`) is added automatically.
-In most cases, it is not necessary to attach such libraries within the bundled plugin.
+In most cases, it is not necessary to distribute this library with a plugin.
  
-The [gradle.properties][file:gradle.properties] file explicitly alters the default behaviour of the Kotlin plugin using the opt-out property:
+The [gradle.properties][file:gradle.properties] file explicitly alters the default behaviour of the Kotlin Gradle plugin by specifying this opt-out property:
 
 ```
 kotlin.stdlib.default.dependency = false
 ```
 
-For more details, read: [Dependency on the standard library][kotlin-docs-dependency-on-stdlib].
+For more details, please see: [Dependency on the standard library][kotlin-docs-dependency-on-stdlib] in Kotlin documentation~~~~.
 
 ## Plugin template structure
 

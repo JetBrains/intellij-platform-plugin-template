@@ -4,7 +4,7 @@
 
 ## [Unreleased]
 ### Added
-- Opt-out flag for bundling Kotlin standard library by default
+- Fix default to opt-out of bundling Kotlin standard library in plugin distribution
 
 ### Changed
 - GitHub Actions: allow releasing plugin even for the base project
