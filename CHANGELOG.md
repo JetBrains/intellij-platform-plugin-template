@@ -8,6 +8,7 @@
 
 ### Changed
 - GitHub Actions: allow releasing plugin even for the base project
+- Dependencies - upgrade `org.jetbrains.intellij` to 0.4.26
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to 1.4.10
 - Dependencies - upgrade `io.gitlab.arturbosch.detekt` to 1.13.1
 
