@@ -70,9 +70,22 @@ The project-specific configuration file [gradle.properties][file:gradle.properti
 | `pluginUntilBuild`        | The `until-build` attribute of the <idea-version> tag.                                     |
 | `platformType`            | The type of IDE distribution.                                                              |
 | `platformVersion`         | The version of the IntelliJ Platform IDE that will be used to build the plugin.            |
-| `platformDownloadSources` | IDE sources downloaded while initializing the Gradle build.                                    |
+| `platformDownloadSources` | IDE sources downloaded while initializing the Gradle build.                                |
 
 The properties listed define the plugin itself or configure the [gradle-intellij-plugin][gh:gradle-intellij-plugin] – check its documentation for more details.
+
+### Dependency on the Kotlin standard library
+
+Since Kotlin 1.4, a dependency on a standard library (`stdlib`) is added automatically.
+In most cases, it is not necessary to distribute this library with a plugin.
+ 
+The [gradle.properties][file:gradle.properties] file explicitly alters the default behaviour of the Kotlin Gradle plugin by specifying this opt-out property:
+
+```
+kotlin.stdlib.default.dependency = false
+```
+
+For more details, please see: [Dependency on the standard library][kotlin-docs-dependency-on-stdlib] in Kotlin documentation~~~~.
 
 ## Plugin template structure
 
@@ -247,3 +260,4 @@ You can get that token in the [My Tokens][jb:my-tokens] tab within your Marketpl
 [detekt]: https://detekt.github.io/detekt
 [gradle]: https://gradle.org
 [gradle-kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
+[kotlin-docs-dependency-on-stdlib]: https://kotlinlang.org/docs/reference/using-gradle.html#dependency-on-the-standard-library
