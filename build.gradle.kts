@@ -118,6 +118,7 @@ tasks {
     publishPlugin {
         dependsOn("patchChangelog")
         token(System.getenv("PUBLISH_TOKEN"))
+        // Follow https://semver.org/ like 2.1.7-alpha.3 Posssible channels are: 'alpha', 'beta', 'eap', 'default'. See https://jetbrains.org/intellij/sdk/docs/tutorials/build_system/deployment.html#specifying-a-release-channel
         channels(pluginVersion.split('-').getOrElse(1) { "default" }.split('.').first())
     }
 }
