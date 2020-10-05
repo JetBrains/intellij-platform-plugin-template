@@ -2,7 +2,7 @@
 
 # IntelliJ Platform Plugin Template Changelog
 
-## [Unreleased]
+## [0.4.0]
 ### Added
 - Fix default to opt-out of bundling Kotlin standard library in plugin distribution
 
