@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Changed
 - Disable "Release Draft" job for pull requests in the "Build" GitHub Actions Workflow
+- Dependencies - upgrade `org.jetbrains.intellij` to 0.5.0
 
 ## [0.4.0]
 ### Added
