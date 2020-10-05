@@ -82,7 +82,7 @@ jobs:
       changelog: ${{ steps.properties.outputs.changelog }}
       artifact: ${{ steps.properties.outputs.artifact }}
     steps:
-      
+
       # Setup Java 1.8 environment for the next steps
       - name: Setup Java
         uses: actions/setup-java@v1
@@ -175,6 +175,7 @@ jobs:
   # If accepted and published, release workflow would be triggered
   releaseDraft:
     name: Release Draft
+    if: github.event_name != 'pull_request'
     needs: [build, verify]
     runs-on: ubuntu-latest
     steps:
