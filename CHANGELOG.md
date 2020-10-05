@@ -3,6 +3,10 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Changed
+- Disable "Release Draft" job for pull requests in the "Build" GitHub Actions Workflow
+
+## [0.4.0]
 ### Added
 - Fix default to opt-out of bundling Kotlin standard library in plugin distribution
 
