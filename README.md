@@ -85,7 +85,7 @@ The [gradle.properties][file:gradle.properties] file explicitly alters the defau
 kotlin.stdlib.default.dependency = false
 ```
 
-For more details, please see: [Dependency on the standard library][kotlin-docs-dependency-on-stdlib] in Kotlin documentation~~~~.
+For more details, please see: [Dependency on the standard library][kotlin-docs-dependency-on-stdlib] in Kotlin documentation.
 
 ## Plugin template structure
 
