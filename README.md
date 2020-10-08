@@ -5,6 +5,16 @@
 [![Build](https://github.com/JetBrains/intellij-platform-plugin-template/workflows/Build/badge.svg)][gh:build]
 [![Slack](https://img.shields.io/badge/Slack-%23intellij--platform--plugin--template-blue)][jb:slack]
 
+> ⚠️
+>
+> **Warning:** Currently, GitHub Actions are not enabled by default anymore for the projects created using the Repository Template.
+> Issue is [reported](https://github.community/t/workflow-isnt-enabled-in-repos-generated-from-template/136421), but for now it is required to perform the following steps manually:
+> 1. Click <kbd>Use the Template</kbd> button.
+> 2. In the created repository, go to *Actions* tab and click <kbd>Enable Actions on this repository</kbd>.
+> 3. Commit and push any change to the repository, i.e. remove the `LICENSE` file.
+>
+> ⚠️
+
 > **TL;DR:** Click the <kbd>Use this template</kbd> button and clone it in IntelliJ IDEA.
 
 <!-- Plugin description -->
