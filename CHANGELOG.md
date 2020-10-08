@@ -7,6 +7,7 @@
 - Disable "Release Draft" job for pull requests in the "Build" GitHub Actions Workflow
 - Dependencies - upgrade `org.jetbrains.intellij` to 0.5.0
 - Dependencies - upgrade `org.jetbrains.changelog` to 0.6.1
+- Dependencies - upgrade `io.gitlab.arturbosch.detekt` to 1.14.1
 
 ## [0.4.0]
 ### Added
