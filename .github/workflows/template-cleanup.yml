@@ -56,6 +56,7 @@ jobs:
           rm -rf .github/template-cleanup
           rm -rf src/main/kotlin/org
           rm .github/workflows/template-cleanup.yml
+          rm CODE_OF_CONDUCT.md
 
       # Commit modified files
       - name: Commit files
