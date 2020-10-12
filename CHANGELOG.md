@@ -9,6 +9,7 @@
 - Dependencies - upgrade `org.jetbrains.changelog` to 0.6.1
 - Dependencies - upgrade `io.gitlab.arturbosch.detekt` to 1.14.1
 - Dependencies - upgrade `org.jlleitschuh.gradle.ktlint` to 9.4.1
+- Remove LICENSE file during the Template Cleanup workflow
 
 ## [0.4.0]
 ### Added
