@@ -4,6 +4,18 @@
 
 ## [Unreleased]
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+## [0.5.0]
+### Added
 - Introduced `platformPlugins` property in `gradle.properties` for configuring dependencies to bundled/external plugins
 
 ### Changed
