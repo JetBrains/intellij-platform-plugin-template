@@ -29,6 +29,7 @@ val pluginUntilBuild: String by project
 
 val platformType: String by project
 val platformVersion: String by project
+val platformPlugins: String by project
 val platformDownloadSources: String by project
 
 group = pluginGroup
@@ -52,10 +53,8 @@ intellij {
     downloadSources = platformDownloadSources.toBoolean()
     updateSinceUntilBuild = true
 
-//  Plugin Dependencies:
-//  https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_dependencies.html
-//
-//  setPlugins("java")
+    // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
+    setPlugins(*platformPlugins.split(',').map(String::trim).filter(String::isNotEmpty).toTypedArray())
 }
 
 // Configure detekt plugin.

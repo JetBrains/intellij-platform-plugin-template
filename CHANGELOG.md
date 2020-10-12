@@ -3,6 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+- Introduced `platformPlugins` property in `gradle.properties` for configuring dependencies to bundled/external plugins
+
 ### Changed
 - Disable "Release Draft" job for pull requests in the "Build" GitHub Actions Workflow
 - Dependencies - upgrade `org.jetbrains.intellij` to 0.5.0
