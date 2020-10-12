@@ -4,7 +4,7 @@
 
 ## [Unreleased]
 ### Added
-- Introduced `platformPlugins` property for configuring dependencies to the plugins using gradle.properties
+- Introduced `platformPlugins` property in `gradle.properties` for configuring dependencies to bundled/external plugins
 
 ### Changed
 - Disable "Release Draft" job for pull requests in the "Build" GitHub Actions Workflow
