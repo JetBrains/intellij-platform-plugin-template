@@ -23,6 +23,7 @@ In this README, we will highlight the following elements of template-project cre
 
 - [Gradle configuration](#gradle-configuration)
 - [Plugin template structure](#plugin-template-structure)
+    - [Dependency on the Kotlin standard library](#dependency-on-the-kotlin-standard-library)
 - [Plugin configuration file](#plugin-configuration-file)
 - [Sample code](#sample-code):
     - listeners – project and dynamic plugin lifecycle
@@ -32,6 +33,7 @@ In this README, we will highlight the following elements of template-project cre
     - [Changelog maintenance](#changelog-maintenance) with the Gradle Changelog Plugin
     - [Release flow](#release-flow) using GitHub Releases
     - [Publishing the plugin](#publishing-the-plugin) with the Gradle IntelliJ Plugin
+- [Useful links](#useful-links)
 
 ## Getting started
 
@@ -47,9 +49,9 @@ For the last step, you have to manually review the configuration variables descr
 
 ## Gradle configuration
 
-The recommended method for plugin development involves using the [Gradle][gradle] setup with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] installed. The gradle-intellij-plugin makes it possible to run the IDE with your plugin and to publish your plugin to the Marketplace Repository.
+The recommended method for plugin development involves using the [Gradle][gradle] setup with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] installed. The gradle-intellij-plugin makes it possible to run the IDE with your plugin and publish your plugin to the Marketplace Repository.
 
-A project built using the IntelliJ Platform Plugin Template includes a Gradle configuration that's already been set up. Feel free to read through the [Using Gradle][docs:using-gradle] articles to get a better understanding of your build and to learn how to customize it.
+A project built using the IntelliJ Platform Plugin Template includes a Gradle configuration that's already been set up. Feel free to read through the [Using Gradle][docs:using-gradle] articles to better understand your build and learn how to customize it.
 
 The most significant parts of the current configuration are:
 - Configuration written with [Gradle Kotlin DSL][gradle-kotlin-dsl].
@@ -112,7 +114,7 @@ A generated IntelliJ Platform Plugin Template repository contains the following 
         └── resources/      Resources - plugin.xml, icons, messages
 ```
 
-In addition to the configuration files, the most important part is the `src` directory, which contains our implementation and the manifest for our plugin – [plugin.xml][file:plugin.xml].
+In addition to the configuration files, the most crucial part is the `src` directory, which contains our implementation and the manifest for our plugin – [plugin.xml][file:plugin.xml].
 
 ## Plugin configuration file
 The plugin configuration file is a [plugin.xml][file:plugin.xml] file located in the `src/main/resources/META-INF` directory. It provides general information about the plugin, its dependencies, extensions, and listeners.
@@ -155,7 +157,7 @@ These files are located in `src/main/kotlin`. This location indicates the langua
 
 ## Continuous integration
 
-Continuous integration depends on [GitHub Actions][gh:actions], which are a set of workflows that make it possible to automate your testing and release process. Thanks to such automation, you can delegate the testing and verification phases to the CI and instead focus on development (and writing more tests).
+Continuous integration depends on [GitHub Actions][gh:actions], a set of workflows that make it possible to automate your testing and release process. Thanks to such automation, you can delegate the testing and verification phases to the CI and instead focus on development (and writing more tests).
 
 In the `.github/workflows` directory, you can find definitions for the following GitHub Actions workflows:
 
@@ -172,8 +174,8 @@ In the `.github/workflows` directory, you can find definitions for the following
     - Sets publish channel depending on the plugin version, i.e. `1.0.0-beta` -> `beta` channel.
     - Patches the Changelog and commits.
 - [Template Cleanup](.github/workflows/template-cleanup.yml) 
-    - Triggered once on `push` event when a new template-based repository has been created.
-    - Overrides the scaffold with files from `.github/template-cleanup` directory.
+    - Triggered once on the `push` event when a new template-based repository has been created.
+    - Overrides the scaffold with files from the `.github/template-cleanup` directory.
     - Overrides JetBrains-specific sentences or package names with ones specific to the target repository.
     - Removes redundant files.
 
@@ -185,7 +187,7 @@ When releasing an update, it is important to let your users know what the new ve
 
 The changelog is a curated list that contains information about any new features, fixes, and deprecations. When they are provided, these lists are available in a few different places: the [CHANGELOG.md](./CHANGELOG.md) file, the [Releases page][gh:releases], the *What's new* section of the Marketplace Plugin page, and inside of the Plugin Manager's item details.
 
-There are many methods for handling the project's changelog. The one, used in the current template project is the [Keep a Changelog][keep-a-changelog] approach.
+There are many methods for handling the project's changelog. The one used in the current template project is the [Keep a Changelog][keep-a-changelog] approach.
 
 ### Release flow
 
