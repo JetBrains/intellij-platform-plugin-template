@@ -3,17 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
-### Added
-
 ### Changed
+- Dependencies - upgrade `org.jetbrains.changelog` to 0.6.2
 
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 ## [0.5.0]
 ### Added
 - Introduced `platformPlugins` property in `gradle.properties` for configuring dependencies to bundled/external plugins
