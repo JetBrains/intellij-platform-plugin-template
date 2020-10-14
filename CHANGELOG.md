@@ -3,6 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+- Missing properties in the `gradle.properties` template file
+
 ### Changed
 - Dependencies - upgrade `org.jetbrains.changelog` to 0.6.2
 
