@@ -7,7 +7,8 @@
 - Missing properties in the `gradle.properties` template file
 
 ### Changed
-- Dependencies - upgrade `org.jetbrains.changelog` to 0.6.2
+- Upgrade Gradle Wrapper to `6.7`
+- Dependencies - upgrade `org.jetbrains.changelog` to `0.6.2`
 
 ## [0.5.0]
 ### Added
@@ -15,10 +16,10 @@
 
 ### Changed
 - Disable "Release Draft" job for pull requests in the "Build" GitHub Actions Workflow
-- Dependencies - upgrade `org.jetbrains.intellij` to 0.5.0
-- Dependencies - upgrade `org.jetbrains.changelog` to 0.6.1
-- Dependencies - upgrade `io.gitlab.arturbosch.detekt` to 1.14.1
-- Dependencies - upgrade `org.jlleitschuh.gradle.ktlint` to 9.4.1
+- Dependencies - upgrade `org.jetbrains.intellij` to `0.5.0`
+- Dependencies - upgrade `org.jetbrains.changelog` to `0.6.1`
+- Dependencies - upgrade `io.gitlab.arturbosch.detekt` to `1.14.1`
+- Dependencies - upgrade `org.jlleitschuh.gradle.ktlint` to `9.4.1`
 - Remove LICENSE file during the Template Cleanup workflow
 
 ## [0.4.0]
@@ -27,8 +28,8 @@
 
 ### Changed
 - GitHub Actions: allow releasing plugin even for the base project
-- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to 1.4.10
-- Dependencies - upgrade `io.gitlab.arturbosch.detekt` to 1.13.1
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.4.10`
+- Dependencies - upgrade `io.gitlab.arturbosch.detekt` to `1.13.1`
 
 ### Fixed
 - `pluginName` variable name collision with `intellij` closure getter in Gradle configuration #29
@@ -36,12 +37,12 @@
 ## [0.3.2]
 ### Changed
 - Simplify and optimize GitHub Actions
-- Gradle Wrapper upgrade to 6.6.1
-- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to 1.4.0
-- Dependencies - upgrade `org.jetbrains.intellij` to 0.4.22
-- Dependencies - upgrade `org.jetbrains.changelog` to 0.5.0
-- Dependencies - upgrade `io.gitlab.arturbosch.detekt` to 1.12.0
-- Dependencies - upgrade `org.jlleitschuh.gradle.ktlint` to 9.4.0
+- Gradle Wrapper upgrade to `6.6.1`
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.4.0`
+- Dependencies - upgrade `org.jetbrains.intellij` to `0.4.22`
+- Dependencies - upgrade `org.jetbrains.changelog` to `0.5.0`
+- Dependencies - upgrade `io.gitlab.arturbosch.detekt` to `1.12.0`
+- Dependencies - upgrade `org.jlleitschuh.gradle.ktlint` to `9.4.0`
 - Rename `master` branch to `main`
 
 ### Fixed
@@ -54,7 +55,7 @@
 
 ### Changed
 - Gradle - remove kotlin("stdlib-jdk8") dependency to decrease the plugin artifact size
-- Dependencies - bump ktlint to 9.3.0
+- Dependencies - bump ktlint to `9.3.0`
 - GitHub Actions - make *Update Changelog* job dependent on the *Publish Plugin*
 
 ### Fixed
@@ -62,7 +63,7 @@
 
 ## [0.3.1]
 ### Changed
-- GitHub Actions - run plugin verifier against 2019.3 2020.1 2020.2
+- GitHub Actions - run plugin verifier against `2019.3` `2020.1` `2020.2`
 
 ### Fixed
 - GitHub Actions - Plugin Verifier broken for artifacts with whitespaces in name
@@ -103,7 +104,7 @@
 ### Changed
 - README proofreading
 - GitHub Actions - Update IDE versions for the Plugin Verifier
-- Update platformVersion to 2020.1.2
+- Update platformVersion to `2020.1.2`
 
 ## [0.0.2]
 ### Added
