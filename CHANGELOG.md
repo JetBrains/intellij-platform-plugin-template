@@ -4,6 +4,18 @@
 
 ## [Unreleased]
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+## [0.5.1]
+### Added
 - Missing properties in the `gradle.properties` template file
 
 ### Changed
