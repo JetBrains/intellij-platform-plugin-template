@@ -3,17 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
-### Added
-
 ### Changed
+- Switch Gradle Wrapper to `-all` to improve the IntelliSense
 
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 ## [0.5.1]
 ### Added
 - Missing properties in the `gradle.properties` template file
