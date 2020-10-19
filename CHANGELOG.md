@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Changed
 - Switch Gradle Wrapper to `-all` to improve the IntelliSense
+- Update detekt config to be in line with IJ settings
 
 ## [0.5.1]
 ### Added
