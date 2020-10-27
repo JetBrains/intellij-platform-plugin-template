@@ -220,7 +220,9 @@ You can get that token in the [My Tokens][jb:my-tokens] tab within your Marketpl
 ## Useful links
 
 - [IntelliJ Platform SDK DevGuide][docs]
+- [Marketplace Quality Guidelines][jb:quality-guidelines]
 - [IntelliJ Platform UI Guidelines][jb:ui-guidelines]
+- [Marketplace Paid Plugins][jb:paid-plugins]
 - [Kotlin UI DSL][docs:kotlin-ui-dsl]
 - [IntelliJ SDK Code Samples][gh:code-samples]
 - [JetBrains Platform Slack][jb:slack]
@@ -255,9 +257,11 @@ You can get that token in the [My Tokens][jb:my-tokens] tab within your Marketpl
 [jb:download-ij]: https://www.jetbrains.com/idea/download
 [jb:forum]: https://intellij-support.jetbrains.com/hc/en-us/community/topics/200366979-IntelliJ-IDEA-Open-API-and-Plugin-Development
 [jb:my-tokens]: https://plugins.jetbrains.com/author/me/tokens
+[jb:paid-plugins]: https://plugins.jetbrains.com/docs/marketplace/paid-plugins-marketplace.html
+[jb:quality-guidelines]: https://plugins.jetbrains.com/docs/marketplace/quality-guidelines.html
 [jb:slack]: https://plugins.jetbrains.com/slack
-[jb:ui-guidelines]: https://jetbrains.github.io/ui
 [jb:twitter]: https://twitter.com/JBPlatform
+[jb:ui-guidelines]: https://jetbrains.github.io/ui
 
 [keep-a-changelog]: https://keepachangelog.com
 [detekt]: https://detekt.github.io/detekt
