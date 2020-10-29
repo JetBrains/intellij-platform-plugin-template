@@ -174,7 +174,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.pluginVerifier/ides
-          key: ${{ runner.os }}-plugin-verifier-cache
+          key: ${{ runner.os }}-plugin-verifier-idesxxx
 
       # Run IntelliJ Plugin Verifier action using GitHub Action
       - name: Verify Plugin
