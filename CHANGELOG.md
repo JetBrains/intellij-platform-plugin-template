@@ -10,11 +10,11 @@
 - Switch Gradle Wrapper to `-all` to improve the IntelliSense
 - Update detekt config to be in line with IJ settings
 - Dependencies - upgrade `io.gitlab.arturbosch.detekt` to `1.14.2`
-- Dependencies - upgrade `org.jetbrains.intellij` to `0.6.0`
+- Dependencies - upgrade `org.jetbrains.intellij` to `0.6.1`
 - GitHub Actions - `gradleValidation` update to `gradle/wrapper-validation-action@v1.0.3`
 
 ### Removed
-- Third-party IntelliJ Plugin Verifier GitHub Action
+- Remove Third-party IntelliJ Plugin Verifier GitHub Action
 
 ## [0.5.1]
 ### Added
