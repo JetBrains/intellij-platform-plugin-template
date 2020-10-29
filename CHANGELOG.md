@@ -3,12 +3,18 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+- Integration with [IntelliJ Plugin Verifier](https://github.com/JetBrains/intellij-plugin-verifier) through the [Gradle IntelliJ Plugin](https://github.com/JetBrains/gradle-intellij-plugin#plugin-verifier-dsl) `runPluginVerifier` task
+
 ### Changed
 - Switch Gradle Wrapper to `-all` to improve the IntelliSense
 - Update detekt config to be in line with IJ settings
 - Dependencies - upgrade `io.gitlab.arturbosch.detekt` to `1.14.2`
-- Dependencies - upgrade `org.jetbrains.intellij` to `0.5.1`
+- Dependencies - upgrade `org.jetbrains.intellij` to `0.6.1`
 - GitHub Actions - `gradleValidation` update to `gradle/wrapper-validation-action@v1.0.3`
+
+### Removed
+- Remove Third-party IntelliJ Plugin Verifier GitHub Action
 
 ## [0.5.1]
 ### Added
