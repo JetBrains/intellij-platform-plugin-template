@@ -12,6 +12,7 @@
 - Dependencies - upgrade `io.gitlab.arturbosch.detekt` to `1.14.2`
 - Dependencies - upgrade `org.jetbrains.intellij` to `0.6.1`
 - GitHub Actions - `gradleValidation` update to `gradle/wrapper-validation-action@v1.0.3`
+- GitHub Actions - `releaseDraft` update to `actions/download-artifact@v2`
 
 ### Removed
 - Remove Third-party IntelliJ Plugin Verifier GitHub Action
