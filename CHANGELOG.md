@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Added
 - Integration with [IntelliJ Plugin Verifier](https://github.com/JetBrains/intellij-plugin-verifier) through the [Gradle IntelliJ Plugin](https://github.com/JetBrains/gradle-intellij-plugin#plugin-verifier-dsl) `runPluginVerifier` task
+- Cache downloaded IDEs used by Plugin Verifier for the verification
 
 ### Changed
 - Switch Gradle Wrapper to `-all` to improve the IntelliSense
