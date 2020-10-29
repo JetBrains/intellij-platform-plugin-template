@@ -169,12 +169,12 @@ jobs:
           path: ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
 
-      # Cache Plugin Verifier IDEs
+      # Cache Plugin Verifier IDEs xx
       - name: Setup Plugin Verifier IDEs Cache
         uses: actions/cache@v2
         with:
           path: ~/.pluginVerifier/ides
-          key: ${{ runner.os }}-plugin-verifier-idesxxx
+          key: ${{ runner.os }}-plugin-verifier-ides
 
       # Run IntelliJ Plugin Verifier action using GitHub Action
       - name: Verify Plugin
