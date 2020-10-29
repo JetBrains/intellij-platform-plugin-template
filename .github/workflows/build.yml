@@ -153,23 +153,7 @@ jobs:
 
       # Run IntelliJ Plugin Verifier action using GitHub Action
       - name: Verify Plugin
-        id: verify
-        uses: ChrisCarini/intellij-platform-plugin-verifier-action@v0.0.2
-        with:
-          plugin-location: plugin-artifact/*.zip
-          ide-versions: |
-            ideaIC:2019.3
-            ideaIC:2020.1
-            ideaIC:2020.2
-
-      # Print the output of the verify step
-      - name: Print Logs
-        if: ${{ always() }}
-        env:
-          OUTPUT_LOG: ${{ steps.verify.outputs.verification-output-log-filename }}
-        run: |
-          echo "The verifier log file [$OUTPUT_LOG] contents : " ;
-          cat $OUTPUT_LOG
+        run: ./gradlew runPluginVerifier
 
   # Prepare a draft release for GitHub Releases page for the manual verification
   # If accepted and published, release workflow would be triggered
