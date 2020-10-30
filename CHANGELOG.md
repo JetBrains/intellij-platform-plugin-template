@@ -3,6 +3,10 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Changed
+- Use [Kotlin extension function](https://jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_services.html?search=servic#retrieving-a-service) to retrieve the `MyProjectService` in the `MyProjectManagerListener`
+
+## [0.6.0]
 ### Added
 - Integration with [IntelliJ Plugin Verifier](https://github.com/JetBrains/intellij-plugin-verifier) through the [Gradle IntelliJ Plugin](https://github.com/JetBrains/gradle-intellij-plugin#plugin-verifier-dsl) `runPluginVerifier` task
 - Cache downloaded IDEs used by Plugin Verifier for the verification
@@ -14,7 +18,6 @@
 - Dependencies - upgrade `org.jetbrains.intellij` to `0.6.1`
 - GitHub Actions - `gradleValidation` update to `gradle/wrapper-validation-action@v1.0.3`
 - GitHub Actions - `releaseDraft` update to `actions/download-artifact@v2`
-- Use [Kotlin extension function](https://jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_services.html?search=servic#retrieving-a-service) to retrieve the `MyProjectService` in the `MyProjectManagerListener`
 
 ### Removed
 - Remove Third-party IntelliJ Plugin Verifier GitHub Action
