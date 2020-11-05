@@ -178,17 +178,18 @@ jobs:
           IDE_VERSIONS="$(echo "$PROPERTIES" | grep "^pluginVerifierIdeVersions:" | base64)"
 
           echo "::set-output name=ideVersions::$IDE_VERSIONS"
+          echo "::set-output name=pluginVerifierHomeDir::~/.pluginVerifier"
 
       # Cache Plugin Verifier IDEs
       - name: Setup Plugin Verifier IDEs Cache
         uses: actions/cache@v2
         with:
-          path: ~/.pluginVerifier/ides
+          path: ${{ steps.properties.outputs.pluginVerifierHomeDir }}/ides
           key: ${{ runner.os }}-plugin-verifier-${{ steps.properties.outputs.ideVersions }}
 
       # Run IntelliJ Plugin Verifier action using GitHub Action
       - name: Verify Plugin
-        run: ./gradlew runPluginVerifier
+        run: ./gradlew runPluginVerifier -Pplugin.verifier.home.dir=${{ steps.properties.outputs.pluginVerifierHomeDir }}
 
   # Prepare a draft release for GitHub Releases page for the manual verification
   # If accepted and published, release workflow would be triggered
