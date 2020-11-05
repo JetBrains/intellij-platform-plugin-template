@@ -4,6 +4,18 @@
 
 ## [Unreleased]
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+## [0.6.1]
+### Added
 - GitHub Actions - use hash based on `pluginVerifierIdeVersions` in `Setup Plugin Verifier IDEs Cache` step
 
 ### Changed
