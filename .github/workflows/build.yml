@@ -141,7 +141,7 @@ jobs:
   # Requires build job to be passed
   verify:
     name: Verify
-#    needs: build
+    needs: build
     runs-on: ubuntu-latest
     steps:
 
