@@ -6,6 +6,7 @@
 ### Changed
 - Use [Kotlin extension function](https://jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_services.html?search=servic#retrieving-a-service) to retrieve the `MyProjectService` in the `MyProjectManagerListener`
 - Dependencies - upgrade `org.jetbrains.intellij` to `0.6.2`
+- Update `pluginVerifierIdeVersions` in the `gradle.properties` files
 
 ## [0.6.0]
 ### Added
