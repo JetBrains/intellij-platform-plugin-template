@@ -141,7 +141,7 @@ jobs:
   # Requires build job to be passed
   verify:
     name: Verify
-    needs: build
+#    needs: build
     runs-on: ubuntu-latest
     steps:
 
@@ -169,12 +169,22 @@ jobs:
           path: ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
 
+      # Set environment variables
+      - name: Export Properties
+        id: properties
+        shell: bash
+        run: |
+          PROPERTIES="$(./gradlew properties --console=plain -q)"
+          IDE_VERSIONS="$(echo "$PROPERTIES" | grep "^pluginVerifierIdeVersions:" | base64)"
+
+          echo "::set-output name=ideVersions::$IDE_VERSIONS"
+
       # Cache Plugin Verifier IDEs
       - name: Setup Plugin Verifier IDEs Cache
         uses: actions/cache@v2
         with:
           path: ~/.pluginVerifier/ides
-          key: ${{ runner.os }}-plugin-verifier-ides
+          key: ${{ runner.os }}-plugin-verifier-${{ steps.properties.outputs.ideVersions }}
 
       # Run IntelliJ Plugin Verifier action using GitHub Action
       - name: Verify Plugin
