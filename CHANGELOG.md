@@ -3,17 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
-### Added
-
 ### Changed
+- Dependencies - upgrade `org.jetbrains.intellij` to `0.6.3`
 
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 ## [0.6.1]
 ### Added
 - GitHub Actions - use hash based on `pluginVerifierIdeVersions` in `Setup Plugin Verifier IDEs Cache` step
