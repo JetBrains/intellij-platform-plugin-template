@@ -29,6 +29,7 @@ In this README, we will highlight the following elements of template-project cre
     - listeners – project and dynamic plugin lifecycle
     - services – project-related and application-related services
     - actions – basic action with shortcut binding
+- [Predefined Run/Debug configurations](#predefined-rundebug-configurations)
 - [Continuous integration](#continuous-integration) based on GitHub Actions
     - [Changelog maintenance](#changelog-maintenance) with the Gradle Changelog Plugin
     - [Release flow](#release-flow) using GitHub Releases
@@ -96,6 +97,7 @@ A generated IntelliJ Platform Plugin Template repository contains the following 
 
 ```
 .
+├── .run                    Predefined Run/Debug Configurations
 ├── CHANGELOG.md            Full change history.
 ├── LICENSE                 License, MIT by default
 ├── README.md               README
@@ -154,6 +156,18 @@ The prepared template provides as little code as possible because it is impossib
 ```
 
 These files are located in `src/main/kotlin`. This location indicates the language being used. So if you decide to use Java instead, sources should be located in the `src/main/java` directory.
+
+## Predefined Run/Debug configurations
+
+Within the default project structure, there is `.run` directory provided containing three predefined Run/Debug configurations that expose corresponding Gradle tasks:
+
+![Run/Debug configurations][file:run-debug-configurations.png]
+
+| Configuration name      | Description                                                                                                                                                            |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Run IDE with Plugin     | Runs [`:runIde`][gh:gradle-intellij-plugin-running-dsl] Gradle IntelliJ Plugin task. Use the *Debug* icon for plugin debugging.                                        |
+| Run Plugin Tests        | Runs [`:check`][gradle-lifecycle-tasks] Gradle task that invokes `:test` and `detekt`/`ktlint` code inspections.                                                       |
+| Run Plugin Verification | Runs [`:runPluginVerifier`][gh:gradle-intellij-plugin-verifier-dsl] Gradle IntelliJ Plugin task to check the plugin compatibility against the specified IntelliJ IDEs. |
 
 ## Continuous integration
 
@@ -243,6 +257,7 @@ You can get that token in the [My Tokens][jb:my-tokens] tab within your Marketpl
 [file:draft-release.png]: .github/readme/draft-release.png
 [file:gradle.properties]: ./gradle.properties
 [file:plugin.xml]: ./src/main/resources/META-INF/plugin.xml
+[file:run-debug-configurations.png]: .github/readme/run-debug-configurations.png
 [file:settings-secrets.png]: .github/readme/settings-secrets.png
 [file:template_cleanup.yml]: ./.github/workflows/template-cleanup.yml
 
@@ -250,6 +265,8 @@ You can get that token in the [My Tokens][jb:my-tokens] tab within your Marketpl
 [gh:code-samples]: https://github.com/JetBrains/intellij-sdk-code-samples
 [gh:gradle-changelog-plugin]: https://github.com/JetBrains/gradle-changelog-plugin
 [gh:gradle-intellij-plugin]: https://github.com/JetBrains/gradle-intellij-plugin
+[gh:gradle-intellij-plugin-running-dsl]: https://github.com/JetBrains/gradle-intellij-plugin#running-dsl
+[gh:gradle-intellij-plugin-verifier-dsl]: https://github.com/JetBrains/gradle-intellij-plugin#plugin-verifier-dsl
 [gh:releases]: https://github.com/JetBrains/intellij-platform-plugin-template/releases
 [gh:build]: https://github.com/JetBrains/intellij-platform-plugin-template/actions?query=workflow%3ABuild
 
@@ -267,4 +284,5 @@ You can get that token in the [My Tokens][jb:my-tokens] tab within your Marketpl
 [detekt]: https://detekt.github.io/detekt
 [gradle]: https://gradle.org
 [gradle-kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
+[gradle-lifecycle-tasks]: https://docs.gradle.org/current/userguide/java_plugin.html#lifecycle_tasks
 [kotlin-docs-dependency-on-stdlib]: https://kotlinlang.org/docs/reference/using-gradle.html#dependency-on-the-standard-library
