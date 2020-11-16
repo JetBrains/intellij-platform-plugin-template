@@ -3,6 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+- Project icon for development purposes
+
 ### Changed
 - Dependencies - upgrade `org.jetbrains.intellij` to `0.6.3`
 

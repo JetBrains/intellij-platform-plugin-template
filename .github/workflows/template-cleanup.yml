@@ -52,11 +52,14 @@ jobs:
           cp -R src/main/kotlin/org/jetbrains/plugins/template/* src/main/kotlin/${GROUP//.//}/
 
           # Cleanup
-          rm -rf .github/readme
-          rm -rf .github/template-cleanup
-          rm -rf src/main/kotlin/org
-          rm .github/workflows/template-cleanup.yml
-          rm CODE_OF_CONDUCT.md LICENSE
+          rm -rf \
+            .github/readme \
+            .github/template-cleanup \
+            .github/workflows/template-cleanup.yml \
+            .idea/icon.png \
+            src/main/kotlin/org \
+            CODE_OF_CONDUCT.md \
+            LICENSE
 
       # Commit modified files
       - name: Commit files
