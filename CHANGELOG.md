@@ -4,6 +4,18 @@
 
 ## [Unreleased]
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+## [0.7.0]
+### Added
 - Predefined Run/Debug Configurations
 - Project icon for development purposes
 
