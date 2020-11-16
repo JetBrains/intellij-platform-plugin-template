@@ -159,7 +159,7 @@ These files are located in `src/main/kotlin`. This location indicates the langua
 
 ## Predefined Run/Debug configurations
 
-Within the default project structure, there is `.run` directory provided containing three predefined Run/Debug configurations that expose corresponding Gradle tasks:
+Within the default project structure, there is a `.run` directory provided containing three predefined Run/Debug configurations that expose corresponding Gradle tasks:
 
 ![Run/Debug configurations][file:run-debug-configurations.png]
 
