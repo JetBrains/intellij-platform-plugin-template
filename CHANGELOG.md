@@ -4,6 +4,7 @@
 
 ## [Unreleased]
 ### Added
+- Predefined Run/Debug Configurations
 - Project icon for development purposes
 
 ### Changed
