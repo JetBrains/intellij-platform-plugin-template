@@ -3,17 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
-### Added
-
 ### Changed
+- Upgrade Gradle Wrapper to `6.7.1`
 
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 ## [0.7.0]
 ### Added
 - Predefined Run/Debug Configurations
