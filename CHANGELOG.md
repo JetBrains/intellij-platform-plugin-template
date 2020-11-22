@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Changed
 - Upgrade Gradle Wrapper to `6.7.1`
+- Dependencies - upgrade `org.jetbrains.intellij` to `0.6.4`
 
 ## [0.7.0]
 ### Added
