@@ -16,8 +16,6 @@ plugins {
     id("io.gitlab.arturbosch.detekt") version "1.14.2"
     // ktlint linter - read more: https://github.com/JLLeitschuh/ktlint-gradle
     id("org.jlleitschuh.gradle.ktlint") version "9.4.1"
-    // dependency checker
-    id("com.github.ben-manes.versions") version "0.36.0"
 }
 
 // Import variables from gradle.properties file
