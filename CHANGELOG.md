@@ -7,6 +7,8 @@
 - Upgrade Gradle Wrapper to `6.7.1`
 - Dependencies - upgrade `org.jetbrains.intellij` to `0.6.5`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.4.20`
+- Update the base platform version to 2020.1
+- Change since/until build to `201-203.*`
 
 ## [0.7.0]
 ### Added
