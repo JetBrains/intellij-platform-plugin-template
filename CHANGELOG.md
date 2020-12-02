@@ -3,6 +3,18 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+## [0.7.1]
 ### Changed
 - Upgrade Gradle Wrapper to `6.7.1`
 - Dependencies - upgrade `org.jetbrains.intellij` to `0.6.5`
