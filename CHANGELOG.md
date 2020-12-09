@@ -3,17 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
-### Added
-
 ### Changed
+- build.gradle.kts: simpler syntax for configuring `KotlinCompile`
 
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 ## [0.7.1]
 ### Changed
 - Upgrade Gradle Wrapper to `6.7.1`
