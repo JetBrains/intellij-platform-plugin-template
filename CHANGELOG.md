@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Changed
 - build.gradle.kts: simpler syntax for configuring `KotlinCompile`
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.4.21`
 
 ## [0.7.1]
 ### Changed
