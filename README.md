@@ -48,6 +48,8 @@ After using the template to create your blank project, the [Template Cleanup][fi
 
 For the last step, you have to manually review the configuration variables described in the [gradle.properties][file:gradle.properties] file and *optionally* move sources from the *com.github.username.repository* package to the one that works best for you. Then you can get to work implementing your ideas.
 
+> **TIP:** To use Java in your plugin, create the `/src/main/java` directory.
+
 ## Gradle configuration
 
 The recommended method for plugin development involves using the [Gradle][gradle] setup with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] installed. The gradle-intellij-plugin makes it possible to run the IDE with your plugin and publish your plugin to the Marketplace Repository.
@@ -56,7 +58,7 @@ A project built using the IntelliJ Platform Plugin Template includes a Gradle co
 
 The most significant parts of the current configuration are:
 - Configuration written with [Gradle Kotlin DSL][gradle-kotlin-dsl].
-- Kotlin support, with the option to write Java code.
+- Support for Kotlin and Java implementation.
 - Integration with the [gradle-changelog-plugin][gh:gradle-changelog-plugin], which automatically patches the change notes and description based on the `CHANGELOG.md` and `README.md` files.
 - Integration with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] for smoother development.
 - Code linting with [detekt][detekt].
@@ -112,11 +114,12 @@ A generated IntelliJ Platform Plugin Template repository contains the following 
 └── src                     Plugin sources
     └── main
         ├── kotlin/         Kotlin source files
-        ├── java/           Java source files
         └── resources/      Resources - plugin.xml, icons, messages
 ```
 
 In addition to the configuration files, the most crucial part is the `src` directory, which contains our implementation and the manifest for our plugin – [plugin.xml][file:plugin.xml].
+
+> **TIP:** To use Java in your plugin, create the `/src/main/java` directory.
 
 ## Plugin configuration file
 The plugin configuration file is a [plugin.xml][file:plugin.xml] file located in the `src/main/resources/META-INF` directory. It provides general information about the plugin, its dependencies, extensions, and listeners.
