@@ -252,7 +252,8 @@ You can get that token in the [My Tokens][jb:my-tokens] tab within your Marketpl
 ### How to use Java in my project?
 
 Java language is supported by default along with Kotlin.
-Initially, there's `/src/main/kotlin` directory available with some minimal examples, but you can replace it with `/src/main/java` to start working with Java language instead.
+Initially, there's `/src/main/kotlin` directory available with some minimal examples.
+You can still replace it or add next to it the `/src/main/java` to start working with Java language instead.
 
 ### How to disable tests or build job using the `[skip ci]` commit message?
 
