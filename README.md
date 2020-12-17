@@ -34,7 +34,9 @@ In this README, we will highlight the following elements of template-project cre
     - [Changelog maintenance](#changelog-maintenance) with the Gradle Changelog Plugin
     - [Release flow](#release-flow) using GitHub Releases
     - [Publishing the plugin](#publishing-the-plugin) with the Gradle IntelliJ Plugin
+- [FAQ](#faq)
 - [Useful links](#useful-links)
+
 
 ## Getting started
 
@@ -49,6 +51,7 @@ After using the template to create your blank project, the [Template Cleanup][fi
 For the last step, you have to manually review the configuration variables described in the [gradle.properties][file:gradle.properties] file and *optionally* move sources from the *com.github.username.repository* package to the one that works best for you. Then you can get to work implementing your ideas.
 
 > **TIP:** To use Java in your plugin, create the `/src/main/java` directory.
+
 
 ## Gradle configuration
 
@@ -93,6 +96,7 @@ kotlin.stdlib.default.dependency = false
 
 For more details, please see: [Dependency on the standard library][kotlin-docs-dependency-on-stdlib] in Kotlin documentation.
 
+
 ## Plugin template structure
 
 A generated IntelliJ Platform Plugin Template repository contains the following content structure:
@@ -121,6 +125,7 @@ In addition to the configuration files, the most crucial part is the `src` direc
 
 > **TIP:** To use Java in your plugin, create the `/src/main/java` directory.
 
+
 ## Plugin configuration file
 The plugin configuration file is a [plugin.xml][file:plugin.xml] file located in the `src/main/resources/META-INF` directory. It provides general information about the plugin, its dependencies, extensions, and listeners.
 
@@ -144,6 +149,7 @@ The plugin configuration file is a [plugin.xml][file:plugin.xml] file located in
 
 You can read more about this file in the [Plugin Configuration File][docs:plugin.xml] section of our documentation.
 
+
 ## Sample code
 
 The prepared template provides as little code as possible because it is impossible for a general scaffold to fulfill all the specific requirements for all types of plugins (language support, build tools, VCS related tools). The template contains only the following files:
@@ -164,6 +170,7 @@ To start with the actual implementation, you may check our [IntelliJ Platform SD
 
 For those, who value example codes the most, there are also available [IntelliJ SDK Code Samples][gh:code-samples] and [IntelliJ Platform Explorer][jb:ipe] – a search tool for browsing Extension Points inside existing implementations of open-source IntelliJ Platform plugins.
 
+
 ## Predefined Run/Debug configurations
 
 Within the default project structure, there is a `.run` directory provided containing three predefined *Run/Debug configurations* that expose corresponding Gradle tasks:
@@ -175,6 +182,7 @@ Within the default project structure, there is a `.run` directory provided conta
 | Run Plugin         | Runs [`:runIde`][gh:gradle-intellij-plugin-running-dsl] Gradle IntelliJ Plugin task. Use the *Debug* icon for plugin debugging.                                        |
 | Run Tests          | Runs [`:check`][gradle-lifecycle-tasks] Gradle task that invokes `:test` and `detekt`/`ktlint` code inspections.                                                       |
 | Run Verifications  | Runs [`:runPluginVerifier`][gh:gradle-intellij-plugin-verifier-dsl] Gradle IntelliJ Plugin task to check the plugin compatibility against the specified IntelliJ IDEs. |
+
 
 ## Continuous integration
 
@@ -238,6 +246,29 @@ You can get that token in the [My Tokens][jb:my-tokens] tab within your Marketpl
 > to specify options like the license, repository URL, etc. Please follow
 > the [Publishing a Plugin][docs:publishing] instructions.
 
+
+## FAQ
+
+### How to use Java in my project?
+
+Java language is supported by default along with Kotlin.
+Initially, there's `/src/main/kotlin` directory available with some minimal examples.
+You can still replace it or add next to it the `/src/main/java` to start working with Java language instead.
+
+### How to disable tests or build job using the `[skip ci]` commit message?
+
+You can disable specific tests using the [`if`][github-actions-if] condition, like:
+
+```yaml
+jobs:
+  test:
+    name: Test
+    if: "!contains(github.event.head_commit.message, 'skip ci')
+    steps:
+      ...
+```
+
+
 ## Useful links
 
 - [IntelliJ Platform SDK DevGuide][docs]
@@ -290,6 +321,7 @@ You can get that token in the [My Tokens][jb:my-tokens] tab within your Marketpl
 
 [keep-a-changelog]: https://keepachangelog.com
 [detekt]: https://detekt.github.io/detekt
+[github-actions-if]: https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions#example-expression-in-an-if-conditional
 [gradle]: https://gradle.org
 [gradle-kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
 [gradle-lifecycle-tasks]: https://docs.gradle.org/current/userguide/java_plugin.html#lifecycle_tasks
