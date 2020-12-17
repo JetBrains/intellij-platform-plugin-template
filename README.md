@@ -139,7 +139,7 @@ The plugin configuration file is a [plugin.xml][file:plugin.xml] file located in
 </idea-plugin>
 ```
 
-You can read more about this file in the [IntelliJ Platform SDK DevGuide][docs:plugin.xml].
+You can read more about this file in the [Plugin Configuration File][docs:plugin.xml] section of our documentation.
 
 ## Sample code
 
@@ -156,6 +156,10 @@ The prepared template provides as little code as possible because it is impossib
 ```
 
 These files are located in `src/main/kotlin`. This location indicates the language being used. So if you decide to use Java instead, sources should be located in the `src/main/java` directory.
+
+To start with the actual implementation, you may check our [IntelliJ Platform SDK DevGuide][docs], which contains an introduction to the essential areas of the plugin development together with dedicated tutorials.
+
+For those, who value example codes the most, there are also available [IntelliJ SDK Code Samples][gh:code-samples] and [IntelliJ Platform Explorer][jb:ipe] – a search tool for browsing Extension Points inside existing implementations of open-source IntelliJ Platform plugins.
 
 ## Predefined Run/Debug configurations
 
@@ -273,6 +277,7 @@ You can get that token in the [My Tokens][jb:my-tokens] tab within your Marketpl
 [jb:confluence-on-gh]: https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub
 [jb:download-ij]: https://www.jetbrains.com/idea/download
 [jb:forum]: https://intellij-support.jetbrains.com/hc/en-us/community/topics/200366979-IntelliJ-IDEA-Open-API-and-Plugin-Development
+[jb:ipe]: https://plugins.jetbrains.com/intellij-platform-explorer
 [jb:my-tokens]: https://plugins.jetbrains.com/author/me/tokens
 [jb:paid-plugins]: https://plugins.jetbrains.com/docs/marketplace/paid-plugins-marketplace.html
 [jb:quality-guidelines]: https://plugins.jetbrains.com/docs/marketplace/quality-guidelines.html
