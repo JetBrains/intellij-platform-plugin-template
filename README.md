@@ -266,7 +266,7 @@ You can disable specific tests using the [`if`][github-actions-if] condition, li
 jobs:
   test:
     name: Test
-    if: "!contains(github.event.head_commit.message, 'skip ci')
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
     steps:
       ...
 ```
