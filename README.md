@@ -184,6 +184,11 @@ Within the default project structure, there is a `.run` directory provided conta
 | Run Verifications  | Runs [`:runPluginVerifier`][gh:gradle-intellij-plugin-verifier-dsl] Gradle IntelliJ Plugin task to check the plugin compatibility against the specified IntelliJ IDEs. |
 
 
+> **TIP:** You can find the logs from the running task in the `idea.log` tab.
+> 
+> ![Run/Debug configuration logs][file:run-logs.png]
+
+
 ## Continuous integration
 
 Continuous integration depends on [GitHub Actions][gh:actions], a set of workflows that make it possible to automate your testing and release process. Thanks to such automation, you can delegate the testing and verification phases to the CI and instead focus on development (and writing more tests).
@@ -232,8 +237,7 @@ When you edit the draft and use the <kbd>Publish release</kbd> button, GitHub wi
 
 Releasing a plugin to the Marketplace is a straightforward operation that uses the `publishPlugin` Gradle task provided by the [gradle-intellij-plugin][gh:gradle-intellij-plugin]. The [Release](.github/workflows/release.yml) workflow automates this process by running the task when a new release appears in the GitHub Releases section.
 
-> **TIP**: Set a suffix to the plugin version to publish it in the custom repository channel, i.e. `v1.0.0-beta` will
-> push your plugin to the `beta` [release channel][docs:release-channel].
+> **TIP**: Set a suffix to the plugin version to publish it in the custom repository channel, i.e. `v1.0.0-beta` will push your plugin to the `beta` [release channel][docs:release-channel].
 
 The authorization process relies on the `PUBLISH_TOKEN` secret environment variable, which has to be acquired through the Secrets section of the repository Settings.
 
@@ -242,9 +246,8 @@ The authorization process relies on the `PUBLISH_TOKEN` secret environment varia
 You can get that token in the [My Tokens][jb:my-tokens] tab within your Marketplace profile dashboard.
 
 > **Important:**
-> Before using the automated deployment process, it is necessary to manually create a new plugin in the Marketplace
-> to specify options like the license, repository URL, etc. Please follow
-> the [Publishing a Plugin][docs:publishing] instructions.
+> Before using the automated deployment process, it is necessary to manually create a new plugin in the Marketplace to specify options like the license, repository URL, etc.
+> Please follow the [Publishing a Plugin][docs:publishing] instructions.
 
 
 ## FAQ
@@ -294,6 +297,7 @@ jobs:
 [file:use-this-template.png]: .github/readme/use-this-template.png
 [file:draft-release.png]: .github/readme/draft-release.png
 [file:gradle.properties]: ./gradle.properties
+[file:run-logs.png]: .github/readme/run-logs.png
 [file:plugin.xml]: ./src/main/resources/META-INF/plugin.xml
 [file:run-debug-configurations.png]: .github/readme/run-debug-configurations.png
 [file:settings-secrets.png]: .github/readme/settings-secrets.png

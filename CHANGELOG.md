@@ -3,9 +3,14 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+- Show `idea.log` logs of the run IDE in the Run console
+- README: FAQ section
+
 ### Changed
 - build.gradle.kts: simpler syntax for configuring `KotlinCompile`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.4.21`
+- README: Clarify the Java usage in the project
 
 ## [0.7.1]
 ### Changed
