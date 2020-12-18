@@ -275,6 +275,7 @@ jobs:
 ## Useful links
 
 - [IntelliJ Platform SDK DevGuide][docs]
+- [IntelliJ Platform Explorer][jb:ipe]
 - [Marketplace Quality Guidelines][jb:quality-guidelines]
 - [IntelliJ Platform UI Guidelines][jb:ui-guidelines]
 - [Marketplace Paid Plugins][jb:paid-plugins]
