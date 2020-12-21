@@ -14,6 +14,7 @@
 - Dependencies - upgrade `detekt-formatting` to `1.15.0`
 - Dependencies - upgrade `io.gitlab.arturbosch.detekt` to `1.15.0`
 - README: Clarify the Java usage in the project
+- `pluginVerifierIdeVersions` - upgrade to `2020.1.4, 2020.2.3, 2020.3.1`
 
 ### Fixed
 - Return `Supplier<@Nls String>` instead of `String` in `MyBundle.messagePointer`
