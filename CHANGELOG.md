@@ -4,6 +4,18 @@
 
 ## [Unreleased]
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+## [0.8.0]
+### Added
 - Dependabot integration
 - Show `idea.log` logs of the run IDE in the Run console
 - README: FAQ section
