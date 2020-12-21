@@ -11,6 +11,8 @@
 ### Changed
 - `build.gradle.kts`: simpler syntax for configuring `KotlinCompile`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.4.21`
+- Dependencies - upgrade `detekt-formatting` to `1.15.0`
+- Dependencies - upgrade `io.gitlab.arturbosch.detekt` to `1.15.0`
 - README: Clarify the Java usage in the project
 
 ### Fixed
