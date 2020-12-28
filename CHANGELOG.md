@@ -3,17 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
-### Added
-
-### Changed
-
-### Deprecated
-
-### Removed
-
 ### Fixed
+- Template Cleanup: escape GitHub username to avoid incorrect characters in class package name
 
-### Security
 ## [0.8.0]
 ### Added
 - Dependabot integration

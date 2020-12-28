@@ -29,9 +29,10 @@ jobs:
 
           # Prepare variables
           NAME="${GITHUB_REPOSITORY##*/}"
-          SAFE_NAME=$(echo $NAME | sed 's/[^a-zA-Z0-9]//g' | tr '[:upper:]' '[:lower:]')
           ACTOR=$(echo $GITHUB_ACTOR | tr '[:upper:]' '[:lower:]')
-          GROUP="com.github.$ACTOR.$SAFE_NAME"
+          SAFE_NAME=$(echo $NAME | sed 's/[^a-zA-Z0-9]//g' | tr '[:upper:]' '[:lower:]')
+          SAFE_ACTOR=$(echo $ACTOR | sed 's/[^a-zA-Z0-9]//g' | tr '[:upper:]' '[:lower:]')
+          GROUP="com.github.$SAFE_ACTOR.$SAFE_NAME"
 
           # Replace placeholders in the template-cleanup files
           sed -i "s/%NAME%/$NAME/g" .github/template-cleanup/*
