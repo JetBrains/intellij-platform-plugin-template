@@ -3,6 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Changed
+- Upgrade Gradle Wrapper to `6.8`
+
 ### Fixed
 - Template Cleanup: escape GitHub username to avoid incorrect characters in class package name
 
