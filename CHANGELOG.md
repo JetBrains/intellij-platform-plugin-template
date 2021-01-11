@@ -7,8 +7,9 @@
 - Upgrade Gradle Wrapper to `6.8`
 
 ### Fixed
-- Template Cleanup: escape GitHub username to avoid incorrect characters in class package name
-- Template Cleanup: run `ktlintFormat` task to fix imports order
+- Template Cleanup: Escape GitHub username to avoid incorrect characters in class package name
+- Template Cleanup: Run `ktlintFormat` task to fix imports order
+- GitHub Actions: Use the correct property in the "Upload artifact" step
 
 ## [0.8.0]
 ### Added
