@@ -8,6 +8,7 @@
 
 ### Fixed
 - Template Cleanup: escape GitHub username to avoid incorrect characters in class package name
+- Template Cleanup: run `ktlintFormat` task to fix imports order
 
 ## [0.8.0]
 ### Added

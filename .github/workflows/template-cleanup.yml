@@ -62,6 +62,9 @@ jobs:
             CODE_OF_CONDUCT.md \
             LICENSE
 
+          # Run ktlint formatting
+          ./gradlew ktlintFormat
+
       # Commit modified files
       - name: Commit files
         run: |
