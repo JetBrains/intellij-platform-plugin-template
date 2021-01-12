@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Changed
 - Upgrade Gradle Wrapper to `6.8`
+- Dependencies - upgrade `org.jetbrains.changelog` to `1.0.0`
 
 ### Fixed
 - Template Cleanup: Escape GitHub username to avoid incorrect characters in class package name
