@@ -19,6 +19,9 @@ If you're still not quite sure what this is all about, read our introduction: [W
 
 > **TIP**: Click the <kbd>Watch</kbd> button on the top to be notified about releases containing new features and fixes.
 
+
+### Table of contents
+
 In this README, we will highlight the following elements of template-project creation:
 
 - [Gradle configuration](#gradle-configuration)
@@ -128,6 +131,7 @@ In addition to the configuration files, the most crucial part is the `src` direc
 
 
 ## Plugin configuration file
+
 The plugin configuration file is a [plugin.xml][file:plugin.xml] file located in the `src/main/resources/META-INF` directory. It provides general information about the plugin, its dependencies, extensions, and listeners.
 
 ```xml
