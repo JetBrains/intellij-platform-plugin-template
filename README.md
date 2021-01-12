@@ -31,6 +31,7 @@ In this README, we will highlight the following elements of template-project cre
     - actions – basic action with shortcut binding
 - [Predefined Run/Debug configurations](#predefined-rundebug-configurations)
 - [Continuous integration](#continuous-integration) based on GitHub Actions
+    - [Dependencies management](#dependencies-management) with dependabot
     - [Changelog maintenance](#changelog-maintenance) with the Gradle Changelog Plugin
     - [Release flow](#release-flow) using GitHub Releases
     - [Publishing the plugin](#publishing-the-plugin) with the Gradle IntelliJ Plugin
