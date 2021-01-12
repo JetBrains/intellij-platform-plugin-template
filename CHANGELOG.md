@@ -3,6 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+- README: Dependencies management section
+
 ### Changed
 - Upgrade Gradle Wrapper to `6.8`
 - Dependencies - upgrade `org.jetbrains.changelog` to `1.0.0`

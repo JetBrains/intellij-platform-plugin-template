@@ -215,6 +215,19 @@ In the `.github/workflows` directory, you can find definitions for the following
 
 All the workflow files have accurate documentation, so it's a good idea to take a look through their sources.
 
+### Dependencies management
+
+This Template project depends on Gradle plugins and external libraries – and during the development, you will add more of them.
+
+Keeping the project in good shape and having all the dependencies up-to-date requires time and effort, but it is possible to automate that process using [dependabot][gh:dependabot].
+
+Dependabot is a bot provided by GitHub for checking the build configuration files and reviewing any outdated or insecure dependencies of yours – in case if any update is available, it creates a new pull request providing [the proper change][gh:dependabot-pr].
+
+> **Note:** Dependabot doesn't yet support checking of the Gradle Wrapper. Check the [Gradle Releases][gradle-releases] page and update it with:
+> ```bash
+> ./gradlew wrapper --gradle-version 6.8 --distribution-type=all
+> ```
+
 ### Changelog maintenance
 
 When releasing an update, it is important to let your users know what the new version offers. The best way to do this is to provide release notes.
@@ -305,6 +318,7 @@ jobs:
 [file:template_cleanup.yml]: ./.github/workflows/template-cleanup.yml
 
 [gh:actions]: https://help.github.com/en/actions
+[gh:dependabot]: https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/keeping-your-dependencies-updated-automatically
 [gh:code-samples]: https://github.com/JetBrains/intellij-sdk-code-samples
 [gh:gradle-changelog-plugin]: https://github.com/JetBrains/gradle-changelog-plugin
 [gh:gradle-intellij-plugin]: https://github.com/JetBrains/gradle-intellij-plugin
@@ -312,6 +326,7 @@ jobs:
 [gh:gradle-intellij-plugin-verifier-dsl]: https://github.com/JetBrains/gradle-intellij-plugin#plugin-verifier-dsl
 [gh:releases]: https://github.com/JetBrains/intellij-platform-plugin-template/releases
 [gh:build]: https://github.com/JetBrains/intellij-platform-plugin-template/actions?query=workflow%3ABuild
+[gh:dependabot-pr]: https://github.com/JetBrains/intellij-platform-plugin-template/pull/73
 
 [jb:confluence-on-gh]: https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub
 [jb:download-ij]: https://www.jetbrains.com/idea/download
@@ -328,6 +343,7 @@ jobs:
 [detekt]: https://detekt.github.io/detekt
 [github-actions-if]: https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions#example-expression-in-an-if-conditional
 [gradle]: https://gradle.org
+[gradle-releases]: https://gradle.org/releases
 [gradle-kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
 [gradle-lifecycle-tasks]: https://docs.gradle.org/current/userguide/java_plugin.html#lifecycle_tasks
 [kotlin-docs-dependency-on-stdlib]: https://kotlinlang.org/docs/reference/using-gradle.html#dependency-on-the-standard-library
