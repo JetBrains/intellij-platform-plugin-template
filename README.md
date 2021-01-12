@@ -24,6 +24,7 @@ If you're still not quite sure what this is all about, read our introduction: [W
 
 In this README, we will highlight the following elements of template-project creation:
 
+- [Getting started](#getting-started)
 - [Gradle configuration](#gradle-configuration)
 - [Plugin template structure](#plugin-template-structure)
     - [Dependency on the Kotlin standard library](#dependency-on-the-kotlin-standard-library)
