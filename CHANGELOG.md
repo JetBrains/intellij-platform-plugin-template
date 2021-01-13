@@ -3,18 +3,10 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
-### Added
-
 ### Changed
+- Use `-bin` distribution of the Gradle Wrapper
 
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
-## [unspecified]
+## [0.8.1]
 ### Added
 - README: Dependencies management section
 

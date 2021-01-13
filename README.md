@@ -231,7 +231,7 @@ Dependabot is a bot provided by GitHub for checking the build configuration file
 
 > **Note:** Dependabot doesn't yet support checking of the Gradle Wrapper. Check the [Gradle Releases][gradle-releases] page and update it with:
 > ```bash
-> ./gradlew wrapper --gradle-version 6.8 --distribution-type=all
+> ./gradlew wrapper --gradle-version 6.8
 > ```
 
 ### Changelog maintenance
