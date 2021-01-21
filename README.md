@@ -306,13 +306,13 @@ jobs:
 - [Keep a Changelog][keep-a-changelog]
 - [GitHub Actions][gh:actions]
 
-[docs]: https://www.jetbrains.org/intellij/sdk/docs
-[docs:intro]: https://www.jetbrains.org/intellij/sdk/docs/intro/intellij_platform.html
-[docs:kotlin-ui-dsl]: https://www.jetbrains.org/intellij/sdk/docs/user_interface_components/kotlin_ui_dsl.html
-[docs:plugin.xml]: https://www.jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_configuration_file.html
-[docs:publishing]: https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/publishing_plugin.html
-[docs:release-channel]: https://www.jetbrains.org/intellij/sdk/docs/tutorials/build_system/deployment.html#specifying-a-release-channel
-[docs:using-gradle]: https://www.jetbrains.org/intellij/sdk/docs/tutorials/build_system.html
+[docs]: https://plugins.jetbrains.com/docs/intellij?from=IJPluginTemplate
+[docs:intro]: https://plugins.jetbrains.com/docs/intellij/intellij-platform.html?from=IJPluginTemplate
+[docs:kotlin-ui-dsl]: https://plugins.jetbrains.com/docs/intellij/kotlin-ui-dsl.html?from=IJPluginTemplate
+[docs:plugin.xml]: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html?from=IJPluginTemplate
+[docs:publishing]: https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate
+[docs:release-channel]: https://plugins.jetbrains.com/docs/intellij/deployment.html?from=IJPluginTemplate#specifying-a-release-channel
+[docs:using-gradle]: https://plugins.jetbrains.com/docs/intellij/gradle-build-system.html?from=IJPluginTemplate
 
 [file:use-this-template.png]: .github/readme/use-this-template.png
 [file:draft-release.png]: .github/readme/draft-release.png

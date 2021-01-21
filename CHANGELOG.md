@@ -57,7 +57,7 @@
 - GitHub Actions - use hash based on `pluginVerifierIdeVersions` in `Setup Plugin Verifier IDEs Cache` step
 
 ### Changed
-- Use [Kotlin extension function](https://jetbrains.org/intellij/sdk/docs/basics/plugin_structure/plugin_services.html?search=servic#retrieving-a-service) to retrieve the `MyProjectService` in the `MyProjectManagerListener`
+- Use [Kotlin extension function](https://plugins.jetbrains.com/docs/intellij/plugin-services.html#retrieving-a-service) to retrieve the `MyProjectService` in the `MyProjectManagerListener`
 - Dependencies - upgrade `org.jetbrains.intellij` to `0.6.2`
 - Update `pluginVerifierIdeVersions` in the `gradle.properties` files
 
