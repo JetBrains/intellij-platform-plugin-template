@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Changed
 - Use `-bin` distribution of the Gradle Wrapper
+- Upgrade Gradle Wrapper to `6.8.1`
 
 ## [0.8.1]
 ### Added
