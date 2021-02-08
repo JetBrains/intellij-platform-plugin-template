@@ -8,6 +8,7 @@
 - Upgrade Gradle Wrapper to `6.8.1`
 - Update `pluginVerifierIdeVersions` in `gradle.properties` files
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.4.30`
+- Configure the `changelog` Gradle plugin
 
 ## [0.8.1]
 ### Added
