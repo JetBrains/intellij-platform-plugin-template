@@ -3,6 +3,18 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+## [0.8.2]
 ### Changed
 - Use `-bin` distribution of the Gradle Wrapper
 - Upgrade Gradle Wrapper to `6.8.2`
