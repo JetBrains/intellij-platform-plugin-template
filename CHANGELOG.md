@@ -3,17 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
-### Added
-
 ### Changed
+- Dependencies - upgrade `org.jlleitschuh.gradle.ktlint` to `10.0.0`
 
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
 ## [0.8.2]
 ### Changed
 - Use `-bin` distribution of the Gradle Wrapper
