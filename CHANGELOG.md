@@ -3,6 +3,7 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+## [0.8.3]
 ### Changed
 - Dependencies - upgrade `org.jetbrains.intellij` to `0.7.2`
 - Dependencies - upgrade `org.jlleitschuh.gradle.ktlint` to `10.0.0`
