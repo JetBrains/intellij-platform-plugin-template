@@ -4,7 +4,7 @@
 
 ## [Unreleased]
 ### Changed
-- Dependencies - upgrade `org.jetbrains.intellij` to `0.7.1`
+- Dependencies - upgrade `org.jetbrains.intellij` to `0.7.2`
 - Dependencies - upgrade `org.jlleitschuh.gradle.ktlint` to `10.0.0`
 - Update `platformVersion` to `2020.2.4` for compatibility with macOS Big Sur
 - Upgrade Gradle Wrapper to `6.8.3`
