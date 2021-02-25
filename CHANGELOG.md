@@ -3,6 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+- `properties` shorthand function for accessing `gradle.properties` in a cleaner way
+
 ## [0.8.3]
 ### Changed
 - Dependencies - upgrade `org.jetbrains.intellij` to `0.7.2`
