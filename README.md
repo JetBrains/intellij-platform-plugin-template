@@ -5,7 +5,7 @@
 [![Build](https://github.com/JetBrains/intellij-platform-plugin-template/workflows/Build/badge.svg)][gh:build]
 [![Slack](https://img.shields.io/badge/Slack-%23intellij--platform--plugin--template-blue)][jb:slack]
 
-> **TL;DR:** Click the <kbd>Use this template</kbd> button and clone it in IntelliJ IDEA.
+> **TL;DR:** Sign into GitHub and click the <kbd>Use this template</kbd> button and clone it in IntelliJ IDEA.
 
 <!-- Plugin description -->
 **IntelliJ Platform Plugin Template** is a repository that provides a pure boilerplate template to make it easier to create a new plugin project (check the [Creating a repository from a template][gh:template] article).
@@ -47,7 +47,7 @@ In this README, we will highlight the following elements of template-project cre
 
 Before we dive into plugin development and everything related to it, it's worth mentioning the benefits of using GitHub Templates. By creating a new project using the current template, you start with no history and no reference to this repository. This allows you to create a new repository easily without having to copy and paste previous content, clone repositories, or clear the history manually.
 
-All you have to do is click the <kbd>Use this template</kbd> button.
+All you have to do is click the <kbd>Use this template</kbd> button (but make sure you're signed into GitHub first).
 
 ![Use this template][file:use-this-template.png]
 
