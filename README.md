@@ -279,16 +279,8 @@ You can still replace it or add next to it the `/src/main/java` to start working
 
 ### How to disable tests or build job using the `[skip ci]` commit message?
 
-You can disable specific tests using the [`if`][github-actions-if] condition, like:
-
-```yaml
-jobs:
-  test:
-    name: Test
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
-    steps:
-      ...
-```
+Since the February 2021, GitHub Actions [support the skip CI feature][github-actions-skip-ci].
+If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]`, or `[actions skip]` – workflows will not be triggered.
 
 
 ## Useful links
@@ -347,7 +339,7 @@ jobs:
 
 [keep-a-changelog]: https://keepachangelog.com
 [detekt]: https://detekt.github.io/detekt
-[github-actions-if]: https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions#example-expression-in-an-if-conditional
+[github-actions-skip-ci]: https://github.blog/changelog/2021-02-08-github-actions-skip-pull-request-and-push-workflows-with-skip-ci/
 [gradle]: https://gradle.org
 [gradle-releases]: https://gradle.org/releases
 [gradle-kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
