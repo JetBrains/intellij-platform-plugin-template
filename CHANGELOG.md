@@ -7,6 +7,16 @@
 - `properties` shorthand function for accessing `gradle.properties` in a cleaner way
 - Dependabot check for GitHub Actions used in [workflow files](.github/workflows)
 
+### Changed
+- Dependencies - upgrade `detekt-formatting from` to `1.16.0` 
+- Dependencies - upgrade `io.gitlab.arturbosch.detekt` to `1.16.0` 
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.4.32` 
+- Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `v2.2.2`
+- Dependencies (GitHub Actions) - upgrade `actions/cache` to `v2.1.4`
+
+### Fixed
+- Fix `README.md` file resolution in the `build.gradle.kts`
+
 ## [0.8.3]
 ### Changed
 - Dependencies - upgrade `org.jetbrains.intellij` to `0.7.2`
