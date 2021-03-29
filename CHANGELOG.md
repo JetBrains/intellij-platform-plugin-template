@@ -3,6 +3,7 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+## [0.9.0]
 ### Added
 - `properties` shorthand function for accessing `gradle.properties` in a cleaner way
 - Dependabot check for GitHub Actions used in [workflow files](.github/workflows)
