@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Added
 - `properties` shorthand function for accessing `gradle.properties` in a cleaner way
+- Dependabot check for GitHub Actions used in [workflow files](.github/workflows)
 
 ## [0.8.3]
 ### Changed
