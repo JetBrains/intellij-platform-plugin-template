@@ -42,7 +42,8 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
-          java-version: 1.8
+          distribution: zulu
+          java-version: 8
 
       # Check out current repository
       - name: Fetch Sources
@@ -87,7 +88,8 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
-          java-version: 1.8
+          distribution: zulu
+          java-version: 8
 
       # Check out current repository
       - name: Fetch Sources
@@ -149,7 +151,8 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
-          java-version: 1.8
+          distribution: zulu
+          java-version: 8
 
       # Check out current repository
       - name: Fetch Sources
