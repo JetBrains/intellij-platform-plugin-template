@@ -1,5 +1,7 @@
 import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.changelog.markdownToHTML
+import org.jetbrains.intellij.tasks.DownloadRobotServerPluginTask
+import org.jetbrains.intellij.tasks.RunIdeForUiTestTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun properties(key: String) = project.findProperty(key).toString()
@@ -60,6 +62,21 @@ detekt {
         html.enabled = false
         xml.enabled = false
         txt.enabled = false
+    }
+}
+
+// Configure UI tests plugin
+// Read more: https://github.com/JetBrains/intellij-ui-test-robot
+tasks {
+    withType<DownloadRobotServerPluginTask> {
+        version = "0.10.3"
+    }
+
+    withType<RunIdeForUiTestTask> {
+        systemProperty("robot-server.port", "8082")
+        systemProperty("ide.mac.message.dialogs.as.sheets", "false")
+        systemProperty("jb.privacy.policy.text", "<!--999.999-->")
+        systemProperty("jb.consents.confirmation.enabled", "false")
     }
 }
 
