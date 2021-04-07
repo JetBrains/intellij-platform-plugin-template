@@ -1,0 +1,84 @@
+# GitHub Actions Workflow created for launching UI tests on linux, windows and mac in following steps:
+# - prepare and launch Idea with your plugin and robot-server plugin which is need to interact with UI
+# - wait for the Idea started
+# - run UI tests with separate gradle task
+
+# Please check https://github.com/JetBrains/intellij-ui-test-robot for information about UI tests with IntelliJ Idea
+
+# Workflow is triggered manually.
+
+name: Run UI Tests
+on:
+  workflow_dispatch
+jobs:
+  build-for-ui-test-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      # Run IDEA prepared for UI testing
+      - name: Run Idea
+        run: |
+          export DISPLAY=:99.0
+          Xvfb -ac :99 -screen 0 1920x1080x16 &
+          gradle runIdeForUiTests &
+      - name: Wait for Idea started
+        uses: jtalk/url-health-check-action@v1.4
+        with:
+          url: http://127.0.0.1:8082
+          max-attempts: 15
+          retry-delay: 30s
+
+      # Run tests
+      - name: Tests
+        run: ./gradlew test
+
+  build-for-ui-test-mac-os:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      # Run IDEA prepared for UI testing
+      - name: Run Idea
+        run: ./gradlew runIdeForUiTests &
+      - name: Wait for Idea started
+        uses: jtalk/url-health-check-action@v1.4
+        with:
+          url: http://127.0.0.1:8082
+          max-attempts: 15
+          retry-delay: 30s
+
+      # Run tests
+      - name: Tests
+        run: ./gradlew test
+
+  build-for-ui-test-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: 11
+
+      # Run IDEA prepared for UI testing
+      - name: Run Idea
+        run: start gradlew.bat runIdeForUiTests
+      - name: Wait for Idea started
+        uses: jtalk/url-health-check-action@v1.4
+        with:
+          url: http://127.0.0.1:8082
+          max-attempts: 15
+          retry-delay: 30s
+
+      # Run tests
+      - name: Tests
+        run: gradle test
