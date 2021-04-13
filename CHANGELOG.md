@@ -3,6 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Changed
+- Update `pluginVerifierIdeVersions` to `2020.2.4, 2020.3.3, 2021.1`
+
 ## [0.9.0]
 ### Added
 - `properties` shorthand function for accessing `gradle.properties` in a cleaner way
