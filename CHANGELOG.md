@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Changed
 - Update `pluginVerifierIdeVersions` to `2020.2.4, 2020.3.3, 2021.1`
+- Dependencies (GitHub Actions) - upgrade `actions/cache` to `v2.1.5`
 
 ## [0.9.0]
 ### Added
