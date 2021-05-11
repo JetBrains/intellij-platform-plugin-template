@@ -7,7 +7,7 @@
 - Update `pluginVerifierIdeVersions` to `2020.2.4, 2020.3.4, 2021.1`
 - Update `pluginUntilBuild` to include `211.*` (2021.1.*)  
 - Dependencies (GitHub Actions) - upgrade `actions/cache` to `v2.1.5`
-- Upgrade Gradle Wrapper to `7.0`
+- Upgrade Gradle Wrapper to `7.0.1`
 
 ## [0.9.0]
 ### Added
