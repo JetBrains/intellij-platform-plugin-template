@@ -88,18 +88,7 @@ The project-specific configuration file [gradle.properties][file:gradle.properti
 
 The properties listed define the plugin itself or configure the [gradle-intellij-plugin][gh:gradle-intellij-plugin] – check its documentation for more details.
 
-### Dependency on the Kotlin standard library
-
-Since Kotlin 1.4, a dependency on a standard library (`stdlib`) is added automatically.
-In most cases, it is not necessary to distribute this library with a plugin.
- 
-The [gradle.properties][file:gradle.properties] file explicitly alters the default behaviour of the Kotlin Gradle plugin by specifying this opt-out property:
-
-```
-kotlin.stdlib.default.dependency = false
-```
-
-For more details, please see: [Dependency on the standard library][kotlin-docs-dependency-on-stdlib] in Kotlin documentation.
+For more details regarding Kotlin integration, please see: [Kotlin for Plugin Developers][kotlin-for-plugin-developers] section in the IntelliJ Platform Plugin SDK documentation.
 
 
 ## Plugin template structure
@@ -344,4 +333,4 @@ If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, 
 [gradle-releases]: https://gradle.org/releases
 [gradle-kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
 [gradle-lifecycle-tasks]: https://docs.gradle.org/current/userguide/java_plugin.html#lifecycle_tasks
-[kotlin-docs-dependency-on-stdlib]: https://kotlinlang.org/docs/gradle.html#dependency-on-the-standard-library
+[kotlin-for-plugin-developers]: https://plugins.jetbrains.com/docs/intellij/kotlin.html#adding-kotlin-support
