@@ -344,4 +344,4 @@ If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, 
 [gradle-releases]: https://gradle.org/releases
 [gradle-kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
 [gradle-lifecycle-tasks]: https://docs.gradle.org/current/userguide/java_plugin.html#lifecycle_tasks
-[kotlin-docs-dependency-on-stdlib]: https://kotlinlang.org/docs/reference/using-gradle.html#dependency-on-the-standard-library
+[kotlin-docs-dependency-on-stdlib]: https://kotlinlang.org/docs/gradle.html#dependency-on-the-standard-library
