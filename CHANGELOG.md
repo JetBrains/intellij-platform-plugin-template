@@ -8,8 +8,8 @@
 - Update `pluginVerifierIdeVersions` to `2020.2.4, 2020.3.4, 2021.1.2`
 - Update `pluginUntilBuild` to include `211.*` (2021.1.*)  
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.5.0`
-- Dependencies - upgrade `detekt-formatting from` to `1.17.0`
-- Dependencies - upgrade `io.gitlab.arturbosch.detekt` to `1.17.0`
+- Dependencies - upgrade `detekt-formatting from` to `1.17.1`
+- Dependencies - upgrade `io.gitlab.arturbosch.detekt` to `1.17.1`
 - Dependencies (GitHub Actions) - upgrade `actions/cache` to `v2.1.5`
 - Dependencies (GitHub Actions) - upgrade `actions/checkout` to `v2.3.4`
 - Dependencies (GitHub Actions) - upgrade `actions/upload-release-asset` to `v1.0.2`
