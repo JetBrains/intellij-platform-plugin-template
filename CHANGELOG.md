@@ -14,7 +14,7 @@
 - Dependencies (GitHub Actions) - upgrade `actions/checkout` to `v2.3.4`
 - Dependencies (GitHub Actions) - upgrade `actions/upload-release-asset` to `v1.0.2`
 - Dependencies (GitHub Actions) - upgrade `actions/create-release` to `v1.1.4`
-- Upgrade Gradle Wrapper to `7.0.1`
+- Upgrade Gradle Wrapper to `7.0.2`
 
 ## [0.9.0]
 ### Added
