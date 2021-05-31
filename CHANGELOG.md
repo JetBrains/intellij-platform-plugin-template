@@ -3,6 +3,7 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+## [0.10.1]
 ### Added
 - Introduced `next` branch in the root repository to make `main` always a stable one
 
