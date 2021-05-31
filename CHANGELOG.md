@@ -3,6 +3,13 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+- Introduced `next` branch in the root repository to make `main` always a stable one
+
+### Changed
+- Dependencies (GitHub Actions) - upgrade `actions/cache` to `v2.1.6`
+
+## [0.9.0]
 ### Changed
 - Remove reference to the `jcenter()` from Gradle configuration file
 - Update `pluginVerifierIdeVersions` to `2020.2.4, 2020.3.4, 2021.1.2`
