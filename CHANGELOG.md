@@ -8,8 +8,9 @@
 
 ### Changed
 - Dependencies (GitHub Actions) - upgrade `actions/cache` to `v2.1.6`
+- Trigger GitHub Actions `Build` workflows only on pushes to `main` branch or pull request to avoid duplicated checks
 
-## [0.9.0]
+## [0.10.0]
 ### Changed
 - Remove reference to the `jcenter()` from Gradle configuration file
 - Update `pluginVerifierIdeVersions` to `2020.2.4, 2020.3.4, 2021.1.2`
