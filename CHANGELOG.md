@@ -3,6 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Changed
+- Update `pluginVerifierIdeVersions` to `2021.1.2`
+
 ## [0.10.1]
 ### Added
 - Introduced `next` branch in the root repository to make `main` always a stable one
@@ -10,7 +13,6 @@
 ### Changed
 - Dependencies (GitHub Actions) - upgrade `actions/cache` to `v2.1.6`
 - Trigger GitHub Actions `Build` workflows only on pushes to `main` branch or pull request to avoid duplicated checks
-- Update `pluginVerifierIdeVersions` to `2021.1.2`
 
 ## [0.10.0]
 ### Changed
