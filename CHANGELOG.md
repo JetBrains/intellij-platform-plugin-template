@@ -9,6 +9,7 @@
 ### Changed
 - Dependencies (GitHub Actions) - upgrade `actions/cache` to `v2.1.6`
 - Trigger GitHub Actions `Build` workflows only on pushes to `main` branch or pull request to avoid duplicated checks
+- Update `pluginVerifierIdeVersions` to `2021.1.2`
 
 ## [0.10.0]
 ### Changed
