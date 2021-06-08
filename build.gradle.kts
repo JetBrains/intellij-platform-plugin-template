@@ -69,7 +69,7 @@ detekt {
 // Read more: https://github.com/JetBrains/intellij-ui-test-robot
 tasks {
     withType<DownloadRobotServerPluginTask> {
-        version = "0.10.3"
+        version.set("0.10.3")
     }
 
     withType<RunIdeForUiTestTask> {
