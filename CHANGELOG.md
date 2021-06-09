@@ -3,7 +3,7 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
-## Added
+### Added
 - GitHub Actions: UI Tests workflow
 
 ### Changed
