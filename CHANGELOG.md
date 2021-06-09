@@ -3,6 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+## Added
+- GitHub Actions: UI Tests workflow
+
 ### Changed
 - Update `pluginVerifierIdeVersions` to `2021.1.2`
 
