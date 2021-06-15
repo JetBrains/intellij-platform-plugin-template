@@ -8,6 +8,7 @@
 
 ### Changed
 - Update `pluginVerifierIdeVersions` to `2021.1.2`
+- Upgrade Gradle Wrapper to `7.1`
 
 ## [0.10.1]
 ### Added
