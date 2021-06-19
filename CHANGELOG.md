@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Added
 - GitHub Actions: UI Tests workflow
+- Suppress `UnusedProperty` inspection for the `kotlin.stdlib.default.dependency` in `gradle.properties`
 
 ### Changed
 - Update `pluginVerifierIdeVersions` to `2021.1.2`
