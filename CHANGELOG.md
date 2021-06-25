@@ -10,6 +10,7 @@
 ### Changed
 - Update `pluginVerifierIdeVersions` to `2021.1.2`
 - Upgrade Gradle Wrapper to `7.1`
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.5.20`
 - Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `v2.2.4`
 
 ## [0.10.1]
