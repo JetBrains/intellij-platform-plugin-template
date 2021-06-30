@@ -8,7 +8,7 @@
 - Suppress `UnusedProperty` inspection for the `kotlin.stdlib.default.dependency` in `gradle.properties`
 
 ### Changed
-- Update `pluginVerifierIdeVersions` to `2021.1.2`
+- Update `pluginVerifierIdeVersions` to `2021.1.3`
 - Upgrade Gradle Wrapper to `7.1`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.5.20`
 - Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `v2.2.4`
