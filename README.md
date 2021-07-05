@@ -218,9 +218,14 @@ Keeping the project in good shape and having all the dependencies up-to-date req
 
 Dependabot is a bot provided by GitHub for checking the build configuration files and reviewing any outdated or insecure dependencies of yours – in case if any update is available, it creates a new pull request providing [the proper change][gh:dependabot-pr].
 
-> **Note:** Dependabot doesn't yet support checking of the Gradle Wrapper. Check the [Gradle Releases][gradle-releases] page and update it with:
+> **Note:** Dependabot doesn't yet support checking of the Gradle Wrapper.
+> Check the [Gradle Releases][gradle-releases] page and update your `gradle.properties` file with:
+> ```properties
+> gradleVersion = 7.1.1
+> ```
+> and run
 > ```bash
-> ./gradlew wrapper --gradle-version 6.8
+> ./gradlew wrapper
 > ```
 
 ### Changelog maintenance
