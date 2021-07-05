@@ -7,6 +7,7 @@
 - GitHub Actions: UI Tests workflow
 - Suppress `UnusedProperty` inspection for the `kotlin.stdlib.default.dependency` in `gradle.properties`
 - Use Gradle `wrapper` task to handle Gradle updates
+- JVM compatibility version extracted to `gradle.properties` file
 
 ### Changed
 - Update `pluginVerifierIdeVersions` to `2020.3.4, 2021.1.3`
