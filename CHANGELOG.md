@@ -6,11 +6,12 @@
 ### Added
 - GitHub Actions: UI Tests workflow
 - Suppress `UnusedProperty` inspection for the `kotlin.stdlib.default.dependency` in `gradle.properties`
+- Use Gradle `wrapper` task to handle Gradle updates
 
 ### Changed
 - Update `pluginVerifierIdeVersions` to `2020.3.4, 2021.1.3`
 - Change since/until build to `203-212.*`
-- Upgrade Gradle Wrapper to `7.1`
+- Upgrade Gradle Wrapper to `7.1.1`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.5.20`
 - Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `v2.2.4`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.1.2`

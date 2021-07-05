@@ -79,6 +79,10 @@ tasks {
         jvmTarget = "1.8"
     }
 
+    wrapper {
+        gradleVersion = properties("gradleVersion")
+    }
+
     patchPluginXml {
         version.set(properties("pluginVersion"))
         sinceBuild.set(properties("pluginSinceBuild"))
