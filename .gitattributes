@@ -1,0 +1,14 @@
+
+* text  eol=lf
+
+# These are explicitly windows files and should use crlf
+*.bat   text eol=crlf
+
+# These files are text and should be normalized (Convert crlf => lf)
+*.sh    text eol=lf
+
+# Files contents of which must not change
+*.png   binary
+
+# Mark Gradle wrapper as a binary
+gradle/wrapper/gradle-wrapper.jar binary
