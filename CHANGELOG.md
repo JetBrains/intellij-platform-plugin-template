@@ -10,6 +10,7 @@
 - JVM compatibility version extracted to `gradle.properties` file
 
 ### Changed
+- GitHub Actions: Use Java 11
 - Update `pluginVerifierIdeVersions` to `2020.3.4, 2021.1.3`
 - Change since/until build to `203-212.*`
 - Upgrade Gradle Wrapper to `7.1.1`
