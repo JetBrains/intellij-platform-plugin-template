@@ -69,7 +69,6 @@ The most significant parts of the current configuration are:
 - Support for Kotlin and Java implementation.
 - Integration with the [gradle-changelog-plugin][gh:gradle-changelog-plugin], which automatically patches the change notes and description based on the `CHANGELOG.md` and `README.md` files.
 - Integration with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] for smoother development.
-- Code linting with [detekt][detekt].
 - [Plugin publishing][docs:publishing] using the token.
 
 The project-specific configuration file [gradle.properties][file:gradle.properties] contains:
@@ -103,7 +102,6 @@ A generated IntelliJ Platform Plugin Template repository contains the following 
 ├── README.md               README
 ├── build/                  Output build directory
 ├── build.gradle.kts        Gradle configuration
-├── detekt-config.yml       Detekt configuration
 ├── gradle
 │   └── wrapper/            Gradle Wrapper
 ├── gradle.properties       Gradle configuration properties
@@ -175,7 +173,7 @@ Within the default project structure, there is a `.run` directory provided conta
 | Configuration name | Description                                                                                                                                                            |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Run Plugin         | Runs [`:runIde`][gh:gradle-intellij-plugin-running-dsl] Gradle IntelliJ Plugin task. Use the *Debug* icon for plugin debugging.                                        |
-| Run Tests          | Runs [`:check`][gradle-lifecycle-tasks] Gradle task that invokes `:test` and `detekt`/`ktlint` code inspections.                                                       |
+| Run Tests          | Runs [`:test`][gradle-lifecycle-tasks] Gradle task.                                                                                                                    |
 | Run Verifications  | Runs [`:runPluginVerifier`][gh:gradle-intellij-plugin-verifier-dsl] Gradle IntelliJ Plugin task to check the plugin compatibility against the specified IntelliJ IDEs. |
 
 
@@ -332,7 +330,6 @@ If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, 
 [jb:ui-guidelines]: https://jetbrains.github.io/ui
 
 [keep-a-changelog]: https://keepachangelog.com
-[detekt]: https://detekt.github.io/detekt
 [github-actions-skip-ci]: https://github.blog/changelog/2021-02-08-github-actions-skip-pull-request-and-push-workflows-with-skip-ci/
 [gradle]: https://gradle.org
 [gradle-releases]: https://gradle.org/releases

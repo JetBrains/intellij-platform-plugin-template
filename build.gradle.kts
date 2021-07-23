@@ -1,4 +1,3 @@
-import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.changelog.markdownToHTML
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -13,10 +12,6 @@ plugins {
     id("org.jetbrains.intellij") version "1.1.4"
     // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
     id("org.jetbrains.changelog") version "1.2.1"
-    // detekt linter - read more: https://detekt.github.io/detekt/gradle.html
-    id("io.gitlab.arturbosch.detekt") version "1.17.1"
-    // ktlint linter - read more: https://github.com/JLLeitschuh/ktlint-gradle
-    id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
 }
 
 group = properties("pluginGroup")
@@ -25,9 +20,6 @@ version = properties("pluginVersion")
 // Configure project's dependencies
 repositories {
     mavenCentral()
-}
-dependencies {
-    detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.17.1")
 }
 
 // Configure gradle-intellij-plugin plugin.
@@ -50,19 +42,6 @@ changelog {
     groups.set(emptyList())
 }
 
-// Configure detekt plugin.
-// Read more: https://detekt.github.io/detekt/kotlindsl.html
-detekt {
-    config = files("./detekt-config.yml")
-    buildUponDefaultConfig = true
-
-    reports {
-        html.enabled = false
-        xml.enabled = false
-        txt.enabled = false
-    }
-}
-
 // Configure UI tests plugin
 // Read more: https://github.com/JetBrains/intellij-ui-test-robot
 tasks {
@@ -74,9 +53,6 @@ tasks {
         }
         withType<KotlinCompile> {
             kotlinOptions.jvmTarget = it
-        }
-        withType<Detekt> {
-            jvmTarget = it
         }
     }
 

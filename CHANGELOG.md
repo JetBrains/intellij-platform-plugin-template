@@ -9,6 +9,9 @@
 - Use Gradle `wrapper` task to handle Gradle updates
 - JVM compatibility version extracted to `gradle.properties` file
 
+### Removed
+- Removed `detekt`/`ktlint` integration
+
 ### Changed
 - GitHub Actions: Use Java 11
 - Update `pluginVerifierIdeVersions` to `2020.3.4, 2021.1.3`

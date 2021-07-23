@@ -11,7 +11,7 @@
       </option>
       <option name="taskNames">
         <list>
-          <option value="check" />
+          <option value="test" />
         </list>
       </option>
       <option name="vmOptions" value="" />
