@@ -4,10 +4,12 @@
 
 ## [Unreleased]
 ### Added
+- Plugin Signing run configuration
 - GitHub Actions: UI Tests workflow
 - Suppress `UnusedProperty` inspection for the `kotlin.stdlib.default.dependency` in `gradle.properties`
 - Use Gradle `wrapper` task to handle Gradle updates
 - JVM compatibility version extracted to `gradle.properties` file
+- `Publish Plugin` run configuration
 
 ### Removed
 - Removed `detekt`/`ktlint` integration
