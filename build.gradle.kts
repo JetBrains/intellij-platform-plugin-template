@@ -42,8 +42,6 @@ changelog {
     groups.set(emptyList())
 }
 
-// Configure UI tests plugin
-// Read more: https://github.com/JetBrains/intellij-ui-test-robot
 tasks {
     // Set the JVM compatibility versions
     properties("javaVersion").let {
@@ -86,11 +84,19 @@ tasks {
         ideVersions.set(properties("pluginVerifierIdeVersions").split(',').map(String::trim).filter(String::isNotEmpty))
     }
 
+    // Configure UI tests plugin
+    // Read more: https://github.com/JetBrains/intellij-ui-test-robot
     runIdeForUiTests {
         systemProperty("robot-server.port", "8082")
         systemProperty("ide.mac.message.dialogs.as.sheets", "false")
         systemProperty("jb.privacy.policy.text", "<!--999.999-->")
         systemProperty("jb.consents.confirmation.enabled", "false")
+    }
+
+    signPlugin {
+        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
+        privateKey.set(System.getenv("PRIVATE_KEY"))
+        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
     }
 
     publishPlugin {
