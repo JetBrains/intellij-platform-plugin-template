@@ -307,7 +307,7 @@ You start with an almost empty changelog:
 - Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
 ```
 
-Now proceed with providing more entries to the `Added` group, or any other one that suits your change the most (see [How do I make a good changelog?][keep-a-changelog-how]] for more details).
+Now proceed with providing more entries to the `Added` group, or any other one that suits your change the most (see [How do I make a good changelog?][keep-a-changelog-how] for more details).
 
 When releasing a plugin update, you don't have to care about bumping the `[Unreleased]` header to the upcoming version – it will be handled automatically on the CI after you publish your plugin.
 GitHub Actions will swap it and provide you an empty section for the next release so that you can proceed with your development:
@@ -319,7 +319,11 @@ GitHub Actions will swap it and provide you an empty section for the next releas
 
 ## [0.0.1]
 ### Added
+- An awesome feature
 - Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+
+# Fixed
+- One annoying bug
 ```
 
 To configure how the Changelog plugin behaves, i.e., to create headers with the release date, see [Gradle Changelog Plugin][gh:gradle-changelog-plugin] README file.
