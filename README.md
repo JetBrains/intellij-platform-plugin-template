@@ -322,7 +322,7 @@ GitHub Actions will swap it and provide you an empty section for the next releas
 - An awesome feature
 - Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
 
-# Fixed
+### Fixed
 - One annoying bug
 ```
 
