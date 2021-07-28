@@ -65,7 +65,7 @@ Then you can get to work implementing your ideas.
 ## Gradle configuration
 
 The recommended method for plugin development involves using the [Gradle][gradle] setup with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] installed.
-The `gradle-intellij-plugin` makes it possible to run the IDE with your plugin and publish your plugin to the Marketplace Repository.
+The `gradle-intellij-plugin` makes it possible to run the IDE with your plugin and publish your plugin to JetBrains Marketplace Repository.
 
 A project built using the IntelliJ Platform Plugin Template includes a Gradle configuration that's already been set up.
 Feel free to read through the [Using Gradle][docs:using-gradle] articles to understand your build better and learn how to customize it.
@@ -86,7 +86,7 @@ The project-specific configuration file [gradle.properties][file:gradle.properti
 | Property name               | Description                                                                                                |
 | --------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `pluginGroup`               | Package name - after *using* the template, this will be set to `com.github.username.repo`.                 |
-| `pluginName`                | Plugin name displayed in the Marketplace and the Plugins Repository.                                       |
+| `pluginName`                | Plugin name displayed in the JetBrains Marketplace and the Plugins Repository.                             |
 | `pluginVersion`             | The current version of the plugin.                                                                         |
 | `pluginSinceBuild`          | The `since-build` attribute of the <idea-version> tag.                                                     |
 | `pluginUntilBuild`          | The `until-build` attribute of the <idea-version> tag.                                                     |
@@ -113,7 +113,7 @@ Environment variables used by the current project are related to the [plugin sig
 | `PRIVATE_KEY`             | Certificate private key, should contain: <code>-----BEGIN ENCRYPTED PRIVATE KEY-----<br/>...<br/>-----END ENCRYPTED PRIVATE KEY-----</code> |
 | `PRIVATE_KEY_PASSWORD`    | Password used for encrypting the certificate file.                                                                                          |
 | `CERTIFICATE_CHAIN`       | Certificate chain, should contain: <code>-----BEGIN CERTIFICATE-----<br/>...<br/>-----END CERTIFICATE----</code>                            |
-| `PUBLISH_TOKEN`           | Publishing token generated in your Marketplace profile dashboard.                                                                           |
+| `PUBLISH_TOKEN`           | Publishing token generated in your JetBrains Marketplace profile dashboard.                                                                 |
 
 For more details on how to generate proper values, check the relevant sections mentioned above.
 
@@ -207,7 +207,7 @@ Therefore, the template contains only the following files:
 
 These files are located in `src/main/kotlin`.
 This location indicates the language being used.
-So if you decide to use Java instead, sources should be located in the `src/main/java` directory.
+So if you decide to use Java instead (or in addition to Kotlin), these sources should be located in the `src/main/java` directory.
 
 To start with the actual implementation, you may check our [IntelliJ Platform SDK DevGuide][docs], which contains an introduction to the essential areas of the plugin development together with dedicated tutorials.
 
@@ -236,7 +236,7 @@ Within the default project structure, there is a `.run` directory provided conta
 ## Continuous integration
 
 Continuous integration depends on [GitHub Actions][gh:actions], a set of workflows that make it possible to automate your testing and release process.
-Thanks to such automation, you can delegate the testing and verification phases to the CI and instead focus on development (and writing more tests).
+Thanks to such automation, you can delegate the testing and verification phases to the Continuous Integration (CI) and instead focus on development (and writing more tests).
 
 In the `.github/workflows` directory, you can find definitions for the following GitHub Actions workflows:
 
@@ -250,7 +250,7 @@ In the `.github/workflows` directory, you can find definitions for the following
 - [Release](.github/workflows/release.yml)
   - Triggered on `released` event.
   - Signs the plugin with a provided certificate before publishing.
-  - Publishes the plugin to the Marketplace using the provided `PUBLISH_TOKEN`.
+  - Publishes the plugin to JetBrains Marketplace using the provided `PUBLISH_TOKEN`.
   - Sets publish channel depending on the plugin version, i.e. `1.0.0-beta` -> `beta` channel.
   - Patches the Changelog and commits.
 - [Template Cleanup](.github/workflows/template-cleanup.yml)
@@ -288,13 +288,13 @@ The changelog is a curated list that contains information about any new features
 When they are provided, these lists are available in a few different places:
 - the [CHANGELOG.md](./CHANGELOG.md) file,
 - the [Releases page][gh:releases],
-- the *What's new* section of the Marketplace Plugin page,
+- the *What's new* section of JetBrains Marketplace Plugin page,
 - and inside the Plugin Manager's item details.
 
 There are many methods for handling the project's changelog.
 The one used in the current template project is the [Keep a Changelog][keep-a-changelog] approach.
 
-There's the [Gradle Changelog Plugin][gh:gradle-changelog-plugin] integrated to help you deal with your changelog. It takes care of propagating information provided within the [CHANGELOG.md](./CHANGELOG.md) to the (Gradle IntelliJ Plugin)[gh:gradle-intellij-plugin].
+The [Gradle Changelog Plugin][gh:gradle-changelog-plugin] takes care of propagating information provided within the [CHANGELOG.md](./CHANGELOG.md) to the [Gradle IntelliJ Plugin][gh:gradle-intellij-plugin].
 The only thing you have to take care of is writing down the actual changes in proper sections of the `[Unreleased]` section.
 
 You start with an almost empty changelog:
@@ -309,7 +309,7 @@ You start with an almost empty changelog:
 
 Now proceed with providing more entries to the `Added` group, or any other one that suits your change the most (see [How do I make a good changelog?][keep-a-changelog-how] for more details).
 
-When releasing a plugin update, you don't have to care about bumping the `[Unreleased]` header to the upcoming version – it will be handled automatically on the CI after you publish your plugin.
+When releasing a plugin update, you don't have to care about bumping the `[Unreleased]` header to the upcoming version – it will be handled automatically on the Continuous Integration (CI) after you publish your plugin.
 GitHub Actions will swap it and provide you an empty section for the next release so that you can proceed with your development:
 
 ```
@@ -348,26 +348,26 @@ Next, it will notify users that are *watching* the repository, and it will trigg
 
 Plugin Signing is a mechanism introduced in the 2021.2 release cycle to increase security in [JetBrains Marketplace](https://plugins.jetbrains.com) and all of our IntelliJ-based IDEs.
 
-The Marketplace signing is designed to ensure that plugins are not modified over the course of the publishing and delivery pipeline.
+JetBrains Marketplace signing is designed to ensure that plugins are not modified over the course of the publishing and delivery pipeline.
 
-The current project provides a predefined plugin signing configuration that lets you sign and publish your plugin from the CI and local environments.
+The current project provides a predefined plugin signing configuration that lets you sign and publish your plugin from the Continuous Integration (CI) and local environments.
 All the configuration related to the signing should be provided using [environment variables](#environment-variables).
 
 To find out how to generate signing certificates, check the [Plugin Signing][docs:plugin-signing] section in the IntelliJ Platform Plugin SDK documentation.
 
 ### Publishing the plugin
 
-Releasing a plugin to the Marketplace is a straightforward operation that uses the `publishPlugin` Gradle task provided by the [gradle-intellij-plugin][gh:gradle-intellij-plugin].
+Releasing a plugin to JetBrains Marketplace is a straightforward operation that uses the `publishPlugin` Gradle task provided by the [gradle-intellij-plugin][gh:gradle-intellij-plugin].
 In addition, the [Release](.github/workflows/release.yml) workflow automates this process by running the task when a new release appears in the GitHub Releases section.
 
 > **TIP**: Set a suffix to the plugin version to publish it in the custom repository channel, i.e. `v1.0.0-beta` will push your plugin to the `beta` [release channel][docs:release-channel].
 
 The authorization process relies on the `PUBLISH_TOKEN` secret environment variable, which must be specified in the _Secrets_ section of the repository _Settings_.
 
-You can get that token in the [My Tokens][jb:my-tokens] tab within your Marketplace profile dashboard.
+You can get that token in the [My Tokens][jb:my-tokens] tab within your JetBrains Marketplace profile dashboard.
 
 > **Important:**
-> Before using the automated deployment process, it is necessary to manually create a new plugin in the Marketplace to specify options like the license, repository URL, etc.
+> Before using the automated deployment process, it is necessary to manually create a new plugin in JetBrains Marketplace to specify options like the license, repository URL, etc.
 > Please follow the [Publishing a Plugin][docs:publishing] instructions.
 
 
