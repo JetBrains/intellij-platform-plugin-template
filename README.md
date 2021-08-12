@@ -34,7 +34,7 @@ In this README, we will highlight the following elements of template-project cre
   - actions – basic action with shortcut binding
 - [Predefined Run/Debug configurations](#predefined-rundebug-configurations)
 - [Continuous integration](#continuous-integration) based on GitHub Actions
-  - [Dependencies management](#dependencies-management) with dependabot
+  - [Dependencies management](#dependencies-management) with Dependabot
   - [Changelog maintenance](#changelog-maintenance) with the Gradle Changelog Plugin
   - [Release flow](#release-flow) using GitHub Releases
   - [Plugin signing](#plugin-signing) with your private certificate
@@ -265,7 +265,7 @@ All the workflow files have accurate documentation, so it's a good idea to take 
 
 This Template project depends on Gradle plugins and external libraries – and during the development, you will add more of them.
 
-Keeping the project in good shape and having all the dependencies up-to-date requires time and effort, but it is possible to automate that process using [dependabot][gh:dependabot].
+Keeping the project in good shape and having all the dependencies up-to-date requires time and effort, but it is possible to automate that process using [Dependabot][gh:dependabot].
 
 Dependabot is a bot provided by GitHub for checking the build configuration files and reviewing any outdated or insecure dependencies of yours – in case if any update is available, it creates a new pull request providing [the proper change][gh:dependabot-pr].
 
@@ -379,7 +379,7 @@ Java language is supported by default along with Kotlin.
 Initially, the `/src/main/kotlin` directory is available with minimal examples.
 You can still replace it or add the `/src/main/java` directory to start working with Java language instead.
 
-### How to disable *tests *or *build* job using the `[skip ci]` commit message?
+### How to disable *tests* or *build* job using the `[skip ci]` commit message?
 
 Since the February 2021, GitHub Actions [support the skip CI feature][github-actions-skip-ci].
 If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]`, or `[actions skip]` – workflows will not be triggered.
