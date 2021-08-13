@@ -8,10 +8,12 @@ plugins {
     id("java")
     // Kotlin support
     id("org.jetbrains.kotlin.jvm") version "1.5.30"
-    // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
+    // Gradle IntelliJ Plugin
     id("org.jetbrains.intellij") version "1.1.4"
-    // gradle-changelog-plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
+    // Gradle Changelog Plugin
     id("org.jetbrains.changelog") version "1.3.0"
+    // Gradle Qodana Plugin
+    id("org.jetbrains.qodana") version "0.1.5"
 }
 
 group = properties("pluginGroup")
@@ -22,8 +24,7 @@ repositories {
     mavenCentral()
 }
 
-// Configure gradle-intellij-plugin plugin.
-// Read more: https://github.com/JetBrains/gradle-intellij-plugin
+// Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
     pluginName.set(properties("pluginName"))
     version.set(properties("platformVersion"))
@@ -35,11 +36,15 @@ intellij {
     plugins.set(properties("platformPlugins").split(',').map(String::trim).filter(String::isNotEmpty))
 }
 
-// Configure gradle-changelog-plugin plugin.
-// Read more: https://github.com/JetBrains/gradle-changelog-plugin
+// Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
     version.set(properties("pluginVersion"))
     groups.set(emptyList())
+}
+
+// Configure Gradle Qodana Plugin - read more: https://github.com/JetBrains/gradle-qodana-plugin
+qodana {
+//    saveReport.set(true)
 }
 
 tasks {
