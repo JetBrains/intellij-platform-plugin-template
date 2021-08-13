@@ -11,9 +11,6 @@
 - JVM compatibility version extracted to `gradle.properties` file
 - `Publish Plugin` run configuration
 
-### Removed
-- Removed `detekt`/`ktlint` integration
-
 ### Changed
 - GitHub Actions: Use Java 11
 - Update `pluginVerifierIdeVersions` to `2020.3.4, 2021.1.3`
@@ -24,6 +21,12 @@
 - Dependencies - upgrade `org.jetbrains.changelog` to `1.2.1`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.1.4`
 - Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `v2.2.4`
+
+### Fixed
+- Use `DynamicBundle` instead of `AbstractBundle` in `MyBundle.kt`
+
+### Removed
+- Removed `detekt`/`ktlint` integration
 
 ## [0.10.1]
 ### Added
