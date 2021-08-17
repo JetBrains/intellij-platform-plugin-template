@@ -66,6 +66,8 @@ Then you can get to work implementing your ideas.
 
 The recommended method for plugin development involves using the [Gradle][gradle] setup with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] installed.
 The `gradle-intellij-plugin` makes it possible to run the IDE with your plugin and publish your plugin to JetBrains Marketplace Repository.
+             
+> **NOTE:** Make sure to always upgrade to the latest version of `gradle-intellij-plugin`.
 
 A project built using the IntelliJ Platform Plugin Template includes a Gradle configuration that's already been set up.
 Feel free to read through the [Using Gradle][docs:using-gradle] articles to understand your build better and learn how to customize it.
