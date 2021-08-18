@@ -274,7 +274,7 @@ Dependabot is a bot provided by GitHub for checking the build configuration file
 > **Note:** Dependabot doesn't yet support checking of the Gradle Wrapper.
 > Check the [Gradle Releases][gradle-releases] page and update your `gradle.properties` file with:
 > ```properties
-> gradleVersion = 7.1.1
+> gradleVersion = 7.2
 > ```
 > and run
 > ```bash
