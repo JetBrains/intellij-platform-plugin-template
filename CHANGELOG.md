@@ -13,7 +13,7 @@
 
 ### Changed
 - GitHub Actions: Use Java 11
-- Update `pluginVerifierIdeVersions` to `2020.3.4, 2021.1.3`
+- Update `pluginVerifierIdeVersions` to `2020.3.4, 2021.1.3, 2021.2`
 - Change since/until build to `203-212.*`
 - Upgrade Gradle Wrapper to `7.2`
 - Gradle – Changelog plugin configuration update
