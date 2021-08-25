@@ -27,46 +27,62 @@ jobs:
         with:
           ref: ${{ github.event.release.tag_name }}
 
+      # Cache Gradle Dependencies
+      - name: Setup Gradle Dependencies Cache
+        uses: actions/cache@v2.1.6
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-caches-${{ hashFiles('**/*.gradle', '**/*.gradle.kts', 'gradle.properties') }}
+
+      # Cache Gradle Wrapper
+      - name: Setup Gradle Wrapper Cache
+        uses: actions/cache@v2.1.6
+        with:
+          path: ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+
+      # Set environment variables
+      - name: Export Properties
+        id: properties
+        shell: bash
+        run: |
+          PROPERTIES="$(./gradlew properties --console=plain -q)"
+          VERSION="$(echo "$PROPERTIES" | grep "^version:" | cut -f2- -d ' ')"
+          NAME="$(echo "$PROPERTIES" | grep "^pluginName:" | cut -f2- -d ' ')"
+          ARTIFACT="${NAME}-${VERSION}.zip"
+
+          echo "::set-output name=artifact::$ARTIFACT"
+
+      # Update Unreleased section with the current release note
+      - name: Patch Changelog
+        run: |
+          ./gradlew patchChangelog --release-note="`cat << EOM
+          ${{ github.event.release.body }}
+          EOM`"
+
       # Publish the plugin to the Marketplace
       - name: Publish Plugin
         env:
           PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         run: ./gradlew publishPlugin
 
-  # Patch changelog, commit and push to the current repository
-  changelog:
-    name: Update Changelog
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-
-      # Setup Java 11 environment for the next steps
-      - name: Setup Java
-        uses: actions/setup-java@v2
+      # Upload artifact as a release asset
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1.0.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          distribution: zulu
-          java-version: 11
+          upload_url: ${{ github.event.release.upload_url }}
+          asset_path: ./build/distributions/${{ steps.properties.outputs.artifact }}
+          asset_name: ${{ steps.properties.outputs.artifact }}
+          asset_content_type: application/zip
 
-      # Check out current repository
-      - name: Fetch Sources
-        uses: actions/checkout@v2.3.4
+      # Create pull request
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
         with:
-          ref: ${{ github.event.release.tag_name }}
-
-      # Update Unreleased section with the current version
-      - name: Patch Changelog
-        run: ./gradlew patchChangelog
-
-      # Commit patched Changelog
-      - name: Commit files
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git commit -m "Update changelog" -a
-
-      # Push changes
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          branch: main
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: changelog-update-${{ github.event.release.tag_name }}
+          base: main
+          commit-message: Changelog update - ${{ github.event.release.tag_name }}
+          title: Changelog update - ${{ github.event.release.tag_name }}
+          body: Current pull request contains patched `CHANGELOG.md` for ${{ github.event.release.tag_name }} version.
