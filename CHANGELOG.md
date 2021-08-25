@@ -207,15 +207,10 @@
 - Gradle - remove kotlin("stdlib-jdk8") dependency to decrease the plugin artifact size
 - Dependencies - bump ktlint to `9.3.0`
 - GitHub Actions - make *Update Changelog* job dependent on the *Publish Plugin*
-
-### Fixed
-- Resolve ktlint reports
-
-## [0.3.1]
-### Changed
 - GitHub Actions - run plugin verifier against `2019.3` `2020.1` `2020.2`
 
 ### Fixed
+- Resolve ktlint reports
 - GitHub Actions - Plugin Verifier broken for artifacts with whitespaces in name
 
 ## [0.3.0]
