@@ -41,18 +41,6 @@ jobs:
           path: ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
 
-      # Set environment variables
-      - name: Export Properties
-        id: properties
-        shell: bash
-        run: |
-          PROPERTIES="$(./gradlew properties --console=plain -q)"
-          VERSION="$(echo "$PROPERTIES" | grep "^version:" | cut -f2- -d ' ')"
-          NAME="$(echo "$PROPERTIES" | grep "^pluginName:" | cut -f2- -d ' ')"
-          ARTIFACT="${NAME}-${VERSION}.zip"
-
-          echo "::set-output name=artifact::$ARTIFACT"
-
       # Update Unreleased section with the current release note
       - name: Patch Changelog
         run: |
@@ -68,21 +56,27 @@ jobs:
 
       # Upload artifact as a release asset
       - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./build/distributions/${{ steps.properties.outputs.artifact }}
-          asset_name: ${{ steps.properties.outputs.artifact }}
-          asset_content_type: application/zip
+        run: gh release upload ${{ github.event.release.tag_name }} ./build/distributions/*
 
       # Create pull request
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
-        with:
-          branch: changelog-update-${{ github.event.release.tag_name }}
-          base: main
-          commit-message: Changelog update - ${{ github.event.release.tag_name }}
-          title: Changelog update - ${{ github.event.release.tag_name }}
-          body: Current pull request contains patched `CHANGELOG.md` for ${{ github.event.release.tag_name }} version.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="${{ github.event.release.tag_name }}"
+          BRANCH="changelog-update-$VERSION"
+
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+
+          git checkout -b $BRANCH
+          git commit -am "Changelog update - $VERSION"
+          git push --set-upstream origin $BRANCH
+
+          gh pr create \
+            --title "Changelog update - \`$VERSION\`" \
+            --body "Current pull request contains patched \`CHANGELOG.md\` file for the \`$VERSION\` version." \
+            --base main \
+            --head $BRANCH
