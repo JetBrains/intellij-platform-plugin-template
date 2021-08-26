@@ -5,6 +5,8 @@
 [![Build](https://github.com/JetBrains/intellij-platform-plugin-template/workflows/Build/badge.svg)][gh:build]
 [![Slack](https://img.shields.io/badge/Slack-%23intellij--platform--plugin--template-blue)][jb:slack]
 
+![IntelliJ Platform Plugin Template][file:intellij-platform-plugin-template.png]
+
 > **TL;DR:** Click the <kbd>Use this template</kbd> button and clone it in IntelliJ IDEA.
 
 <!-- Plugin description -->
@@ -420,6 +422,7 @@ If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, 
 [file:settings-secrets.png]: .github/readme/settings-secrets.png
 [file:run-debug-env.png]: .github/readme/run-debug-env.png
 [file:template_cleanup.yml]: ./.github/workflows/template-cleanup.yml
+[file:intellij-platform-plugin-template.png]: ./.github/readme/intellij-platform-plugin-template.png
 
 [gh:actions]: https://help.github.com/en/actions
 [gh:dependabot]: https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/keeping-your-dependencies-updated-automatically
