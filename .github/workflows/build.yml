@@ -96,7 +96,7 @@ jobs:
         run: ./gradlew verifyPlugin
 
       # Run IntelliJ Plugin Verifier action using GitHub Action
-      - name: Verify Plugin
+      - name: Run Plugin Verifier
         run: ./gradlew runPluginVerifier -Pplugin.verifier.home.dir=${{ steps.properties.outputs.pluginVerifierHomeDir }}
 
   # Build plugin with buildPlugin Gradle task and provide the artifact for the next workflow jobs
