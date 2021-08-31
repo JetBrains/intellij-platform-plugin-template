@@ -14,32 +14,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      # Setup Java 11 environment for the next steps
-      - name: Setup Java
-        uses: actions/setup-java@v2
-        with:
-          distribution: zulu
-          java-version: 11
-
       # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v2.3.4
         with:
           ref: ${{ github.event.release.tag_name }}
 
-      # Cache Gradle Dependencies
-      - name: Setup Gradle Dependencies Cache
-        uses: actions/cache@v2.1.6
+      # Setup Java 11 environment for the next steps
+      - name: Setup Java
+        uses: actions/setup-java@v2
         with:
-          path: ~/.gradle/caches
-          key: ${{ runner.os }}-gradle-caches-${{ hashFiles('**/*.gradle', '**/*.gradle.kts', 'gradle.properties') }}
-
-      # Cache Gradle Wrapper
-      - name: Setup Gradle Wrapper Cache
-        uses: actions/cache@v2.1.6
-        with:
-          path: ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
+          distribution: zulu
+          java-version: 11
+          cache: gradle
 
       # Update Unreleased section with the current release note
       - name: Patch Changelog
