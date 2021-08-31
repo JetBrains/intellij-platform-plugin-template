@@ -1,17 +1,31 @@
-<idea-plugin>
+<!-- An optional `url` attribute specifies the link to the plugin homepage. Displayed on the Plugin Page. -->
+<idea-plugin url="https://marketplace.jetbrains.com">
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions.
+         If not specified, <name> will be used (not recommended). -->
     <id>org.jetbrains.plugins.template</id>
-    <name>Template</name>
-    <vendor>JetBrains</vendor>
 
-    <!-- Product and plugin compatibility requirements -->
-    <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <!-- Public plugin name should be written in Title Case. Guidelines: https://jb.gg/plugin-name -->
+    <name>Template</name>
+
+    <!-- A displayed Vendor name or Organization ID (if you have one created). The optional `URL` attribute specifies the link
+         to the vendor’s homepage. The optional `email` attribute specifies the vendor’s e-mail address. Displayed on the Plugins Page. -->
+    <vendor url="https://marketplace.jetbrains.com" email="marketplace@jetbrains.com">JetBrains</vendor>
+
+    <!-- If you decide to make your plugin paid, you will need to define the parameters in the <product-descriptor> tag.
+         You can also enable free functionality in a paid plugin. Learn more in a guide to selling plugin: https://jb.gg/selling-plugin -->
+    <!-- <product-descriptor code="PLUGINTEMPLATE" release-date="20210901" release-version="20211" optional="true"/> -->
+
+    <!-- Product and plugin compatibility requirements. Read more: https://jb.gg/plugin-compatibility -->
     <depends>com.intellij.modules.platform</depends>
 
+    <!-- Extensions which the plugin adds to extension points defined by the IntelliJ Platform or by other plugins.
+         Learn more: https://jb.gg/plugin-extensions -->
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="org.jetbrains.plugins.template.services.MyApplicationService"/>
         <projectService serviceImplementation="org.jetbrains.plugins.template.services.MyProjectService"/>
     </extensions>
 
+    <!-- Application-level listeners. Read more: https://jb.gg/plugin-listeners -->
     <applicationListeners>
         <listener class="org.jetbrains.plugins.template.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
