@@ -31,16 +31,17 @@ jobs:
 
     steps:
 
+      # Check out current repository
+      - name: Fetch Sources
+        uses: actions/checkout@v2.3.4
+
       # Setup Java 11 environment for the next steps
       - name: Setup Java
         uses: actions/setup-java@v2
         with:
           distribution: zulu
           java-version: 11
-
-      # Check out current repository
-      - name: Fetch Sources
-        uses: actions/checkout@v2.3.4
+          cache: gradle
 
       # Run IDEA prepared for UI testing
       - name: Run IDE
