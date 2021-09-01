@@ -222,20 +222,24 @@ For those, who value example codes the most, there are also available [IntelliJ 
 
 ## Qodana integration
 
-To increase the project value, the IntelliJ Platform Plugin Template is integrated with [Qodana][docs:qodana], a code quality monitoring platform that allows you to check the condition of your implementation and find any possible problems that may require enhancing.
+To increase the project value, the IntelliJ Platform Plugin Template got integrated with [Qodana][docs:qodana], a code quality monitoring platform that allows you to check the condition of your implementation and find any possible problems that may require enhancing.
 
 Qodana brings into your CI/CD pipelines all the smart features you love in the JetBrains IDEs and generates an HTML report with the actual inspection status.
 
-It is integrated within the project on two levels:
+Qodana inspections are accessible within the project on two levels:
 
 - using the [Qodana IntelliJ GitHub Action][docs:qodana-github-action], run automatically within the [Build](.github/workflows/build.yml) workflow,
-- with the [Gradle Qodana Plugin][gh:gradle-qodana-plugin], so you can use in on the local environment or on any CI other than GitHub Actions.
+- with the [Gradle Qodana Plugin][gh:gradle-qodana-plugin], so you can use it on the local environment or any CI other than GitHub Actions.
 
-Qodana inspection can be run with the `runInspections` Gradle task, which is configured with the `qodana { ... }` section in the Gradle build file, and [`qodana.yml`][file:qodana.yml] YAML configuration file.
+Qodana inspection is configured with the `qodana { ... }` section in the Gradle build file, and [`qodana.yml`][file:qodana.yml] YAML configuration file.
 
 > **NOTE:** Qodana requires Docker to be installed and available in your environment.
 
-If `runInspections` task fails, it means some problems were found and logs or the HTML report should be reviewed to take appropriate steps.
+To run inspections, you can use a predefined *Run Qodana* configuration, which will provide a full report on `http://localhost:8080`, or invoke the Gradle task directly with the `./gradlew runInspections` command.
+
+A final report is available in the `./build/reports/inspections/` directory.
+
+![Qodana][file:qodana.png]
 
 
 ## Predefined Run/Debug configurations
@@ -446,6 +450,7 @@ If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, 
 [file:template_cleanup.yml]: ./.github/workflows/template-cleanup.yml
 [file:intellij-platform-plugin-template.png]: ./.github/readme/intellij-platform-plugin-template.png
 [file:qodana.yml]: ./qodana.yml
+[file:qodana.png]: .github/readme/qodana.png
 
 [gh:actions]: https://help.github.com/en/actions
 [gh:dependabot]: https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/keeping-your-dependencies-updated-automatically
