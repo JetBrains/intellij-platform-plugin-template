@@ -13,7 +13,7 @@ plugins {
     // Gradle Changelog Plugin
     id("org.jetbrains.changelog") version "1.3.0"
     // Gradle Qodana Plugin
-    id("org.jetbrains.qodana") version "0.1.5"
+    id("org.jetbrains.qodana") version "0.1.11"
 }
 
 group = properties("pluginGroup")
@@ -44,7 +44,12 @@ changelog {
 
 // Configure Gradle Qodana Plugin - read more: https://github.com/JetBrains/gradle-qodana-plugin
 qodana {
-//    saveReport.set(true)
+    cachePath.set(projectDir.resolve(".qodana").canonicalPath)
+    reportPath.set(projectDir.resolve("build/reports/inspections").canonicalPath)
+    saveReport.set(true)
+//    showReport.set(System.getenv("QODANA_SHOW_REPORT").toBoolean())
+
+//    projectPath.set("/tmp/intellij-plugin-template")
 }
 
 tasks {
@@ -70,7 +75,7 @@ tasks {
 
         // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
         pluginDescription.set(
-            File(projectDir, "README.md").readText().lines().run {
+            projectDir.resolve("README.md").readText().lines().run {
                 val start = "<!-- Plugin description -->"
                 val end = "<!-- Plugin description end -->"
 

@@ -34,6 +34,7 @@ In this README, we will highlight the following elements of template-project cre
   - listeners – project and dynamic plugin lifecycle
   - services – project-related and application-related services
   - actions – basic action with shortcut binding
+- [Qodana integration](#qodana-integration)
 - [Predefined Run/Debug configurations](#predefined-rundebug-configurations)
 - [Continuous integration](#continuous-integration) based on GitHub Actions
   - [Dependencies management](#dependencies-management) with Dependabot
@@ -159,6 +160,7 @@ A generated IntelliJ Platform Plugin Template repository contains the following 
 ├── gradlew                 *nix Gradle Wrapper binary
 ├── gradlew.bat             Windows Gradle Wrapper binary
 ├── LICENSE                 License, MIT by default
+├── qodana.yml              Qodana configuration file
 ├── README.md               README
 └── settings.gradle.kts     Grade project settings
 ```
@@ -218,19 +220,37 @@ To start with the actual implementation, you may check our [IntelliJ Platform SD
 For those, who value example codes the most, there are also available [IntelliJ SDK Code Samples][gh:code-samples] and [IntelliJ Platform Explorer][jb:ipe] – a search tool for browsing Extension Points inside existing implementations of open-source IntelliJ Platform plugins.
 
 
+## Qodana integration
+
+To increase the project value, the IntelliJ Platform Plugin Template is integrated with [Qodana][docs:qodana], a code quality monitoring platform that allows you to check the condition of your implementation and find any possible problems that may require enhancing.
+
+Qodana brings into your CI/CD pipelines all the smart features you love in the JetBrains IDEs and generates an HTML report with the actual inspection status.
+
+It is integrated within the project on two levels:
+
+- using the [Qodana IntelliJ GitHub Action][docs:qodana-github-action], run automatically within the [Build](.github/workflows/build.yml) workflow,
+- with the [Gradle Qodana Plugin][gh:gradle-qodana-plugin], so you can use in on the local environment or on any CI other than GitHub Actions.
+
+Qodana inspection can be run with the `runInspections` Gradle task, which is configured with the `qodana { ... }` section in the Gradle build file, and [`qodana.yml`][file:qodana.yml] YAML configuration file.
+
+> **NOTE:** Qodana requires Docker to be installed and available in your environment.
+
+If `runInspections` task fails, it means some problems were found and logs or the HTML report should be reviewed to take appropriate steps.
+
+
 ## Predefined Run/Debug configurations
 
 Within the default project structure, there is a `.run` directory provided containing three predefined *Run/Debug configurations* that expose corresponding Gradle tasks:
 
 ![Run/Debug configurations][file:run-debug-configurations.png]
 
-| Configuration name | Description                                                                                                                                                            |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Run Plugin         | Runs [`:runIde`][gh:gradle-intellij-plugin-running-dsl] Gradle IntelliJ Plugin task. Use the *Debug* icon for plugin debugging.                                        |
-| Run Tests          | Runs [`:test`][gradle-lifecycle-tasks] Gradle task.                                                                                                                    |
-| Run Verifications  | Runs [`:runPluginVerifier`][gh:gradle-intellij-plugin-verifier-dsl] Gradle IntelliJ Plugin task to check the plugin compatibility against the specified IntelliJ IDEs. |
-| Publish Plugin     | Runs `signPlugin` and `publishPlugin` Gradle tasks. Check [Environment variables](#environment-variables) section for more details on how to configure it.             |
-
+| Configuration name | Description                                                                                                                                                                   |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Run Plugin         | Runs [`:runIde`][gh:gradle-intellij-plugin-running-dsl] Gradle IntelliJ Plugin task. Use the *Debug* icon for plugin debugging.                                               |
+| Run Tests          | Runs [`:test`][gradle-lifecycle-tasks] Gradle task.                                                                                                                           |
+| Run Qodana         | Runs [`:runInspections`][gh:gradle-qodana-plugin] Gradle Qodana Plugin task. Starts Qodana inspections in a Docker container and serves generated report on `localhost:8080`. |
+| Run Verifications  | Runs [`:runPluginVerifier`][gh:gradle-intellij-plugin-verifier-dsl] Gradle IntelliJ Plugin task to check the plugin compatibility against the specified IntelliJ IDEs.        |
+| Publish Plugin     | Runs `signPlugin` and `publishPlugin` Gradle tasks. Check [Environment variables](#environment-variables) section for more details on how to configure it.                    |
 
 > **TIP:** You can find the logs from the running task in the `idea.log` tab.
 >
@@ -273,7 +293,7 @@ Keeping the project in good shape and having all the dependencies up-to-date req
 
 Dependabot is a bot provided by GitHub for checking the build configuration files and reviewing any outdated or insecure dependencies of yours – in case if any update is available, it creates a new pull request providing [the proper change][gh:dependabot-pr].
 
-> **Note:** Dependabot doesn't yet support checking of the Gradle Wrapper.
+> **NOTE:** Dependabot doesn't yet support checking of the Gradle Wrapper.
 > Check the [Gradle Releases][gradle-releases] page and update your `gradle.properties` file with:
 > ```properties
 > gradleVersion = 7.2
@@ -412,6 +432,8 @@ If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, 
 [docs:release-channel]: https://plugins.jetbrains.com/docs/intellij/deployment.html?from=IJPluginTemplate#specifying-a-release-channel
 [docs:using-gradle]: https://plugins.jetbrains.com/docs/intellij/gradle-build-system.html?from=IJPluginTemplate
 [docs:plugin-signing]: https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate
+[docs:qodana]: https://www.jetbrains.com/help/qodana
+[docs:qodana-github-action]: https://www.jetbrains.com/help/qodana/qodana-intellij-github-action.html
 
 [file:use-this-template.png]: .github/readme/use-this-template.png
 [file:draft-release.png]: .github/readme/draft-release.png
@@ -423,11 +445,13 @@ If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, 
 [file:run-debug-env.png]: .github/readme/run-debug-env.png
 [file:template_cleanup.yml]: ./.github/workflows/template-cleanup.yml
 [file:intellij-platform-plugin-template.png]: ./.github/readme/intellij-platform-plugin-template.png
+[file:qodana.yml]: ./qodana.yml
 
 [gh:actions]: https://help.github.com/en/actions
 [gh:dependabot]: https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/keeping-your-dependencies-updated-automatically
 [gh:code-samples]: https://github.com/JetBrains/intellij-sdk-code-samples
 [gh:gradle-changelog-plugin]: https://github.com/JetBrains/gradle-changelog-plugin
+[gh:gradle-qodana-plugin]: https://github.com/JetBrains/gradle-qodana-plugin
 [gh:gradle-intellij-plugin]: https://github.com/JetBrains/gradle-intellij-plugin
 [gh:gradle-intellij-plugin-running-dsl]: https://github.com/JetBrains/gradle-intellij-plugin#running-dsl
 [gh:gradle-intellij-plugin-verifier-dsl]: https://github.com/JetBrains/gradle-intellij-plugin#plugin-verifier-dsl
