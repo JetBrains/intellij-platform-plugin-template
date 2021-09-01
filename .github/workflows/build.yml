@@ -74,14 +74,22 @@ jobs:
           path: ${{ steps.properties.outputs.pluginVerifierHomeDir }}/ides
           key: ${{ runner.os }}-plugin-verifier-${{ steps.properties.outputs.ideVersions }}
 
+      # Cache Qodana Inspections
+      - name: Setup Qodana Inspections Cache
+        uses: actions/cache@v2.1.6
+        with:
+          path: ./.qodana
+          key: qodana-inspections-${{ hashFiles('build.gradle.kts', 'gradle.properties', 'qodana.yml') }}
+
       # Run Qodana inspections
       - name: Run Qodana Inspections
         run: |
           ./gradlew runInspections
           echo $(!!) | grep -cv "Problems reported: 0"
 
+      # Collect Qodana
       - name: Collect Qodana Inspections Results
-        if: ${{ failure() }}
+        if: ${{ always() }}
         uses: actions/upload-artifact@v2
         with:
           name: qodana-inspections-result
