@@ -144,8 +144,8 @@ A generated IntelliJ Platform Plugin Template repository contains the following 
 
 ```
 .
-├── .github                 GitHub Actions workflows and Dependabot configuration files
-├── .run                    Predefined Run/Debug Configurations
+├── .github/                GitHub Actions workflows and Dependabot configuration files
+├── .run/                   Predefined Run/Debug Configurations
 ├── gradle
 │   └── wrapper/            Gradle Wrapper
 ├── build/                  Output build directory
@@ -155,7 +155,7 @@ A generated IntelliJ Platform Plugin Template repository contains the following 
 │       └── resources/      Resources - plugin.xml, icons, messages
 ├── .gitignore              Git ignoring rules
 ├── build.gradle.kts        Gradle configuration
-├── CHANGELOG.md            Full change history.
+├── CHANGELOG.md            Full change history
 ├── gradle.properties       Gradle configuration properties
 ├── gradlew                 *nix Gradle Wrapper binary
 ├── gradlew.bat             Windows Gradle Wrapper binary
