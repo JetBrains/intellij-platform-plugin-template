@@ -223,7 +223,7 @@ The IntelliJ Platform Plugin Template project provides examples of two testing a
 Most of the IntelliJ Platform codebase tests are model-level, run in a headless environment using an actual IDE instance.
 The tests usually test a feature as a whole rather than individual functions that comprise its implementation, like in unit tests.
 
-In `src/test/kotlin`, you'll find a basic test that utilizes `BasePlatformTestCase` and runs a few checks against the XML files to indicate an example operation of creating files on the fly or reading them from `src/test/resources/rename` test resources.
+In `src/test/kotlin`, you'll find a basic `MyPluginTest` test that utilizes `BasePlatformTestCase` and runs a few checks against the XML files to indicate an example operation of creating files on the fly or reading them from `src/test/resources/rename` test resources.
 
 > **TIP:** Run your tests using predefined *Run Tests* configuration or by invoking the `./gradlew test` Gradle task.
 
@@ -237,7 +237,7 @@ Once IDE with `robot-server` has started, you can open the `http://localhost:808
 
 > **TIP:** Run IDE for UI tests using predefined *Run IDE for UI Tests* and then *Run Tests* configurations or by invoking the `./gradlew runIdeForUiTests` and `./gradlew tests` Gradle tasks.
 
-![UI Testing][file:ui-testing.png]
+Check the UI Test Example project you can use as a reference for setting up UI testing in your plugin: [intellij-ui-test-robot/ui-test-example][gh:ui-test-example].
 
 ```kotlin
 class MyUITest {
@@ -246,9 +246,12 @@ class MyUITest {
     fun openAboutFromWelcomeScreen() {
         val robot = RemoteRobot("http://127.0.0.1:8082")
         robot.find<ComponentFixture>(byXpath("//div[@myactionlink = 'gearHover.svg']")).click()
+        // ...
     }
 }
 ```
+
+![UI Testing][file:ui-testing.png]
 
 
 ## Qodana integration
@@ -497,6 +500,7 @@ If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, 
 [gh:build]: https://github.com/JetBrains/intellij-platform-plugin-template/actions?query=workflow%3ABuild
 [gh:dependabot-pr]: https://github.com/JetBrains/intellij-platform-plugin-template/pull/73
 [gh:intellij-ui-test-robot]: https://github.com/JetBrains/intellij-ui-test-robot
+[gh:ui-test-example]: https://github.com/JetBrains/intellij-ui-test-robot/tree/master/ui-test-example
 
 [jb:confluence-on-gh]: https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub
 [jb:download-ij]: https://www.jetbrains.com/idea/download

@@ -22,13 +22,6 @@ version = properties("pluginVersion")
 // Configure project's dependencies
 repositories {
     mavenCentral()
-    maven("https://packages.jetbrains.team/maven/p/ij/intellij-dependencies") // TODO: Remove when published to MavenCentral
-}
-
-dependencies {
-    testImplementation("com.intellij.remoterobot:remote-robot:0.11.6")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.2")
-    testRuntimeOnly ("org.junit.jupiter:junit-jupiter-engine:5.7.2")
 }
 
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
