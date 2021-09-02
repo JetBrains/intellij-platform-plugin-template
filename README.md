@@ -128,18 +128,6 @@ To configure GitHub secret environment variables, go to the `⚙️ Settings > S
 
 ![Settings > Secrets][file:settings-secrets.png]
 
-There's a `Publish Plugin` preconfigured *Run/Debug Configuration* available within the project, so you can also run the publishing flow from your local environment.
-To provide all required secrets, go to the `Publish Plugin` settings and edit the `Environment variables` section:
-
-![Settings > Secrets][file:run-debug-env.png]
-
-> **IMPORTANT:**
-> Git tracks changes in the `Publish Plugin` configuration file.
-> To ignore changes (tokens, certificates), run:
-> ```bash
-> git update-index --assume-unchanged ".run/Publish Plugin.run.xml"
-> ```
-
 ## Plugin template structure
 
 A generated IntelliJ Platform Plugin Template repository contains the following content structure:
@@ -157,7 +145,7 @@ A generated IntelliJ Platform Plugin Template repository contains the following 
 │       └── resources/      Resources - plugin.xml, icons, messages
 │   └── test
 │       ├── kotlin/         Kotlin test files
-│       └── resources/      Resources used by tests
+│       └── testData/       Test data used by tests
 ├── .gitignore              Git ignoring rules
 ├── build.gradle.kts        Gradle configuration
 ├── CHANGELOG.md            Full change history.
@@ -235,21 +223,15 @@ The IntelliJ Platform Plugin Template project provides examples of two testing a
 Most of the IntelliJ Platform codebase tests are model-level, run in a headless environment using an actual IDE instance.
 The tests usually test a feature as a whole rather than individual functions that comprise its implementation, like in unit tests.
 
-Depending on the feature type and its execution time, there are two types of tests available in the IntelliJ Platform test framework:
-- heavy tests – each test runs in a new project,
-- light tests – all tests share the same project for running.
-
-Check the [Light and Heavy Tests][docs:light-and-heavy-tests] documentation section for more information.
-
 In `src/test/kotlin`, you'll find a basic test that utilizes `BasePlatformTestCase` and runs a few checks against the XML files to indicate an example operation of creating files on the fly or reading them from `src/test/resources/rename` test resources.
 
 > **TIP:** Run your tests using predefined *Run Tests* configuration or by invoking the `./gradlew test` Gradle task.
 
 ### UI tests
 
-If your plugin provides custom user interfaces, you should consider covering them with tests and the functionality they utilize.
+If your plugin provides complex user interfaces, you should consider covering them with tests and the functionality they utilize.
 
-[IntelliJ UI Test Robot][gh:intellij-ui-test-robot] allows you to write and execute UI tests within the IntelliJ IDEA running instance.
+[IntelliJ UI Test Robot][gh:intellij-ui-test-robot] allows you to write and execute UI tests within the IntelliJ IDE running instance.
 You can use the [XPath query language][xpath] to find components in the currently available IDE view.
 Once IDE with `robot-server` has started, you can open the `http://localhost:8082` page that presents the currently available IDEA UI components hierarchy in HTML format and use a simple `XPath` generator, which can help test your plugin's interface.
 
@@ -297,13 +279,13 @@ Within the default project structure, there is a `.run` directory provided conta
 
 ![Run/Debug configurations][file:run-debug-configurations.png]
 
-| Configuration name | Description                                                                                                                                                                   |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Run Plugin         | Runs [`:runIde`][gh:gradle-intellij-plugin-running-dsl] Gradle IntelliJ Plugin task. Use the *Debug* icon for plugin debugging.                                               |
-| Run Tests          | Runs [`:test`][gradle-lifecycle-tasks] Gradle task.                                                                                                                           |
-| Run Qodana         | Runs [`:runInspections`][gh:gradle-qodana-plugin] Gradle Qodana Plugin task. Starts Qodana inspections in a Docker container and serves generated report on `localhost:8080`. |
-| Run Verifications  | Runs [`:runPluginVerifier`][gh:gradle-intellij-plugin-verifier-dsl] Gradle IntelliJ Plugin task to check the plugin compatibility against the specified IntelliJ IDEs.        |
-| Publish Plugin     | Runs `signPlugin` and `publishPlugin` Gradle tasks. Check [Environment variables](#environment-variables) section for more details on how to configure it.                    |
+| Configuration name   | Description                                                                                                                                                                   |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Run Plugin           | Runs [`:runIde`][gh:gradle-intellij-plugin-running-dsl] Gradle IntelliJ Plugin task. Use the *Debug* icon for plugin debugging.                                               |
+| Run Verifications    | Runs [`:runPluginVerifier`][gh:gradle-intellij-plugin-verifier-dsl] Gradle IntelliJ Plugin task to check the plugin compatibility against the specified IntelliJ IDEs.        |
+| Run Qodana           | Runs [`:runInspections`][gh:gradle-qodana-plugin] Gradle Qodana Plugin task. Starts Qodana inspections in a Docker container and serves generated report on `localhost:8080`. |
+| Run Tests            | Runs [`:test`][gradle-lifecycle-tasks] Gradle task.                                                                                                                           |
+| Run IDE for UI Tests | Runs [`:runIdeForUiTests`][gh:intellij-ui-test-robot] Gradle IntelliJ Plugin task to allows for running UI tests within the IntelliJ IDE running instance.                    |
 
 > **TIP:** You can find the logs from the running task in the `idea.log` tab.
 >
@@ -486,7 +468,6 @@ If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, 
 [docs:using-gradle]: https://plugins.jetbrains.com/docs/intellij/gradle-build-system.html?from=IJPluginTemplate
 [docs:plugin-signing]: https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate
 [docs:testing-plugins]: https://plugins.jetbrains.com/docs/intellij/testing-plugins.html
-[docs:light-and-heavy-tests]: https://plugins.jetbrains.com/docs/intellij/light-and-heavy-tests.html
 [docs:qodana]: https://www.jetbrains.com/help/qodana
 [docs:qodana-github-action]: https://www.jetbrains.com/help/qodana/qodana-intellij-github-action.html
 

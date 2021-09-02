@@ -8,7 +8,6 @@
 - Qodana integration
 - Functional tests
 - UI tests
-- `Publish Plugin` run configuration
 - `Run Qodana` run configuration
 - Suppress `UnusedProperty` inspection for the `kotlin.stdlib.default.dependency` in `gradle.properties`
 - Use Gradle `wrapper` task to handle Gradle updates

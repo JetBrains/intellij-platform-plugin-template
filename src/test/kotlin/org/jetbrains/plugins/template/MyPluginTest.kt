@@ -22,7 +22,7 @@ class MyPluginTest : BasePlatformTestCase() {
         }
     }
 
-    override fun getTestDataPath() = "src/test/resources/rename"
+    override fun getTestDataPath() = "src/test/testData/rename"
 
     fun `test renaming XML tag`() {
         myFixture.testRename("foo.xml", "foo_after.xml", "a2")
