@@ -28,12 +28,14 @@ In this README, we will highlight the following elements of template-project cre
 - [Getting started](#getting-started)
 - [Gradle configuration](#gradle-configuration)
 - [Plugin template structure](#plugin-template-structure)
-  - [Dependency on the Kotlin standard library](#dependency-on-the-kotlin-standard-library)
 - [Plugin configuration file](#plugin-configuration-file)
 - [Sample code](#sample-code):
   - listeners – project and dynamic plugin lifecycle
   - services – project-related and application-related services
   - actions – basic action with shortcut binding
+- [Testing](#testing)
+  - [Functional tests](#functional-tests)
+  - [UI tests](#ui-tests)
 - [Qodana integration](#qodana-integration)
 - [Predefined Run/Debug configurations](#predefined-rundebug-configurations)
 - [Continuous integration](#continuous-integration) based on GitHub Actions
@@ -126,18 +128,6 @@ To configure GitHub secret environment variables, go to the `⚙️ Settings > S
 
 ![Settings > Secrets][file:settings-secrets.png]
 
-There's a `Publish Plugin` preconfigured *Run/Debug Configuration* available within the project, so you can also run the publishing flow from your local environment.
-To provide all required secrets, go to the `Publish Plugin` settings and edit the `Environment variables` section:
-
-![Settings > Secrets][file:run-debug-env.png]
-
-> **IMPORTANT:**
-> Git tracks changes in the `Publish Plugin` configuration file.
-> To ignore changes (tokens, certificates), run:
-> ```bash
-> git update-index --assume-unchanged ".run/Publish Plugin.run.xml"
-> ```
-
 ## Plugin template structure
 
 A generated IntelliJ Platform Plugin Template repository contains the following content structure:
@@ -153,6 +143,9 @@ A generated IntelliJ Platform Plugin Template repository contains the following 
 │   └── main
 │       ├── kotlin/         Kotlin source files
 │       └── resources/      Resources - plugin.xml, icons, messages
+│   └── test
+│       ├── kotlin/         Kotlin test files
+│       └── testData/       Test data used by tests
 ├── .gitignore              Git ignoring rules
 ├── build.gradle.kts        Gradle configuration
 ├── CHANGELOG.md            Full change history
@@ -220,6 +213,47 @@ To start with the actual implementation, you may check our [IntelliJ Platform SD
 For those, who value example codes the most, there are also available [IntelliJ SDK Code Samples][gh:code-samples] and [IntelliJ Platform Explorer][jb:ipe] – a search tool for browsing Extension Points inside existing implementations of open-source IntelliJ Platform plugins.
 
 
+## Testing
+
+[Testing plugins][docs:testing-plugins] is an essential part of the plugin development for the IntelliJ-based IDEs to make sure that everything works as expected between IDE releases and plugin refactorings.
+The IntelliJ Platform Plugin Template project provides examples of two testing approaches – functional and UI tests.
+
+### Functional tests
+
+Most of the IntelliJ Platform codebase tests are model-level, run in a headless environment using an actual IDE instance.
+The tests usually test a feature as a whole rather than individual functions that comprise its implementation, like in unit tests.
+
+In `src/test/kotlin`, you'll find a basic `MyPluginTest` test that utilizes `BasePlatformTestCase` and runs a few checks against the XML files to indicate an example operation of creating files on the fly or reading them from `src/test/resources/rename` test resources.
+
+> **TIP:** Run your tests using predefined *Run Tests* configuration or by invoking the `./gradlew test` Gradle task.
+
+### UI tests
+
+If your plugin provides complex user interfaces, you should consider covering them with tests and the functionality they utilize.
+
+[IntelliJ UI Test Robot][gh:intellij-ui-test-robot] allows you to write and execute UI tests within the IntelliJ IDE running instance.
+You can use the [XPath query language][xpath] to find components in the currently available IDE view.
+Once IDE with `robot-server` has started, you can open the `http://localhost:8082` page that presents the currently available IDEA UI components hierarchy in HTML format and use a simple `XPath` generator, which can help test your plugin's interface.
+
+> **TIP:** Run IDE for UI tests using predefined *Run IDE for UI Tests* and then *Run Tests* configurations or by invoking the `./gradlew runIdeForUiTests` and `./gradlew tests` Gradle tasks.
+
+Check the UI Test Example project you can use as a reference for setting up UI testing in your plugin: [intellij-ui-test-robot/ui-test-example][gh:ui-test-example].
+
+```kotlin
+class MyUITest {
+
+    @Test
+    fun openAboutFromWelcomeScreen() {
+        val robot = RemoteRobot("http://127.0.0.1:8082")
+        robot.find<ComponentFixture>(byXpath("//div[@myactionlink = 'gearHover.svg']")).click()
+        // ...
+    }
+}
+```
+
+![UI Testing][file:ui-testing.png]
+
+
 ## Qodana integration
 
 To increase the project value, the IntelliJ Platform Plugin Template got integrated with [Qodana][docs:qodana], a code quality monitoring platform that allows you to check the condition of your implementation and find any possible problems that may require enhancing.
@@ -244,17 +278,17 @@ A final report is available in the `./build/reports/inspections/` directory.
 
 ## Predefined Run/Debug configurations
 
-Within the default project structure, there is a `.run` directory provided containing three predefined *Run/Debug configurations* that expose corresponding Gradle tasks:
+Within the default project structure, there is a `.run` directory provided containing predefined *Run/Debug configurations* that expose corresponding Gradle tasks:
 
 ![Run/Debug configurations][file:run-debug-configurations.png]
 
-| Configuration name | Description                                                                                                                                                                   |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Run Plugin         | Runs [`:runIde`][gh:gradle-intellij-plugin-running-dsl] Gradle IntelliJ Plugin task. Use the *Debug* icon for plugin debugging.                                               |
-| Run Tests          | Runs [`:test`][gradle-lifecycle-tasks] Gradle task.                                                                                                                           |
-| Run Qodana         | Runs [`:runInspections`][gh:gradle-qodana-plugin] Gradle Qodana Plugin task. Starts Qodana inspections in a Docker container and serves generated report on `localhost:8080`. |
-| Run Verifications  | Runs [`:runPluginVerifier`][gh:gradle-intellij-plugin-verifier-dsl] Gradle IntelliJ Plugin task to check the plugin compatibility against the specified IntelliJ IDEs.        |
-| Publish Plugin     | Runs `signPlugin` and `publishPlugin` Gradle tasks. Check [Environment variables](#environment-variables) section for more details on how to configure it.                    |
+| Configuration name   | Description                                                                                                                                                                   |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Run Plugin           | Runs [`:runIde`][gh:gradle-intellij-plugin-running-dsl] Gradle IntelliJ Plugin task. Use the *Debug* icon for plugin debugging.                                               |
+| Run Verifications    | Runs [`:runPluginVerifier`][gh:gradle-intellij-plugin-verifier-dsl] Gradle IntelliJ Plugin task to check the plugin compatibility against the specified IntelliJ IDEs.        |
+| Run Qodana           | Runs [`:runInspections`][gh:gradle-qodana-plugin] Gradle Qodana Plugin task. Starts Qodana inspections in a Docker container and serves generated report on `localhost:8080`. |
+| Run Tests            | Runs [`:test`][gradle-lifecycle-tasks] Gradle task.                                                                                                                           |
+| Run IDE for UI Tests | Runs [`:runIdeForUiTests`][gh:intellij-ui-test-robot] Gradle IntelliJ Plugin task to allows for running UI tests within the IntelliJ IDE running instance.                    |
 
 > **TIP:** You can find the logs from the running task in the `idea.log` tab.
 >
@@ -436,6 +470,7 @@ If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, 
 [docs:release-channel]: https://plugins.jetbrains.com/docs/intellij/deployment.html?from=IJPluginTemplate#specifying-a-release-channel
 [docs:using-gradle]: https://plugins.jetbrains.com/docs/intellij/gradle-build-system.html?from=IJPluginTemplate
 [docs:plugin-signing]: https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate
+[docs:testing-plugins]: https://plugins.jetbrains.com/docs/intellij/testing-plugins.html
 [docs:qodana]: https://www.jetbrains.com/help/qodana
 [docs:qodana-github-action]: https://www.jetbrains.com/help/qodana/qodana-intellij-github-action.html
 
@@ -449,6 +484,7 @@ If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, 
 [file:run-debug-env.png]: .github/readme/run-debug-env.png
 [file:template_cleanup.yml]: ./.github/workflows/template-cleanup.yml
 [file:intellij-platform-plugin-template.png]: ./.github/readme/intellij-platform-plugin-template.png
+[file:ui-testing.png]: ./.github/readme/ui-testing.png
 [file:qodana.yml]: ./qodana.yml
 [file:qodana.png]: .github/readme/qodana.png
 
@@ -463,6 +499,8 @@ If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, 
 [gh:releases]: https://github.com/JetBrains/intellij-platform-plugin-template/releases
 [gh:build]: https://github.com/JetBrains/intellij-platform-plugin-template/actions?query=workflow%3ABuild
 [gh:dependabot-pr]: https://github.com/JetBrains/intellij-platform-plugin-template/pull/73
+[gh:intellij-ui-test-robot]: https://github.com/JetBrains/intellij-ui-test-robot
+[gh:ui-test-example]: https://github.com/JetBrains/intellij-ui-test-robot/tree/master/ui-test-example
 
 [jb:confluence-on-gh]: https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub
 [jb:download-ij]: https://www.jetbrains.com/idea/download
@@ -483,3 +521,4 @@ If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, 
 [gradle-kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
 [gradle-lifecycle-tasks]: https://docs.gradle.org/current/userguide/java_plugin.html#lifecycle_tasks
 [kotlin-for-plugin-developers]: https://plugins.jetbrains.com/docs/intellij/kotlin.html#adding-kotlin-support
+[xpath]: https://www.w3.org/TR/xpath-21/
