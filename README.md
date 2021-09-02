@@ -162,7 +162,7 @@ A generated IntelliJ Platform Plugin Template repository contains the following 
 ├── LICENSE                 License, MIT by default
 ├── qodana.yml              Qodana configuration file
 ├── README.md               README
-└── settings.gradle.kts     Grade project settings
+└── settings.gradle.kts     Gradle project settings
 ```
 
 In addition to the configuration files, the most crucial part is the `src` directory, which contains our implementation and the manifest for our plugin – [plugin.xml][file:plugin.xml].
