@@ -2,21 +2,22 @@ package org.jetbrains.plugins.template
 
 import com.intellij.ide.highlighter.XmlFileType
 import com.intellij.psi.xml.XmlFile
+import com.intellij.testFramework.TestDataPath
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import com.intellij.util.PsiErrorElementUtil
 
+@TestDataPath("$PROJECT_ROOT/src/test/testData/rename")
 class MyPluginTest : BasePlatformTestCase() {
 
     fun `test created XML file`() {
         val psiFile = myFixture.configureByText(XmlFileType.INSTANCE, "<foo>bar</foo>")
-        assertInstanceOf(psiFile, XmlFile::class.java)
+        val xmlFile = assertInstanceOf(psiFile, XmlFile::class.java)
 
-        assertFalse(PsiErrorElementUtil.hasErrors(project, psiFile.virtualFile))
+        assertFalse(PsiErrorElementUtil.hasErrors(project, xmlFile.virtualFile))
 
-        psiFile as XmlFile
-        assertNotNull(psiFile.rootTag)
+        assertNotNull(xmlFile.rootTag)
 
-        psiFile.rootTag?.let {
+        xmlFile.rootTag?.let {
             assertEquals("foo", it.name)
             assertEquals("bar", it.value.text)
         }
