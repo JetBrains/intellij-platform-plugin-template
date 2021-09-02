@@ -44,13 +44,12 @@ jobs:
           find src -type f -exec sed -i "s/Template/$NAME/g" {} +
           find src -type f -exec sed -i "s/JetBrains/$ACTOR/g" {} +
 
-          # Remove lines marked with #REMOVE-ON-CLEANUP#
-          find . -type f -exec sed -i '/#REMOVE-ON-CLEANUP#/d' {} +
-
           # Move content
           mkdir -p src/main/kotlin/${GROUP//.//}
+          mkdir -p src/test/kotlin/${GROUP//.//}
           cp -R .github/template-cleanup/* .
           cp -R src/main/kotlin/org/jetbrains/plugins/template/* src/main/kotlin/${GROUP//.//}/
+          cp -R src/test/kotlin/org/jetbrains/plugins/template/* src/test/kotlin/${GROUP//.//}/
 
           # Cleanup
           rm -rf \
@@ -59,6 +58,7 @@ jobs:
             .github/workflows/template-cleanup.yml \
             .idea/icon.png \
             src/main/kotlin/org \
+            src/test/kotlin/org \
             CODE_OF_CONDUCT.md \
             LICENSE
 
