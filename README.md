@@ -28,12 +28,14 @@ In this README, we will highlight the following elements of template-project cre
 - [Getting started](#getting-started)
 - [Gradle configuration](#gradle-configuration)
 - [Plugin template structure](#plugin-template-structure)
-  - [Dependency on the Kotlin standard library](#dependency-on-the-kotlin-standard-library)
 - [Plugin configuration file](#plugin-configuration-file)
 - [Sample code](#sample-code):
   - listeners – project and dynamic plugin lifecycle
   - services – project-related and application-related services
   - actions – basic action with shortcut binding
+- [Testing](#testing)
+  - [Functional tests](#functional-tests)
+  - [UI tests](#ui-tests)
 - [Qodana integration](#qodana-integration)
 - [Predefined Run/Debug configurations](#predefined-rundebug-configurations)
 - [Continuous integration](#continuous-integration) based on GitHub Actions
@@ -153,6 +155,9 @@ A generated IntelliJ Platform Plugin Template repository contains the following 
 │   └── main
 │       ├── kotlin/         Kotlin source files
 │       └── resources/      Resources - plugin.xml, icons, messages
+│   └── test
+│       ├── kotlin/         Kotlin test files
+│       └── resources/      Resources used by tests
 ├── .gitignore              Git ignoring rules
 ├── build.gradle.kts        Gradle configuration
 ├── CHANGELOG.md            Full change history.
@@ -218,6 +223,31 @@ So if you decide to use Java instead (or in addition to Kotlin), these sources s
 To start with the actual implementation, you may check our [IntelliJ Platform SDK DevGuide][docs], which contains an introduction to the essential areas of the plugin development together with dedicated tutorials.
 
 For those, who value example codes the most, there are also available [IntelliJ SDK Code Samples][gh:code-samples] and [IntelliJ Platform Explorer][jb:ipe] – a search tool for browsing Extension Points inside existing implementations of open-source IntelliJ Platform plugins.
+
+
+## Testing
+
+[Testing plugins][docs:testing-plugins] is an essential part of the plugin development for the IntelliJ-based IDEs to make sure that everything works as expected between IDE releases and plugin refactorings.
+The IntelliJ Platform Plugin Template project provides examples of two testing approaches – functional and UI tests.
+
+### Functional tests
+
+Most of the IntelliJ Platform codebase tests are model-level, run in a headless environment using an actual IDE instance.
+The tests usually test a feature as a whole rather than individual functions that comprise its implementation, like in unit tests.
+
+Depending on the feature type and its execution time, there are two types of tests available in the IntelliJ Platform test framework:
+- heavy tests – each test runs in a new project,
+- light tests – all tests share the same project for running.
+
+Check the [Light and Heavy Tests][docs:light-and-heavy-tests] documentation section for more information.
+
+In `src/test/kotlin`, you'll find a basic test that utilizes `BasePlatformTestCase` and runs a few checks against the XML files to indicate an example operation of creating files on the fly or reading them from `src/test/resources/rename` test resources.
+
+> **TIP:** Run your tests using predefined *Run Tests* configuration or by invoking the `./gradlew test` Gradle task.
+
+### UI tests
+
+TBD
 
 
 ## Qodana integration
@@ -436,6 +466,8 @@ If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, 
 [docs:release-channel]: https://plugins.jetbrains.com/docs/intellij/deployment.html?from=IJPluginTemplate#specifying-a-release-channel
 [docs:using-gradle]: https://plugins.jetbrains.com/docs/intellij/gradle-build-system.html?from=IJPluginTemplate
 [docs:plugin-signing]: https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate
+[docs:testing-plugins]: https://plugins.jetbrains.com/docs/intellij/testing-plugins.html
+[docs:light-and-heavy-tests]: https://plugins.jetbrains.com/docs/intellij/light-and-heavy-tests.html
 [docs:qodana]: https://www.jetbrains.com/help/qodana
 [docs:qodana-github-action]: https://www.jetbrains.com/help/qodana/qodana-intellij-github-action.html
 

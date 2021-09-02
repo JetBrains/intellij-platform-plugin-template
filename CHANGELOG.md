@@ -5,11 +5,14 @@
 ## [Unreleased]
 ### Added
 - Plugin Signing run configuration
-- GitHub Actions: UI Tests workflow
+- Qodana integration
+- Functional tests
+- UI tests
+- `Publish Plugin` run configuration
+- `Run Qodana` run configuration
 - Suppress `UnusedProperty` inspection for the `kotlin.stdlib.default.dependency` in `gradle.properties`
 - Use Gradle `wrapper` task to handle Gradle updates
 - JVM compatibility version extracted to `gradle.properties` file
-- `Publish Plugin` run configuration
 
 ### Changed
 - GitHub Actions: Use Java 11
