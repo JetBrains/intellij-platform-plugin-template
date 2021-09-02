@@ -247,7 +247,26 @@ In `src/test/kotlin`, you'll find a basic test that utilizes `BasePlatformTestCa
 
 ### UI tests
 
-TBD
+If your plugin provides custom user interfaces, you should consider covering them with tests and the functionality they utilize.
+
+[IntelliJ UI Test Robot][gh:intellij-ui-test-robot] allows you to write and execute UI tests within the IntelliJ IDEA running instance.
+You can use the [XPath query language][xpath] to find components in the currently available IDE view.
+Once IDE with `robot-server` has started, you can open the `http://localhost:8082` page that presents the currently available IDEA UI components hierarchy in HTML format and use a simple `XPath` generator, which can help test your plugin's interface.
+
+> **TIP:** Run IDE for UI tests using predefined *Run IDE for UI Tests* and then *Run Tests* configurations or by invoking the `./gradlew runIdeForUiTests` and `./gradlew tests` Gradle tasks.
+
+![UI Testing][file:ui-testing.png]
+
+```kotlin
+class MyUITest {
+
+    @Test
+    fun openAboutFromWelcomeScreen() {
+        val robot = RemoteRobot("http://127.0.0.1:8082")
+        robot.find<ComponentFixture>(byXpath("//div[@myactionlink = 'gearHover.svg']")).click()
+    }
+}
+```
 
 
 ## Qodana integration
@@ -481,6 +500,7 @@ If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, 
 [file:run-debug-env.png]: .github/readme/run-debug-env.png
 [file:template_cleanup.yml]: ./.github/workflows/template-cleanup.yml
 [file:intellij-platform-plugin-template.png]: ./.github/readme/intellij-platform-plugin-template.png
+[file:ui-testing.png]: ./.github/readme/ui-testing.png
 [file:qodana.yml]: ./qodana.yml
 [file:qodana.png]: .github/readme/qodana.png
 
@@ -495,6 +515,7 @@ If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, 
 [gh:releases]: https://github.com/JetBrains/intellij-platform-plugin-template/releases
 [gh:build]: https://github.com/JetBrains/intellij-platform-plugin-template/actions?query=workflow%3ABuild
 [gh:dependabot-pr]: https://github.com/JetBrains/intellij-platform-plugin-template/pull/73
+[gh:intellij-ui-test-robot]: https://github.com/JetBrains/intellij-ui-test-robot
 
 [jb:confluence-on-gh]: https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub
 [jb:download-ij]: https://www.jetbrains.com/idea/download
@@ -515,3 +536,4 @@ If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, 
 [gradle-kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
 [gradle-lifecycle-tasks]: https://docs.gradle.org/current/userguide/java_plugin.html#lifecycle_tasks
 [kotlin-for-plugin-developers]: https://plugins.jetbrains.com/docs/intellij/kotlin.html#adding-kotlin-support
+[xpath]: https://www.w3.org/TR/xpath-21/
