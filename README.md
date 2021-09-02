@@ -278,7 +278,7 @@ A final report is available in the `./build/reports/inspections/` directory.
 
 ## Predefined Run/Debug configurations
 
-Within the default project structure, there is a `.run` directory provided containing three predefined *Run/Debug configurations* that expose corresponding Gradle tasks:
+Within the default project structure, there is a `.run` directory provided containing predefined *Run/Debug configurations* that expose corresponding Gradle tasks:
 
 ![Run/Debug configurations][file:run-debug-configurations.png]
 
