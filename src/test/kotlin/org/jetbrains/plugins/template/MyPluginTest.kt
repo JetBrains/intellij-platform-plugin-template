@@ -6,10 +6,10 @@ import com.intellij.testFramework.TestDataPath
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import com.intellij.util.PsiErrorElementUtil
 
-@TestDataPath("$PROJECT_ROOT/src/test/testData/rename")
+@TestDataPath("\$PROJECT_ROOT/src/test/testData")
 class MyPluginTest : BasePlatformTestCase() {
 
-    fun `test created XML file`() {
+    fun testXMLFile() {
         val psiFile = myFixture.configureByText(XmlFileType.INSTANCE, "<foo>bar</foo>")
         val xmlFile = assertInstanceOf(psiFile, XmlFile::class.java)
 
@@ -25,7 +25,7 @@ class MyPluginTest : BasePlatformTestCase() {
 
     override fun getTestDataPath() = "src/test/testData/rename"
 
-    fun `test renaming XML tag`() {
+    fun testRename() {
         myFixture.testRename("foo.xml", "foo_after.xml", "a2")
     }
 }
