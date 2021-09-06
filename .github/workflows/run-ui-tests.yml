@@ -54,3 +54,7 @@ jobs:
           url: http://127.0.0.1:8082
           max-attempts: 15
           retry-delay: 30s
+
+      # Run tests
+      - name: Tests
+        run: ./gradlew test

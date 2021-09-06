@@ -253,6 +253,8 @@ class MyUITest {
 
 ![UI Testing][file:ui-testing.png]
 
+A dedicated [Run UI Tests](.github/workflows/release.yml) workflow is available for manual triggering to run UI tests against three different operating systems: macOS, Windows, and Linux.
+Due to its optional nature, this workflow isn't set as an automatic one, but this can be easily achieved by changing the `on` trigger event, like in the [Build](.github/workflows/release.yml) workflow file.
 
 ## Qodana integration
 
@@ -311,10 +313,15 @@ In the `.github/workflows` directory, you can find definitions for the following
   - Prepares a draft release of the GitHub Releases page for manual verification.
 - [Release](.github/workflows/release.yml)
   - Triggered on `released` event.
+  - Updates `CHANGELOG.md` file with the content provided with the release note.
   - Signs the plugin with a provided certificate before publishing.
   - Publishes the plugin to JetBrains Marketplace using the provided `PUBLISH_TOKEN`.
   - Sets publish channel depending on the plugin version, i.e. `1.0.0-beta` -> `beta` channel.
   - Patches the Changelog and commits.
+- [Run UI Tests](.github/workflows/run-ui-tests.yml)
+  - Triggered manually.
+  - Runs for macOS, Windows, and Linux separately.
+  - Runs `runIdeForUiTests` and `test` Gradle tasks.
 - [Template Cleanup](.github/workflows/template-cleanup.yml)
   - Triggered once on the `push` event when a new template-based repository has been created.
   - Overrides the scaffold with files from the `.github/template-cleanup` directory.
@@ -481,7 +488,6 @@ If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, 
 [file:plugin.xml]: ./src/main/resources/META-INF/plugin.xml
 [file:run-debug-configurations.png]: .github/readme/run-debug-configurations.png
 [file:settings-secrets.png]: .github/readme/settings-secrets.png
-[file:run-debug-env.png]: .github/readme/run-debug-env.png
 [file:template_cleanup.yml]: ./.github/workflows/template-cleanup.yml
 [file:intellij-platform-plugin-template.png]: ./.github/readme/intellij-platform-plugin-template.png
 [file:ui-testing.png]: ./.github/readme/ui-testing.png
