@@ -23,7 +23,7 @@
 - Gradle – Changelog plugin configuration update
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.5.21`
 - Dependencies - upgrade `org.jetbrains.changelog` to `1.2.1`
-- Dependencies - upgrade `org.jetbrains.intellij` to `1.1.4`
+- Dependencies - upgrade `org.jetbrains.intellij` to `1.1.6`
 - Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `v2.2.4`
 
 ### Fixed
