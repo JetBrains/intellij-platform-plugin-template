@@ -21,8 +21,8 @@
 - Change since/until build to `203-212.*`
 - Upgrade Gradle Wrapper to `7.2`
 - Gradle – Changelog plugin configuration update
-- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.5.21`
-- Dependencies - upgrade `org.jetbrains.changelog` to `1.2.1`
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.5.30`
+- Dependencies - upgrade `org.jetbrains.changelog` to `1.3.0`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.1.6`
 - Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `v2.2.4`
 
