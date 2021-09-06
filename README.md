@@ -51,7 +51,7 @@ In this README, we will highlight the following elements of template-project cre
 ## Getting started
 
 Before we dive into plugin development and everything related to it, it's worth mentioning the benefits of using GitHub Templates.
-By creating a new project using the current template, you start with no history and no reference to this repository.
+By creating a new project using the current template, you start with no history or reference to this repository.
 This allows you to create a new repository easily without copying and pasting previous content, clone repositories, or clearing the history manually.
 
 All you have to do is click the <kbd>Use this template</kbd> button.
@@ -71,10 +71,10 @@ Then you can get to work implementing your ideas.
 
 The recommended method for plugin development involves using the [Gradle][gradle] setup with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] installed.
 The `gradle-intellij-plugin` makes it possible to run the IDE with your plugin and publish your plugin to JetBrains Marketplace Repository.
-             
+
 > **NOTE:** Make sure to always upgrade to the latest version of `gradle-intellij-plugin`.
 
-A project built using the IntelliJ Platform Plugin Template includes a Gradle configuration that's already been set up.
+A project built using the IntelliJ Platform Plugin Template includes a Gradle configuration already set up.
 Feel free to read through the [Using Gradle][docs:using-gradle] articles to understand your build better and learn how to customize it.
 
 The most significant parts of the current configuration are:
@@ -170,19 +170,19 @@ It provides general information about the plugin, its dependencies, extensions, 
 
 ```xml
 <idea-plugin>
-    <id>org.jetbrains.plugins.template</id>
-    <name>Template</name>
-    <vendor>JetBrains</vendor>
-    <depends>com.intellij.modules.platform</depends>
+  <id>org.jetbrains.plugins.template</id>
+  <name>Template</name>
+  <vendor>JetBrains</vendor>
+  <depends>com.intellij.modules.platform</depends>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="..."/>
-        <projectService serviceImplementation="..."/>
-    </extensions>
+  <extensions defaultExtensionNs="com.intellij">
+    <applicationService serviceImplementation="..."/>
+    <projectService serviceImplementation="..."/>
+  </extensions>
 
-    <projectListeners>
-        <listener class="..." topic="..."/>
-    </projectListeners>
+  <projectListeners>
+    <listener class="..." topic="..."/>
+  </projectListeners>
 </idea-plugin>
 ```
 
@@ -216,7 +216,7 @@ For those, who value example codes the most, there are also available [IntelliJ 
 ## Testing
 
 [Testing plugins][docs:testing-plugins] is an essential part of the plugin development for the IntelliJ-based IDEs to make sure that everything works as expected between IDE releases and plugin refactorings.
-The IntelliJ Platform Plugin Template project provides examples of two testing approaches – functional and UI tests.
+The IntelliJ Platform Plugin Template project provides integration of two testing approaches – functional and UI tests.
 
 ### Functional tests
 
@@ -242,12 +242,12 @@ Check the UI Test Example project you can use as a reference for setting up UI t
 ```kotlin
 class MyUITest {
 
-    @Test
-    fun openAboutFromWelcomeScreen() {
-        val robot = RemoteRobot("http://127.0.0.1:8082")
-        robot.find<ComponentFixture>(byXpath("//div[@myactionlink = 'gearHover.svg']")).click()
-        // ...
-    }
+  @Test
+  fun openAboutFromWelcomeScreen() {
+    val robot = RemoteRobot("http://127.0.0.1:8082")
+    robot.find<ComponentFixture>(byXpath("//div[@myactionlink = 'gearHover.svg']")).click()
+    // ...
+  }
 }
 ```
 
@@ -329,7 +329,7 @@ This Template project depends on Gradle plugins and external libraries – and d
 
 Keeping the project in good shape and having all the dependencies up-to-date requires time and effort, but it is possible to automate that process using [Dependabot][gh:dependabot].
 
-Dependabot is a bot provided by GitHub for checking the build configuration files and reviewing any outdated or insecure dependencies of yours – in case if any update is available, it creates a new pull request providing [the proper change][gh:dependabot-pr].
+Dependabot is a bot provided by GitHub to check the build configuration files and review any outdated or insecure dependencies of yours – in case if any update is available, it creates a new pull request providing [the proper change][gh:dependabot-pr].
 
 > **NOTE:** Dependabot doesn't yet support checking of the Gradle Wrapper.
 > Check the [Gradle Releases][gradle-releases] page and update your `gradle.properties` file with:
@@ -357,7 +357,7 @@ There are many methods for handling the project's changelog.
 The one used in the current template project is the [Keep a Changelog][keep-a-changelog] approach.
 
 The [Gradle Changelog Plugin][gh:gradle-changelog-plugin] takes care of propagating information provided within the [CHANGELOG.md](./CHANGELOG.md) to the [Gradle IntelliJ Plugin][gh:gradle-intellij-plugin].
-The only thing you have to take care of is writing down the actual changes in proper sections of the `[Unreleased]` section.
+You only have to take care of writing down the actual changes in proper sections of the `[Unreleased]` section.
 
 You start with an almost empty changelog:
 
@@ -398,13 +398,13 @@ When your main branch receives a new pull request or a direct push, the [Build](
 ![Release draft][file:draft-release.png]
 
 The draft release is a working copy of a release, which you can review before publishing.
-It includes a predefined title and git tag, the current version of the plugin, for example, `v0.0.1`.
+It includes a predefined title and git tag, the current plugin version, for example, `v0.0.1`.
 The changelog is provided automatically using the [gradle-changelog-plugin][gh:gradle-changelog-plugin].
 An artifact file is also built with the plugin attached.
 Every new Build overrides the previous draft to keep your *Releases* page clean.
 
 When you edit the draft and use the <kbd>Publish release</kbd> button, GitHub will tag your repository with the given version and add a new entry to the Releases tab.
-Next, it will notify users that are *watching* the repository, and it will trigger the final [Release](.github/workflows/release.yml) workflow.
+Next, it will notify users who are *watching* the repository, triggering the final [Release](.github/workflows/release.yml) workflow.
 
 ### Plugin signing
 
@@ -424,9 +424,9 @@ In addition, the [Release](.github/workflows/release.yml) workflow automates thi
 
 > **TIP**: Set a suffix to the plugin version to publish it in the custom repository channel, i.e. `v1.0.0-beta` will push your plugin to the `beta` [release channel][docs:release-channel].
 
-The authorization process relies on the `PUBLISH_TOKEN` secret environment variable, which must be specified in the _Secrets_ section of the repository _Settings_.
+The authorization process relies on the `PUBLISH_TOKEN` secret environment variable, specified in the _Secrets_ section of the repository _Settings_.
 
-You can get that token in the [My Tokens][jb:my-tokens] tab within your JetBrains Marketplace profile dashboard.
+You can get that token in your JetBrains Marketplace profile dashboard in the [My Tokens][jb:my-tokens] tab.
 
 > **Important:**
 > Before using the automated deployment process, it is necessary to manually create a new plugin in JetBrains Marketplace to specify options like the license, repository URL, etc.
