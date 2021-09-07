@@ -3,34 +3,14 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+
+## [1.0.0]
 ### Added
 - Plugin Signing
 - Qodana integration
 - Functional tests
 - Compatibility with Java 11
-- `Run Qodana` and `Run IDE for UI Tests` run configurations
-- Use Gradle `wrapper` task to handle Gradle updates
-- JVM compatibility version extracted to `gradle.properties` file
-- Suppress `UnusedProperty` inspection for the `kotlin.stdlib.default.dependency` in `gradle.properties`
-
-### Changed
-- GitHub Actions: Use Java 11
-- GitHub Actions: Update Build and Release flows
-- GitHub Actions: Use Gradle cache provided with `actions/setup-java`
-- Update `pluginVerifierIdeVersions` to `2020.3.4, 2021.1.3, 2021.2.1`
-- Change since/until build to `203-212.*`
-- Upgrade Gradle Wrapper to `7.2`
-- Gradle – Changelog plugin configuration update
-- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.5.30`
-- Dependencies - upgrade `org.jetbrains.changelog` to `1.3.0`
-- Dependencies - upgrade `org.jetbrains.intellij` to `1.1.6`
-- Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `v2.2.4`
-
-### Fixed
-- Use `DynamicBundle` instead of `AbstractBundle` in `MyBundle.kt`
-
-### Removed
-- Removed `detekt`/`ktlint` integration
+- Run QodanaRun IDE for UI Testswrappergradle.propertiesUnusedPropertykotlin.stdlib.default.dependencygradle.propertiesactions/setup-javapluginVerifierIdeVersions2020.3.4, 2021.1.3, 2021.2.1203-212.*7.2org.jetbrains.kotlin.jvm1.5.30org.jetbrains.changelog1.3.0org.jetbrains.intellij1.1.6actions/upload-artifactv2.2.4DynamicBundleAbstractBundleMyBundle.ktdetektktlint
 
 ## [0.10.1]
 ### Added
