@@ -3,6 +3,8 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+
+## [1.0.0]
 ### Added
 - Plugin Signing
 - Qodana integration
