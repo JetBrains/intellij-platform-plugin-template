@@ -3,6 +3,8 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+- GitHub Actions: Collect Qodana/Tests/Plugin Verifier results as artifacts
 
 ## [1.0.0]
 ### Added
