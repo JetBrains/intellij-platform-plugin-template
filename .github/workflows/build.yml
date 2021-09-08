@@ -72,15 +72,29 @@ jobs:
         uses: actions/cache@v2.1.6
         with:
           path: ${{ steps.properties.outputs.pluginVerifierHomeDir }}/ides
-          key: ${{ runner.os }}-plugin-verifier-${{ steps.properties.outputs.ideVersions }}
+          key: plugin-verifier-${{ steps.properties.outputs.ideVersions }}
 
       # Run Qodana inspections
       - name: Qodana - Code Inspection
         uses: JetBrains/qodana-action@v2.1-eap
 
+      # Collect Qodana Result
+      - uses: actions/upload-artifact@v2
+        with:
+          name: qodana-result
+          path: ${{ github.workspace }}/qodana
+
       # Run tests
       - name: Run Tests
         run: ./gradlew test
+
+      # Collect Tests Result of failed tests
+      - name: Collect Tests Result
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: tests-result
+          path: ${{ github.workspace }}/build/reports/tests
 
       # Run verifyPlugin Gradle task
       - name: Verify Plugin
@@ -89,6 +103,14 @@ jobs:
       # Run IntelliJ Plugin Verifier action using GitHub Action
       - name: Run Plugin Verifier
         run: ./gradlew runPluginVerifier -Pplugin.verifier.home.dir=${{ steps.properties.outputs.pluginVerifierHomeDir }}
+
+      # Collect Plugin Verifier Result
+      - name: Collect Plugin Verifier Result
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: pluginVerifier-result
+          path: ${{ github.workspace }}/build/reports/pluginVerifier
 
   # Build plugin with buildPlugin Gradle task and provide the artifact for the next workflow jobs
   # Requires test job to be passed
