@@ -253,8 +253,8 @@ class MyUITest {
 
 ![UI Testing][file:ui-testing.png]
 
-A dedicated [Run UI Tests](.github/workflows/release.yml) workflow is available for manual triggering to run UI tests against three different operating systems: macOS, Windows, and Linux.
-Due to its optional nature, this workflow isn't set as an automatic one, but this can be easily achieved by changing the `on` trigger event, like in the [Build](.github/workflows/release.yml) workflow file.
+A dedicated [Run UI Tests](.github/workflows/run-ui-tests.yml) workflow is available for manual triggering to run UI tests against three different operating systems: macOS, Windows, and Linux.
+Due to its optional nature, this workflow isn't set as an automatic one, but this can be easily achieved by changing the `on` trigger event, like in the [Build](.github/workflows/build.yml) workflow file.
 
 ## Qodana integration
 
@@ -450,7 +450,7 @@ You can still replace it or add the `/src/main/java` directory to start working 
 
 ### How to disable *tests* or *build* job using the `[skip ci]` commit message?
 
-Since the February 2021, GitHub Actions [support the skip CI feature][github-actions-skip-ci].
+Since February 2021, GitHub Actions [support the skip CI feature][github-actions-skip-ci].
 If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]`, or `[actions skip]` – workflows will not be triggered.
 
 
