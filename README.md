@@ -95,15 +95,15 @@ The project-specific configuration file [gradle.properties][file:gradle.properti
 | `pluginGroup`               | Package name - after *using* the template, this will be set to `com.github.username.repo`.                 |
 | `pluginName`                | Plugin name displayed in the JetBrains Marketplace and the Plugins Repository.                             |
 | `pluginVersion`             | The current version of the plugin in [SemVer](https://semver.org/) format.                                 |
-| `pluginSinceBuild`          | The `since-build` attribute of the <idea-version> tag.                                                     |
-| `pluginUntilBuild`          | The `until-build` attribute of the <idea-version> tag.                                                     |
+| `pluginSinceBuild`          | The `since-build` attribute of the `<idea-version>` tag.                                                   |
+| `pluginUntilBuild`          | The `until-build` attribute of the `<idea-version>` tag.                                                   |
 | `pluginVerifierIdeVersions` | Versions of the IDEs that will be used with Plugin Verifier.                                               |
 | `platformType`              | The type of IDE distribution.                                                                              |
 | `platformVersion`           | The version of the IntelliJ Platform IDE will be used to build the plugin.                                 |
 | `platformDownloadSources`   | IDE sources downloaded while initializing the Gradle build.                                                |
 | `platformPlugins`           | Comma-separated list of dependencies to the bundled IDE plugins and plugins from the Plugin Repositories.  |
 | `javaVersion`               | Java language level used to compile sources and generate the files for - Java 11 is required since 2020.3. |
-| `gradleVersion`             | Version of  Gradle used for plugin development.                                                            |
+| `gradleVersion`             | Version of Gradle used for plugin development.                                                             |
 
 The properties listed define the plugin itself or configure the [gradle-intellij-plugin][gh:gradle-intellij-plugin] – check its documentation for more details.
 
