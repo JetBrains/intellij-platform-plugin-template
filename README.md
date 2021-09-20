@@ -94,7 +94,7 @@ The project-specific configuration file [gradle.properties][file:gradle.properti
 | --------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | `pluginGroup`               | Package name - after *using* the template, this will be set to `com.github.username.repo`.                 |
 | `pluginName`                | Plugin name displayed in the JetBrains Marketplace and the Plugins Repository.                             |
-| `pluginVersion`             | The current version of the plugin.                                                                         |
+| `pluginVersion`             | The current version of the plugin in [SemVer](https://semver.org/) format.                                 |
 | `pluginSinceBuild`          | The `since-build` attribute of the <idea-version> tag.                                                     |
 | `pluginUntilBuild`          | The `until-build` attribute of the <idea-version> tag.                                                     |
 | `pluginVerifierIdeVersions` | Versions of the IDEs that will be used with Plugin Verifier.                                               |
