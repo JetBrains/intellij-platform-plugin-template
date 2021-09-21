@@ -1,9 +1,9 @@
 # IntelliJ Platform Plugin Template
 
 [![official JetBrains project](https://jb.gg/badges/official.svg)][jb:confluence-on-gh]
-[![Twitter Follow](https://img.shields.io/twitter/follow/JBPlatform?style=flat)][jb:twitter]
+[![Twitter Follow](https://img.shields.io/twitter/follow/JBPlatform?style=flat-square&logo=twitter)](https://twitter.com/JBPlatform)
 [![Build](https://github.com/JetBrains/intellij-platform-plugin-template/workflows/Build/badge.svg)][gh:build]
-[![Slack](https://img.shields.io/badge/Slack-%23intellij--platform--plugin--template-blue)][jb:slack]
+[![Slack](https://img.shields.io/badge/Slack-%23intellij--platform-blue?style=flat-square&logo=Slack)](https://plugins.jetbrains.com/slack)
 
 ![IntelliJ Platform Plugin Template][file:intellij-platform-plugin-template.png]
 
