@@ -141,10 +141,10 @@ A generated IntelliJ Platform Plugin Template repository contains the following 
 ├── build/                  Output build directory
 ├── src                     Plugin sources
 │   └── main
-│       ├── kotlin/         Kotlin source files
+│       ├── kotlin/         Kotlin production sources
 │       └── resources/      Resources - plugin.xml, icons, messages
 │   └── test
-│       ├── kotlin/         Kotlin test files
+│       ├── kotlin/         Kotlin test sources
 │       └── testData/       Test data used by tests
 ├── .gitignore              Git ignoring rules
 ├── build.gradle.kts        Gradle configuration
