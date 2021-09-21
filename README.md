@@ -215,7 +215,7 @@ For those, who value example codes the most, there are also available [IntelliJ 
 
 ## Testing
 
-[Testing plugins][docs:testing-plugins] is an essential part of the plugin development for the IntelliJ-based IDEs to make sure that everything works as expected between IDE releases and plugin refactorings.
+[Testing plugins][docs:testing-plugins] is an essential part of the plugin development to make sure that everything works as expected between IDE releases and plugin refactorings.
 The IntelliJ Platform Plugin Template project provides integration of two testing approaches – functional and UI tests.
 
 ### Functional tests
@@ -267,7 +267,7 @@ Qodana inspections are accessible within the project on two levels:
 - using the [Qodana IntelliJ GitHub Action][docs:qodana-github-action], run automatically within the [Build](.github/workflows/build.yml) workflow,
 - with the [Gradle Qodana Plugin][gh:gradle-qodana-plugin], so you can use it on the local environment or any CI other than GitHub Actions.
 
-Qodana inspection is configured with the `qodana { ... }` section in the Gradle build file, and [`qodana.yml`][file:qodana.yml] YAML configuration file.
+Qodana inspection is configured with the `qodana { ... }` section in the Gradle build file and [`qodana.yml`][file:qodana.yml] YAML configuration file.
 
 > **NOTE:** Qodana requires Docker to be installed and available in your environment.
 
@@ -288,9 +288,9 @@ Within the default project structure, there is a `.run` directory provided conta
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Run Plugin           | Runs [`:runIde`][gh:gradle-intellij-plugin-running-dsl] Gradle IntelliJ Plugin task. Use the *Debug* icon for plugin debugging.                                               |
 | Run Verifications    | Runs [`:runPluginVerifier`][gh:gradle-intellij-plugin-verifier-dsl] Gradle IntelliJ Plugin task to check the plugin compatibility against the specified IntelliJ IDEs.        |
-| Run Qodana           | Runs [`:runInspections`][gh:gradle-qodana-plugin] Gradle Qodana Plugin task. Starts Qodana inspections in a Docker container and serves generated report on `localhost:8080`. |
 | Run Tests            | Runs [`:test`][gradle-lifecycle-tasks] Gradle task.                                                                                                                           |
 | Run IDE for UI Tests | Runs [`:runIdeForUiTests`][gh:intellij-ui-test-robot] Gradle IntelliJ Plugin task to allows for running UI tests within the IntelliJ IDE running instance.                    |
+| Run Qodana           | Runs [`:runInspections`][gh:gradle-qodana-plugin] Gradle Qodana Plugin task. Starts Qodana inspections in a Docker container and serves generated report on `localhost:8080`. |
 
 > **TIP:** You can find the logs from the running task in the `idea.log` tab.
 >
