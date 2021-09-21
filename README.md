@@ -150,8 +150,8 @@ A generated IntelliJ Platform Plugin Template repository contains the following 
 ├── build.gradle.kts        Gradle configuration
 ├── CHANGELOG.md            Full change history
 ├── gradle.properties       Gradle configuration properties
-├── gradlew                 *nix Gradle Wrapper binary
-├── gradlew.bat             Windows Gradle Wrapper binary
+├── gradlew                 *nix Gradle Wrapper script
+├── gradlew.bat             Windows Gradle Wrapper script
 ├── LICENSE                 License, MIT by default
 ├── qodana.yml              Qodana configuration file
 ├── README.md               README
