@@ -3,7 +3,6 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
-## [0.10.1]
 ### Added
 - GitHub Actions: Collect Qodana/Tests/Plugin Verifier results as artifacts
 - Dependencies (GitHub Actions) - upgrade `jtalk/url-health-check-action` to `2` 
