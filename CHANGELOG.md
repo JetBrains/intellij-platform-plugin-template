@@ -7,6 +7,9 @@
 - GitHub Actions: Collect Qodana/Tests/Plugin Verifier results as artifacts
 - Dependencies (GitHub Actions) - upgrade `jtalk/url-health-check-action` to `2` 
 
+### Changed
+- Update `pluginVerifierIdeVersions` to `2021.2.2`
+
 ## [1.0.0]
 ### Added
 - Plugin Signing
