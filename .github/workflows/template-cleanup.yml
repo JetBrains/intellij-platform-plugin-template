@@ -53,6 +53,7 @@ jobs:
 
           # Cleanup
           rm -rf \
+            .github/ISSUE_TEMPLATE \
             .github/readme \
             .github/template-cleanup \
             .github/workflows/template-cleanup.yml \
