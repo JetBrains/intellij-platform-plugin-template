@@ -54,7 +54,7 @@ Before we dive into plugin development and everything related to it, it's worth 
 By creating a new project using the current template, you start with no history or reference to this repository.
 This allows you to create a new repository easily without copying and pasting previous content, clone repositories, or clearing the history manually.
 
-All you have to do is click the <kbd>Use this template</kbd> button.
+All you have to do is click the <kbd>Use this template</kbd> button (you must be logged in with your GitHub account).
 
 ![Use this template][file:use-this-template.png]
 
