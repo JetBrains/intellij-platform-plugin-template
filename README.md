@@ -452,6 +452,10 @@ You can still replace it or add the `/src/main/java` directory to start working 
 Since February 2021, GitHub Actions [support the skip CI feature][github-actions-skip-ci].
 If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]`, or `[actions skip]` – workflows will not be triggered.
 
+### Why draft release no longer contains built plugin artifact?
+
+All the binaries created with each workflow are still available, but as an output artifact of each run together with tests and Qodana results.
+That approach gives more possibilities for testing and debugging pre-releases, for example, in your local environment.
 
 ## Useful links
 
