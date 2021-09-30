@@ -8,6 +8,7 @@
 - Dependencies (GitHub Actions) - upgrade `jtalk/url-health-check-action` to `2` 
 
 ### Changed
+- Dependencies - upgrade `org.jetbrains.intellij` to `1.2.0`
 - Update `pluginVerifierIdeVersions` to `2021.2.2`
 
 ## [1.0.0]
