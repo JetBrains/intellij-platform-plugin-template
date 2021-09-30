@@ -15,6 +15,7 @@
 
 ### Removed
 - Removed the `pluginVerifierIdeVersions` configuration to use default IDEs list provided by the `listProductsReleases` task for `runPluginVerifier` 
+- Removed `platformDownloadSources` from Gradle configuration to use default value 
 
 ## [1.0.0]
 ### Added
