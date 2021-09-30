@@ -10,6 +10,7 @@
 ### Changed
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.2.0`
 - GitHub Actions general performance refactoring
+- Update `pluginUntilBuild` to include `213.*` (2021.3.*)
 
 ### Removed
 - Removed the `pluginVerifierIdeVersions` configuration to use default IDEs list provided by the `listProductsReleases` task for `runPluginVerifier` 
@@ -56,7 +57,7 @@
 ### Changed
 - Remove reference to the `jcenter()` from Gradle configuration file
 - Update `pluginVerifierIdeVersions` to `2020.2.4, 2020.3.4, 2021.1.2`
-- Update `pluginUntilBuild` to include `211.*` (2021.1.*)  
+- Update `pluginUntilBuild` to include `211.*` (2021.1.*)
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.5.10`
 - Dependencies - upgrade `detekt-formatting from` to `1.17.1`
 - Dependencies - upgrade `io.gitlab.arturbosch.detekt` to `1.17.1`
