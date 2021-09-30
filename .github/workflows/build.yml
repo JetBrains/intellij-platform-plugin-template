@@ -23,7 +23,7 @@ on:
 jobs:
 
   # Run Gradle Wrapper Validation Action to verify the wrapper's checksum
-  # Run verifyPlugin and test Gradle tasks
+  # Run verifyPlugin, IntelliJ Plugin Verifier, and test Gradle tasks
   # Build plugin and provide the artifact for the next workflow jobs
   build:
     name: Build
