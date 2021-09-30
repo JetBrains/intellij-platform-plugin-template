@@ -97,7 +97,6 @@ The project-specific configuration file [gradle.properties][file:gradle.properti
 | `pluginVersion`             | The current version of the plugin in [SemVer](https://semver.org/) format.                                 |
 | `pluginSinceBuild`          | The `since-build` attribute of the `<idea-version>` tag.                                                   |
 | `pluginUntilBuild`          | The `until-build` attribute of the `<idea-version>` tag.                                                   |
-| `pluginVerifierIdeVersions` | Versions of the IDEs that will be used with Plugin Verifier.                                               |
 | `platformType`              | The type of IDE distribution.                                                                              |
 | `platformVersion`           | The version of the IntelliJ Platform IDE will be used to build the plugin.                                 |
 | `platformDownloadSources`   | IDE sources downloaded while initializing the Gradle build.                                                |
