@@ -10,6 +10,7 @@
 ### Changed
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.2.0`
 - GitHub Actions general performance refactoring
+- GitHub Actions - prepare plugin archive content to be archived once
 - Update `pluginUntilBuild` to include `213.*` (2021.3.*)
 
 ### Removed
