@@ -9,7 +9,10 @@
 
 ### Changed
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.2.0`
-- Update `pluginVerifierIdeVersions` to `2021.2.2`
+- GitHub Actions general performance refactoring
+
+### Removed
+- Removed the `pluginVerifierIdeVersions` configuration to use default IDEs list provided by the `listProductsReleases` task for `runPluginVerifier` 
 
 ## [1.0.0]
 ### Added
