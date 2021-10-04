@@ -138,6 +138,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      # Check out current repository
+      - name: Fetch Sources
+        uses: actions/checkout@v2.3.4
+
       # Remove old release drafts by using the curl request for the available releases with draft flag
       - name: Remove Old Release Drafts
         env:
