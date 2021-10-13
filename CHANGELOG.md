@@ -5,10 +5,11 @@
 ## [Unreleased]
 ### Added
 - GitHub Actions: Collect Qodana/Tests/Plugin Verifier results as artifacts
-- Dependencies (GitHub Actions) - upgrade `jtalk/url-health-check-action` to `2` 
 
 ### Changed
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.2.0`
+- Dependencies - upgrade `org.jetbrains.changelog` to `1.3.1`
+- Dependencies (GitHub Actions) - upgrade `jtalk/url-health-check-action` to `2`
 - GitHub Actions general performance refactoring
 - GitHub Actions - prepare plugin archive content to be archived once
 - Update `pluginUntilBuild` to include `213.*` (2021.3.*)
