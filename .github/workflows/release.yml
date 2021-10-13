@@ -31,9 +31,10 @@ jobs:
       # Update Unreleased section with the current release note
       - name: Patch Changelog
         run: |
-          ./gradlew patchChangelog --release-note="`cat << EOM
+          ./gradlew patchChangelog --release-note "$(cat << 'EOM'
           ${{ github.event.release.body }}
-          EOM`"
+          EOM
+          )"
 
       # Publish the plugin to the Marketplace
       - name: Publish Plugin
