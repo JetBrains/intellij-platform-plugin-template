@@ -14,6 +14,9 @@
 - GitHub Actions - prepare plugin archive content to be archived once
 - Update `pluginUntilBuild` to include `213.*` (2021.3.*)
 
+### Fixed
+- Fixed passing change notes from `CHANGELOG.md` to the Release Draft
+
 ### Removed
 - Removed the `pluginVerifierIdeVersions` configuration to use default IDEs list provided by the `listProductsReleases` task for `runPluginVerifier` 
 - Removed `platformDownloadSources` from Gradle configuration to use default value 
