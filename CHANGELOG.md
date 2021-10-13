@@ -16,6 +16,7 @@
 
 ### Fixed
 - Fixed passing change notes from `CHANGELOG.md` to the Release Draft
+- Fixed passing updated change notes from the Release Draft to `patchChangelog` Gradle task
 
 ### Removed
 - Removed the `pluginVerifierIdeVersions` configuration to use default IDEs list provided by the `listProductsReleases` task for `runPluginVerifier` 
