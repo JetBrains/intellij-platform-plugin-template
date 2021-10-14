@@ -18,6 +18,7 @@
 ### Fixed
 - Fixed passing change notes from `CHANGELOG.md` to the Release Draft
 - Fixed passing updated change notes from the Release Draft to `patchChangelog` Gradle task
+- Fixed `QODANA_SHOW_REPORT` environment variable resolving for Gradle `6.x` 
 
 ### Removed
 - Removed the `pluginVerifierIdeVersions` configuration to use default IDEs list provided by the `listProductsReleases` task for `runPluginVerifier` 
