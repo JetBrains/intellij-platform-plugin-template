@@ -28,12 +28,24 @@ jobs:
           java-version: 11
           cache: gradle
 
+      # Set environment variables
+      - name: Export Properties
+        id: properties
+        shell: bash
+        run: |
+          CHANGELOG="$(cat << 'EOM' | sed -e 's/^[[:space:]]*$//g' -e '/./,$!d'
+          ${{ github.event.release.body }}
+          EOM
+          )"
+          
+          echo "::set-output name=changelog::$CHANGELOG"
+
       # Update Unreleased section with the current release note
       - name: Patch Changelog
-        if: ${{ github.event.release.body != '' }}
+        if: ${{ steps.properties.outputs.changelog != '' }}
         run: |
           ./gradlew patchChangelog --release-note "$(cat << 'EOM'
-          ${{ github.event.release.body }}
+          ${{ steps.properties.outputs.changelog }}
           EOM
           )"
 
