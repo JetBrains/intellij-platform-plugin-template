@@ -30,6 +30,7 @@ jobs:
 
       # Update Unreleased section with the current release note
       - name: Patch Changelog
+        if: ${{ github.event.release.body != '' }}
         run: |
           ./gradlew patchChangelog --release-note "$(cat << 'EOM'
           ${{ github.event.release.body }}

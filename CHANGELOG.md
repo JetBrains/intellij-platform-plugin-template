@@ -12,6 +12,7 @@
 - Dependencies (GitHub Actions) - upgrade `jtalk/url-health-check-action` to `2`
 - GitHub Actions general performance refactoring
 - GitHub Actions - prepare plugin archive content to be archived once
+- GitHub Actions - patch changelog only if change notes are provided
 - Update `pluginUntilBuild` to include `213.*` (2021.3.*)
 
 ### Fixed
