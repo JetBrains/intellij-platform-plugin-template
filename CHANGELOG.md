@@ -7,9 +7,10 @@
 - GitHub Actions: Collect Qodana/Tests/Plugin Verifier results as artifacts
 
 ### Changed
-- Dependencies - upgrade `org.jetbrains.intellij` to `1.2.0`
+- Dependencies - upgrade `org.jetbrains.intellij` to `1.2.1`
 - Dependencies - upgrade `org.jetbrains.changelog` to `1.3.1`
 - Dependencies (GitHub Actions) - upgrade `jtalk/url-health-check-action` to `2`
+- Dependencies (GitHub Actions) - upgrade `actions/checkout` to `2.3.5`
 - GitHub Actions general performance refactoring
 - GitHub Actions - prepare plugin archive content to be archived once
 - GitHub Actions - patch changelog only if change notes are provided
