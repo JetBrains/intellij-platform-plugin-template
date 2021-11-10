@@ -15,6 +15,7 @@
 - GitHub Actions - prepare plugin archive content to be archived once
 - GitHub Actions - patch changelog only if change notes are provided
 - Update `pluginUntilBuild` to include `213.*` (2021.3.*)
+- Upgrade Gradle Wrapper to `7.3`
 
 ### Fixed
 - Fixed passing change notes from `CHANGELOG.md` to the Release Draft
@@ -24,7 +25,7 @@
 ### Removed
 - Removed the `pluginVerifierIdeVersions` configuration to use default IDEs list provided by the `listProductsReleases` task for `runPluginVerifier` 
 - Removed `platformDownloadSources` from Gradle configuration to use default value 
-- Removed `updateSinceUntilBuild.set(true)` from Gradle configuration to use default value 
+- Removed `updateSinceUntilBuild.set(true)` from Gradle configuration to use default value
 
 ## [1.0.0]
 ### Added
