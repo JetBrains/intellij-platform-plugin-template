@@ -3,30 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+
+## [1.1.0]
 ### Added
-- GitHub Actions: Collect Qodana/Tests/Plugin Verifier results as artifacts
-
-### Changed
-- Dependencies - upgrade `org.jetbrains.intellij` to `1.3.0` 
-- Dependencies - upgrade `org.jetbrains.changelog` to `1.3.1`
-- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.6.0`
-- Dependencies (GitHub Actions) - upgrade `jtalk/url-health-check-action` to `2`
-- Dependencies (GitHub Actions) - upgrade `actions/checkout` to `2.3.5`
-- GitHub Actions general performance refactoring
-- GitHub Actions - prepare plugin archive content to be archived once
-- GitHub Actions - patch changelog only if change notes are provided
-- Update `pluginUntilBuild` to include `213.*` (2021.3.*)
-- Upgrade Gradle Wrapper to `7.3`
-
-### Fixed
-- Fixed passing change notes from `CHANGELOG.md` to the Release Draft
-- Fixed passing updated change notes from the Release Draft to `patchChangelog` Gradle task
-- Fixed `QODANA_SHOW_REPORT` environment variable resolving for Gradle `6.x` 
-
-### Removed
-- Removed the `pluginVerifierIdeVersions` configuration to use default IDEs list provided by the `listProductsReleases` task for `runPluginVerifier` 
-- Removed `platformDownloadSources` from Gradle configuration to use default value 
-- Removed `updateSinceUntilBuild.set(true)` from Gradle configuration to use default value
 
 ## [1.0.0]
 ### Added
