@@ -3,6 +3,8 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Changed
+- Upgrade Gradle Wrapper to `7.3.3`
 
 ## [1.1.0]
 ### Added
