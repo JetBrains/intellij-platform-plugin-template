@@ -5,6 +5,9 @@
 ## [Unreleased]
 ### Changed
 - Upgrade Gradle Wrapper to `7.3.3`
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.6.10`
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `4.2.2`
+- Dependencies (GitHub Actions) - upgrade `actions/cache` to `v2.1.7`
 
 ## [1.1.0]
 ### Added
