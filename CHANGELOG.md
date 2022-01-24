@@ -3,6 +3,8 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Changed
+- GitHub Actions - fixed duplicated `.zip` extension in artifact file's name of the build flow
 
 ## [1.1.0]
 ### Added
