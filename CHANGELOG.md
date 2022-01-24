@@ -3,6 +3,8 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+
+## [1.1.1]
 ### Changed
 - GitHub Actions - fixed duplicated `.zip` extension in artifact file's name of the build flow
 - Upgrade Gradle Wrapper to `7.3.3`
