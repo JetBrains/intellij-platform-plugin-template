@@ -5,6 +5,11 @@
 ## [Unreleased]
 ### Changed
 - GitHub Actions - fixed duplicated `.zip` extension in artifact file's name of the build flow
+- Upgrade Gradle Wrapper to `7.3.3`
+- Dependencies - upgrade `org.jetbrains.intellij` to `1.3.1`
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.6.10`
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `4.2.3`
+- Dependencies (GitHub Actions) - upgrade `actions/cache` to `v2.1.7`
 
 ## [1.1.0]
 ### Added
