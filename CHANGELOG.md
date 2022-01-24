@@ -4,6 +4,7 @@
 
 ## [Unreleased]
 ### Changed
+- GitHub Actions - fixed duplicated `.zip` extension in artifact file's name of the build flow
 - Upgrade Gradle Wrapper to `7.3.3`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.3.1`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.6.10`
