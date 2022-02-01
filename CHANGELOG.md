@@ -3,6 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Changed
+- Update `platformVersion` to `2021.1.3` for compatibility with Apple M1
+- Change since/until build to `211-221.*`
 
 ## [1.1.1]
 ### Changed
