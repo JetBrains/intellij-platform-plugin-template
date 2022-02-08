@@ -5,7 +5,7 @@
 ## [Unreleased]
 ### Changed
 - Update `platformVersion` to `2021.1.3` for compatibility with Apple M1
-- Change since/until build to `211-221.*`
+- Change since/until build to `211-213.*` (2021.1 - 2021.3)
 - Upgrade Gradle Wrapper to `7.4`
 
 ## [1.1.1]
