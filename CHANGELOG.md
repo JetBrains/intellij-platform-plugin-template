@@ -8,6 +8,7 @@
 - Change since/until build to `211-213.*` (2021.1 - 2021.3)
 - Upgrade Gradle Wrapper to `7.4`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.4.0`
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `4.2.5`
 
 ## [1.1.1]
 ### Changed
