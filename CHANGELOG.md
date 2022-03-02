@@ -3,6 +3,8 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Changed
+- Dependencies (GitHub Actions) - upgrade `actions/checkout` to `3`
 
 ## [1.1.2]
 ### Changed
