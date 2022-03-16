@@ -4,6 +4,7 @@
 
 ## [Unreleased]
 ### Changed
+- Use JVM toolchain for configuring source/target compilation compatibility
 - Dependencies (GitHub Actions) - upgrade `actions/checkout` to `3`
 - Upgrade Gradle Wrapper to `7.4.1`
 
