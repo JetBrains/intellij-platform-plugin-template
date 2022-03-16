@@ -24,6 +24,11 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    implementation("org.junit.jupiter:junit-jupiter:5.8.2")
+    testRuntimeOnly("org.junit.vintage:junit-vintage-engine:5.8.2")
+}
+
 // Configure Gradle IntelliJ Plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
 intellij {
     pluginName.set(properties("pluginName"))
@@ -112,5 +117,12 @@ tasks {
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
         channels.set(listOf(properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()))
+    }
+
+    test {
+        // Support "setUp" like "BasePlatformTestCase::setUp" as valid test structure
+        useJUnitPlatform {
+            includeEngines("junit-vintage")
+        }
     }
 }
