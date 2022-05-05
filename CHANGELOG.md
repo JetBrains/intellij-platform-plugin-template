@@ -5,11 +5,13 @@
 ## [Unreleased]
 ### Changed
 - Use JVM toolchain for configuring source/target compilation compatibility
-- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.6.20`
-- Dependencies - upgrade `org.jetbrains.intellij` to `1.5.2`
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.6.21`
+- Dependencies - upgrade `org.jetbrains.intellij` to `1.5.3`
 - Dependencies (GitHub Actions) - upgrade `actions/checkout` to `3`
 - Dependencies (GitHub Actions) - upgrade `actions/cache` to `3`
-- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `5.0.2`
+- Dependencies (GitHub Actions) - upgrade `actions/setup-java` to `3`
+- Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `3`
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `5.0.4`
 - Upgrade Gradle Wrapper to `7.4.1`
 
 ## [1.1.2]
