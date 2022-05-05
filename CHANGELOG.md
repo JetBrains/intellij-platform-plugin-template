@@ -3,8 +3,11 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
-### Changed
+### Added
 - Use JVM toolchain for configuring source/target compilation compatibility
+- Make sure GitHub Actions release jobs have write permissions
+
+### Changed
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.6.21`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.5.3`
 - Dependencies (GitHub Actions) - upgrade `actions/checkout` to `3`
