@@ -14,7 +14,7 @@
 - Dependencies (GitHub Actions) - upgrade `actions/cache` to `3`
 - Dependencies (GitHub Actions) - upgrade `actions/setup-java` to `3`
 - Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `3`
-- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `5.0.4`
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `5.1.0`
 - Upgrade Gradle Wrapper to `7.4.1`
 
 ## [1.1.2]
