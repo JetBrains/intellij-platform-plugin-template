@@ -6,6 +6,7 @@
 ### Added
 - Use JVM toolchain for configuring source/target compilation compatibility
 - Make sure GitHub Actions release jobs have write permissions
+- Example implementation: Add `TODO()` with a hint to remove stale sample code
 
 ### Changed
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.6.21`
