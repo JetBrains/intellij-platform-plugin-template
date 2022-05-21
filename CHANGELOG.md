@@ -3,6 +3,22 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+- Use JVM toolchain for configuring source/target compilation compatibility
+- Make sure GitHub Actions release jobs have write permissions
+- Example implementation: Add `TODO()` with a hint to remove stale sample code
+
+### Changed
+- Update `platformVersion` to `2021.2.4`
+- Change since/until build to `212-221.*` (2021.2 - 2022.1)
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.6.21`
+- Dependencies - upgrade `org.jetbrains.intellij` to `1.5.3`
+- Dependencies (GitHub Actions) - upgrade `actions/checkout` to `3`
+- Dependencies (GitHub Actions) - upgrade `actions/cache` to `3`
+- Dependencies (GitHub Actions) - upgrade `actions/setup-java` to `3`
+- Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `3`
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `5.1.0`
+- Upgrade Gradle Wrapper to `7.4.2`
 
 ## [1.1.2]
 ### Changed
@@ -19,7 +35,7 @@
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.3.1`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.6.10`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `4.2.3`
-- Dependencies (GitHub Actions) - upgrade `actions/cache` to `v2.1.7`
+- Dependencies (GitHub Actions) - upgrade `actions/cache` to `2.1.7`
 
 ## [1.1.0]
 ### Added

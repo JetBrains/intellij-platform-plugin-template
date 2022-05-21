@@ -14,12 +14,14 @@ jobs:
   template-cleanup:
     name: Template Cleanup
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     if: github.event.repository.name != 'intellij-platform-plugin-template'
     steps:
 
       # Check out current repository
       - name: Fetch Sources
-        uses: actions/checkout@v2.4.0
+        uses: actions/checkout@v3
 
       # Cleanup project
       - name: Cleanup

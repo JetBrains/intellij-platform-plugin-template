@@ -209,6 +209,8 @@ So if you decide to use Java instead (or in addition to Kotlin), these sources s
 
 To start with the actual implementation, you may check our [IntelliJ Platform SDK DevGuide][docs], which contains an introduction to the essential areas of the plugin development together with dedicated tutorials.
 
+> Don't forget to remove all non-needed sample code files with their corresponding registration entries in `plugin.xml`.
+
 For those who value example codes the most, there are also available [IntelliJ SDK Code Samples][gh:code-samples] and [IntelliJ Platform Explorer][jb:ipe] – a search tool for browsing Extension Points inside existing implementations of open-source IntelliJ Platform plugins.
 
 
@@ -340,7 +342,7 @@ Dependabot is a bot provided by GitHub to check the build configuration files an
 > **NOTE:** Dependabot doesn't yet support checking of the Gradle Wrapper.
 > Check the [Gradle Releases][gradle-releases] page and update your `gradle.properties` file with:
 > ```properties
-> gradleVersion = 7.4
+> gradleVersion = 7.4.2
 > ```
 > and run
 > ```bash
