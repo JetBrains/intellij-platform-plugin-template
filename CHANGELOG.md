@@ -11,8 +11,8 @@
 ### Changed
 - Update `platformVersion` to `2021.2.4`
 - Change since/until build to `212-221.*` (2021.2 - 2022.1)
+- Dependencies - upgrade `org.jetbrains.intellij` to `1.6.0`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.6.21`
-- Dependencies - upgrade `org.jetbrains.intellij` to `1.5.3`
 - Dependencies (GitHub Actions) - upgrade `actions/checkout` to `3`
 - Dependencies (GitHub Actions) - upgrade `actions/cache` to `3`
 - Dependencies (GitHub Actions) - upgrade `actions/setup-java` to `3`
