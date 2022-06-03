@@ -98,19 +98,19 @@ For more details regarding Kotlin integration, please see [Kotlin for Plugin Dev
 
 The project-specific configuration file [gradle.properties][file:gradle.properties] contains:
 
-| Property name               | Description                                                                                                |
-| --------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `pluginGroup`               | Package name - after *using* the template, this will be set to `com.github.username.repo`.                 |
-| `pluginName`                | Plugin name displayed in the JetBrains Marketplace and the Plugins Repository.                             |
-| `pluginVersion`             | The current version of the plugin in [SemVer](https://semver.org/) format.                                 |
-| `pluginSinceBuild`          | The `since-build` attribute of the `<idea-version>` tag.                                                   |
-| `pluginUntilBuild`          | The `until-build` attribute of the `<idea-version>` tag.                                                   |
-| `platformType`              | The type of IDE distribution.                                                                              |
-| `platformVersion`           | The version of the IntelliJ Platform IDE will be used to build the plugin.                                 |
-| `platformDownloadSources`   | IDE sources downloaded while initializing the Gradle build.                                                |
-| `platformPlugins`           | Comma-separated list of dependencies to the bundled IDE plugins and plugins from the Plugin Repositories.  |
-| `javaVersion`               | Java language level used to compile sources and generate the files for - Java 11 is required since 2020.3. |
-| `gradleVersion`             | Version of Gradle used for plugin development.                                                             |
+| Property name             | Description                                                                                                |
+|---------------------------|------------------------------------------------------------------------------------------------------------|
+| `pluginGroup`             | Package name - after *using* the template, this will be set to `com.github.username.repo`.                 |
+| `pluginName`              | Plugin name displayed in the JetBrains Marketplace and the Plugins Repository.                             |
+| `pluginVersion`           | The current version of the plugin in [SemVer](https://semver.org/) format.                                 |
+| `pluginSinceBuild`        | The `since-build` attribute of the `<idea-version>` tag.                                                   |
+| `pluginUntilBuild`        | The `until-build` attribute of the `<idea-version>` tag.                                                   |
+| `platformType`            | The type of IDE distribution.                                                                              |
+| `platformVersion`         | The version of the IntelliJ Platform IDE will be used to build the plugin.                                 |
+| `platformDownloadSources` | IDE sources downloaded while initializing the Gradle build.                                                |
+| `platformPlugins`         | Comma-separated list of dependencies to the bundled IDE plugins and plugins from the Plugin Repositories.  |
+| `javaVersion`             | Java language level used to compile sources and generate the files for - Java 11 is required since 2020.3. |
+| `gradleVersion`           | Version of Gradle used for plugin development.                                                             |
 
 The properties listed define the plugin itself or configure the [gradle-intellij-plugin][gh:gradle-intellij-plugin] – check its documentation for more details.
 
@@ -123,7 +123,7 @@ To avoid that, environment variables are introduced, which can be provided withi
 Environment variables used by the current project are related to the [plugin signing](#plugin-signing) and [publishing](#publishing-the-plugin).
 
 | Environment variable name | Description                                                                                                                                 |
-| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
 | `PRIVATE_KEY`             | Certificate private key, should contain: <code>-----BEGIN ENCRYPTED PRIVATE KEY-----<br/>...<br/>-----END ENCRYPTED PRIVATE KEY-----</code> |
 | `PRIVATE_KEY_PASSWORD`    | Password used for encrypting the certificate file.                                                                                          |
 | `CERTIFICATE_CHAIN`       | Certificate chain, should contain: <code>-----BEGIN CERTIFICATE-----<br/>...<br/>-----END CERTIFICATE----</code>                            |
@@ -304,11 +304,11 @@ Within the default project structure, there is a `.run` directory provided conta
 ![Run/Debug configurations][file:run-debug-configurations.png]
 
 | Configuration name   | Description                                                                                                                                                                   |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Run Plugin           | Runs [`:runIde`][gh:gradle-intellij-plugin-running-dsl] Gradle IntelliJ Plugin task. Use the *Debug* icon for plugin debugging.                                               |
-| Run Verifications    | Runs [`:runPluginVerifier`][gh:gradle-intellij-plugin-verifier-dsl] Gradle IntelliJ Plugin task to check the plugin compatibility against the specified IntelliJ IDEs.        |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Run Plugin           | Runs [`:runIde`][gh:gradle-intellij-plugin-runIde] Gradle IntelliJ Plugin task. Use the *Debug* icon for plugin debugging.                                                    |
+| Run Verifications    | Runs [`:runPluginVerifier`][gh:gradle-intellij-plugin-runPluginVerifier] Gradle IntelliJ Plugin task to check the plugin compatibility against the specified IntelliJ IDEs.   |
 | Run Tests            | Runs [`:test`][gradle-lifecycle-tasks] Gradle task.                                                                                                                           |
-| Run IDE for UI Tests | Runs [`:runIdeForUiTests`][gh:intellij-ui-test-robot] Gradle IntelliJ Plugin task to allow for running UI tests within the IntelliJ IDE running instance.                    |
+| Run IDE for UI Tests | Runs [`:runIdeForUiTests`][gh:intellij-ui-test-robot] Gradle IntelliJ Plugin task to allow for running UI tests within the IntelliJ IDE running instance.                     |
 | Run Qodana           | Runs [`:runInspections`][gh:gradle-qodana-plugin] Gradle Qodana Plugin task. Starts Qodana inspections in a Docker container and serves generated report on `localhost:8080`. |
 
 > **Note**
@@ -449,7 +449,7 @@ To find out how to generate signing certificates, check the [Plugin Signing][doc
 
 ### Publishing the plugin
 
-Releasing a plugin to JetBrains Marketplace is a straightforward operation that uses the `publishPlugin` Gradle task provided by the [gradle-intellij-plugin][gh:gradle-intellij-plugin].
+Releasing a plugin to JetBrains Marketplace is a straightforward operation that uses the `publishPlugin` Gradle task provided by the [gradle-intellij-plugin][gh:gradle-intellij-plugin-docs].
 In addition, the [Release](.github/workflows/release.yml) workflow automates this process by running the task when a new release appears in the GitHub Releases section.
 
 > **Note**
@@ -486,7 +486,8 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 
 ## Useful links
 
-- [IntelliJ Platform SDK DevGuide][docs]
+- [IntelliJ Platform SDK Plugin SDK][docs]
+- [Gradle IntelliJ Plugin Documentation][gh:gradle-intellij-plugin-docs]
 - [IntelliJ Platform Explorer][jb:ipe]
 - [Marketplace Quality Guidelines][jb:quality-guidelines]
 - [IntelliJ Platform UI Guidelines][jb:ui-guidelines]
@@ -530,8 +531,9 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [gh:gradle-changelog-plugin]: https://github.com/JetBrains/gradle-changelog-plugin
 [gh:gradle-qodana-plugin]: https://github.com/JetBrains/gradle-qodana-plugin
 [gh:gradle-intellij-plugin]: https://github.com/JetBrains/gradle-intellij-plugin
-[gh:gradle-intellij-plugin-running-dsl]: https://github.com/JetBrains/gradle-intellij-plugin#running-dsl
-[gh:gradle-intellij-plugin-verifier-dsl]: https://github.com/JetBrains/gradle-intellij-plugin#plugin-verifier-dsl
+[gh:gradle-intellij-plugin-docs]: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
+[gh:gradle-intellij-plugin-runIde]: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#runide-task
+[gh:gradle-intellij-plugin-runPluginVerifier]: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#runpluginverifier-task
 [gh:releases]: https://github.com/JetBrains/intellij-platform-plugin-template/releases
 [gh:build]: https://github.com/JetBrains/intellij-platform-plugin-template/actions?query=workflow%3ABuild
 [gh:dependabot-pr]: https://github.com/JetBrains/intellij-platform-plugin-template/pull/73
