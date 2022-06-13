@@ -20,6 +20,9 @@
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `5.1.0`
 - Upgrade Gradle Wrapper to `7.4.2`
 
+### Removed
+- Removed Gradle caching from GitHub Actions 
+
 ## [1.1.2]
 ### Changed
 - Update `platformVersion` to `2021.1.3` for compatibility with Apple M1
