@@ -9,6 +9,7 @@
 - Example implementation: Add `TODO()` with a hint to remove stale sample code
 
 ### Changed
+- Upgrade Gradle Wrapper to `7.5`
 - Update `platformVersion` to `2021.2.4`
 - Change since/until build to `212-221.*` (2021.2 - 2022.1)
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.7.0`
@@ -18,7 +19,6 @@
 - Dependencies (GitHub Actions) - upgrade `actions/setup-java` to `3`
 - Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `3`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.1.1`
-- Upgrade Gradle Wrapper to `7.5`
 
 ### Removed
 - Removed Gradle caching from GitHub Actions 
