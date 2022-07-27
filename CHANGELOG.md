@@ -10,7 +10,7 @@
 
 ### Changed
 - Upgrade Gradle Wrapper to `7.5`
-- Update `platformVersion` to `2021.2.4`
+- Update `platformVersion` to `2021.3.3`
 - Change since/until build to `213-222.*` (2021.3 - 2022.2)
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.7.0`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.7.10`
