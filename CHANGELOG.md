@@ -8,6 +8,7 @@
 - Make sure GitHub Actions release jobs have write permissions
 - Example implementation: Add `TODO()` with a hint to remove stale sample code
 - Exclude `.qodana` directory from Qodana analysis
+- Maximize disk space on GitHub Actions
 
 ### Changed
 - Upgrade Gradle Wrapper to `7.5`
