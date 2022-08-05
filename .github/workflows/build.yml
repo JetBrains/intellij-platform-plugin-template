@@ -37,10 +37,9 @@ jobs:
       - name: Maximize Build Space
         uses: easimon/maximize-build-space@v6
         with:
-          swap-size-mb: 1024
-          remove-android: true
-          remove-dotnet: true
-          remove-haskell: true
+          remove-android: 'true'
+          remove-dotnet: 'true'
+          remove-haskell: 'true'
 
       # Check out current repository
       - name: Fetch Sources
