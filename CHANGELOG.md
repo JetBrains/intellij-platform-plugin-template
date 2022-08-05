@@ -22,6 +22,9 @@
 - Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `3`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.2.1`
 
+### Fixed
+- Pass Plugin Signing secrets as environment variables in the Release workflow
+
 ### Removed
 - Removed Gradle caching from GitHub Actions 
 
