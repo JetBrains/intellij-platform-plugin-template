@@ -35,7 +35,7 @@ jobs:
 
       # Free GitHub Actions Environment Disk Space
       - name: Maximize Build Space
-        uses: easimon/maximize-build-space@v6
+        uses: easimon/maximize-build-space@master
         with:
           remove-android: 'true'
           remove-dotnet: 'true'
