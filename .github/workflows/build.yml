@@ -35,11 +35,12 @@ jobs:
 
       # Free GitHub Actions Environment Disk Space
       - name: Maximize Build Space
-        uses: easimon/maximize-build-space@master
+        uses: easimon/maximize-build-space@v6
         with:
-          remove-android: 'true'
-          remove-dotnet: 'true'
-          remove-haskell: 'true'
+          root-reserve-mb: 51200
+          remove-android: true
+          remove-dotnet: true
+          remove-haskell: true
 
       # Check out current repository
       - name: Fetch Sources
