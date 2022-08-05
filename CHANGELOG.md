@@ -18,7 +18,7 @@
 - Dependencies (GitHub Actions) - upgrade `actions/cache` to `3`
 - Dependencies (GitHub Actions) - upgrade `actions/setup-java` to `3`
 - Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `3`
-- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.1.1`
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.2.1`
 
 ### Removed
 - Removed Gradle caching from GitHub Actions 
