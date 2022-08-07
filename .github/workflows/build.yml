@@ -36,11 +36,9 @@ jobs:
       # Free GitHub Actions Environment Disk Space
       - name: Maximize Build Space
         run: |
-          df -h
           sudo rm -rf /usr/share/dotnet
           sudo rm -rf /usr/local/lib/android
           sudo rm -rf /opt/ghc
-          df -h
 
       # Check out current repository
       - name: Fetch Sources
