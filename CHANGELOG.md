@@ -10,7 +10,7 @@
 - Exclude `.qodana` directory from Qodana analysis
 
 ### Changed
-- Upgrade Gradle Wrapper to `7.5`
+- Upgrade Gradle Wrapper to `7.5.1`
 - Update `platformVersion` to `2021.3.3`
 - Change since/until build to `213-222.*` (2021.3 - 2022.2)
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.8.0`
