@@ -6,6 +6,9 @@
 ### Changed
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.8.1`
 
+### Fixed
+- Update broken link in `gradle.properties`
+
 ## [1.2.0]
 ### Added
 - GitHub Actions - mark the pull request created with _Publish Plugin_ workflow with `release changelog` label
