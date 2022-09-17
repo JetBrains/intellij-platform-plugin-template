@@ -84,9 +84,14 @@ jobs:
           git checkout -b $BRANCH
           git commit -am "Changelog update - $VERSION"
           git push --set-upstream origin $BRANCH
+          
+          gh label create "Release Changelog" \
+            --description "Tag for Pull Request from Release Changelog" \
+            --color 0075ca \
+            --force
 
           gh pr create \
             --title "Changelog update - \`$VERSION\`" \
             --body "Current pull request contains patched \`CHANGELOG.md\` file for the \`$VERSION\` version." \
-            --base main \
-            --head $BRANCH
+            --head $BRANCH \
+            --label "Release Changelog"
