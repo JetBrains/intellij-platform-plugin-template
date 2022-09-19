@@ -35,3 +35,5 @@ jobs:
           
           echo "$DIFF"
           echo "$GITHUB_STEP_SUMMARY"
+          
+          echo xxx > $GITHUB_STEP_SUMMARY
