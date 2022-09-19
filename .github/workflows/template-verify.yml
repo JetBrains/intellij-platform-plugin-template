@@ -34,6 +34,5 @@ jobs:
               gradle.properties .github/template-cleanup/gradle.properties
           )
           
-          echo "\`\`\`diff" >> $GITHUB_STEP_SUMMARY
-          echo "$DIFF" >> $GITHUB_STEP_SUMMARY
-          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          echo "$DIFF"
+          echo "$GITHUB_STEP_SUMMARY"
