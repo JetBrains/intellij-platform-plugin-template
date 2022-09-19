@@ -31,13 +31,3 @@ jobs:
               -I '^pluginGroup' \
               -I '^pluginName' \
               gradle.properties .github/template-cleanup/gradle.properties
-          
-          DIFF=$(
-            diff \
-              -I '^pluginVersion' \
-              -I '^pluginGroup' \
-              -I '^pluginName' \
-              gradle.properties .github/template-cleanup/gradle.properties
-          )
-          
-          [[ ! -z "$DIFF" ]] && echo $DIFF
