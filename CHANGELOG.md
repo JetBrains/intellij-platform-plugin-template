@@ -22,7 +22,7 @@
 - GitHub Actions - mark the pull request created with _Publish Plugin_ workflow with `release changelog` label
 
 ### Changed
-- Dependencies - upgrade `org.jetbrains.intellij` to `1.8.1`
+- Dependencies - upgrade `org.jetbrains.intellij` to `1.9.0`
 
 ### Fixed
 - Update broken link in `gradle.properties`
