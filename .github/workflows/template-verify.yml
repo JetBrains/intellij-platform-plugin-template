@@ -34,8 +34,10 @@ jobs:
               gradle.properties .github/template-cleanup/gradle.properties \
           )
 
-          [[ ! -z "$DIFF" ]] && $GITHUB_STEP_SUMMARY << EOF
-            ```diff
-            $DIFF
-            ```
-          EOF
+          [[ ! -z "$DIFF" ]] && (
+            $GITHUB_STEP_SUMMARY << EOF
+              ```diff
+              $DIFF
+              ```
+            EOF
+          )
