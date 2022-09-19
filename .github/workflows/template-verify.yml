@@ -26,5 +26,5 @@ jobs:
       # Compare `gradle.properties` with `.github/template-cleanup/gradle.properties`
       - name: Verify `gradle.properties`
         run: |
-          echo "Hello, World!
+          echo "Hello, World!"
 
