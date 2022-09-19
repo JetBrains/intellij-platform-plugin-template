@@ -28,7 +28,7 @@ jobs:
         run: |
           echo "\`\`\`diff" >> $GITHUB_STEP_SUMMARY
           
-          diff -u \
+          diff \
             -I '^pluginVersion' \
             -I '^pluginGroup' \
             -I '^pluginName' \
