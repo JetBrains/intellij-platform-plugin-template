@@ -33,10 +33,10 @@ jobs:
             gradle.properties .github/template-cleanup/gradle.properties
           
           DIFF=$(
-            diff -u \
-              -I '^pluginVersion' \
-              -I '^pluginGroup' \
-              -I '^pluginName' \
+            diff -u
+              -I '^pluginVersion'
+              -I '^pluginGroup'
+              -I '^pluginName'
               gradle.properties .github/template-cleanup/gradle.properties
           )
 
