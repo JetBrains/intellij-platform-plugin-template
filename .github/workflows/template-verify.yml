@@ -26,6 +26,12 @@ jobs:
       # Compare `gradle.properties` with `.github/template-cleanup/gradle.properties`
       - name: Verify `gradle.properties`
         run: |
+          diff -u \
+            -I '^pluginVersion' \
+            -I '^pluginGroup' \
+            -I '^pluginName' \
+            gradle.properties .github/template-cleanup/gradle.properties
+          
           DIFF=$(
             diff -u \
               -I '^pluginVersion' \
@@ -34,6 +40,9 @@ jobs:
               gradle.properties .github/template-cleanup/gradle.properties
           )
 
-          echo "XXX"
-          echo $DIFF
-
+          if [ -n "$DIFF" ]; then
+            echo $GITHUB_STEP_SUMMARY
+            echo "\`\`\`diff" >> $GITHUB_STEP_SUMMARY
+            echo $DIFF >> $GITHUB_STEP_SUMMARY
+            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          fi
