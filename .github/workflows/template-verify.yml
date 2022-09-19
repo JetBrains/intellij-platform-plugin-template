@@ -27,13 +27,13 @@ jobs:
       - name: Verify `gradle.properties`
         run: |
           DIFF="XXX"
-          diff -u \
-            -I '^pluginVersion' \
-            -I '^pluginGroup' \
-            -I '^pluginName' \
-            gradle.properties .github/template-cleanup/gradle.properties
+#          diff -u \
+#            -I '^pluginVersion' \
+#            -I '^pluginGroup' \
+#            -I '^pluginName' \
+#            gradle.properties .github/template-cleanup/gradle.properties
           
           echo "$DIFF"
           echo "$GITHUB_STEP_SUMMARY"
           
-          echo xxx > $GITHUB_STEP_SUMMARY
+          echo $DIFF > $GITHUB_STEP_SUMMARY
