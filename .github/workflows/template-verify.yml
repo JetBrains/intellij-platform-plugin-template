@@ -35,7 +35,7 @@ jobs:
           )
 
           [[ ! -z "$DIFF" ]] && (
-            $GITHUB_STEP_SUMMARY << EOF
+            cat << EOF > $GITHUB_STEP_SUMMARY
               ```diff
               $DIFF
               ```
