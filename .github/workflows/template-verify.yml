@@ -26,6 +26,7 @@ jobs:
       # Compare `gradle.properties` with `.github/template-cleanup/gradle.properties`
       - name: Verify `gradle.properties`
         run: |
+          DIFF="XXX"
           diff -u \
             -I '^pluginVersion' \
             -I '^pluginGroup' \
