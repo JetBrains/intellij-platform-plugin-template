@@ -37,9 +37,3 @@ jobs:
           echo "XXX"
           echo $DIFF
 
-          if [ -n "$DIFF" ]; then
-            echo $GITHUB_STEP_SUMMARY
-            echo "\`\`\`diff" >> $GITHUB_STEP_SUMMARY
-            echo $DIFF >> $GITHUB_STEP_SUMMARY
-            echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-          fi
