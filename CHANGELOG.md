@@ -3,8 +3,16 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+- GitHub Actions - mark the pull request created with _Publish Plugin_ workflow with `release changelog` label
+
 ### Changed
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.8.1`
+- Use `file` instead of `projectDir.resolve` in Gradle configuration file
+
+### Fixed
+- Update broken link in `gradle.properties`
+- GitHub Actions - use `$BRANCH` for creating changelog pull request
 
 ### Fixed
 - Update broken link in `gradle.properties`
