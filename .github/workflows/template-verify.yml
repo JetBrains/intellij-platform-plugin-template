@@ -34,4 +34,4 @@ jobs:
               gradle.properties .github/template-cleanup/gradle.properties
           )
           
-          [[ ! -z "$DIFF" ]] && echo $DIFF && exit 1
+          [[ ! -z "$DIFF" ]] && echo $DIFF
