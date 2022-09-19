@@ -59,6 +59,7 @@ jobs:
             .github/readme \
             .github/template-cleanup \
             .github/workflows/template-cleanup.yml \
+            .github/workflows/template-verify.yml \
             .idea/icon.png \
             src/main/kotlin/org \
             src/test/kotlin/org \
