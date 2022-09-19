@@ -3,6 +3,8 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+
+## [1.2.0]
 ### Added
 - Use JVM toolchain for configuring source/target compilation compatibility
 - Make sure GitHub Actions release jobs have write permissions
