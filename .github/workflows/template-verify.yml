@@ -36,8 +36,8 @@ jobs:
 
           if [ ! -z "$DIFF" ] ; then
             cat <<- EOF > $GITHUB_STEP_SUMMARY
-              ```diff
-              $DIFF
-              ```
+            ```diff
+            $DIFF
+            ```
             EOF
           fi
