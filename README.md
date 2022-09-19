@@ -92,17 +92,17 @@ The most significant parts of the current configuration are:
 - Integration with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] for smoother development.
 - [Plugin publishing][docs:publishing] using the token.
 
-For more details regarding Kotlin integration, please see [Kotlin for Plugin Developers][kotlin-for-plugin-developers] section in the IntelliJ Platform Plugin SDK documentation.
+For more details regarding Kotlin integration, please see [Kotlin for Plugin Developers][docs:kotlin] section in the IntelliJ Platform Plugin SDK documentation.
 
 ### Gradle properties
 
-The project-specific configuration file [gradle.properties][file:gradle.properties] contains:
+The project-specific configuration file [`gradle.properties`][file:gradle.properties] contains:
 
 | Property name             | Description                                                                                               |
 |---------------------------|-----------------------------------------------------------------------------------------------------------|
 | `pluginGroup`             | Package name - after *using* the template, this will be set to `com.github.username.repo`.                |
 | `pluginName`              | Plugin name displayed in the JetBrains Marketplace and the Plugins Repository.                            |
-| `pluginVersion`           | The current version of the plugin in [SemVer](https://semver.org/) format.                                |
+| `pluginVersion`           | The current version of the plugin in [SemVer][semver] format.                                             |
 | `pluginSinceBuild`        | The `since-build` attribute of the `<idea-version>` tag.                                                  |
 | `pluginUntilBuild`        | The `until-build` attribute of the `<idea-version>` tag.                                                  |
 | `platformType`            | The type of IDE distribution.                                                                             |
@@ -111,6 +111,13 @@ The project-specific configuration file [gradle.properties][file:gradle.properti
 | `gradleVersion`           | Version of Gradle used for plugin development.                                                            |
 
 The properties listed define the plugin itself or configure the [gradle-intellij-plugin][gh:gradle-intellij-plugin] – check its documentation for more details.
+
+In addition, extra behaviours are configured through the [`gradle.properties`][file:gradle.properties] file, such as:
+
+| Property name                           | Value   | Description                                                             |
+|-----------------------------------------|---------|-------------------------------------------------------------------------|
+| `kotlin.stdlib.default.dependency`      | `false` | Opt-out flag for bundling [Kotlin standard library][docs:kotlin-stdlib] |
+| `org.gradle.unsafe.configuration-cache` | `true`  | Enable [Gradle Configuration Cache][gradle-configuration-cache]         |
 
 ### Environment variables
 
@@ -273,13 +280,13 @@ Due to its optional nature, this workflow isn't set as an automatic one, but thi
 
 ## Qodana integration
 
-To increase the project value, the IntelliJ Platform Plugin Template got integrated with [Qodana][docs:qodana], a code quality monitoring platform that allows you to check the condition of your implementation and find any possible problems that may require enhancing.
+To increase the project value, the IntelliJ Platform Plugin Template got integrated with [Qodana][jb:qodana], a code quality monitoring platform that allows you to check the condition of your implementation and find any possible problems that may require enhancing.
 
 Qodana brings into your CI/CD pipelines all the smart features you love in the JetBrains IDEs and generates an HTML report with the actual inspection status.
 
 Qodana inspections are accessible within the project on two levels:
 
-- using the [Qodana IntelliJ GitHub Action][docs:qodana-github-action], run automatically within the [Build](.github/workflows/build.yml) workflow,
+- using the [Qodana IntelliJ GitHub Action][jb:qodana-github-action], run automatically within the [Build](.github/workflows/build.yml) workflow,
 - with the [Gradle Qodana Plugin][gh:gradle-qodana-plugin], so you can use it on the local environment or any CI other than GitHub Actions.
 
 Qodana inspection is configured with the `qodana { ... }` section in the Gradle build file and [`qodana.yml`][file:qodana.yml] YAML configuration file.
@@ -501,14 +508,14 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [docs]: https://plugins.jetbrains.com/docs/intellij?from=IJPluginTemplate
 [docs:intro]: https://plugins.jetbrains.com/docs/intellij/intellij-platform.html?from=IJPluginTemplate
 [docs:kotlin-ui-dsl]: https://plugins.jetbrains.com/docs/intellij/kotlin-ui-dsl.html?from=IJPluginTemplate
+[docs:kotlin]: https://plugins.jetbrains.com/docs/intellij/kotlin.html?from=IJPluginTemplate
+[docs:kotlin-stdlib]: https://plugins.jetbrains.com/docs/intellij/kotlin.html?from=IJPluginTemplate#kotlin-standard-library
 [docs:plugin.xml]: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html?from=IJPluginTemplate
 [docs:publishing]: https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate
 [docs:release-channel]: https://plugins.jetbrains.com/docs/intellij/deployment.html?from=IJPluginTemplate#specifying-a-release-channel
 [docs:using-gradle]: https://plugins.jetbrains.com/docs/intellij/gradle-build-system.html?from=IJPluginTemplate
 [docs:plugin-signing]: https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate
-[docs:testing-plugins]: https://plugins.jetbrains.com/docs/intellij/testing-plugins.html
-[docs:qodana]: https://www.jetbrains.com/help/qodana
-[docs:qodana-github-action]: https://www.jetbrains.com/help/qodana/qodana-intellij-github-action.html
+[docs:testing-plugins]: https://plugins.jetbrains.com/docs/intellij/testing-plugins.html?from=IJPluginTemplate
 
 [file:use-this-template.png]: .github/readme/use-this-template.png
 [file:draft-release.png]: .github/readme/draft-release.png
@@ -544,6 +551,8 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [jb:ipe]: https://plugins.jetbrains.com/intellij-platform-explorer
 [jb:my-tokens]: https://plugins.jetbrains.com/author/me/tokens
 [jb:paid-plugins]: https://plugins.jetbrains.com/docs/marketplace/paid-plugins-marketplace.html
+[jb:qodana]: https://www.jetbrains.com/help/qodana
+[jb:qodana-github-action]: https://www.jetbrains.com/help/qodana/qodana-intellij-github-action.html
 [jb:quality-guidelines]: https://plugins.jetbrains.com/docs/marketplace/quality-guidelines.html
 [jb:slack]: https://plugins.jetbrains.com/slack
 [jb:twitter]: https://twitter.com/JBPlatform
@@ -553,8 +562,9 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [keep-a-changelog-how]: https://keepachangelog.com/en/1.0.0/#how
 [github-actions-skip-ci]: https://github.blog/changelog/2021-02-08-github-actions-skip-pull-request-and-push-workflows-with-skip-ci/
 [gradle]: https://gradle.org
-[gradle-releases]: https://gradle.org/releases
+[gradle-configuration-cache]: https://docs.gradle.org/current/userguide/configuration_cache.html
 [gradle-kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
 [gradle-lifecycle-tasks]: https://docs.gradle.org/current/userguide/java_plugin.html#lifecycle_tasks
-[kotlin-for-plugin-developers]: https://plugins.jetbrains.com/docs/intellij/kotlin.html#adding-kotlin-support
+[gradle-releases]: https://gradle.org/releases
+[semver]: https://semver.org
 [xpath]: https://www.w3.org/TR/xpath-21/

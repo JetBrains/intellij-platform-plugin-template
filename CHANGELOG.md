@@ -5,6 +5,7 @@
 ## [Unreleased]
 ### Added
 - GitHub Actions - mark the pull request created with _Publish Plugin_ workflow with `release changelog` label
+- Enable [Gradle Configuration Cache](https://docs.gradle.org/current/userguide/configuration_cache.html) in `gradle.proeprties`
 
 ### Changed
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.8.1`
