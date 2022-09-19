@@ -77,6 +77,7 @@ jobs:
         run: |
           VERSION="${{ github.event.release.tag_name }}"
           BRANCH="changelog-update-$VERSION"
+          LABEL="release changelog"
 
           git config user.email "action@github.com"
           git config user.name "GitHub Action"
@@ -85,13 +86,12 @@ jobs:
           git commit -am "Changelog update - $VERSION"
           git push --set-upstream origin $BRANCH
           
-          gh label create "Release Changelog" \
-            --description "Tag for Pull Request from Release Changelog" \
-            --color 0075ca \
-            --force
+          gh label create "$LABEL" \
+            --description "Pull requests with release changelog update" \
+            || true
 
           gh pr create \
             --title "Changelog update - \`$VERSION\`" \
             --body "Current pull request contains patched \`CHANGELOG.md\` file for the \`$VERSION\` version." \
-            --head $BRANCH \
-            --label "Release Changelog"
+            --label "$LABEL" \
+            --head $BRANCH
