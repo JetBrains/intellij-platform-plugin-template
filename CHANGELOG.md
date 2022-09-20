@@ -4,8 +4,11 @@
 
 ## [Unreleased]
 ### Added
-- GitHub Actions - mark the pull request created with _Publish Plugin_ workflow with `release changelog` label
+- [Kover](https://github.com/Kotlin/kotlinx-kover) integration
 - Enable [Gradle Configuration Cache](https://docs.gradle.org/current/userguide/configuration_cache.html) in `gradle.proeprties`
+- GitHub Actions - mark the pull request created with _Publish Plugin_ workflow with `release changelog` label
+- GitHub Actions - send code coverage reports to [CodeCov](https://codecov.io)
+- Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.6.0`
 
 ### Changed
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.8.1`
