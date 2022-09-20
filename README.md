@@ -39,6 +39,7 @@ In this README, we will highlight the following elements of template-project cre
   - actions – basic action with shortcut binding
 - [Testing](#testing)
   - [Functional tests](#functional-tests)
+  - [Code coverage](#code-coverage)
   - [UI tests](#ui-tests)
 - [Qodana integration](#qodana-integration)
 - [Predefined Run/Debug configurations](#predefined-rundebug-configurations)
@@ -127,12 +128,12 @@ To avoid that, environment variables are introduced, which can be provided withi
 
 Environment variables used by the current project are related to the [plugin signing](#plugin-signing) and [publishing](#publishing-the-plugin).
 
-| Environment variable name | Description                                                                                                                                 |
-|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| `PRIVATE_KEY`             | Certificate private key, should contain: <code>-----BEGIN ENCRYPTED PRIVATE KEY-----<br/>...<br/>-----END ENCRYPTED PRIVATE KEY-----</code> |
-| `PRIVATE_KEY_PASSWORD`    | Password used for encrypting the certificate file.                                                                                          |
-| `CERTIFICATE_CHAIN`       | Certificate chain, should contain: <code>-----BEGIN CERTIFICATE-----<br/>...<br/>-----END CERTIFICATE----</code>                            |
-| `PUBLISH_TOKEN`           | Publishing token generated in your JetBrains Marketplace profile dashboard.                                                                 |
+| Environment variable name | Description                                                                                                              |
+|---------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| `PRIVATE_KEY`             | Certificate private key, should contain: `-----BEGIN ENCRYPTED PRIVATE KEY----- ... -----END ENCRYPTED PRIVATE KEY-----` |
+| `PRIVATE_KEY_PASSWORD`    | Password used for encrypting the certificate file.                                                                       |
+| `CERTIFICATE_CHAIN`       | Certificate chain, should contain: `-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE----`                            |
+| `PUBLISH_TOKEN`           | Publishing token generated in your JetBrains Marketplace profile dashboard.                                              |
 
 For more details on how to generate proper values, check the relevant sections mentioned above.
 
@@ -245,7 +246,14 @@ In `src/test/kotlin`, you'll find a basic `MyPluginTest` test that utilizes `Bas
 
 > **Note**
 > 
-> Run your tests using predefined *Run Tests* configuration or by invoking the `./gradlew test` Gradle task.
+> Run your tests using predefined *Run Tests* configuration or by invoking the `./gradlew check` Gradle task.
+
+### Code coverage
+
+The [Kover][gh:kover] – a Gradle plugin for Kotlin code coverage agents: IntelliJ and JaCoCo – is integrated into the project to provide the code coverage feature.
+Code coverage makes it possible to measure and track the degree of testing of the plugin sources.
+The code coverage gets executed when running the `check` Gradle task.
+The final test report is sent to [CodeCov][codecov] for better results visualization.
 
 ### UI tests
 
@@ -257,7 +265,7 @@ Once IDE with `robot-server` has started, you can open the `http://localhost:808
 
 > **Note**
 > 
-> Run IDE for UI tests using predefined *Run IDE for UI Tests* and then *Run Tests* configurations or by invoking the `./gradlew runIdeForUiTests` and `./gradlew tests` Gradle tasks.
+> Run IDE for UI tests using predefined *Run IDE for UI Tests* and then *Run Tests* configurations or by invoking the `./gradlew runIdeForUiTests` and `./gradlew check` Gradle tasks.
 
 Check the UI Test Example project you can use as a reference for setting up UI testing in your plugin: [intellij-ui-test-robot/ui-test-example][gh:ui-test-example].
 
@@ -531,18 +539,19 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [file:qodana.png]: .github/readme/qodana.png
 
 [gh:actions]: https://help.github.com/en/actions
-[gh:dependabot]: https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/keeping-your-dependencies-updated-automatically
+[gh:build]: https://github.com/JetBrains/intellij-platform-plugin-template/actions?query=workflow%3ABuild
 [gh:code-samples]: https://github.com/JetBrains/intellij-sdk-code-samples
+[gh:dependabot]: https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/keeping-your-dependencies-updated-automatically
+[gh:dependabot-pr]: https://github.com/JetBrains/intellij-platform-plugin-template/pull/73
 [gh:gradle-changelog-plugin]: https://github.com/JetBrains/gradle-changelog-plugin
-[gh:gradle-qodana-plugin]: https://github.com/JetBrains/gradle-qodana-plugin
 [gh:gradle-intellij-plugin]: https://github.com/JetBrains/gradle-intellij-plugin
 [gh:gradle-intellij-plugin-docs]: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
-[gh:gradle-intellij-plugin-runIde]: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#runide-task
-[gh:gradle-intellij-plugin-runPluginVerifier]: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#runpluginverifier-task
-[gh:releases]: https://github.com/JetBrains/intellij-platform-plugin-template/releases
-[gh:build]: https://github.com/JetBrains/intellij-platform-plugin-template/actions?query=workflow%3ABuild
-[gh:dependabot-pr]: https://github.com/JetBrains/intellij-platform-plugin-template/pull/73
+[gh:gradle-intellij-plugin-runIde]: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#tasks-runide
+[gh:gradle-intellij-plugin-runPluginVerifier]: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#tasks-runpluginverifier
+[gh:gradle-qodana-plugin]: https://github.com/JetBrains/gradle-qodana-plugin
 [gh:intellij-ui-test-robot]: https://github.com/JetBrains/intellij-ui-test-robot
+[gh:kover]: https://github.com/Kotlin/kotlinx-kover
+[gh:releases]: https://github.com/JetBrains/intellij-platform-plugin-template/releases
 [gh:ui-test-example]: https://github.com/JetBrains/intellij-ui-test-robot/tree/master/ui-test-example
 
 [jb:confluence-on-gh]: https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub
@@ -558,13 +567,14 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [jb:twitter]: https://twitter.com/JBPlatform
 [jb:ui-guidelines]: https://jetbrains.github.io/ui
 
-[keep-a-changelog]: https://keepachangelog.com
-[keep-a-changelog-how]: https://keepachangelog.com/en/1.0.0/#how
+[codecov]: https://codecov.io
 [github-actions-skip-ci]: https://github.blog/changelog/2021-02-08-github-actions-skip-pull-request-and-push-workflows-with-skip-ci/
 [gradle]: https://gradle.org
 [gradle-configuration-cache]: https://docs.gradle.org/current/userguide/configuration_cache.html
 [gradle-kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
 [gradle-lifecycle-tasks]: https://docs.gradle.org/current/userguide/java_plugin.html#lifecycle_tasks
 [gradle-releases]: https://gradle.org/releases
+[keep-a-changelog]: https://keepachangelog.com
+[keep-a-changelog-how]: https://keepachangelog.com/en/1.0.0/#how
 [semver]: https://semver.org
 [xpath]: https://www.w3.org/TR/xpath-21/
