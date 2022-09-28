@@ -1,6 +1,6 @@
 # IntelliJ Platform Plugin Template
 
-[![official JetBrains project](https://jb.gg/badges/official.svg)][jb:confluence-on-gh]
+[![official JetBrains project](https://jb.gg/badges/official.svg)][jb:github]
 [![Twitter Follow](https://img.shields.io/twitter/follow/JBPlatform?style=flat-square&logo=twitter)](https://twitter.com/JBPlatform)
 [![Build](https://github.com/JetBrains/intellij-platform-plugin-template/workflows/Build/badge.svg)][gh:build]
 [![Slack](https://img.shields.io/badge/Slack-%23intellij--platform-blue?style=flat-square&logo=Slack)](https://plugins.jetbrains.com/slack)
@@ -554,7 +554,7 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [gh:releases]: https://github.com/JetBrains/intellij-platform-plugin-template/releases
 [gh:ui-test-example]: https://github.com/JetBrains/intellij-ui-test-robot/tree/master/ui-test-example
 
-[jb:confluence-on-gh]: https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub
+[jb:github]: https://github.com/JetBrains/.github/blob/main/profile/README.md
 [jb:download-ij]: https://www.jetbrains.com/idea/download
 [jb:forum]: https://intellij-support.jetbrains.com/hc/en-us/community/topics/200366979-IntelliJ-IDEA-Open-API-and-Plugin-Development
 [jb:ipe]: https://plugins.jetbrains.com/intellij-platform-explorer
