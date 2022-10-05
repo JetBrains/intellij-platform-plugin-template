@@ -11,6 +11,7 @@
 - Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.6.1`
 
 ### Changed
+- Use `kotlin.jvmToolchain(11)` shorthand in Gradle configuration
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.9.0`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.7.20`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.2.2`
