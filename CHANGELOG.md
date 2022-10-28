@@ -47,12 +47,6 @@
 ### Removed
 - Removed Gradle caching from GitHub Actions
 
-### Fixed
-- Pass Plugin Signing secrets as environment variables in the Release workflow
-
-### Removed
-- Removed Gradle caching from GitHub Actions 
-
 ## [1.1.2]
 ### Changed
 - Update `platformVersion` to `2021.1.3` for compatibility with Apple M1
