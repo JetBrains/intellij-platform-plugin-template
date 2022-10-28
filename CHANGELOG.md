@@ -21,27 +21,6 @@
 - Update broken link in `gradle.properties`
 - GitHub Actions - use `$BRANCH` for creating changelog pull request
 
-### Fixed
-- Update broken link in `gradle.properties`
-
-## [1.2.0]
-### Added
-- GitHub Actions - mark the pull request created with _Publish Plugin_ workflow with `release changelog` label
-
-### Changed
-- Dependencies - upgrade `org.jetbrains.intellij` to `1.8.1`
-
-### Fixed
-- Update broken link in `gradle.properties`
-- GitHub Actions - use `$BRANCH` for creating changelog pull request
-
-## [1.2.0]
-### Added
-- GitHub Actions - mark the pull request created with _Publish Plugin_ workflow with `release changelog` label
-
-### Fixed
-- GitHub Actions - use `$BRANCH` for creating changelog pull request
-
 ## [1.2.0]
 ### Added
 - Use JVM toolchain for configuring source/target compilation compatibility
@@ -61,6 +40,12 @@
 - Dependencies (GitHub Actions) - upgrade `actions/setup-java` to `3`
 - Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `3`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.2.1`
+
+### Fixed
+- Pass Plugin Signing secrets as environment variables in the Release workflow
+
+### Removed
+- Removed Gradle caching from GitHub Actions
 
 ### Fixed
 - Pass Plugin Signing secrets as environment variables in the Release workflow
