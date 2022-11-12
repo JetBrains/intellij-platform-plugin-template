@@ -92,7 +92,6 @@ jobs:
         uses: codecov/codecov-action@v3
         with:
           files: ${{ github.workspace }}/build/reports/kover/xml/report.xml
-          fail_ci_if_error: true
 
       # Cache Plugin Verifier IDEs
       - name: Setup Plugin Verifier IDEs Cache
