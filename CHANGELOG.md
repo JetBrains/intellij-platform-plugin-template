@@ -18,7 +18,8 @@
 - Dependencies - upgrade `org.jetbrains.changelog` to `2.0.0`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.7.21`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.2.3`
-- Dependencies (GitHub Actions) - upgrade `gradleValidation` to `v1.0.5`
+- Dependencies (GitHub Actions) - upgrade `gradle/wrapper-validation-action` to `v1.0.5`
+- Dependencies (GitHub Actions) - upgrade `jtalk/url-health-check-action` to `v3`
 - Use `file` instead of `projectDir.resolve` in Gradle configuration file
 
 ### Fixed
