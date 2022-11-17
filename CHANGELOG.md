@@ -12,7 +12,8 @@
 - Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.6.1`
 
 ### Changed
-- Update `changelog` extension configuration in `build.gradle.kts` file 
+- Update `changelog` extension configuration in `build.gradle.kts` file
+- Update `pluginUntilBuild` to include `223.*` (2022.3.*)
 - Use `kotlin.jvmToolchain(11)` shorthand in Gradle configuration
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.10.0`
 - Dependencies - upgrade `org.jetbrains.changelog` to `2.0.0`
