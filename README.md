@@ -129,12 +129,12 @@ To avoid that, environment variables are introduced, which can be provided withi
 
 Environment variables used by the current project are related to the [plugin signing](#plugin-signing) and [publishing](#publishing-the-plugin).
 
-| Environment variable name | Description                                                                                                              |
-|---------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| `PRIVATE_KEY`             | Certificate private key, should contain: `-----BEGIN ENCRYPTED PRIVATE KEY----- ... -----END ENCRYPTED PRIVATE KEY-----` |
-| `PRIVATE_KEY_PASSWORD`    | Password used for encrypting the certificate file.                                                                       |
-| `CERTIFICATE_CHAIN`       | Certificate chain, should contain: `-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE----`                            |
-| `PUBLISH_TOKEN`           | Publishing token generated in your JetBrains Marketplace profile dashboard.                                              |
+| Environment variable name | Description                                                                                                  |
+|---------------------------|--------------------------------------------------------------------------------------------------------------|
+| `PRIVATE_KEY`             | Certificate private key, should contain: `-----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY-----` |
+| `PRIVATE_KEY_PASSWORD`    | Password used for encrypting the certificate file.                                                           |
+| `CERTIFICATE_CHAIN`       | Certificate chain, should contain: `-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE----`                |
+| `PUBLISH_TOKEN`           | Publishing token generated in your JetBrains Marketplace profile dashboard.                                  |
 
 For more details on how to generate proper values, check the relevant sections mentioned above.
 
