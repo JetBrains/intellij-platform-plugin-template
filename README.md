@@ -5,7 +5,8 @@
 [![Build](https://github.com/JetBrains/intellij-platform-plugin-template/workflows/Build/badge.svg)][gh:build]
 [![Slack](https://img.shields.io/badge/Slack-%23intellij--platform-blue?style=flat-square&logo=Slack)](https://plugins.jetbrains.com/slack)
 
-![IntelliJ Platform Plugin Template][file:intellij-platform-plugin-template.png]
+![IntelliJ Platform Plugin Template][file:intellij-platform-plugin-template-dark]
+![IntelliJ Platform Plugin Template][file:intellij-platform-plugin-template-light]
 
 > **Note**
 > 
@@ -533,7 +534,8 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [file:run-debug-configurations.png]: .github/readme/run-debug-configurations.png
 [file:settings-secrets.png]: .github/readme/settings-secrets.png
 [file:template_cleanup.yml]: ./.github/workflows/template-cleanup.yml
-[file:intellij-platform-plugin-template.png]: ./.github/readme/intellij-platform-plugin-template.png
+[intellij-platform-plugin-template-dark]: ./.github/readme/intellij-platform-plugin-template-dark.svg#gh-dark-mode-only
+[intellij-platform-plugin-template-light]: ./.github/readme/intellij-platform-plugin-template-light.svg#gh-light-mode-only
 [file:ui-testing.png]: ./.github/readme/ui-testing.png
 [file:qodana.yml]: ./qodana.yml
 [file:qodana.png]: .github/readme/qodana.png
