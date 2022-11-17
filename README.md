@@ -1,11 +1,12 @@
 # IntelliJ Platform Plugin Template
 
-[![official JetBrains project](https://jb.gg/badges/official.svg)][jb:confluence-on-gh]
+[![official JetBrains project](https://jb.gg/badges/official.svg)][jb:github]
 [![Twitter Follow](https://img.shields.io/twitter/follow/JBPlatform?style=flat-square&logo=twitter)](https://twitter.com/JBPlatform)
 [![Build](https://github.com/JetBrains/intellij-platform-plugin-template/workflows/Build/badge.svg)][gh:build]
 [![Slack](https://img.shields.io/badge/Slack-%23intellij--platform-blue?style=flat-square&logo=Slack)](https://plugins.jetbrains.com/slack)
 
-![IntelliJ Platform Plugin Template][file:intellij-platform-plugin-template.png]
+![IntelliJ Platform Plugin Template][file:intellij-platform-plugin-template-dark]
+![IntelliJ Platform Plugin Template][file:intellij-platform-plugin-template-light]
 
 > **Note**
 > 
@@ -39,6 +40,7 @@ In this README, we will highlight the following elements of template-project cre
   - actions – basic action with shortcut binding
 - [Testing](#testing)
   - [Functional tests](#functional-tests)
+  - [Code coverage](#code-coverage)
   - [UI tests](#ui-tests)
 - [Qodana integration](#qodana-integration)
 - [Predefined Run/Debug configurations](#predefined-rundebug-configurations)
@@ -92,17 +94,17 @@ The most significant parts of the current configuration are:
 - Integration with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] for smoother development.
 - [Plugin publishing][docs:publishing] using the token.
 
-For more details regarding Kotlin integration, please see [Kotlin for Plugin Developers][kotlin-for-plugin-developers] section in the IntelliJ Platform Plugin SDK documentation.
+For more details regarding Kotlin integration, please see [Kotlin for Plugin Developers][docs:kotlin] section in the IntelliJ Platform Plugin SDK documentation.
 
 ### Gradle properties
 
-The project-specific configuration file [gradle.properties][file:gradle.properties] contains:
+The project-specific configuration file [`gradle.properties`][file:gradle.properties] contains:
 
 | Property name             | Description                                                                                               |
 |---------------------------|-----------------------------------------------------------------------------------------------------------|
 | `pluginGroup`             | Package name - after *using* the template, this will be set to `com.github.username.repo`.                |
 | `pluginName`              | Plugin name displayed in the JetBrains Marketplace and the Plugins Repository.                            |
-| `pluginVersion`           | The current version of the plugin in [SemVer](https://semver.org/) format.                                |
+| `pluginVersion`           | The current version of the plugin in [SemVer][semver] format.                                             |
 | `pluginSinceBuild`        | The `since-build` attribute of the `<idea-version>` tag.                                                  |
 | `pluginUntilBuild`        | The `until-build` attribute of the `<idea-version>` tag.                                                  |
 | `platformType`            | The type of IDE distribution.                                                                             |
@@ -112,6 +114,13 @@ The project-specific configuration file [gradle.properties][file:gradle.properti
 
 The properties listed define the plugin itself or configure the [gradle-intellij-plugin][gh:gradle-intellij-plugin] – check its documentation for more details.
 
+In addition, extra behaviours are configured through the [`gradle.properties`][file:gradle.properties] file, such as:
+
+| Property name                           | Value   | Description                                                             |
+|-----------------------------------------|---------|-------------------------------------------------------------------------|
+| `kotlin.stdlib.default.dependency`      | `false` | Opt-out flag for bundling [Kotlin standard library][docs:kotlin-stdlib] |
+| `org.gradle.unsafe.configuration-cache` | `true`  | Enable [Gradle Configuration Cache][gradle-configuration-cache]         |
+
 ### Environment variables
 
 Some values used for the Gradle configuration shouldn't be stored in files to avoid publishing them to the Version Control System.
@@ -120,12 +129,12 @@ To avoid that, environment variables are introduced, which can be provided withi
 
 Environment variables used by the current project are related to the [plugin signing](#plugin-signing) and [publishing](#publishing-the-plugin).
 
-| Environment variable name | Description                                                                                                                                 |
-|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|
-| `PRIVATE_KEY`             | Certificate private key, should contain: <code>-----BEGIN ENCRYPTED PRIVATE KEY-----<br/>...<br/>-----END ENCRYPTED PRIVATE KEY-----</code> |
-| `PRIVATE_KEY_PASSWORD`    | Password used for encrypting the certificate file.                                                                                          |
-| `CERTIFICATE_CHAIN`       | Certificate chain, should contain: <code>-----BEGIN CERTIFICATE-----<br/>...<br/>-----END CERTIFICATE----</code>                            |
-| `PUBLISH_TOKEN`           | Publishing token generated in your JetBrains Marketplace profile dashboard.                                                                 |
+| Environment variable name | Description                                                                                                  |
+|---------------------------|--------------------------------------------------------------------------------------------------------------|
+| `PRIVATE_KEY`             | Certificate private key, should contain: `-----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY-----` |
+| `PRIVATE_KEY_PASSWORD`    | Password used for encrypting the certificate file.                                                           |
+| `CERTIFICATE_CHAIN`       | Certificate chain, should contain: `-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE----`                |
+| `PUBLISH_TOKEN`           | Publishing token generated in your JetBrains Marketplace profile dashboard.                                  |
 
 For more details on how to generate proper values, check the relevant sections mentioned above.
 
@@ -238,7 +247,14 @@ In `src/test/kotlin`, you'll find a basic `MyPluginTest` test that utilizes `Bas
 
 > **Note**
 > 
-> Run your tests using predefined *Run Tests* configuration or by invoking the `./gradlew test` Gradle task.
+> Run your tests using predefined *Run Tests* configuration or by invoking the `./gradlew check` Gradle task.
+
+### Code coverage
+
+The [Kover][gh:kover] – a Gradle plugin for Kotlin code coverage agents: IntelliJ and JaCoCo – is integrated into the project to provide the code coverage feature.
+Code coverage makes it possible to measure and track the degree of testing of the plugin sources.
+The code coverage gets executed when running the `check` Gradle task.
+The final test report is sent to [CodeCov][codecov] for better results visualization.
 
 ### UI tests
 
@@ -250,7 +266,7 @@ Once IDE with `robot-server` has started, you can open the `http://localhost:808
 
 > **Note**
 > 
-> Run IDE for UI tests using predefined *Run IDE for UI Tests* and then *Run Tests* configurations or by invoking the `./gradlew runIdeForUiTests` and `./gradlew tests` Gradle tasks.
+> Run IDE for UI tests using predefined *Run IDE for UI Tests* and then *Run Tests* configurations or by invoking the `./gradlew runIdeForUiTests` and `./gradlew check` Gradle tasks.
 
 Check the UI Test Example project you can use as a reference for setting up UI testing in your plugin: [intellij-ui-test-robot/ui-test-example][gh:ui-test-example].
 
@@ -273,13 +289,13 @@ Due to its optional nature, this workflow isn't set as an automatic one, but thi
 
 ## Qodana integration
 
-To increase the project value, the IntelliJ Platform Plugin Template got integrated with [Qodana][docs:qodana], a code quality monitoring platform that allows you to check the condition of your implementation and find any possible problems that may require enhancing.
+To increase the project value, the IntelliJ Platform Plugin Template got integrated with [Qodana][jb:qodana], a code quality monitoring platform that allows you to check the condition of your implementation and find any possible problems that may require enhancing.
 
 Qodana brings into your CI/CD pipelines all the smart features you love in the JetBrains IDEs and generates an HTML report with the actual inspection status.
 
 Qodana inspections are accessible within the project on two levels:
 
-- using the [Qodana IntelliJ GitHub Action][docs:qodana-github-action], run automatically within the [Build](.github/workflows/build.yml) workflow,
+- using the [Qodana IntelliJ GitHub Action][jb:qodana-github-action], run automatically within the [Build](.github/workflows/build.yml) workflow,
 - with the [Gradle Qodana Plugin][gh:gradle-qodana-plugin], so you can use it on the local environment or any CI other than GitHub Actions.
 
 Qodana inspection is configured with the `qodana { ... }` section in the Gradle build file and [`qodana.yml`][file:qodana.yml] YAML configuration file.
@@ -501,14 +517,14 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [docs]: https://plugins.jetbrains.com/docs/intellij?from=IJPluginTemplate
 [docs:intro]: https://plugins.jetbrains.com/docs/intellij/intellij-platform.html?from=IJPluginTemplate
 [docs:kotlin-ui-dsl]: https://plugins.jetbrains.com/docs/intellij/kotlin-ui-dsl.html?from=IJPluginTemplate
+[docs:kotlin]: https://plugins.jetbrains.com/docs/intellij/kotlin.html?from=IJPluginTemplate
+[docs:kotlin-stdlib]: https://plugins.jetbrains.com/docs/intellij/kotlin.html?from=IJPluginTemplate#kotlin-standard-library
 [docs:plugin.xml]: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html?from=IJPluginTemplate
 [docs:publishing]: https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate
 [docs:release-channel]: https://plugins.jetbrains.com/docs/intellij/deployment.html?from=IJPluginTemplate#specifying-a-release-channel
 [docs:using-gradle]: https://plugins.jetbrains.com/docs/intellij/gradle-build-system.html?from=IJPluginTemplate
 [docs:plugin-signing]: https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate
-[docs:testing-plugins]: https://plugins.jetbrains.com/docs/intellij/testing-plugins.html
-[docs:qodana]: https://www.jetbrains.com/help/qodana
-[docs:qodana-github-action]: https://www.jetbrains.com/help/qodana/qodana-intellij-github-action.html
+[docs:testing-plugins]: https://plugins.jetbrains.com/docs/intellij/testing-plugins.html?from=IJPluginTemplate
 
 [file:use-this-template.png]: .github/readme/use-this-template.png
 [file:draft-release.png]: .github/readme/draft-release.png
@@ -518,43 +534,49 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [file:run-debug-configurations.png]: .github/readme/run-debug-configurations.png
 [file:settings-secrets.png]: .github/readme/settings-secrets.png
 [file:template_cleanup.yml]: ./.github/workflows/template-cleanup.yml
-[file:intellij-platform-plugin-template.png]: ./.github/readme/intellij-platform-plugin-template.png
+[file:intellij-platform-plugin-template-dark]: ./.github/readme/intellij-platform-plugin-template-dark.svg#gh-dark-mode-only
+[file:intellij-platform-plugin-template-light]: ./.github/readme/intellij-platform-plugin-template-light.svg#gh-light-mode-only
 [file:ui-testing.png]: ./.github/readme/ui-testing.png
 [file:qodana.yml]: ./qodana.yml
 [file:qodana.png]: .github/readme/qodana.png
 
 [gh:actions]: https://help.github.com/en/actions
-[gh:dependabot]: https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/keeping-your-dependencies-updated-automatically
+[gh:build]: https://github.com/JetBrains/intellij-platform-plugin-template/actions?query=workflow%3ABuild
 [gh:code-samples]: https://github.com/JetBrains/intellij-sdk-code-samples
+[gh:dependabot]: https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/keeping-your-dependencies-updated-automatically
+[gh:dependabot-pr]: https://github.com/JetBrains/intellij-platform-plugin-template/pull/73
 [gh:gradle-changelog-plugin]: https://github.com/JetBrains/gradle-changelog-plugin
-[gh:gradle-qodana-plugin]: https://github.com/JetBrains/gradle-qodana-plugin
 [gh:gradle-intellij-plugin]: https://github.com/JetBrains/gradle-intellij-plugin
 [gh:gradle-intellij-plugin-docs]: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
-[gh:gradle-intellij-plugin-runIde]: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#runide-task
-[gh:gradle-intellij-plugin-runPluginVerifier]: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#runpluginverifier-task
-[gh:releases]: https://github.com/JetBrains/intellij-platform-plugin-template/releases
-[gh:build]: https://github.com/JetBrains/intellij-platform-plugin-template/actions?query=workflow%3ABuild
-[gh:dependabot-pr]: https://github.com/JetBrains/intellij-platform-plugin-template/pull/73
+[gh:gradle-intellij-plugin-runIde]: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#tasks-runide
+[gh:gradle-intellij-plugin-runPluginVerifier]: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html#tasks-runpluginverifier
+[gh:gradle-qodana-plugin]: https://github.com/JetBrains/gradle-qodana-plugin
 [gh:intellij-ui-test-robot]: https://github.com/JetBrains/intellij-ui-test-robot
+[gh:kover]: https://github.com/Kotlin/kotlinx-kover
+[gh:releases]: https://github.com/JetBrains/intellij-platform-plugin-template/releases
 [gh:ui-test-example]: https://github.com/JetBrains/intellij-ui-test-robot/tree/master/ui-test-example
 
-[jb:confluence-on-gh]: https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub
+[jb:github]: https://github.com/JetBrains/.github/blob/main/profile/README.md
 [jb:download-ij]: https://www.jetbrains.com/idea/download
 [jb:forum]: https://intellij-support.jetbrains.com/hc/en-us/community/topics/200366979-IntelliJ-IDEA-Open-API-and-Plugin-Development
 [jb:ipe]: https://plugins.jetbrains.com/intellij-platform-explorer
 [jb:my-tokens]: https://plugins.jetbrains.com/author/me/tokens
 [jb:paid-plugins]: https://plugins.jetbrains.com/docs/marketplace/paid-plugins-marketplace.html
+[jb:qodana]: https://www.jetbrains.com/help/qodana
+[jb:qodana-github-action]: https://www.jetbrains.com/help/qodana/qodana-intellij-github-action.html
 [jb:quality-guidelines]: https://plugins.jetbrains.com/docs/marketplace/quality-guidelines.html
 [jb:slack]: https://plugins.jetbrains.com/slack
 [jb:twitter]: https://twitter.com/JBPlatform
 [jb:ui-guidelines]: https://jetbrains.github.io/ui
 
-[keep-a-changelog]: https://keepachangelog.com
-[keep-a-changelog-how]: https://keepachangelog.com/en/1.0.0/#how
+[codecov]: https://codecov.io
 [github-actions-skip-ci]: https://github.blog/changelog/2021-02-08-github-actions-skip-pull-request-and-push-workflows-with-skip-ci/
 [gradle]: https://gradle.org
-[gradle-releases]: https://gradle.org/releases
+[gradle-configuration-cache]: https://docs.gradle.org/current/userguide/configuration_cache.html
 [gradle-kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
 [gradle-lifecycle-tasks]: https://docs.gradle.org/current/userguide/java_plugin.html#lifecycle_tasks
-[kotlin-for-plugin-developers]: https://plugins.jetbrains.com/docs/intellij/kotlin.html#adding-kotlin-support
+[gradle-releases]: https://gradle.org/releases
+[keep-a-changelog]: https://keepachangelog.com
+[keep-a-changelog-how]: https://keepachangelog.com/en/1.0.0/#how
+[semver]: https://semver.org
 [xpath]: https://www.w3.org/TR/xpath-21/

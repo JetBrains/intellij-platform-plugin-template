@@ -5,18 +5,17 @@
 name: Template Cleanup
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
 
-  # Run cleaning process only if workflow is triggered by the non-JetBrains/intellij-platform-plugin-template repository.
+  # Run cleaning process only if workflow is triggered by the non-"intellij-platform-plugin-template" repository.
   template-cleanup:
     name: Template Cleanup
     runs-on: ubuntu-latest
+    if: github.event.repository.name != 'intellij-platform-plugin-template'
     permissions:
       contents: write
-    if: github.event.repository.name != 'intellij-platform-plugin-template'
     steps:
 
       # Check out current repository
@@ -59,6 +58,7 @@ jobs:
             .github/readme \
             .github/template-cleanup \
             .github/workflows/template-cleanup.yml \
+            .github/workflows/template-verify.yml \
             .idea/icon.png \
             src/main/kotlin/org \
             src/test/kotlin/org \
