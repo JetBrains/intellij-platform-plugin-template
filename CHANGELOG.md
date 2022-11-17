@@ -14,7 +14,7 @@
 ### Changed
 - Update `changelog` extension configuration in `build.gradle.kts` file 
 - Use `kotlin.jvmToolchain(11)` shorthand in Gradle configuration
-- Dependencies - upgrade `org.jetbrains.intellij` to `1.9.0`
+- Dependencies - upgrade `org.jetbrains.intellij` to `1.10.0`
 - Dependencies - upgrade `org.jetbrains.changelog` to `2.0.0`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.7.21`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.2.3`
