@@ -34,6 +34,7 @@ jobs:
             -I '^pluginVersion' \
             -I '^pluginGroup' \
             -I '^pluginName' \
+            -I '^pluginRepositoryUrl' \
             --label .github/template-cleanup/gradle.properties \
             --label gradle.properties \
             .github/template-cleanup/gradle.properties gradle.properties \
