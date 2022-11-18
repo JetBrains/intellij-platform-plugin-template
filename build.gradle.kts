@@ -1,7 +1,20 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 
-fun properties(key: String) = project.findProperty(key).toString()
+val pluginGroup: String by project
+val pluginName: String by project
+val pluginRepositoryUrl: String by project
+val pluginVersion: String by project
+
+val pluginSinceBuild: String by project
+val pluginUntilBuild: String by project
+
+val platformType: String by project
+val platformVersion: String by project
+
+val platformPlugins: String by project
+
+val gradleVersion: String by project
 
 plugins {
     // Java support
@@ -18,8 +31,8 @@ plugins {
     id("org.jetbrains.kotlinx.kover") version "0.6.1"
 }
 
-group = properties("pluginGroup")
-version = properties("pluginVersion")
+group = pluginGroup
+version = pluginVersion
 
 // Configure project's dependencies
 repositories {
@@ -33,18 +46,18 @@ kotlin {
 
 // Configure Gradle IntelliJ Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
-    pluginName.set(properties("pluginName"))
-    version.set(properties("platformVersion"))
-    type.set(properties("platformType"))
+    pluginName.set(this@Build_gradle.pluginName)
+    version.set(platformVersion)
+    type.set(platformType)
 
     // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file.
-    plugins.set(properties("platformPlugins").split(',').map(String::trim).filter(String::isNotEmpty))
+    plugins.set(platformPlugins.split(',').map(String::trim).filter(String::isNotEmpty))
 }
 
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
     groups.set(emptyList())
-    repositoryUrl.set(properties("pluginRepositoryUrl"))
+    repositoryUrl.set(pluginRepositoryUrl)
 }
 
 // Configure Gradle Qodana Plugin - read more: https://github.com/JetBrains/gradle-qodana-plugin
@@ -62,13 +75,13 @@ kover.xmlReport {
 
 tasks {
     wrapper {
-        gradleVersion = properties("gradleVersion")
+        gradleVersion = this@Build_gradle.gradleVersion
     }
 
     patchPluginXml {
-        version.set(properties("pluginVersion"))
-        sinceBuild.set(properties("pluginSinceBuild"))
-        untilBuild.set(properties("pluginUntilBuild"))
+        version.set(pluginVersion)
+        sinceBuild.set(pluginSinceBuild)
+        untilBuild.set(pluginUntilBuild)
 
         // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
         pluginDescription.set(
@@ -87,7 +100,7 @@ tasks {
         changeNotes.set(provider {
             with(changelog) {
                 renderItem(
-                    getOrNull(properties("pluginVersion")) ?: getLatest(),
+                    getOrNull(pluginVersion) ?: getLatest(),
                     Changelog.OutputType.HTML,
                 )
             }
@@ -115,6 +128,6 @@ tasks {
         // pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
-        channels.set(listOf(properties("pluginVersion").split('-').getOrElse(1) { "default" }.split('.').first()))
+        channels.set(listOf(pluginVersion.split('-').getOrElse(1) { "default" }.split('.').first()))
     }
 }
