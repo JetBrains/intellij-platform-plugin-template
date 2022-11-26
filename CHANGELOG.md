@@ -3,6 +3,8 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Changed
+- GitHub Actions - use `GITHUB_OUTPUT` environment file instead of `::set-output`.
 
 ### Changed
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.7.22`
