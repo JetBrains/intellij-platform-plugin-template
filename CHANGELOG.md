@@ -3,6 +3,8 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Changed
+- GitHub Actions - use `GITHUB_OUTPUT` environment file instead of `::set-output`.
 
 ### Added
 - [Kover](https://github.com/Kotlin/kotlinx-kover) integration
