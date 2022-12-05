@@ -8,6 +8,9 @@
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.7.22`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.2.3`
 
+### Fixed
+- Fallback to the unreleased change notes when the plugin in current was not released yet
+
 ## [1.3.0] - 2022-11-17
 
 ### Added
