@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### Changed
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.7.22`
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.2.3`
+
+## [1.3.0] - 2022-11-17
+
 ### Added
 - [Kover](https://github.com/Kotlin/kotlinx-kover) integration
 - Enable [Gradle Configuration Cache](https://docs.gradle.org/current/userguide/configuration_cache.html) in `gradle.proeprties`
@@ -389,7 +395,8 @@
 - GitHub Actions to automate testing and deployment
 - Kotlin support
 
-[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.3.0...HEAD
+[1.2.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.1.2...v1.2.0
 [1.1.2]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.1.0...v1.1.1
