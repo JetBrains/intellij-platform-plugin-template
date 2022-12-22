@@ -41,6 +41,7 @@ jobs:
         with:
           distribution: zulu
           java-version: 11
+          cache: gradle
 
       # Run IDEA prepared for UI testing
       - name: Run IDE
