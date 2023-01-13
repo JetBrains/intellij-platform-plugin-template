@@ -5,8 +5,7 @@
 ## [Unreleased]
 ### Changed
 - GitHub Actions - use `GITHUB_OUTPUT` environment file instead of `::set-output`.
-
-### Changed
+- Upgrade Gradle Wrapper to `7.6`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.0`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.12.0`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.3.0`
