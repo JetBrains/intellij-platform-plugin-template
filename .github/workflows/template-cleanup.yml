@@ -9,7 +9,7 @@ on:
 
 jobs:
 
-  # Run cleaning process only if workflow is triggered by the non-"intellij-platform-plugin-template" repository.
+  # Run a cleaning process only if the workflow is triggered by the non-"intellij-platform-plugin-template" repository.
   template-cleanup:
     name: Template Cleanup
     runs-on: ubuntu-latest
