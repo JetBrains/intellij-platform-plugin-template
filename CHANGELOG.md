@@ -7,8 +7,9 @@
 - GitHub Actions - use `GITHUB_OUTPUT` environment file instead of `::set-output`.
 
 ### Changed
-- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.7.22`
-- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.2.3`
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.0`
+- Dependencies - upgrade `org.jetbrains.intellij` to `1.12.0`
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.3.0`
 
 ### Fixed
 - Fallback to the unreleased change notes when the plugin in current was not released yet
