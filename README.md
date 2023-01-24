@@ -516,13 +516,13 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 
 [docs]: https://plugins.jetbrains.com/docs/intellij?from=IJPluginTemplate
 [docs:intro]: https://plugins.jetbrains.com/docs/intellij/intellij-platform.html?from=IJPluginTemplate
-[docs:kotlin-ui-dsl]: https://plugins.jetbrains.com/docs/intellij/kotlin-ui-dsl.html?from=IJPluginTemplate
-[docs:kotlin]: https://plugins.jetbrains.com/docs/intellij/kotlin.html?from=IJPluginTemplate
-[docs:kotlin-stdlib]: https://plugins.jetbrains.com/docs/intellij/kotlin.html?from=IJPluginTemplate#kotlin-standard-library
+[docs:kotlin-ui-dsl]: https://plugins.jetbrains.com/docs/intellij/kotlin-ui-dsl-version-2.html?from=IJPluginTemplate
+[docs:kotlin]: https://plugins.jetbrains.com/docs/intellij/using-kotlin.html?from=IJPluginTemplate
+[docs:kotlin-stdlib]: https://plugins.jetbrains.com/docs/intellij/using-kotlin.html?from=IJPluginTemplate#kotlin-standard-library
 [docs:plugin.xml]: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html?from=IJPluginTemplate
 [docs:publishing]: https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate
-[docs:release-channel]: https://plugins.jetbrains.com/docs/intellij/deployment.html?from=IJPluginTemplate#specifying-a-release-channel
-[docs:using-gradle]: https://plugins.jetbrains.com/docs/intellij/gradle-build-system.html?from=IJPluginTemplate
+[docs:release-channel]: https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate#specifying-a-release-channel
+[docs:using-gradle]: https://plugins.jetbrains.com/docs/intellij/developing-plugins.html?from=IJPluginTemplate
 [docs:plugin-signing]: https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate
 [docs:testing-plugins]: https://plugins.jetbrains.com/docs/intellij/testing-plugins.html?from=IJPluginTemplate
 
@@ -559,7 +559,7 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [jb:github]: https://github.com/JetBrains/.github/blob/main/profile/README.md
 [jb:download-ij]: https://www.jetbrains.com/idea/download
 [jb:forum]: https://intellij-support.jetbrains.com/hc/en-us/community/topics/200366979-IntelliJ-IDEA-Open-API-and-Plugin-Development
-[jb:ipe]: https://plugins.jetbrains.com/intellij-platform-explorer
+[jb:ipe]: https://jb.gg/ipe
 [jb:my-tokens]: https://plugins.jetbrains.com/author/me/tokens
 [jb:paid-plugins]: https://plugins.jetbrains.com/docs/marketplace/paid-plugins-marketplace.html
 [jb:qodana]: https://www.jetbrains.com/help/qodana
