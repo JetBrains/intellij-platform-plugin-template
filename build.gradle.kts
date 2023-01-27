@@ -72,8 +72,8 @@ tasks {
         untilBuild.set(properties("pluginUntilBuild"))
 
         // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
-        pluginDescription.set(provider {
-                file("README.md").readText().lines().run {
+        pluginDescription.set(providers.fileContents(layout.buildDirectory.file("README.md")).asText.map {
+            it.lines().run {
                     val start = "<!-- Plugin description -->"
                     val end = "<!-- Plugin description end -->"
 
@@ -86,10 +86,10 @@ tasks {
         )
 
         // Get the latest available change notes from the changelog file
-        changeNotes.set(provider {
+        changeNotes.set(properties("pluginVersion").map { pluginVersion ->
             with(changelog) {
                 renderItem(
-                    getOrNull(properties("pluginVersion").get())
+                    getOrNull(pluginVersion)
                         ?: runCatching { getLatest() }.getOrElse { getUnreleased() },
                     Changelog.OutputType.HTML,
                 )
