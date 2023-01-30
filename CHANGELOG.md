@@ -3,6 +3,12 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+
+### Changed
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.3.2`
+
+## [1.4.0] - 2023-01-13
+
 ### Changed
 - GitHub Actions - use `GITHUB_OUTPUT` environment file instead of `::set-output`.
 - Upgrade Gradle Wrapper to `7.6`
