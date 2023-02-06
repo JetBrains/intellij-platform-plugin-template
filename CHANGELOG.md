@@ -4,7 +4,11 @@
 
 ## [Unreleased]
 
+### Added
+- Migrate to Gradle Provider API improving configuration cache compatibility
+
 ### Changed
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.10`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.3.2`
 
 ## [1.4.0] - 2023-01-13
@@ -406,8 +410,9 @@
 - GitHub Actions to automate testing and deployment
 - Kotlin support
 
-[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.3.0...HEAD
-[1.2.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.2.0...v1.3.0
+[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.3.0...v1.4.0
+[1.3.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.1.2...v1.2.0
 [1.1.2]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.1.0...v1.1.1
