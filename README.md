@@ -35,9 +35,8 @@ In this README, we will highlight the following elements of template-project cre
 - [Plugin template structure](#plugin-template-structure)
 - [Plugin configuration file](#plugin-configuration-file)
 - [Sample code](#sample-code):
-  - listeners – project and dynamic plugin lifecycle
-  - services – project-related and application-related services
-  - actions – basic action with shortcut binding
+  - listeners – project lifecycle listener
+  - services – project and application-level services
 - [Testing](#testing)
   - [Functional tests](#functional-tests)
   - [Code coverage](#code-coverage)
