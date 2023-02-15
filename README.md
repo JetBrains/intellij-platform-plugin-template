@@ -77,7 +77,7 @@ Then you can get to work implementing your ideas.
 ## Gradle configuration
 
 The recommended method for plugin development involves using the [Gradle][gradle] setup with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] installed.
-The `gradle-intellij-plugin` makes it possible to run the IDE with your plugin and publish your plugin to JetBrains Marketplace Repository.
+The `gradle-intellij-plugin` makes it possible to run the IDE with your plugin and publish your plugin to JetBrains Marketplace.
 
 > **Note**
 > 
@@ -87,13 +87,13 @@ A project built using the IntelliJ Platform Plugin Template includes a Gradle co
 Feel free to read through the [Using Gradle][docs:using-gradle] articles to understand your build better and learn how to customize it.
 
 The most significant parts of the current configuration are:
+- Integration with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] for smoother development.
 - Configuration written with [Gradle Kotlin DSL][gradle-kotlin-dsl].
 - Support for Kotlin and Java implementation.
-- Integration with the [gradle-changelog-plugin][gh:gradle-changelog-plugin], which automatically patches the change notes and description based on the `CHANGELOG.md` and `README.md` files.
-- Integration with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] for smoother development.
+- Integration with the [gradle-changelog-plugin][gh:gradle-changelog-plugin], which automatically patches the change notes based on the `CHANGELOG.md` file.
 - [Plugin publishing][docs:publishing] using the token.
 
-For more details regarding Kotlin integration, please see [Kotlin for Plugin Developers][docs:kotlin] section in the IntelliJ Platform Plugin SDK documentation.
+For more details regarding Kotlin integration, please see [Kotlin for Plugin Developers][docs:kotlin] in the IntelliJ Platform Plugin SDK documentation.
 
 ### Gradle properties
 
