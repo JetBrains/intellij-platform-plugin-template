@@ -8,6 +8,7 @@
 - Migrate to Gradle Provider API improving configuration cache compatibility
 
 ### Changed
+- Upgrade Gradle Wrapper to `8.0`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.10`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.13.0`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.3.3`
