@@ -13,7 +13,8 @@
 - Upgrade Gradle Wrapper to `8.0.1`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.10`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.13.0`
-- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.3.3`
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.3.4`
+- Dependencies (GitHub Actions) - upgrade `gradle/wrapper-validation-action` to `v1.0.6`
 
 ## [1.4.0] - 2023-01-13
 
