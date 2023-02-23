@@ -9,6 +9,7 @@
 
 ### Changed
 - GitHub Actions: pass changelog release notes as a multi-line content
+- Template Cleanup: remove default `pluginIcon.svg` icon
 - Upgrade Gradle Wrapper to `8.0.1`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.10`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.13.0`

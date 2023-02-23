@@ -62,6 +62,7 @@ jobs:
             .idea/icon.png \
             src/main/kotlin/org \
             src/test/kotlin/org \
+            src/main/resources/META-INF/pluginIcon.svg \
             CODE_OF_CONDUCT.md \
             LICENSE
 
