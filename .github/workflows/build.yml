@@ -46,7 +46,7 @@ jobs:
 
       # Validate wrapper
       - name: Gradle Wrapper Validation
-        uses: gradle/wrapper-validation-action@v1.0.5
+        uses: gradle/wrapper-validation-action@v1.0.6
 
       # Setup Java 11 environment for the next steps
       - name: Setup Java
@@ -102,7 +102,7 @@ jobs:
 
       # Run Verify Plugin task and IntelliJ Plugin Verifier tool
       - name: Run Plugin Verification tasks
-        run: ./gradlew runPluginVerifier -Pplugin.verifier.home.dir=${{ steps.properties.outputs.pluginVerifierHomeDir }}
+        run: ./gradlew runPluginVerifier -Dplugin.verifier.home.dir=${{ steps.properties.outputs.pluginVerifierHomeDir }}
 
       # Collect Plugin Verifier Result
       - name: Collect Plugin Verifier Result
@@ -114,7 +114,7 @@ jobs:
 
       # Run Qodana inspections
       - name: Qodana - Code Inspection
-        uses: JetBrains/qodana-action@v2022.3.0
+        uses: JetBrains/qodana-action@v2022.3.4
 
       # Prepare plugin archive content for creating artifact
       - name: Prepare Plugin Artifact

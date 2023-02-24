@@ -3,6 +3,22 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+
+### Added
+- Migrate to Gradle Provider API improving configuration cache compatibility
+
+### Changed
+- GitHub Actions: pass changelog release notes as a multi-line content
+- GitHub Actions: provide `plugin.verifier.home.dir` variable as a system property instead of project property 
+- Template Cleanup: remove default `pluginIcon.svg` icon
+- Upgrade Gradle Wrapper to `8.0.1`
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.10`
+- Dependencies - upgrade `org.jetbrains.intellij` to `1.13.0`
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.3.4`
+- Dependencies (GitHub Actions) - upgrade `gradle/wrapper-validation-action` to `v1.0.6`
+
+## [1.4.0] - 2023-01-13
+
 ### Changed
 - GitHub Actions - use `GITHUB_OUTPUT` environment file instead of `::set-output`.
 - Upgrade Gradle Wrapper to `7.6`
@@ -400,8 +416,9 @@
 - GitHub Actions to automate testing and deployment
 - Kotlin support
 
-[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.3.0...HEAD
-[1.2.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.2.0...v1.3.0
+[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.3.0...v1.4.0
+[1.3.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.1.2...v1.2.0
 [1.1.2]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.1.0...v1.1.1

@@ -35,9 +35,8 @@ In this README, we will highlight the following elements of template-project cre
 - [Plugin template structure](#plugin-template-structure)
 - [Plugin configuration file](#plugin-configuration-file)
 - [Sample code](#sample-code):
-  - listeners – project and dynamic plugin lifecycle
-  - services – project-related and application-related services
-  - actions – basic action with shortcut binding
+  - listeners – project lifecycle listener
+  - services – project and application-level services
 - [Testing](#testing)
   - [Functional tests](#functional-tests)
   - [Code coverage](#code-coverage)
@@ -78,7 +77,7 @@ Then you can get to work implementing your ideas.
 ## Gradle configuration
 
 The recommended method for plugin development involves using the [Gradle][gradle] setup with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] installed.
-The `gradle-intellij-plugin` makes it possible to run the IDE with your plugin and publish your plugin to JetBrains Marketplace Repository.
+The `gradle-intellij-plugin` makes it possible to run the IDE with your plugin and publish your plugin to JetBrains Marketplace.
 
 > **Note**
 > 
@@ -88,13 +87,13 @@ A project built using the IntelliJ Platform Plugin Template includes a Gradle co
 Feel free to read through the [Using Gradle][docs:using-gradle] articles to understand your build better and learn how to customize it.
 
 The most significant parts of the current configuration are:
+- Integration with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] for smoother development.
 - Configuration written with [Gradle Kotlin DSL][gradle-kotlin-dsl].
 - Support for Kotlin and Java implementation.
-- Integration with the [gradle-changelog-plugin][gh:gradle-changelog-plugin], which automatically patches the change notes and description based on the `CHANGELOG.md` and `README.md` files.
-- Integration with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] for smoother development.
+- Integration with the [gradle-changelog-plugin][gh:gradle-changelog-plugin], which automatically patches the change notes based on the `CHANGELOG.md` file.
 - [Plugin publishing][docs:publishing] using the token.
 
-For more details regarding Kotlin integration, please see [Kotlin for Plugin Developers][docs:kotlin] section in the IntelliJ Platform Plugin SDK documentation.
+For more details regarding Kotlin integration, please see [Kotlin for Plugin Developers][docs:kotlin] in the IntelliJ Platform Plugin SDK documentation.
 
 ### Gradle properties
 
@@ -516,13 +515,13 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 
 [docs]: https://plugins.jetbrains.com/docs/intellij?from=IJPluginTemplate
 [docs:intro]: https://plugins.jetbrains.com/docs/intellij/intellij-platform.html?from=IJPluginTemplate
-[docs:kotlin-ui-dsl]: https://plugins.jetbrains.com/docs/intellij/kotlin-ui-dsl.html?from=IJPluginTemplate
-[docs:kotlin]: https://plugins.jetbrains.com/docs/intellij/kotlin.html?from=IJPluginTemplate
-[docs:kotlin-stdlib]: https://plugins.jetbrains.com/docs/intellij/kotlin.html?from=IJPluginTemplate#kotlin-standard-library
+[docs:kotlin-ui-dsl]: https://plugins.jetbrains.com/docs/intellij/kotlin-ui-dsl-version-2.html?from=IJPluginTemplate
+[docs:kotlin]: https://plugins.jetbrains.com/docs/intellij/using-kotlin.html?from=IJPluginTemplate
+[docs:kotlin-stdlib]: https://plugins.jetbrains.com/docs/intellij/using-kotlin.html?from=IJPluginTemplate#kotlin-standard-library
 [docs:plugin.xml]: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html?from=IJPluginTemplate
 [docs:publishing]: https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate
-[docs:release-channel]: https://plugins.jetbrains.com/docs/intellij/deployment.html?from=IJPluginTemplate#specifying-a-release-channel
-[docs:using-gradle]: https://plugins.jetbrains.com/docs/intellij/gradle-build-system.html?from=IJPluginTemplate
+[docs:release-channel]: https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate#specifying-a-release-channel
+[docs:using-gradle]: https://plugins.jetbrains.com/docs/intellij/developing-plugins.html?from=IJPluginTemplate
 [docs:plugin-signing]: https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate
 [docs:testing-plugins]: https://plugins.jetbrains.com/docs/intellij/testing-plugins.html?from=IJPluginTemplate
 
@@ -559,7 +558,7 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [jb:github]: https://github.com/JetBrains/.github/blob/main/profile/README.md
 [jb:download-ij]: https://www.jetbrains.com/idea/download
 [jb:forum]: https://intellij-support.jetbrains.com/hc/en-us/community/topics/200366979-IntelliJ-IDEA-Open-API-and-Plugin-Development
-[jb:ipe]: https://plugins.jetbrains.com/intellij-platform-explorer
+[jb:ipe]: https://jb.gg/ipe
 [jb:my-tokens]: https://plugins.jetbrains.com/author/me/tokens
 [jb:paid-plugins]: https://plugins.jetbrains.com/docs/marketplace/paid-plugins-marketplace.html
 [jb:qodana]: https://www.jetbrains.com/help/qodana
