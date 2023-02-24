@@ -9,6 +9,7 @@
 
 ### Changed
 - GitHub Actions: pass changelog release notes as a multi-line content
+- GitHub Actions: provide `plugin.verifier.home.dir` variable as a system property instead of project property 
 - Template Cleanup: remove default `pluginIcon.svg` icon
 - Upgrade Gradle Wrapper to `8.0.1`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.10`
