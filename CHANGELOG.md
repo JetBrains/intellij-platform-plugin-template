@@ -17,6 +17,9 @@
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.3.4`
 - Dependencies (GitHub Actions) - upgrade `gradle/wrapper-validation-action` to `v1.0.6`
 
+### Fixed
+- Resolving the content for the `patchPluginXML.changeNotes` proeprty 
+
 ## [1.4.0] - 2023-01-13
 
 ### Changed
