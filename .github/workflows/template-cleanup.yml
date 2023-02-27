@@ -42,7 +42,7 @@ jobs:
 
           # Replace template package name in project files with $GROUP
           find src -type f -exec sed -i "s/org.jetbrains.plugins.template/$GROUP/g" {} +
-          find src -type f -exec sed -i "s/Template/$NAME/g" {} +
+          find src -type f -exec sed -i "s/IntelliJ Platform Plugin/$NAME/g" {} +
           find src -type f -exec sed -i "s/JetBrains/$ACTOR/g" {} +
 
           # Move content
