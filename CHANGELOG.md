@@ -9,6 +9,7 @@
 - Example code - `FrameStateListener` application listener
 
 ### Changed
+- Example code - registered project service changed into a lightweight one
 - GitHub Actions - pass changelog release notes as a multi-line content
 - GitHub Actions - provide `plugin.verifier.home.dir` variable as a system property instead of project property 
 - Template Cleanup: remove default `pluginIcon.svg` icon
