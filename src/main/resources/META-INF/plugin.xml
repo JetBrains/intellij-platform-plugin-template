@@ -13,7 +13,7 @@
     </extensions>
 
     <applicationListeners>
-        <listener class="org.jetbrains.plugins.template.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
+        <listener class="org.jetbrains.plugins.template.listeners.MyFrameStateListener"
+                  topic="com.intellij.ide.FrameStateListener"/>
     </applicationListeners>
 </idea-plugin>

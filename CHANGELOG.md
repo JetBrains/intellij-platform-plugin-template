@@ -6,10 +6,11 @@
 
 ### Added
 - Migrate to Gradle Provider API improving configuration cache compatibility
+- Example code - `FrameStateListener` application listener
 
 ### Changed
-- GitHub Actions: pass changelog release notes as a multi-line content
-- GitHub Actions: provide `plugin.verifier.home.dir` variable as a system property instead of project property 
+- GitHub Actions - pass changelog release notes as a multi-line content
+- GitHub Actions - provide `plugin.verifier.home.dir` variable as a system property instead of project property 
 - Template Cleanup: remove default `pluginIcon.svg` icon
 - Upgrade Gradle Wrapper to `8.0.1`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.10`
@@ -18,10 +19,11 @@
 - Dependencies (GitHub Actions) - upgrade `gradle/wrapper-validation-action` to `v1.0.6`
 
 ### Fixed
-- Resolving the content for the `patchPluginXML.changeNotes` proeprty 
+- Resolving the content for the `patchPluginXML.changeNotes` property 
 
 ### Removed
 - Example code - application service
+- Example code - deprecated `ProjectManagerListener` application listener
 
 ## [1.4.0] - 2023-01-13
 
