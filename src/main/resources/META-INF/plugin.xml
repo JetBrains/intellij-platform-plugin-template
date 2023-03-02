@@ -7,10 +7,6 @@
     <depends>com.intellij.modules.platform</depends>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
-    
-    <extensions defaultExtensionNs="com.intellij">
-        <projectService serviceImplementation="org.jetbrains.plugins.template.services.MyProjectService"/>
-    </extensions>
 
     <applicationListeners>
         <listener class="org.jetbrains.plugins.template.listeners.MyFrameStateListener"
