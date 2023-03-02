@@ -20,6 +20,9 @@
 ### Fixed
 - Resolving the content for the `patchPluginXML.changeNotes` proeprty 
 
+### Removed
+- Example code - application service
+
 ## [1.4.0] - 2023-01-13
 
 ### Changed

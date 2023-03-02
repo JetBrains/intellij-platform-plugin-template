@@ -9,7 +9,6 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
     
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="org.jetbrains.plugins.template.services.MyApplicationService"/>
         <projectService serviceImplementation="org.jetbrains.plugins.template.services.MyProjectService"/>
     </extensions>
 
