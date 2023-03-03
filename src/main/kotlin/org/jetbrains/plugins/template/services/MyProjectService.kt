@@ -10,13 +10,8 @@ class MyProjectService(project: Project) {
 
     init {
         thisLogger().info(MyBundle.message("projectService", project.name))
-
-        System.getenv("CI")
-            ?: TODO("Don't forget to remove all non-needed sample code files with their corresponding registration entries in `plugin.xml`.")
+        thisLogger().warn("Don't forget to remove all non-needed sample code files with their corresponding registration entries in `plugin.xml`.")
     }
 
-    /**
-     * Chosen by fair dice roll, guaranteed to be random.
-     */
-    fun getRandomNumber() = 4
+    fun getRandomNumber() = (1..100).random()
 }
