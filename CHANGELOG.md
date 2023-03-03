@@ -7,6 +7,7 @@
 ### Added
 - Migrate to Gradle Provider API improving configuration cache compatibility
 - Example code - `FrameStateListener` application listener
+- Example code - `MyToolWindowFactory` tool window basic implementation
 
 ### Changed
 - Update `platformVersion` to `2022.1.4`
