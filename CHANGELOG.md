@@ -9,6 +9,8 @@
 - Example code - `FrameStateListener` application listener
 
 ### Changed
+- Update `platformVersion` to `2022.1.4`
+- Change since/until build to `221-231.*` (2022.1 - 2023.1.*)
 - Example code - registered project service changed into a lightweight one
 - GitHub Actions - pass changelog release notes as a multi-line content
 - GitHub Actions - provide `plugin.verifier.home.dir` variable as a system property instead of project property 
