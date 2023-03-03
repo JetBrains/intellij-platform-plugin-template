@@ -16,7 +16,7 @@
 - GitHub Actions - pass changelog release notes as a multi-line content
 - GitHub Actions - provide `plugin.verifier.home.dir` variable as a system property instead of project property 
 - Template Cleanup: remove default `pluginIcon.svg` icon
-- Upgrade Gradle Wrapper to `8.0.1`
+- Upgrade Gradle Wrapper to `8.0.2`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.10`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.13.1`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2022.3.4`
