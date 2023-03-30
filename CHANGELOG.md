@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### Changed
+- Dependencies - upgrade `org.jetbrains.intellij` to `1.13.3`
+
+## [1.5.0] - 2023-03-10
+
 ### Added
 - Migrate to Gradle Provider API improving configuration cache compatibility
 - Example code - `FrameStateListener` application listener
