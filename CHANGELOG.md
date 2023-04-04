@@ -6,6 +6,7 @@
 
 ### Changed
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.13.3`
+- Remove `UnusedProperty` suppression in `gradle.properties` file
 
 ## [1.5.0] - 2023-03-10
 
