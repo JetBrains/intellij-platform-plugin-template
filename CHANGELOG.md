@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+### Added
+- Temporary workaround for Kotlin Compiler OutOfMemoryError -> https://jb.gg/intellij-platform-kotlin-oom
+
 ### Changed
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.13.3`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.20`
