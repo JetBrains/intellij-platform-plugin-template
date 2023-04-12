@@ -368,6 +368,27 @@ All the workflow files have accurate documentation, so it's a good idea to take 
 
 This Template project depends on Gradle plugins and external libraries – and during the development, you will add more of them.
 
+All plugins and dependencies used by Gradle are managed with [Gradle version catalog][gradle-version-catalog], which defines versions and coordinates of your dependencies in the [`gradle/libs.versions.toml`][file:libs.versions.toml] file.
+
+> **Note**
+>
+> To add a new dependency to the project, in the `dependencies { ... }` block, add:
+> 
+> ```kotlin
+> dependencies {
+>   implementation(libs.annotations)
+> }
+> ```
+> 
+> and define the dependency in the [`gradle/libs.versions.toml`][file:libs.versions.toml] file as follows:
+> ```toml
+> [versions]
+> annotations = "24.0.1"
+> 
+> [libraries]
+> annotations = { group = "org.jetbrains", name = "annotations", version.ref = "annotations" }
+> ```
+
 Keeping the project in good shape and having all the dependencies up-to-date requires time and effort, but it is possible to automate that process using [Dependabot][gh:dependabot].
 
 Dependabot is a bot provided by GitHub to check the build configuration files and review any outdated or insecure dependencies of yours – in case if any update is available, it creates a new pull request providing [the proper change][gh:dependabot-pr].
@@ -528,6 +549,7 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [file:use-this-template.png]: .github/readme/use-this-template.png
 [file:draft-release.png]: .github/readme/draft-release.png
 [file:gradle.properties]: ./gradle.properties
+[file:libs.versions.toml]: ./gradle/libs.versions.toml
 [file:run-logs.png]: .github/readme/run-logs.png
 [file:plugin.xml]: ./src/main/resources/META-INF/plugin.xml
 [file:run-debug-configurations.png]: .github/readme/run-debug-configurations.png
@@ -575,6 +597,7 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [gradle-kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
 [gradle-lifecycle-tasks]: https://docs.gradle.org/current/userguide/java_plugin.html#lifecycle_tasks
 [gradle-releases]: https://gradle.org/releases
+[gradle-version-catalog]: https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
 [keep-a-changelog]: https://keepachangelog.com
 [keep-a-changelog-how]: https://keepachangelog.com/en/1.0.0/#how
 [semver]: https://semver.org
