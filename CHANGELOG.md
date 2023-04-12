@@ -11,6 +11,7 @@
 ### Changed
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.13.3`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.20`
+- Upgrade Gradle Wrapper to `8.1`
 - Remove `UnusedProperty` suppression in `gradle.properties` file
 
 ## [1.5.0] - 2023-03-10
