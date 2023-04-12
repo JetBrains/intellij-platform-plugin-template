@@ -5,6 +5,18 @@
 ## [Unreleased]
 
 ### Added
+- Temporary workaround for Kotlin Compiler OutOfMemoryError -> https://jb.gg/intellij-platform-kotlin-oom
+- Gradle version catalog integration
+
+### Changed
+- Dependencies - upgrade `org.jetbrains.intellij` to `1.13.3`
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.20`
+- Upgrade Gradle Wrapper to `8.1`
+- Remove `UnusedProperty` suppression in `gradle.properties` file
+
+## [1.5.0] - 2023-03-10
+
+### Added
 - Migrate to Gradle Provider API improving configuration cache compatibility
 - Example code - `FrameStateListener` application listener
 - Example code - `MyToolWindowFactory` tool window basic implementation
