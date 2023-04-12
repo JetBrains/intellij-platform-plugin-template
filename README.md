@@ -153,9 +153,10 @@ A generated IntelliJ Platform Plugin Template repository contains the following 
 .
 ├── .github/                GitHub Actions workflows and Dependabot configuration files
 ├── .run/                   Predefined Run/Debug Configurations
-├── gradle
-│   └── wrapper/            Gradle Wrapper
 ├── build/                  Output build directory
+├── gradle
+│   ├── wrapper/            Gradle Wrapper
+│   └── libs.versions.toml  Gradle version catalog
 ├── src                     Plugin sources
 │   ├── main
 │   │   ├── kotlin/         Kotlin production sources
@@ -192,16 +193,18 @@ It provides general information about the plugin, its dependencies, extensions, 
   <id>org.jetbrains.plugins.template</id>
   <name>Template</name>
   <vendor>JetBrains</vendor>
+  
   <depends>com.intellij.modules.platform</depends>
 
+  <resource-bundle>messages.MyBundle</resource-bundle>
+  
   <extensions defaultExtensionNs="com.intellij">
-    <applicationService serviceImplementation="..."/>
-    <projectService serviceImplementation="..."/>
+    <toolWindow factoryClass="..." id="..."/>
   </extensions>
 
-  <projectListeners>
+  <applicationListeners>
     <listener class="..." topic="..."/>
-  </projectListeners>
+  </applicationListeners>
 </idea-plugin>
 ```
 
@@ -217,10 +220,12 @@ Therefore, the template contains only the following files:
 .
 ├── MyBundle.kt                         Bundle class providing access to the resources messages
 ├── listeners
-│   └── MyProjectManagerListener.kt     Project Manager listener - handles project lifecycle
-└── services
-    ├── MyApplicationService.kt         Application-level service available for all projects
-    └── MyProjectService.kt             Project level service
+│   └── MyFrameStateListener.kt         Frame state listener — detects when IDE frame is opened/closed
+├── services
+│   └── MyProjectService.kt             Project level service
+├── toolWindow
+│   └── MyToolWindowFactory.kt          Tool window factory — creates tool window content
+└
 ```
 
 These files are located in `src/main/kotlin`.
@@ -415,7 +420,7 @@ When releasing an update, it is essential to let your users know what the new ve
 The best way to do this is to provide release notes.
 
 The changelog is a curated list that contains information about any new features, fixes, and deprecations.
-When they are provided, these lists are available in a few different places:
+When they're provided, these lists are available in a few different places:
 - the [CHANGELOG.md](./CHANGELOG.md) file,
 - the [Releases page][gh:releases],
 - the *What's new* section of JetBrains Marketplace Plugin page,
@@ -478,7 +483,7 @@ Next, it will notify users who are *watching* the repository, triggering the fin
 
 Plugin Signing is a mechanism introduced in the 2021.2 release cycle to increase security in [JetBrains Marketplace](https://plugins.jetbrains.com) and all of our IntelliJ-based IDEs.
 
-JetBrains Marketplace signing is designed to ensure that plugins are not modified over the course of the publishing and delivery pipeline.
+JetBrains Marketplace signing is designed to ensure that plugins aren't modified over the course of the publishing and delivery pipeline.
 
 The current project provides a predefined plugin signing configuration that lets you sign and publish your plugin from the Continuous Integration (CI) and local environments.
 All the configuration related to the signing should be provided using [environment variables](#environment-variables).
