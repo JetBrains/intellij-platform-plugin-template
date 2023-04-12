@@ -8,6 +8,7 @@
 - Temporary workaround for Kotlin Compiler OutOfMemoryError -> https://jb.gg/intellij-platform-kotlin-oom
 - Gradle version catalog integration
 - Gradle Kotlin DSL Lazy Property Assignment
+- Enable Gradle Build Cache
 
 ### Changed
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.13.3`
