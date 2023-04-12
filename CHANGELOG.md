@@ -15,6 +15,7 @@
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.20`
 - Upgrade Gradle Wrapper to `8.1`
 - Remove `UnusedProperty` suppression in `gradle.properties` file
+- Rename `org.gradle.unsafe.configuration-cache` to `org.gradle.configuration-cache` in `gradle.properties`
 
 ## [1.5.0] - 2023-03-10
 
