@@ -88,7 +88,7 @@ Feel free to read through the [Using Gradle][docs:using-gradle] articles to unde
 
 The most significant parts of the current configuration are:
 - Integration with the [gradle-intellij-plugin][gh:gradle-intellij-plugin] for smoother development.
-- Configuration written with [Gradle Kotlin DSL][gradle-kotlin-dsl].
+- Configuration written with [Gradle Kotlin DSL][gradle:kotlin-dsl].
 - Support for Kotlin and Java implementation.
 - Integration with the [gradle-changelog-plugin][gh:gradle-changelog-plugin], which automatically patches the change notes based on the `CHANGELOG.md` file.
 - [Plugin publishing][docs:publishing] using the token.
@@ -99,26 +99,30 @@ For more details regarding Kotlin integration, please see [Kotlin for Plugin Dev
 
 The project-specific configuration file [`gradle.properties`][file:gradle.properties] contains:
 
-| Property name             | Description                                                                                               |
-|---------------------------|-----------------------------------------------------------------------------------------------------------|
-| `pluginGroup`             | Package name - after *using* the template, this will be set to `com.github.username.repo`.                |
-| `pluginName`              | Plugin name displayed in the JetBrains Marketplace and the Plugins Repository.                            |
-| `pluginVersion`           | The current version of the plugin in [SemVer][semver] format.                                             |
-| `pluginSinceBuild`        | The `since-build` attribute of the `<idea-version>` tag.                                                  |
-| `pluginUntilBuild`        | The `until-build` attribute of the `<idea-version>` tag.                                                  |
-| `platformType`            | The type of IDE distribution.                                                                             |
-| `platformVersion`         | The version of the IntelliJ Platform IDE will be used to build the plugin.                                |
-| `platformPlugins`         | Comma-separated list of dependencies to the bundled IDE plugins and plugins from the Plugin Repositories. |
-| `gradleVersion`           | Version of Gradle used for plugin development.                                                            |
+| Property name         | Description                                                                                               |
+|-----------------------|-----------------------------------------------------------------------------------------------------------|
+| `pluginGroup`         | Package name - after *using* the template, this will be set to `com.github.username.repo`.                |
+| `pluginName`          | Plugin name displayed in the JetBrains Marketplace and the Plugins Repository.                            |
+| `pluginRepositoryUrl` | Repository URL used for generating URLs by the [Gradle Changelog Plugin][gh:gradle-changelog-plugin]      |
+| `pluginVersion`       | The current version of the plugin in [SemVer][semver] format.                                             |
+| `pluginSinceBuild`    | The `since-build` attribute of the `<idea-version>` tag.                                                  |
+| `pluginUntilBuild`    | The `until-build` attribute of the `<idea-version>` tag.                                                  |
+| `platformType`        | The type of IDE distribution.                                                                             |
+| `platformVersion`     | The version of the IntelliJ Platform IDE will be used to build the plugin.                                |
+| `platformPlugins`     | Comma-separated list of dependencies to the bundled IDE plugins and plugins from the Plugin Repositories. |
+| `gradleVersion`       | Version of Gradle used for plugin development.                                                            |
 
 The properties listed define the plugin itself or configure the [gradle-intellij-plugin][gh:gradle-intellij-plugin] – check its documentation for more details.
 
 In addition, extra behaviours are configured through the [`gradle.properties`][file:gradle.properties] file, such as:
 
-| Property name                           | Value   | Description                                                             |
-|-----------------------------------------|---------|-------------------------------------------------------------------------|
-| `kotlin.stdlib.default.dependency`      | `false` | Opt-out flag for bundling [Kotlin standard library][docs:kotlin-stdlib] |
-| `org.gradle.unsafe.configuration-cache` | `true`  | Enable [Gradle Configuration Cache][gradle-configuration-cache]         |
+| Property name                                    | Value   | Description                                                                                    |
+|--------------------------------------------------|---------|------------------------------------------------------------------------------------------------|
+| `kotlin.stdlib.default.dependency`               | `false` | Opt-out flag for bundling [Kotlin standard library][docs:kotlin-stdlib]                        |
+| `org.gradle.configuration-cache`                 | `true`  | Enable [Gradle Configuration Cache][gradle:configuration-cache]                                |
+| `org.gradle.caching`                             | `true`  | Enable [Gradle Build Cache][gradle:build-cache]                                                |
+| `systemProp.org.gradle.unsafe.kotlin.assignment` | `true`  | Enable [Gradle Kotlin DSL Lazy Property Assignment][gradle:kotlin-dsl-assignment]              |
+| `kotlin.incremental.useClasspathSnapshot`        | `false` | Temporary workaround for [Kotlin Compiler OutOfMemoryError][docs:intellij-platform-kotlin-oom] |
 
 ### Environment variables
 
@@ -320,7 +324,7 @@ Within the default project structure, there is a `.run` directory provided conta
 |----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Run Plugin           | Runs [`:runIde`][gh:gradle-intellij-plugin-runIde] Gradle IntelliJ Plugin task. Use the *Debug* icon for plugin debugging.                                                    |
 | Run Verifications    | Runs [`:runPluginVerifier`][gh:gradle-intellij-plugin-runPluginVerifier] Gradle IntelliJ Plugin task to check the plugin compatibility against the specified IntelliJ IDEs.   |
-| Run Tests            | Runs [`:test`][gradle-lifecycle-tasks] Gradle task.                                                                                                                           |
+| Run Tests            | Runs [`:test`][gradle:lifecycle-tasks] Gradle task.                                                                                                                           |
 | Run IDE for UI Tests | Runs [`:runIdeForUiTests`][gh:intellij-ui-test-robot] Gradle IntelliJ Plugin task to allow for running UI tests within the IntelliJ IDE running instance.                     |
 | Run Qodana           | Runs [`:runInspections`][gh:gradle-qodana-plugin] Gradle Qodana Plugin task. Starts Qodana inspections in a Docker container and serves generated report on `localhost:8080`. |
 
@@ -368,7 +372,7 @@ All the workflow files have accurate documentation, so it's a good idea to take 
 
 This Template project depends on Gradle plugins and external libraries – and during the development, you will add more of them.
 
-All plugins and dependencies used by Gradle are managed with [Gradle version catalog][gradle-version-catalog], which defines versions and coordinates of your dependencies in the [`gradle/libs.versions.toml`][file:libs.versions.toml] file.
+All plugins and dependencies used by Gradle are managed with [Gradle version catalog][gradle:version-catalog], which defines versions and coordinates of your dependencies in the [`gradle/libs.versions.toml`][file:libs.versions.toml] file.
 
 > **Note**
 >
@@ -396,7 +400,7 @@ Dependabot is a bot provided by GitHub to check the build configuration files an
 > **Note**
 > 
 > Dependabot doesn't yet support checking of the Gradle Wrapper.
-> Check the [Gradle Releases][gradle-releases] page and update your `gradle.properties` file with:
+> Check the [Gradle Releases][gradle:releases] page and update your `gradle.properties` file with:
 > ```properties
 > gradleVersion = ...
 > ```
@@ -535,6 +539,7 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 - [GitHub Actions][gh:actions]
 
 [docs]: https://plugins.jetbrains.com/docs/intellij?from=IJPluginTemplate
+[docs:intellij-platform-kotlin-oom]: https://plugins.jetbrains.com/docs/intellij/using-kotlin.html#incremental-compilation
 [docs:intro]: https://plugins.jetbrains.com/docs/intellij/intellij-platform.html?from=IJPluginTemplate
 [docs:kotlin-ui-dsl]: https://plugins.jetbrains.com/docs/intellij/kotlin-ui-dsl-version-2.html?from=IJPluginTemplate
 [docs:kotlin]: https://plugins.jetbrains.com/docs/intellij/using-kotlin.html?from=IJPluginTemplate
@@ -577,6 +582,15 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [gh:releases]: https://github.com/JetBrains/intellij-platform-plugin-template/releases
 [gh:ui-test-example]: https://github.com/JetBrains/intellij-ui-test-robot/tree/master/ui-test-example
 
+[gradle]: https://gradle.org
+[gradle:build-cache]: https://docs.gradle.org/current/userguide/build_cache.html
+[gradle:configuration-cache]: https://docs.gradle.org/current/userguide/configuration_cache.html
+[gradle:kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
+[gradle:kotlin-dsl-assignment]: https://docs.gradle.org/current/userguide/kotlin_dsl.html#kotdsl:assignment
+[gradle:lifecycle-tasks]: https://docs.gradle.org/current/userguide/java_plugin.html#lifecycle_tasks
+[gradle:releases]: https://gradle.org/releases
+[gradle:version-catalog]: https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
+
 [jb:github]: https://github.com/JetBrains/.github/blob/main/profile/README.md
 [jb:download-ij]: https://www.jetbrains.com/idea/download
 [jb:forum]: https://intellij-support.jetbrains.com/hc/en-us/community/topics/200366979-IntelliJ-IDEA-Open-API-and-Plugin-Development
@@ -592,12 +606,6 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 
 [codecov]: https://codecov.io
 [github-actions-skip-ci]: https://github.blog/changelog/2021-02-08-github-actions-skip-pull-request-and-push-workflows-with-skip-ci/
-[gradle]: https://gradle.org
-[gradle-configuration-cache]: https://docs.gradle.org/current/userguide/configuration_cache.html
-[gradle-kotlin-dsl]: https://docs.gradle.org/current/userguide/kotlin_dsl.html
-[gradle-lifecycle-tasks]: https://docs.gradle.org/current/userguide/java_plugin.html#lifecycle_tasks
-[gradle-releases]: https://gradle.org/releases
-[gradle-version-catalog]: https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
 [keep-a-changelog]: https://keepachangelog.com
 [keep-a-changelog-how]: https://keepachangelog.com/en/1.0.0/#how
 [semver]: https://semver.org
