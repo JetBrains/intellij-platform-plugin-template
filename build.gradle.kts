@@ -13,8 +13,8 @@ plugins {
     alias(libs.plugins.kover) // Gradle Kover Plugin
 }
 
-group = properties("pluginGroup")
-version = properties("pluginVersion")
+group = properties("pluginGroup").get()
+version = properties("pluginVersion").get()
 
 // Configure project's dependencies
 repositories {
