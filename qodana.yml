@@ -4,6 +4,8 @@
 version: 1.0
 profile:
   name: qodana.recommended
+linter: jetbrains/qodana-jvm-community:2022.3
+projectJDK: 11
 exclude:
   - name: All
     paths:
