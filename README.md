@@ -490,6 +490,10 @@ All the configuration related to the signing should be provided using [environme
 
 To find out how to generate signing certificates, check the [Plugin Signing][docs:plugin-signing] section in the IntelliJ Platform Plugin SDK documentation.
 
+> **Note**
+>
+> Remember to encode your secret environment variables using `base64` encoding to avoid issues with multi-line values.
+
 ### Publishing the plugin
 
 Releasing a plugin to JetBrains Marketplace is a straightforward operation that uses the `publishPlugin` Gradle task provided by the [gradle-intellij-plugin][gh:gradle-intellij-plugin-docs].
