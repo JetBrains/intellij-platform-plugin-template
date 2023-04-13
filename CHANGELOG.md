@@ -9,6 +9,7 @@
 - Gradle version catalog integration
 - Gradle Kotlin DSL Lazy Property Assignment
 - Enable Gradle Build Cache
+- Set Qodana `projectJDK` to `11` to match the used JVM toolchain 
 
 ### Changed
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.13.3`
