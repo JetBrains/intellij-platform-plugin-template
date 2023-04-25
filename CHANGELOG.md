@@ -5,6 +5,7 @@
 ## [Unreleased]
 
 ### Changed
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2023.1.0`
 - Upgrade Gradle Wrapper to `8.1.1`
 
 ## [1.6.0] - 2023-04-13
