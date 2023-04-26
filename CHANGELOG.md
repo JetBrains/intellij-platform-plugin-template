@@ -11,6 +11,7 @@
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.21`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2023.1.0`
 - Upgrade Gradle Wrapper to `8.1.1`
+- GitHub Actions — switch to Java 17
 
 ## [1.6.0] - 2023-04-13
 
