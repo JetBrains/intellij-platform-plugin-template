@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+### Added
+- GitHub Actions - enable caching
+
 ### Changed
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.21`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2023.1.0`
