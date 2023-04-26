@@ -4,6 +4,28 @@
 
 ## [Unreleased]
 
+### Changed
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.21`
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2023.1.0`
+- Upgrade Gradle Wrapper to `8.1.1`
+
+## [1.6.0] - 2023-04-13
+
+### Added
+- Temporary workaround for Kotlin Compiler `OutOfMemoryError` -> https://jb.gg/intellij-platform-kotlin-oom
+- Gradle version catalog integration
+- Gradle Kotlin DSL Lazy Property Assignment
+- Enable Gradle Build Cache
+
+### Changed
+- Dependencies - upgrade `org.jetbrains.intellij` to `1.13.3`
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.20`
+- Upgrade Gradle Wrapper to `8.1`
+- Remove `UnusedProperty` suppression in `gradle.properties` file
+- Rename `org.gradle.unsafe.configuration-cache` to `org.gradle.configuration-cache` in `gradle.properties`
+
+## [1.5.0] - 2023-03-10
+
 ### Added
 - Migrate to Gradle Provider API improving configuration cache compatibility
 - Example code - `FrameStateListener` application listener
@@ -14,7 +36,7 @@
 - Change since/until build to `221-231.*` (2022.1 - 2023.1.*)
 - Example code - registered project service changed into a lightweight one
 - GitHub Actions - pass changelog release notes as a multi-line content
-- GitHub Actions - provide `plugin.verifier.home.dir` variable as a system property instead of project property 
+- GitHub Actions - provide `plugin.verifier.home.dir` variable as a system property instead of project property
 - Template Cleanup: remove default `pluginIcon.svg` icon
 - Upgrade Gradle Wrapper to `8.0.2`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.10`
@@ -23,7 +45,7 @@
 - Dependencies (GitHub Actions) - upgrade `gradle/wrapper-validation-action` to `v1.0.6`
 
 ### Fixed
-- Resolving the content for the `patchPluginXML.changeNotes` property 
+- Resolving the content for the `patchPluginXML.changeNotes` property
 
 ### Removed
 - Example code - application service
@@ -428,7 +450,9 @@
 - GitHub Actions to automate testing and deployment
 - Kotlin support
 
-[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.4.0...HEAD
+[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.6.0...HEAD
+[1.6.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.5.0...v1.6.0
+[1.5.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.4.0...v1.5.0
 [1.4.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.3.0...v1.4.0
 [1.3.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.1.2...v1.2.0
