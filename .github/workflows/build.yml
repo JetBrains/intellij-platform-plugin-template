@@ -36,9 +36,11 @@ jobs:
       # Free GitHub Actions Environment Disk Space
       - name: Maximize Build Space
         run: |
-          sudo rm -rf /usr/share/dotnet
-          sudo rm -rf /usr/local/lib/android
-          sudo rm -rf /opt/ghc
+          mkdir /tmp/empty_dir
+          sudo rsync -a --delete /tmp/empty_dir/ /usr/share/dotnet
+          sudo rsync -a --delete /tmp/empty_dir/ /usr/local/lib/android
+          sudo rsync -a --delete /tmp/empty_dir/ /opt/ghc
+          rmdir /tmp/empty_dir
 
       # Check out current repository
       - name: Fetch Sources
