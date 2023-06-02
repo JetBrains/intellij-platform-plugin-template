@@ -6,7 +6,7 @@ annotations = "24.0.1"
 dokka = "1.8.10"
 kotlin = "1.8.21"
 changelog = "2.0.0"
-gradleIntelliJPlugin = "1.13.3"
+gradleIntelliJPlugin = "1.14.0"
 qodana = "0.1.13"
 kover = "0.6.1"
 
