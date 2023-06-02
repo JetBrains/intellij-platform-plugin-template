@@ -19,11 +19,9 @@ class MyToolWindowFactory : ToolWindowFactory {
         thisLogger().warn("Don't forget to remove all non-needed sample code files with their corresponding registration entries in `plugin.xml`.")
     }
 
-    private val contentFactory = ContentFactory.SERVICE.getInstance()
-
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
         val myToolWindow = MyToolWindow(toolWindow)
-        val content = contentFactory.createContent(myToolWindow.getContent(), null, false)
+        val content = ContentFactory.getInstance().createContent(myToolWindow.getContent(), null, false)
         toolWindow.contentManager.addContent(content)
     }
 
