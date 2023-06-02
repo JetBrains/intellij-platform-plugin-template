@@ -218,13 +218,13 @@ Therefore, the template contains only the following files:
 
 ```
 .
-├── MyBundle.kt                         Bundle class providing access to the resources messages
+├── MyBundle.kt                             Bundle class providing access to the resources messages
 ├── listeners
-│   └── MyFrameStateListener.kt         Frame state listener — detects when IDE frame is opened/closed
+│   └── MyApplicationActivationListener.kt  Application activation listener — detects when IDE frame is activated
 ├── services
-│   └── MyProjectService.kt             Project level service
+│   └── MyProjectService.kt                 Project level service
 ├── toolWindow
-│   └── MyToolWindowFactory.kt          Tool window factory — creates tool window content
+│   └── MyToolWindowFactory.kt              Tool window factory — creates tool window content
 └
 ```
 
