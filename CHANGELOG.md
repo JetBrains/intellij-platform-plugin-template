@@ -7,6 +7,7 @@
 ### Added
 - GitHub Actions - enable caching
 - Specify `projectJDK: 17` in `qodana.yml`
+- Specify `linter` property in `qodana.yml`
 
 ### Changed
 - Use Java `17` for JVM Toolchain
