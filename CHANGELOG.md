@@ -8,6 +8,7 @@
 - GitHub Actions - enable caching
 
 ### Changed
+- Use Java `17` for JVM Toolchain
 - Change since/until build to `222-232.*` (2022.2 - 2023.2.*)
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.14.0`
 - Dependencies - upgrade `org.jetbrains.changelog` to `2.1.0`
