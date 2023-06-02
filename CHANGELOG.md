@@ -22,6 +22,9 @@
 - Example code - Fixed deprecated usage of `ContentFactory` in `MyToolWindowFactory` Jakub Chrzanowski A minute ago d454bc09
 - Example code - Migrate from the deprecated `FrameStateListener.onFrameActivated()` to `ApplicationActivationListener.applicationActivated(IdeFrame)`
 
+### Removed
+- Remove `gradleJvm` property from the `.idea/gradle.xml` file
+
 ## [1.6.0] - 2023-04-13
 
 ### Added
