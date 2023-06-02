@@ -18,6 +18,7 @@
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2023.1.0`
 - Upgrade Gradle Wrapper to `8.1.1`
 - GitHub Actions — switch to Java 17
+- Update Run Configuration entries
 
 ### Fixed
 - Example code - Fixed deprecated usage of `ContentFactory` in `MyToolWindowFactory` Jakub Chrzanowski A minute ago d454bc09
