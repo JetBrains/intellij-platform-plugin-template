@@ -16,6 +16,10 @@
 - Upgrade Gradle Wrapper to `8.1.1`
 - GitHub Actions — switch to Java 17
 
+### Fixed
+- Example code - Fixed deprecated usage of `ContentFactory` in `MyToolWindowFactory` Jakub Chrzanowski A minute ago d454bc09
+- Example code - Migrate from the deprecated `FrameStateListener.onFrameActivated()` to `ApplicationActivationListener.applicationActivated(IdeFrame)`
+
 ## [1.6.0] - 2023-04-13
 
 ### Added
