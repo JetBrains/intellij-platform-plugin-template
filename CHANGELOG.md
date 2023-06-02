@@ -9,6 +9,7 @@
 
 ### Changed
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.14.0`
+- Dependencies - upgrade `org.jetbrains.changelog` to `2.1.0`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.21`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2023.1.0`
 - Upgrade Gradle Wrapper to `8.1.1`
