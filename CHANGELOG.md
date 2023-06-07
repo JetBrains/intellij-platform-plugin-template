@@ -25,7 +25,7 @@
 - Adjust Kover configuration
 
 ### Fixed
-- Example code - Fixed deprecated usage of `ContentFactory` in `MyToolWindowFactory` Jakub Chrzanowski A minute ago d454bc09
+- Example code - Fixed deprecated usage of `ContentFactory` in `MyToolWindowFactory`
 - Example code - Migrate from the deprecated `FrameStateListener.onFrameActivated()` to `ApplicationActivationListener.applicationActivated(IdeFrame)`
 
 ### Removed
