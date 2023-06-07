@@ -15,10 +15,12 @@
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.14.1`
 - Dependencies - upgrade `org.jetbrains.changelog` to `2.1.0`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.21`
+- Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.7.1`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2023.1.0`
 - Upgrade Gradle Wrapper to `8.1.1`
 - GitHub Actions — switch to Java 17
 - Update Run Configuration entries
+- Adjust Kover configuration
 
 ### Fixed
 - Example code - Fixed deprecated usage of `ContentFactory` in `MyToolWindowFactory` Jakub Chrzanowski A minute ago d454bc09
