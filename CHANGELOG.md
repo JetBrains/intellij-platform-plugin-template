@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- Dependabot workflow points to `next` branch in a newly created project
+
 ## [1.7.0] - 2023-06-07
 
 ### Added
