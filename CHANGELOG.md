@@ -5,6 +5,7 @@
 ## [Unreleased]
 
 ### Changed
+- GitHub Actions: Build workflow refactoring
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2023.1.4`
 
 ### Fixed
