@@ -6,7 +6,7 @@
 
 ### Changed
 - GitHub Actions: Build workflow refactoring
-- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2023.1.4`
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2023.1.5`
 
 ### Fixed
 - Dependabot workflow points to `next` branch in a newly created project
