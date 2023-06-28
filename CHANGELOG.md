@@ -6,6 +6,7 @@
 
 ### Changed
 - GitHub Actions: Build workflow refactoring
+- Dependencies - upgrade `org.jetbrains.intellij` to `1.14.2`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2023.1.5`
 
 ### Fixed
