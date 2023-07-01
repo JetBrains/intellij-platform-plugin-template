@@ -1,18 +1,53 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>org.jetbrains.plugins.template</id>
-    <name>IntelliJ Platform Plugin Template</name>
-    <vendor>JetBrains</vendor>
+    <id>com.github.maiqingqiang.goormhelper</id>
+    <name>Go ORM Helper</name>
+    <vendor>John Mai</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.go</depends>
+    <depends>org.jetbrains.plugins.go</depends>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
+    <resource-bundle>messages.GoORMHelperBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="org.jetbrains.plugins.template.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <projectService serviceImplementation="com.github.maiqingqiang.goormhelper.services.GoORMHelperManager"/>
+        <projectService
+                serviceImplementation="com.github.maiqingqiang.goormhelper.services.GoORMHelperProjectSettings"/>
+
+        <completion.contributor language="go"
+                                implementationClass="com.github.maiqingqiang.goormhelper.orm.gorm.codeInsights.completion.GormCompletionContributor"/>
+
+        <completion.contributor language="go"
+                                implementationClass="com.github.maiqingqiang.goormhelper.orm.xorm.completion.XormCompletionContributor"/>
+
+        <highlightVisitor
+                implementation="com.github.maiqingqiang.goormhelper.codeInsights.GoORMHelperHighlightVisitor"/>
+
+        <editorActionHandler action="EditorPaste"
+                             implementationClass="com.github.maiqingqiang.goormhelper.actions.EditorPasteListener"
+                             order="first"/>
+
+        <projectConfigurable
+                parentId="tools"
+                instance="com.github.maiqingqiang.goormhelper.ui.SettingConfigurable"
+                displayName="Go ORM Helper"/>
     </extensions>
 
-    <applicationListeners>
-        <listener class="org.jetbrains.plugins.template.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
-    </applicationListeners>
+    <extensions defaultExtensionNs="com.goide">
+
+    </extensions>
+
+    <projectListeners>
+        <listener class="com.github.maiqingqiang.goormhelper.listeners.MyProjectManagerListener"
+                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
+        <listener class="com.github.maiqingqiang.goormhelper.listeners.SchemaFileListener"
+                  topic="com.intellij.openapi.vfs.newvfs.BulkFileListener"/>
+    </projectListeners>
+
+    <actions>
+        <action class="com.github.maiqingqiang.goormhelper.actions.SQL2StructAction" text="SQL2Struct">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+    </actions>
 </idea-plugin>

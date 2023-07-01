@@ -1,17 +1,28 @@
 [versions]
 # libraries
 annotations = "24.0.1"
+snakeyaml = "2.0"
+lombok = "1.18.28"
+guava = "32.0.1-jre"
+druid = "1.2.18"
+jsqlparser = "4.6"
+
 
 # plugins
 dokka = "1.8.10"
 kotlin = "1.8.21"
 changelog = "2.1.0"
-gradleIntelliJPlugin = "1.14.1"
+gradleIntelliJPlugin = "1.14.2"
 qodana = "0.1.13"
 kover = "0.7.1"
 
 [libraries]
 annotations = { group = "org.jetbrains", name = "annotations", version.ref = "annotations" }
+snakeyaml = { group = "org.yaml", name = "snakeyaml", version.ref = "snakeyaml" }
+lombok = { group = "org.projectlombok", name = "lombok", version.ref = "lombok" }
+guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
+druid = { group = "com.alibaba", name = "druid", version.ref = "druid" }
+jsqlparser = { group = "com.github.jsqlparser", name = "jsqlparser", version.ref = "jsqlparser" }
 
 [plugins]
 changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
