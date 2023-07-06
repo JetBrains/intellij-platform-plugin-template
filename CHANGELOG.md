@@ -7,6 +7,7 @@
 ### Changed
 - GitHub Actions: Build workflow refactoring
 - Upgrade Gradle Wrapper to `8.2`
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.9.0`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.14.2`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2023.1.5`
 
