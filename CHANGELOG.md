@@ -14,6 +14,9 @@
 ### Fixed
 - Dependabot workflow points to `next` branch in a newly created project
 
+### Removed
+- Removed workaround for Kotlin Compiler `OutOfMemoryError` as the issue is gone with Kotlin `1.9.0`
+
 ## [1.7.0] - 2023-06-07
 
 ### Added
