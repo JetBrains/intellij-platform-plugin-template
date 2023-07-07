@@ -9,6 +9,7 @@
 - Upgrade Gradle Wrapper to `8.2`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.9.0`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.15.0`
+- Dependencies - upgrade `org.jetbrains.changelog` to `2.1.1`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2023.1.5`
 
 ### Fixed
