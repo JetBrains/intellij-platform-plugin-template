@@ -3,7 +3,6 @@
 annotations = "24.0.1"
 
 # plugins
-dokka = "1.8.10"
 kotlin = "1.9.0"
 changelog = "2.1.1"
 gradleIntelliJPlugin = "1.15.0"
@@ -15,7 +14,6 @@ annotations = { group = "org.jetbrains", name = "annotations", version.ref = "an
 
 [plugins]
 changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 gradleIntelliJPlugin = { id = "org.jetbrains.intellij", version.ref = "gradleIntelliJPlugin" }
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
