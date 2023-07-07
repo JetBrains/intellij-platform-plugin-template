@@ -45,6 +45,7 @@
 
 ### Removed
 - Remove `gradleJvm` property from the `.idea/gradle.xml` file
+- GitHub Actions — Drop unused `name` output from the `Build` workflow
 
 ## [1.6.0] - 2023-04-13
 
