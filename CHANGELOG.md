@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+### Changed
+- Upgrade Gradle Wrapper to `8.2.1`
+
 ### Fixed
 - Fixed copying files issue when running the `Template Cleanup` workflow
 
