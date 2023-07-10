@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- Fixed copying files issue when running the `Template Cleanup` workflow
+
 ## [1.8.0] - 2023-07-07
 
 ### Changed
