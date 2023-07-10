@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+### Added
+- GitHub Actions — use Java `17` explicitly
+
 ### Changed
 - Upgrade Gradle Wrapper to `8.2.1`
 

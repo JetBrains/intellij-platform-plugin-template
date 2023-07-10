@@ -24,6 +24,13 @@ jobs:
         with:
           ref: ${{ github.event.release.tag_name }}
 
+      # Setup Java environment for the next steps
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: zulu
+          java-version: 17
+
       # Setup Gradle
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
