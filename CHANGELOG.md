@@ -9,7 +9,8 @@
 
 ### Changed
 - Upgrade Gradle Wrapper to `8.2.1`
-- Dependencies - upgrade `org.jetbrains.changelog` to `2.1.2`
+- Dependencies — upgrade `org.jetbrains.changelog` to `2.1.2`
+- GitHub Actions — rearrange the Build workflow
 
 ### Fixed
 - Fixed copying files issue when running the `Template Cleanup` workflow
