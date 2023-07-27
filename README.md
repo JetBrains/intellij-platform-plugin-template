@@ -102,7 +102,7 @@ The project-specific configuration file [`gradle.properties`][file:gradle.proper
 | Property name         | Description                                                                                               |
 |-----------------------|-----------------------------------------------------------------------------------------------------------|
 | `pluginGroup`         | Package name - after *using* the template, this will be set to `com.github.username.repo`.                |
-| `pluginName`          | Plugin name displayed in the JetBrains Marketplace and the Plugins Repository.                            |
+| `pluginName`          | Plugin name displayed in JetBrains Marketplace.                                                           |
 | `pluginRepositoryUrl` | Repository URL used for generating URLs by the [Gradle Changelog Plugin][gh:gradle-changelog-plugin]      |
 | `pluginVersion`       | The current version of the plugin in [SemVer][semver] format.                                             |
 | `pluginSinceBuild`    | The `since-build` attribute of the `<idea-version>` tag.                                                  |
@@ -536,9 +536,9 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 - [IntelliJ Platform SDK Plugin SDK][docs]
 - [Gradle IntelliJ Plugin Documentation][gh:gradle-intellij-plugin-docs]
 - [IntelliJ Platform Explorer][jb:ipe]
-- [Marketplace Quality Guidelines][jb:quality-guidelines]
+- [JetBrains Marketplace Quality Guidelines][jb:quality-guidelines]
 - [IntelliJ Platform UI Guidelines][jb:ui-guidelines]
-- [Marketplace Paid Plugins][jb:paid-plugins]
+- [JetBrains Marketplace Paid Plugins][jb:paid-plugins]
 - [Kotlin UI DSL][docs:kotlin-ui-dsl]
 - [IntelliJ SDK Code Samples][gh:code-samples]
 - [JetBrains Platform Slack][jb:slack]
