@@ -3,6 +3,19 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+- [Foojay Toolchains Plugin](https://github.com/gradle/foojay-toolchains) integration
+- GitHub Actions: set `gradle-home-cache-cleanup: true` flag to the Gradle Build Action
+- GitHub Actions: use `jlumbroso/free-disk-space` to free disk space
+
+### Changed
+- GitHub Actions: rearrange the Build workflow
+- Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.7.3`
+- Dependencies (GitHub Actions) - upgrade `gradle/wrapper-validation-action` to `v1.1.0`
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2023.2.1`
+
+### Fixed
+- GitHub Actions: Fixed Kover report path when uploading the code coverage report
 
 ## [1.9.0] - 2023-07-11
 
