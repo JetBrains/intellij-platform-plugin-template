@@ -8,6 +8,7 @@
 - GitHub Actions: set `gradle-home-cache-cleanup: true` flag to the Gradle Build Action
 
 ### Changed
+- GitHub Actions: rearrange the Build workflow
 - Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.7.3`
 - Dependencies (GitHub Actions) - upgrade `gradle/wrapper-validation-action` to `v1.1.0`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2023.2.1`

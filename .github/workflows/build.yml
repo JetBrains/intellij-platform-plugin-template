@@ -173,7 +173,7 @@ jobs:
   # Run plugin structure verification along with IntelliJ Plugin Verifier
   verify:
     name: Verify plugin
-    needs: [ build, test, inspectCode ]
+    needs: [ build ]
     runs-on: ubuntu-latest
     steps:
 
@@ -218,7 +218,7 @@ jobs:
   releaseDraft:
     name: Release draft
     if: github.event_name != 'pull_request'
-    needs: [ build, verify ]
+    needs: [ build, test, inspectCode, verify ]
     runs-on: ubuntu-latest
     permissions:
       contents: write
