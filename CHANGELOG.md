@@ -8,6 +8,11 @@
 
 ### Changed
 - Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.7.3`
+- Dependencies (GitHub Actions) - upgrade `gradle/wrapper-validation-action` to `v1.1.0`
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2023.2.1`
+
+### Fixed
+- GitHub Actions: Fixed Kover report path when uploading the code coverage report
 
 ## [1.9.0] - 2023-07-11
 
