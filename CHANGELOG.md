@@ -6,6 +6,9 @@
 ### Added
 - [Foojay Toolchains Plugin](https://github.com/gradle/foojay-toolchains) integration  
 
+### Changed
+- Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.7.3`
+
 ## [1.9.0] - 2023-07-11
 
 ### Added
