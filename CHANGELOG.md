@@ -3,6 +3,9 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+
+## [1.10.0] - 2023-08-04
+
 ### Added
 - [Foojay Toolchains Plugin](https://github.com/gradle/foojay-toolchains) integration
 - GitHub Actions: set `gradle-home-cache-cleanup: true` flag to the Gradle Build Action
@@ -516,7 +519,8 @@
 - GitHub Actions to automate testing and deployment
 - Kotlin support
 
-[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.9.0...HEAD
+[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.10.0...HEAD
+[1.10.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.9.0...v1.10.0
 [1.9.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.6.0...v1.7.0
