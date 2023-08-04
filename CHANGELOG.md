@@ -4,7 +4,8 @@
 
 ## [Unreleased]
 ### Added
-- [Foojay Toolchains Plugin](https://github.com/gradle/foojay-toolchains) integration  
+- [Foojay Toolchains Plugin](https://github.com/gradle/foojay-toolchains) integration
+- GitHub Actions: set `gradle-home-cache-cleanup: true` flag to the Gradle Build Action
 
 ### Changed
 - Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.7.3`
