@@ -6,6 +6,7 @@
 ### Added
 - [Foojay Toolchains Plugin](https://github.com/gradle/foojay-toolchains) integration
 - GitHub Actions: set `gradle-home-cache-cleanup: true` flag to the Gradle Build Action
+- GitHub Actions: use `jlumbroso/free-disk-space` to free disk space
 
 ### Changed
 - GitHub Actions: rearrange the Build workflow
