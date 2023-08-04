@@ -3,6 +3,8 @@
 # IntelliJ Platform Plugin Template Changelog
 
 ## [Unreleased]
+### Added
+- [Foojay Toolchains Plugin](https://github.com/gradle/foojay-toolchains) integration  
 
 ## [1.9.0] - 2023-07-11
 
