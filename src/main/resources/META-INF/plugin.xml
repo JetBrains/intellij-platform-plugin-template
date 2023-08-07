@@ -15,10 +15,4 @@
     <applicationListeners>
         <listener class="org.jetbrains.plugins.template.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
     </applicationListeners>
-    
-    <actions>
-        <action class="org.jetbrains.plugins.template.MyAction" id="MyAction">
-            <add-to-group group-id="StructureViewPopupMenu" />
-        </action>
-    </actions>
 </idea-plugin>
