@@ -114,7 +114,7 @@ The project-specific configuration file [`gradle.properties`][file:gradle.proper
 
 The properties listed define the plugin itself or configure the [gradle-intellij-plugin][gh:gradle-intellij-plugin] – check its documentation for more details.
 
-In addition, extra behaviours are configured through the [`gradle.properties`][file:gradle.properties] file, such as:
+In addition, extra behaviors are configured through the [`gradle.properties`][file:gradle.properties] file, such as:
 
 | Property name                                    | Value   | Description                                                                                    |
 |--------------------------------------------------|---------|------------------------------------------------------------------------------------------------|
