@@ -68,7 +68,7 @@ Once this is complete, the project is ready to be cloned to your local environme
 
 The most convenient way for getting your new project from GitHub is the <kbd>Get from VCS</kbd> action available on the Welcome Screen, where you can filter your GitHub  repository by its name.
 
-![Get from Verion Control][file:get-from-version-control]
+![Get from Version Control][file:get-from-version-control]
 
 The next step, after opening your project in IntelliJ IDEA, is to set the proper <kbd>SDK</kbd> to Java in version `17` within the [Project Structure settings][docs:project-strucure-settings].
 
