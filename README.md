@@ -66,6 +66,14 @@ All you have to do is click the <kbd>Use this template</kbd> button (you must be
 After using the template to create your blank project, the [Template Cleanup][file:template_cleanup.yml] workflow will be triggered to override or remove any template-specific configurations, such as the plugin name, current changelog, etc.
 Once this is complete, the project is ready to be cloned to your local environment and opened with [IntelliJ IDEA][jb:download-ij].
 
+The most convenient way for getting your new project from GitHub is the <kbd>Get from VCS</kbd> action available on the Welcome Screen, where you can filter your GitHub  repository by its name.
+
+![Get from Verion Control][file:get-from-version-control]
+
+The next step, after opening your project in IntelliJ IDEA, is to set the proper <kbd>SDK</kbd> to Java in version `17` within the [Project Structure settings][docs:project-strucure-settings].
+
+![Project Structure — SDK][file:project-structure-sdk.png]
+
 For the last step, you have to manually review the configuration variables described in the [`gradle.properties`][file:gradle.properties] file and *optionally* move sources from the *com.github.username.repository* package to the one that works best for you.
 Then you can get to work implementing your ideas.
 
@@ -556,22 +564,25 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [docs:release-channel]: https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate#specifying-a-release-channel
 [docs:using-gradle]: https://plugins.jetbrains.com/docs/intellij/developing-plugins.html?from=IJPluginTemplate
 [docs:plugin-signing]: https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate
+[docs:project-strucure-settings]: https://www.jetbrains.com/help/idea/project-settings-and-structure.html
 [docs:testing-plugins]: https://plugins.jetbrains.com/docs/intellij/testing-plugins.html?from=IJPluginTemplate
 
-[file:use-this-template.png]: .github/readme/use-this-template.png
-[file:draft-release.png]: .github/readme/draft-release.png
+[file:draft-release.png]: ./.github/readme/draft-release.png
+[file:get-from-version-control]: ./.github/readme/get-from-version-control.png
 [file:gradle.properties]: ./gradle.properties
-[file:libs.versions.toml]: ./gradle/libs.versions.toml
-[file:run-logs.png]: .github/readme/run-logs.png
-[file:plugin.xml]: ./src/main/resources/META-INF/plugin.xml
-[file:run-debug-configurations.png]: .github/readme/run-debug-configurations.png
-[file:settings-secrets.png]: .github/readme/settings-secrets.png
-[file:template_cleanup.yml]: ./.github/workflows/template-cleanup.yml
 [file:intellij-platform-plugin-template-dark]: ./.github/readme/intellij-platform-plugin-template-dark.svg#gh-dark-mode-only
 [file:intellij-platform-plugin-template-light]: ./.github/readme/intellij-platform-plugin-template-light.svg#gh-light-mode-only
-[file:ui-testing.png]: ./.github/readme/ui-testing.png
+[file:libs.versions.toml]: ./gradle/libs.versions.toml
+[file:project-structure-sdk.png]: ./.github/readme/project-structure-sdk.png
+[file:plugin.xml]: ./src/main/resources/META-INF/plugin.xml
+[file:qodana.png]: ./.github/readme/qodana.png
 [file:qodana.yml]: ./qodana.yml
-[file:qodana.png]: .github/readme/qodana.png
+[file:run-debug-configurations.png]: ./.github/readme/run-debug-configurations.png
+[file:run-logs.png]: ./.github/readme/run-logs.png
+[file:settings-secrets.png]: ./.github/readme/settings-secrets.png
+[file:template_cleanup.yml]: ./.github/workflows/template-cleanup.yml
+[file:ui-testing.png]: ./.github/readme/ui-testing.png
+[file:use-this-template.png]: ./.github/readme/use-this-template.png
 
 [gh:actions]: https://help.github.com/en/actions
 [gh:build]: https://github.com/JetBrains/intellij-platform-plugin-template/actions?query=workflow%3ABuild
