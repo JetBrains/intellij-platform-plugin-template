@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+### Changed
+- GitHub Actions: move the `Maximize Build Space` step from the `Build` job to `Inspect code` and `Verify plugin` jobs
 ## [1.10.0] - 2023-08-04
 
 ### Added
