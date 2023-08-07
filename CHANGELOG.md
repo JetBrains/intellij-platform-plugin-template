@@ -8,6 +8,7 @@
 - GitHub Actions: move the `Maximize Build Space` step from the `Build` job to `Inspect code` and `Verify plugin` jobs
 - Update `platformVersion` to `2022.3.3`
 - Change since/until build to `223-232.*` (2022.3-2023.2.*)
+- `MyBundle`: remove `SpreadOperator` suppression
 - `MyBundle.properties`: remove unused `name` property
 
 ## [1.10.0] - 2023-08-04
