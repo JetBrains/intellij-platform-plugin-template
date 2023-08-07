@@ -122,7 +122,6 @@ In addition, extra behaviors are configured through the [`gradle.properties`][fi
 | `org.gradle.configuration-cache`                 | `true`  | Enable [Gradle Configuration Cache][gradle:configuration-cache]                                |
 | `org.gradle.caching`                             | `true`  | Enable [Gradle Build Cache][gradle:build-cache]                                                |
 | `systemProp.org.gradle.unsafe.kotlin.assignment` | `true`  | Enable [Gradle Kotlin DSL Lazy Property Assignment][gradle:kotlin-dsl-assignment]              |
-| `kotlin.incremental.useClasspathSnapshot`        | `false` | Temporary workaround for [Kotlin Compiler OutOfMemoryError][docs:intellij-platform-kotlin-oom] |
 
 ### Environment variables
 
@@ -218,14 +217,13 @@ Therefore, the template contains only the following files:
 
 ```
 .
-├── MyBundle.kt                             Bundle class providing access to the resources messages
 ├── listeners
 │   └── MyApplicationActivationListener.kt  Application activation listener — detects when IDE frame is activated
 ├── services
 │   └── MyProjectService.kt                 Project level service
 ├── toolWindow
 │   └── MyToolWindowFactory.kt              Tool window factory — creates tool window content
-└
+└── MyBundle.kt                             Bundle class providing access to the resources messages
 ```
 
 These files are located in `src/main/kotlin`.

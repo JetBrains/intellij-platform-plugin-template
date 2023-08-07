@@ -1,9 +1,9 @@
 # GitHub Actions Workflow for launching UI tests on Linux, Windows, and Mac in the following steps:
-# - prepare and launch IDE with your plugin and robot-server plugin, which is needed to interact with UI
-# - wait for IDE to start
-# - run UI tests with separate Gradle task
+# - Prepare and launch IDE with your plugin and robot-server plugin, which is needed to interact with the UI.
+# - Wait for IDE to start.
+# - Run UI tests with a separate Gradle task.
 #
-# Please check https://github.com/JetBrains/intellij-ui-test-robot for information about UI tests with IntelliJ Platform
+# Please check https://github.com/JetBrains/intellij-ui-test-robot for information about UI tests with IntelliJ Platform.
 #
 # Workflow is triggered manually.
 
