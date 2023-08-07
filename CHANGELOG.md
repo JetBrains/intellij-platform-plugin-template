@@ -7,7 +7,7 @@
 ### Changed
 - GitHub Actions: move the `Maximize Build Space` step from the `Build` job to `Inspect code` and `Verify plugin` jobs
 - Update `platformVersion` to `2022.3.3`
-- Change since/until build to `223-232.*` (2022.3 - 2023.2.*)
+- Change since/until build to `223-232.*` (2022.3-2023.2.*)
 
 ## [1.10.0] - 2023-08-04
 
@@ -58,13 +58,13 @@
 ## [1.7.0] - 2023-06-07
 
 ### Added
-- GitHub Actions - enable caching
+- GitHub Actions — enable caching
 - Specify `projectJDK: 17` in `qodana.yml`
 - Specify `linter` property in `qodana.yml`
 
 ### Changed
 - Use Java `17` for JVM Toolchain
-- Change since/until build to `222-232.*` (2022.2 - 2023.2.*)
+- Change since/until build to `222-232.*` (2022.2–2023.2.*)
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.14.1`
 - Dependencies - upgrade `org.jetbrains.changelog` to `2.1.0`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.21`
@@ -76,8 +76,8 @@
 - Adjust Kover configuration
 
 ### Fixed
-- Example code - Fixed deprecated usage of `ContentFactory` in `MyToolWindowFactory`
-- Example code - Migrate from the deprecated `FrameStateListener.onFrameActivated()` to `ApplicationActivationListener.applicationActivated(IdeFrame)`
+- Example code — Fixed deprecated usage of `ContentFactory` in `MyToolWindowFactory`
+- Example code — Migrate from the deprecated `FrameStateListener.onFrameActivated()` to `ApplicationActivationListener.applicationActivated(IdeFrame)`
 
 ### Removed
 - Remove `gradleJvm` property from the `.idea/gradle.xml` file
@@ -107,10 +107,10 @@
 
 ### Changed
 - Update `platformVersion` to `2022.1.4`
-- Change since/until build to `221-231.*` (2022.1 - 2023.1.*)
+- Change since/until build to `221-231.*` (2022.1-2023.1.*)
 - Example code - registered project service changed into a lightweight one
-- GitHub Actions - pass changelog release notes as a multi-line content
-- GitHub Actions - provide `plugin.verifier.home.dir` variable as a system property instead of project property
+- GitHub Actions — pass changelog release notes as a multi-line content
+- GitHub Actions — provide `plugin.verifier.home.dir` variable as a system property instead of project property
 - Template Cleanup: remove default `pluginIcon.svg` icon
 - Upgrade Gradle Wrapper to `8.0.2`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.10`
@@ -122,13 +122,13 @@
 - Resolving the content for the `patchPluginXML.changeNotes` property
 
 ### Removed
-- Example code - application service
-- Example code - deprecated `ProjectManagerListener` application listener
+- Example code — application service
+- Example code — deprecated `ProjectManagerListener` application listener
 
 ## [1.4.0] - 2023-01-13
 
 ### Changed
-- GitHub Actions - use `GITHUB_OUTPUT` environment file instead of `::set-output`.
+- GitHub Actions — use `GITHUB_OUTPUT` environment file instead of `::set-output`.
 - Upgrade Gradle Wrapper to `7.6`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.8.0`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.12.0`
@@ -142,8 +142,8 @@
 ### Added
 - [Kover](https://github.com/Kotlin/kotlinx-kover) integration
 - Enable [Gradle Configuration Cache](https://docs.gradle.org/current/userguide/configuration_cache.html) in `gradle.proeprties`
-- GitHub Actions - mark the pull request created with _Publish Plugin_ workflow with `release changelog` label
-- GitHub Actions - send code coverage reports to [CodeCov](https://codecov.io)
+- GitHub Actions — mark the pull request created with _Publish Plugin_ workflow with `release changelog` label
+- GitHub Actions — send code coverage reports to [CodeCov](https://codecov.io)
 - Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.6.1`
 
 ### Changed
@@ -160,7 +160,7 @@
 
 ### Fixed
 - Update broken link in `gradle.properties`
-- GitHub Actions - use `$BRANCH` for creating changelog pull request
+- GitHub Actions — use `$BRANCH` for creating changelog pull request
 
 ## [1.2.0] - 2022-08-07
 
@@ -174,7 +174,7 @@
 ### Changed
 - Upgrade Gradle Wrapper to `7.5.1`
 - Update `platformVersion` to `2021.3.3`
-- Change since/until build to `213-222.*` (2021.3 - 2022.2)
+- Change since/until build to `213-222.*` (2021.3-2022.2)
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.8.0`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.7.10`
 - Dependencies (GitHub Actions) - upgrade `actions/checkout` to `3`
@@ -193,7 +193,7 @@
 
 ### Changed
 - Update `platformVersion` to `2021.1.3` for compatibility with Apple M1
-- Change since/until build to `211-213.*` (2021.1 - 2021.3)
+- Change since/until build to `211-213.*` (2021.1-2021.3)
 - Upgrade Gradle Wrapper to `7.4`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.4.0`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `4.2.5`
@@ -201,7 +201,7 @@
 ## [1.1.1] - 2022-01-24
 
 ### Changed
-- GitHub Actions - fixed duplicated `.zip` extension in artifact file's name of the build flow
+- GitHub Actions — fixed duplicated `.zip` extension in artifact file's name of the build flow
 - Upgrade Gradle Wrapper to `7.3.3`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.3.1`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.6.10`
@@ -220,8 +220,8 @@
 - Dependencies (GitHub Actions) - upgrade `jtalk/url-health-check-action` to `2`
 - Dependencies (GitHub Actions) - upgrade `actions/checkout` to `2.3.5`
 - GitHub Actions general performance refactoring
-- GitHub Actions - prepare plugin archive content to be archived once
-- GitHub Actions - patch changelog only if change notes are provided
+- GitHub Actions — prepare plugin archive content to be archived at once
+- GitHub Actions — patch changelog only if change notes are provided
 - Update `pluginUntilBuild` to include `213.*` (2021.3.*)
 - Upgrade Gradle Wrapper to `7.3`
 
@@ -231,7 +231,7 @@
 - Fixed `QODANA_SHOW_REPORT` environment variable resolving for Gradle `6.x`
 
 ### Removed
-- Removed the `pluginVerifierIdeVersions` configuration to use default IDEs list provided by the `listProductsReleases` task for `runPluginVerifier`
+- Removed the `pluginVerifierIdeVersions` configuration to use a default IDEs list provided by the `listProductsReleases` task for `runPluginVerifier`
 - Removed `platformDownloadSources` from Gradle configuration to use default value
 - Removed `updateSinceUntilBuild.set(true)` from Gradle configuration to use default value
 
@@ -248,7 +248,7 @@
 - Suppress `UnusedProperty` inspection for the `kotlin.stdlib.default.dependency` in `gradle.properties`
 
 ### Changed
-- GitHub Actions: Use Java 11
+- GitHub Actions: Switch to Java 11
 - GitHub Actions: Update Build and Release flows
 - GitHub Actions: Use Gradle cache provided with `actions/setup-java`
 - Update `pluginVerifierIdeVersions` to `2020.3.4, 2021.1.3, 2021.2.1`
@@ -350,7 +350,7 @@
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.4.21`
 - Dependencies - upgrade `detekt-formatting` to `1.15.0`
 - Dependencies - upgrade `io.gitlab.arturbosch.detekt` to `1.15.0`
-- README: Clarify the Java usage in the project
+- README: Clarifying the Java usage in the project
 - `pluginVerifierIdeVersions` - upgrade to `2020.1.4, 2020.2.3, 2020.3.1`
 
 ### Fixed
@@ -377,7 +377,7 @@
 ## [0.6.1] - 2020-11-05
 
 ### Added
-- GitHub Actions - use hash based on `pluginVerifierIdeVersions` in `Setup Plugin Verifier IDEs Cache` step
+- GitHub Actions — use hash based on `pluginVerifierIdeVersions` in `Setup Plugin Verifier IDEs Cache` step
 
 ### Changed
 - Use [Kotlin extension function](https://plugins.jetbrains.com/docs/intellij/plugin-services.html#retrieving-a-service) to retrieve the `MyProjectService` in the `MyProjectManagerListener`
@@ -395,8 +395,8 @@
 - Update detekt config to be in line with IJ settings
 - Dependencies - upgrade `io.gitlab.arturbosch.detekt` to `1.14.2`
 - Dependencies - upgrade `org.jetbrains.intellij` to `0.6.1`
-- GitHub Actions - `gradleValidation` update to `gradle/wrapper-validation-action@v1.0.3`
-- GitHub Actions - `releaseDraft` update to `actions/download-artifact@v2`
+- GitHub Actions — `gradleValidation` update to `gradle/wrapper-validation-action@v1.0.3`
+- GitHub Actions — `releaseDraft` update to `actions/download-artifact@v2`
 
 ### Removed
 - Remove Third-party IntelliJ Plugin Verifier GitHub Action
@@ -449,34 +449,34 @@
 - Rename `master` branch to `main`
 
 ### Fixed
-- GitHub Actions - cache Gradle dependencies and wrapper separately
+- GitHub Actions — cache Gradle dependencies and wrapper separately
 
 ## [0.3.1] - 2020-07-31
 
 ### Added
 - Better handling of the Gradle plugin description extraction from the README file
-- GitHub Actions - cache Gradle Wrapper
+- GitHub Actions — cache Gradle Wrapper
 
 ### Changed
 - Gradle - remove kotlin("stdlib-jdk8") dependency to decrease the plugin artifact size
 - Dependencies - bump ktlint to `9.3.0`
-- GitHub Actions - make *Update Changelog* job dependent on the *Publish Plugin*
-- GitHub Actions - run plugin verifier against `2019.3` `2020.1` `2020.2`
+- GitHub Actions — make *Update Changelog* job dependent on the *Publish Plugin*
+- GitHub Actions — run plugin verifier against `2019.3` `2020.1` `2020.2`
 
 ### Fixed
 - Resolve ktlint reports
-- GitHub Actions - Plugin Verifier broken for artifacts with whitespaces in name
+- GitHub Actions — Plugin Verifier broken for artifacts with spaces in name
 
 ## [0.3.0] - 2020-07-07
 
 ### Added
-- Set publish channel depending on the plugin version, i.e. `1.0.0-beta` -> `beta` channel
+- Set the publishing channel depending on the plugin version, i.e. `1.0.0-beta` -> `beta` channel
 
 ### Changed
 - Update `org.jetbrains.changelog` dependency to `v0.3.3`
 - Update Gradle Wrapper to `v6.5.1`
 - Run GitHub Actions Release workflow on `prereleased` event
-- GitHub Actions - Release - separate changelog related job from the release
+- GitHub Actions — Release, separate changelog-related job from the release
 
 ### Fixed
 - Remove vendor website from `plugin.xml`
@@ -493,7 +493,7 @@
 - Bump detekt dependency to `1.10.0`
 
 ### Fixed
-- GitHub Actions - Template Cleanup - fixed adding files to git
+- GitHub Actions — Template Cleanup, fixed adding files to git
 - Update Template plugin name on cleanup
 - Set `buildUponDefaultConfig = true` in detekt configuration
 
@@ -505,7 +505,7 @@
 
 ### Changed
 - README proofreading
-- GitHub Actions - Update IDE versions for the Plugin Verifier
+- GitHub Actions — Update IDE versions for the Plugin Verifier
 - Update platformVersion to `2020.1.2`
 
 ## [0.0.2] - 2020-06-22

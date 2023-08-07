@@ -258,7 +258,7 @@ In `src/test/kotlin`, you'll find a basic `MyPluginTest` test that utilizes `Bas
 ### Code coverage
 
 The [Kover][gh:kover] – a Gradle plugin for Kotlin code coverage agents: IntelliJ and JaCoCo – is integrated into the project to provide the code coverage feature.
-Code coverage makes it possible to measure and track the degree of testing of the plugin sources.
+Code coverage makes it possible to measure and track the degree of plugin sources testing.
 The code coverage gets executed when running the `check` Gradle task.
 The final test report is sent to [CodeCov][codecov] for better results visualization.
 
