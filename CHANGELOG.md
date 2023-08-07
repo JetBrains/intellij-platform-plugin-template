@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [1.11.0] - 2023-08-07
+
 ### Changed
 - GitHub Actions: move the `Maximize Build Space` step from the `Build` job to `Inspect code` and `Verify plugin` jobs
 - Update `platformVersion` to `2022.3.3`
@@ -526,7 +528,8 @@
 - GitHub Actions to automate testing and deployment
 - Kotlin support
 
-[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.10.0...HEAD
+[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.11.0...HEAD
+[1.11.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.10.0...v1.11.0
 [1.10.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.9.0...v1.10.0
 [1.9.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.7.0...v1.8.0
