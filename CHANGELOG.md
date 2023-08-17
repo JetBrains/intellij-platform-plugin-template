@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+### Fixed
+- GitHub Actions: publish workflow fails due to the existing `release changelog` label
+
 ### Changed
 - Upgrade Gradle Wrapper to `8.3`
 
