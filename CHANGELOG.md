@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [1.11.1] - 2023-08-17
+
 ### Fixed
 - GitHub Actions: publish workflow fails due to the existing `release changelog` label
 
@@ -534,7 +536,8 @@
 - GitHub Actions to automate testing and deployment
 - Kotlin support
 
-[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.11.0...HEAD
+[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.11.1...HEAD
+[1.11.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.11.0...v1.11.1
 [1.11.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.10.0...v1.11.0
 [1.10.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.9.0...v1.10.0
 [1.9.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.8.0...v1.9.0
