@@ -93,6 +93,7 @@ jobs:
           
           gh label create "$LABEL" \
             --description "Pull requests with release changelog update" \
+            --force \
             || true
 
           gh pr create \
