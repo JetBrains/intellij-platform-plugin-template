@@ -6,7 +6,9 @@
 
 ### Changed
 
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.9.10`
 - Dependencies - upgrade `org.jetbrains.changelog` to `2.2.0`
+- Gradle - upgrade `org.gradle.toolchains.foojay-resolver-convention` to `0.7.0`
 
 ## [1.11.1] - 2023-08-17
 
