@@ -98,6 +98,10 @@ jobs:
     name: Test
     needs: [ build ]
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+      checks: write
     steps:
 
       # Check out current repository
@@ -126,7 +130,7 @@ jobs:
         uses: dorny/test-reporter@v1.6.0
         if: success() || failure() # run this step even if previous step failed
         with:
-          name: test-report
+          name: Test Report
           reporter: java-junit
           fail-on-error: 'true'
           path: ${{ github.workspace }}/build/test-results/test/*.xml
@@ -138,6 +142,14 @@ jobs:
         with:
           name: tests-result
           path: ${{ github.workspace }}/build/reports/tests
+
+      # Collect Tests Result of failed tests
+      - name: Collect Tests Report
+        if: success() || failure()        # run this step even if previous step failed
+        uses: actions/upload-artifact@v3
+        with:
+          name: tests-report
+          path: ${{ github.workspace }}/build/test-results/test/*.xml
 
       # Upload the Kover report to CodeCov
       - name: Upload Code Coverage Report
@@ -229,6 +241,35 @@ jobs:
         with:
           name: pluginVerifier-result
           path: ${{ github.workspace }}/build/reports/pluginVerifier
+
+  test-report:
+    name: Test Report
+    needs: [ build,test ]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      checks: write
+      actions: read
+    steps:
+      - name: Fetch Sources
+        uses: actions/checkout@v4
+        with:
+          token: '${{ secrets.GITHUB_TOKEN }}'
+
+      - name: Download artifact
+        uses: actions/download-artifact@master
+        id: download
+        with:
+          name: tests-report
+          path: ~/
+
+      - name: Generate Test Report
+        uses: dorny/test-reporter@v1.6.0
+        with:
+          name: Test Report Dashboard
+          reporter: java-junit
+          fail-on-error: 'true'
+          path: '${{steps.download.outputs.download-path}}/*.xml'
 
   # Prepare a draft release for GitHub Releases page for the manual verification
   # If accepted and published, release workflow would be triggered
