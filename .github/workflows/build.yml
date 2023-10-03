@@ -98,10 +98,6 @@ jobs:
     name: Test
     needs: [ build ]
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      actions: read
-      checks: write
     steps:
 
       # Check out current repository
