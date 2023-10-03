@@ -121,16 +121,6 @@ jobs:
       - name: Run Tests
         run: ./gradlew check
 
-      # Generate Tests Report
-      - name: Generate Test Report
-        uses: dorny/test-reporter@v1.6.0
-        if: success() || failure() # run this step even if previous step failed
-        with:
-          name: Test Report
-          reporter: java-junit
-          fail-on-error: 'true'
-          path: ${{ github.workspace }}/build/test-results/test/*.xml
-
       # Collect Tests Result of failed tests
       - name: Collect Tests Result
         if: ${{ failure() }}
