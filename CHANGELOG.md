@@ -8,6 +8,8 @@
 
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.9.10`
 - Dependencies - upgrade `org.jetbrains.changelog` to `2.2.0`
+- Dependencies (GitHub Actions) - upgrade `actions/checkout` to `4`
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2023.2.6`
 - Upgrade Gradle Wrapper to `8.4`
 - Gradle - upgrade `org.gradle.toolchains.foojay-resolver-convention` to `0.7.0`
 
