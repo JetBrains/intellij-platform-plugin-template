@@ -70,7 +70,7 @@ The most convenient way for getting your new project from GitHub is the <kbd>Get
 
 ![Get from Version Control][file:get-from-version-control]
 
-The next step, after opening your project in IntelliJ IDEA, is to set the proper <kbd>SDK</kbd> to Java in version `17` within the [Project Structure settings][docs:project-strucure-settings].
+The next step, after opening your project in IntelliJ IDEA, is to set the proper <kbd>SDK</kbd> to Java in version `17` within the [Project Structure settings][docs:project-structure-settings].
 
 ![Project Structure — SDK][file:project-structure-sdk.png]
 
@@ -564,7 +564,7 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [docs:release-channel]: https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate#specifying-a-release-channel
 [docs:using-gradle]: https://plugins.jetbrains.com/docs/intellij/developing-plugins.html?from=IJPluginTemplate
 [docs:plugin-signing]: https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate
-[docs:project-strucure-settings]: https://www.jetbrains.com/help/idea/project-settings-and-structure.html
+[docs:project-structure-settings]: https://www.jetbrains.com/help/idea/project-settings-and-structure.html
 [docs:testing-plugins]: https://plugins.jetbrains.com/docs/intellij/testing-plugins.html?from=IJPluginTemplate
 
 [file:draft-release.png]: ./.github/readme/draft-release.png

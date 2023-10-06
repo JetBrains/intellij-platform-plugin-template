@@ -1,4 +1,3 @@
-import org.gradle.internal.jvm.inspection.JvmVendor.KnownJvmVendor
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
 
