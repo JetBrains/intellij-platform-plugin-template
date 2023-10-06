@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [1.11.2] - 2023-10-06
+
 ### Changed
 
 - Upgrade Gradle Wrapper to `8.4`
@@ -634,7 +636,8 @@
 - GitHub Actions to automate testing and deployment
 - Kotlin support
 
-[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.11.1...HEAD
+[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.11.2...HEAD
+[1.11.2]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.11.1...v1.11.2
 [1.11.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.11.0...v1.11.1
 [1.11.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.10.0...v1.11.0
 [1.10.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.9.0...v1.10.0
