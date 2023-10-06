@@ -6,6 +6,7 @@
 
 ### Changed
 
+- Change since/until build to `223-233.*` (2022.3-2023.3.*)
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.16.0`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.9.10`
 - Dependencies - upgrade `org.jetbrains.changelog` to `2.2.0`
