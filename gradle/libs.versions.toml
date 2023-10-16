@@ -7,7 +7,7 @@ kotlin = "1.9.10"
 changelog = "2.2.0"
 gradleIntelliJPlugin = "1.16.0"
 qodana = "0.1.13"
-kover = "0.7.3"
+kover = "0.7.4"
 
 [libraries]
 annotations = { group = "org.jetbrains", name = "annotations", version.ref = "annotations" }
