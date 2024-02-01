@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Removed
+
+- Remove Gradle Kotlin DSL Lazy Property Assignment because it's default now
+
 ## [1.11.3] - 2023-12-01
 
 ### Changed
