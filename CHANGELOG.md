@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- Adjusted obtaining the value for `publishPlugin.channels` property in `build.gradle.kts`
+- Fixed bash variable access in the Create Release Draft step.
+
 ### Removed
 
 - Remove Gradle Kotlin DSL Lazy Property Assignment because it's default now
