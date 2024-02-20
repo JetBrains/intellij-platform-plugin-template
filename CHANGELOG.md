@@ -10,6 +10,7 @@
 
 ### Changed
 
+- Change since/until build to `223-241.*` (2022.3-2024.1.*)
 - Upgrade Gradle Wrapper to `8.6`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.17.2`
 - Dependencies (GitHub Actions) - upgrade `gradle/gradle-build-action@v2` to `gradle/actions/setup-gradle@v3`
