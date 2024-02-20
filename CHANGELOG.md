@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [1.12.0] - 2024-02-20
+
 ### Added
 
 - GitHub Actions: Reduce the number of concurrent builds
@@ -669,7 +671,8 @@
 - GitHub Actions to automate testing and deployment
 - Kotlin support
 
-[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.11.3...HEAD
+[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.12.0...HEAD
+[1.12.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.11.3...v1.12.0
 [1.11.3]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.11.2...v1.11.3
 [1.11.2]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.11.1...v1.11.2
 [1.11.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.11.0...v1.11.1
