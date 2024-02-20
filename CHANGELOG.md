@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- GitHub Actions: Reduce the number of concurrent builds
+
 ### Fixed
 
 - Adjusted obtaining the value for `publishPlugin.channels` property in `build.gradle.kts`
