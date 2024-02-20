@@ -5,7 +5,7 @@ exampleLibrary = "24.1.0"
 # plugins
 kotlin = "2.0.0"
 changelog = "2.2.0"
-gradleIntelliJPlugin = "1.17.3"
+intelliJPlatformGradlePlugin = "2.0.0-SNAPSHOT"
 qodana = "2024.1.5"
 kover = "0.8.0"
 
@@ -14,7 +14,7 @@ exampleLibrary = { group = "com.example", name = "exampleLibrary", version.ref =
 
 [plugins]
 changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
-gradleIntelliJPlugin = { id = "org.jetbrains.intellij", version.ref = "gradleIntelliJPlugin" }
+intelliJPlatformGradlePlugin = { id = "org.jetbrains.intellij.platform", version.ref = "intelliJPlatformGradlePlugin" }
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 qodana = { id = "org.jetbrains.qodana", version.ref = "qodana" }
