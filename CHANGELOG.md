@@ -8,6 +8,10 @@
 
 - GitHub Actions: Reduce the number of concurrent builds
 
+### Changed
+
+- Dependencies (GitHub Actions) - upgrade `gradle/gradle-build-action@v2` to `gradle/actions/setup-gradle@v3`
+
 ### Fixed
 
 - Adjusted obtaining the value for `publishPlugin.channels` property in `build.gradle.kts`
