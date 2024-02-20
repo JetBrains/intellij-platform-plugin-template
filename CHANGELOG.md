@@ -10,6 +10,7 @@
 
 ### Changed
 
+- Dependencies - upgrade `org.jetbrains.intellij` to `1.17.2`
 - Dependencies (GitHub Actions) - upgrade `gradle/gradle-build-action@v2` to `gradle/actions/setup-gradle@v3`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2023.3.1`
 
