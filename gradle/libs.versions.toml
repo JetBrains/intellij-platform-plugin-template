@@ -5,7 +5,7 @@ annotations = "24.1.0"
 # plugins
 kotlin = "1.9.23"
 changelog = "2.2.0"
-intelliJPlatformGradlePlugin = "2.0.0-SNAPSHOT"
+intelliJPlatform = "2.0.0-SNAPSHOT"
 qodana = "2023.3.1"
 kover = "0.7.6"
 
@@ -14,7 +14,7 @@ annotations = { group = "org.jetbrains", name = "annotations", version.ref = "an
 
 [plugins]
 changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
-intelliJPlatformGradlePlugin = { id = "org.jetbrains.intellij.platform", version.ref = "intelliJPlatformGradlePlugin" }
+intelliJPlatform = { id = "org.jetbrains.intellij.platform", version.ref = "intelliJPlatform" }
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
 qodana = { id = "org.jetbrains.qodana", version.ref = "qodana" }
