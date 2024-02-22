@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Gradle - upgrade `org.gradle.toolchains.foojay-resolver-convention` to `0.8.0`
+
 ## [1.12.0] - 2024-02-20
 
 ### Added
