@@ -16,6 +16,11 @@ plugins {
 group = properties("pluginGroup").get()
 version = properties("pluginVersion").get()
 
+// Set the JVM language level used to build the project.
+kotlin {
+    jvmToolchain(17)
+}
+
 // Configure project's dependencies
 repositories {
     mavenCentral()
@@ -39,18 +44,14 @@ dependencies {
 
         // Plugin Dependencies. Uses `platformPlugins` property from the gradle.properties file for plugin from JetBrains Marketplace.
         plugins(properties("platformPlugins").map { it.split(',') })
-    }
-}
 
-// Set the JVM language level used to build the project.
-kotlin {
-    jvmToolchain(17)
+        instrumentationTools()
+    }
 }
 
 // Configure IntelliJ Platform Gradle Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-extension.html
 intellijPlatform {
     pluginConfiguration {
-        name = properties("pluginName")
         version = properties("pluginVersion")
 
         // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
