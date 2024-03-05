@@ -1,5 +1,6 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
+import org.jetbrains.intellij.platform.gradle.extensions.TestFrameworkType
 
 fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
@@ -46,6 +47,7 @@ dependencies {
         plugins(properties("platformPlugins").map { it.split(',') })
 
         instrumentationTools()
+        testFramework(TestFrameworkType.Platform.JUnit4)
     }
 }
 
