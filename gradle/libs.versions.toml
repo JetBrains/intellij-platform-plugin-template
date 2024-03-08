@@ -7,7 +7,7 @@ kotlin = "1.9.23"
 changelog = "2.2.0"
 intelliJPlatform = "2.0.0-SNAPSHOT"
 qodana = "0.1.13"
-kover = "0.7.5"
+kover = "0.7.6"
 
 [libraries]
 annotations = { group = "org.jetbrains", name = "annotations", version.ref = "annotations" }
