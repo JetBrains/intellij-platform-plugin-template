@@ -11,11 +11,12 @@
 - Dependencies - upgrade `org.jetbrains.qodana` to `2023.3.1`
 - Gradle - upgrade `org.gradle.toolchains.foojay-resolver-convention` to `0.8.0`
 - Gradle - cleanup the `jvmToolchain` setup
+- Run Configurations - `Run Qodana` runs the `qodanaScan` Gradle task
 
 ### Fixed
 
 - Fixed calculation of the plugin publication channel
-- Make the `Run Tests` run configuration use the `RunAsTest` IDE feature
+- Run Configurations - `Run Tests` uses the `RunAsTest` IDE feature
 - Replace the whole `IntelliJ Platform Plugin Template` with the new project name when running the GitHub Actions Cleanup workflow
 
 ### Removed
