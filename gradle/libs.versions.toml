@@ -3,7 +3,7 @@
 annotations = "24.1.0"
 
 # plugins
-kotlin = "1.9.21"
+kotlin = "1.9.23"
 changelog = "2.2.0"
 intelliJPlatform = "2.0.0-SNAPSHOT"
 qodana = "0.1.13"
