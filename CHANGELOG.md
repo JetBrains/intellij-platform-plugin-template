@@ -7,6 +7,7 @@
 ### Changed
 
 - Gradle - upgrade `org.gradle.toolchains.foojay-resolver-convention` to `0.8.0`
+- Gradle - cleanup the `jvmToolchain` setup
 
 ### Fixed
 
