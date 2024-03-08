@@ -30,6 +30,10 @@
 - GitHub Actions: Remove the `Setup Java` step from the `releaseDraft` build step
 - Gradle - Removed Qodana Gradle Plugin configuration to rely on defaults
 
+### Fixed
+
+- Fixed calculation of the plugin publication channel
+
 ### Removed
 
 - GitHub Actions: Remove the `Setup Java` step from the `releaseDraft` build step
