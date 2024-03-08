@@ -6,6 +6,7 @@
 
 ### Changed
 
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.9.23`
 - Gradle - upgrade `org.gradle.toolchains.foojay-resolver-convention` to `0.8.0`
 - Gradle - cleanup the `jvmToolchain` setup
 
