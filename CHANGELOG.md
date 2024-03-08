@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Removed
+
+- GitHub Actions: Remove the `Setup Java` step from the `releaseDraft` build step
+
 ## [1.12.0] - 2024-02-20
 
 ### Added
