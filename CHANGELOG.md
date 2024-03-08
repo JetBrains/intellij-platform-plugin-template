@@ -23,6 +23,7 @@
 
 - Fixed calculation of the plugin publication channel
 - Make the `Run Tests` run configuration use the `RunAsTest` IDE feature
+- Replace the whole `IntelliJ Platform Plugin Template` with the new project name when running the GitHub Actions Cleanup workflow
 
 ### Removed
 
