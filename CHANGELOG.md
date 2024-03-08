@@ -41,17 +41,6 @@
 ### Fixed
 
 - Fixed calculation of the plugin publication channel
-- Run Configurations - `Run Tests` uses the `RunAsTest` IDE feature
-- Replace the whole `IntelliJ Platform Plugin Template` with the new project name when running the GitHub Actions Cleanup workflow
-
-### Removed
-
-- GitHub Actions: Remove the `Setup Java` step from the `releaseDraft` build step
-- Gradle - Removed Qodana Gradle Plugin configuration to rely on defaults
-
-### Fixed
-
-- Fixed calculation of the plugin publication channel
 - Make the `Run Tests` run configuration use the `RunAsTest` IDE feature
 
 ### Removed
