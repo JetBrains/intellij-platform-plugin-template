@@ -33,6 +33,7 @@
 ### Fixed
 
 - Fixed calculation of the plugin publication channel
+- Make the `Run Tests` run configuration use the `RunAsTest` IDE feature
 
 ### Removed
 
