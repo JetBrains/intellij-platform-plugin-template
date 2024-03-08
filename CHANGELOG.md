@@ -6,11 +6,17 @@
 
 ### Changed
 
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.9.23`
+- Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.7.6`
+- Dependencies - upgrade `org.jetbrains.qodana` to `2023.3.1`
 - Gradle - upgrade `org.gradle.toolchains.foojay-resolver-convention` to `0.8.0`
+- Gradle - cleanup the `jvmToolchain` setup
 
 ### Fixed
 
 - Fixed calculation of the plugin publication channel
+- Make the `Run Tests` run configuration use the `RunAsTest` IDE feature
+- Replace the whole `IntelliJ Platform Plugin Template` with the new project name when running the GitHub Actions Cleanup workflow
 
 ### Removed
 
