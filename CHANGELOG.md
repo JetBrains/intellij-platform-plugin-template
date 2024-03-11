@@ -14,6 +14,7 @@
 - Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `4`
 - Dependencies (GitHub Actions) - upgrade `codecov/codecov-action` to `4`
 - Dependencies (GitHub Actions) - upgrade `gradle/wrapper-validation-action` to `2`
+- Dependencies (GitHub Actions) - upgrade `actions/cache` to `4`
 - Gradle - upgrade `org.gradle.toolchains.foojay-resolver-convention` to `0.8.0`
 - Gradle - cleanup the `jvmToolchain` setup
 - Run Configurations - `Run Qodana` runs the `qodanaScan` Gradle task
