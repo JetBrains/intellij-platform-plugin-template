@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [1.13.0] - 2024-03-11
+
 ### Changed
 
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.9.23`
@@ -691,7 +693,8 @@
 - GitHub Actions to automate testing and deployment
 - Kotlin support
 
-[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.12.0...HEAD
+[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.13.0...HEAD
+[1.13.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.12.0...v1.13.0
 [1.12.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.11.3...v1.12.0
 [1.11.3]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.11.2...v1.11.3
 [1.11.2]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.11.1...v1.11.2
