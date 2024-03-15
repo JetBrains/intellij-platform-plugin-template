@@ -47,6 +47,7 @@ dependencies {
         plugins(properties("platformPlugins").map { it.split(',') })
 
         instrumentationTools()
+        pluginVerifier()
         testFramework(TestFrameworkType.Platform.JUnit4)
     }
 }
@@ -61,7 +62,7 @@ intellijPlatform {
             val start = "<!-- Plugin description -->"
             val end = "<!-- Plugin description end -->"
 
-            with (it.lines()) {
+            with(it.lines()) {
                 if (!containsAll(listOf(start, end))) {
                     throw GradleException("Plugin description section not found in README.md:\n$start ... $end")
                 }
@@ -100,6 +101,12 @@ intellijPlatform {
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
         channels = properties("pluginVersion").map { listOf(it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" }) }
+    }
+
+    verifyPlugin {
+        ides {
+            recommended()
+        }
     }
 }
 
