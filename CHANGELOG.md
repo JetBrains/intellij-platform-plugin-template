@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### Added
+
+- Use IntelliJ Platform Gradle Plugin `2.0.0-beta1`
+
+### Changed
+
 - Upgrade Gradle Wrapper to `8.8`
 
 ## [1.14.0] - 2024-05-30
