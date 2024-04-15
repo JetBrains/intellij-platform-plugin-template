@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Use IntelliJ Platform Gradle Plugin `2.0.0-beta1`
+
 ## [1.13.0] - 2024-03-11
 
 ### Changed
