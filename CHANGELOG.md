@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Dependencies - upgrade `org.jetbrains.intellij` to `1.17.3`
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `2.0.0`
+- Dependencies - upgrade `org.jetbrains.qodana` to `2024.1.5`
+- Dependencies (GitHub Actions) - upgrade `gradle/wrapper-validation-action` to `3`
+- Dependencies (GitHub Actions) - upgrade `jtalk/url-health-check-action` to `4`
+
 ## [1.13.0] - 2024-03-11
 
 ### Changed
