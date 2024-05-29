@@ -64,7 +64,9 @@ All you have to do is click the <kbd>Use this template</kbd> button (you must be
 ![Use this template][file:use-this-template.png]
 
 After using the template to create your blank project, the [Template Cleanup][file:template_cleanup.yml] workflow will be triggered to override or remove any template-specific configurations, such as the plugin name, current changelog, etc.
-Once this is complete, the project is ready to be cloned to your local environment and opened with [IntelliJ IDEA][jb:download-ij].
+Once this is complete, open the newly created project's _Settings | Actions | General_ page and enable option _Allow GitHub Actions to create and approve pull requests_.
+
+Now the project is ready to be cloned to your local environment and opened with [IntelliJ IDEA][jb:download-ij].
 
 The most convenient way for getting your new project from GitHub is the <kbd>Get from VCS</kbd> action available on the Welcome Screen, where you can filter your GitHub  repository by its name.
 
