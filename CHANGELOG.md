@@ -8,6 +8,7 @@
 
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.17.3`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `2.0.0`
+- Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.8.0`
 - Dependencies - upgrade `org.jetbrains.qodana` to `2024.1.5`
 - Dependencies (GitHub Actions) - replace `gradle/wrapper-validation-action@v2` with `gradle/actions/wrapper-validation@v3`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2024.1.5`
