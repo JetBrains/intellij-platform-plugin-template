@@ -6,6 +6,7 @@
 
 ### Changed
 
+- Upgrade Gradle Wrapper to `8.7`
 - Update Kover configuration
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.17.3`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `2.0.0`
