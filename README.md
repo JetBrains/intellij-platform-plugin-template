@@ -131,7 +131,6 @@ In addition, extra behaviors are configured through the [`gradle.properties`][fi
 | `kotlin.stdlib.default.dependency`               | `false` | Opt-out flag for bundling [Kotlin standard library][docs:kotlin-stdlib]                        |
 | `org.gradle.configuration-cache`                 | `true`  | Enable [Gradle Configuration Cache][gradle:configuration-cache]                                |
 | `org.gradle.caching`                             | `true`  | Enable [Gradle Build Cache][gradle:build-cache]                                                |
-| `systemProp.org.gradle.unsafe.kotlin.assignment` | `true`  | Enable [Gradle Kotlin DSL Lazy Property Assignment][gradle:kotlin-dsl-assignment]              |
 
 ### Environment variables
 
