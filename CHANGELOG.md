@@ -12,6 +12,7 @@
 - Dependencies (GitHub Actions) - replace `gradle/wrapper-validation-action@v2` with `gradle/actions/wrapper-validation@v3`
 - Dependencies (GitHub Actions) - upgrade `jtalk/url-health-check-action` to `4`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2024.1.5`
+- Dependencies (GitHub Actions) - upgrade `jtalk/url-health-check-action` to `v4`
 
 ## [1.13.0] - 2024-03-11
 
