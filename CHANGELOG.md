@@ -6,6 +6,7 @@
 
 ### Changed
 
+- Update Kover configuration
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.17.3`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `2.0.0`
 - Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.8.0`
