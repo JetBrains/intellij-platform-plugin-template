@@ -6,6 +6,7 @@
 
 ### Changed
 
+- Update `platformVersion` to `2023.2.6`
 - Upgrade Gradle Wrapper to `8.7`
 - Update Kover configuration
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.17.3`
