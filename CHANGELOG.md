@@ -6,7 +6,11 @@
 
 ### Added
 
-- Use IntelliJ Platform Gradle Plugin `2.0.0-beta1`
+- Use IntelliJ Platform Gradle Plugin `2.0`
+
+### Changed
+
+- Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.0.0-beta5`
 
 ### Changed
 
