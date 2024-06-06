@@ -10,7 +10,7 @@
 
 ### Changed
 
-- Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.0.0-beta5`
+- Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.0.0-beta6`
 
 ### Changed
 

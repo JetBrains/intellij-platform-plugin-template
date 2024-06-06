@@ -4,7 +4,7 @@ exampleLibrary = "24.1.0"
 
 # plugins
 changelog = "2.2.0"
-intelliJPlatform = "2.0.0-beta5"
+intelliJPlatform = "2.0.0-beta6"
 kotlin = "2.0.0"
 kover = "0.8.0"
 qodana = "2024.1.5"
