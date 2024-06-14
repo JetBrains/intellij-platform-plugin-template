@@ -48,7 +48,7 @@ dependencies {
 
         instrumentationTools()
         pluginVerifier()
-        testFramework(TestFrameworkType.Platform.JUnit4)
+        testFramework(TestFrameworkType.Platform)
     }
 }
 
