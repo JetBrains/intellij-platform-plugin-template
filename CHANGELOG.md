@@ -4,6 +4,18 @@
 
 ## [Unreleased]
 
+### Added
+
+- Use IntelliJ Platform Gradle Plugin `2.0`
+
+### Changed
+
+- Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.0.0-beta6`
+
+### Changed
+
+- Upgrade Gradle Wrapper to `8.8`
+
 ## [1.14.0] - 2024-05-30
 
 ### Changed
@@ -27,7 +39,7 @@
 
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.9.23`
 - Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.7.6`
-- Dependencies - upgrade `org.jetbrains.qodana` to `2023.3.1`
+- Dependencies - upgrade `org.jetbrains.qodana` to `2023.3.2`
 - Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `4`
 - Dependencies (GitHub Actions) - upgrade `codecov/codecov-action` to `4`
 - Dependencies (GitHub Actions) - upgrade `gradle/wrapper-validation-action` to `2`

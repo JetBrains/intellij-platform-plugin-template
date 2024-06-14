@@ -51,7 +51,7 @@ jobs:
           echo "$CHANGELOG" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      # Update Unreleased section with the current release note
+      # Update the Unreleased section with the current release note
       - name: Patch Changelog
         if: ${{ steps.properties.outputs.changelog != '' }}
         env:
