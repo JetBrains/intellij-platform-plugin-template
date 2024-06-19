@@ -5,6 +5,7 @@
 ## [Unreleased]
 
 - Upgrade Gradle Wrapper to `8.8`
+- Dependencies - downgrade `org.jetbrains.kotlin.jvm` to `1.9.24`
 
 ## [1.14.0] - 2024-05-30
 
