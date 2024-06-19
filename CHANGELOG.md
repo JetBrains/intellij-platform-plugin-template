@@ -4,6 +4,7 @@
 
 ## [Unreleased]
 
+- Update `platformVersion` to `2023.2.7`
 - Upgrade Gradle Wrapper to `8.8`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.17.4`
 - Dependencies - downgrade `org.jetbrains.kotlin.jvm` to `1.9.24`
