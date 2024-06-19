@@ -7,6 +7,7 @@
 - Upgrade Gradle Wrapper to `8.8`
 - Dependencies - upgrade `org.jetbrains.intellij` to `1.17.4`
 - Dependencies - downgrade `org.jetbrains.kotlin.jvm` to `1.9.24`
+- Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.8.1`
 
 ## [1.14.0] - 2024-05-30
 
