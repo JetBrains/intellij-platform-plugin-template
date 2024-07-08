@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+- Remove default plugin icon (`pluginIcon.svg`)
+
 ## [1.14.1] - 2024-06-19
 
 - Update `platformVersion` to `2023.2.7`
