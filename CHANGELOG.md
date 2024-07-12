@@ -4,9 +4,17 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade Gradle Wrapper to `8.9`
+
+### Removed
+
 - Remove default plugin icon (`pluginIcon.svg`)
 
 ## [1.14.1] - 2024-06-19
+
+### Changed
 
 - Update `platformVersion` to `2023.2.7`
 - Upgrade Gradle Wrapper to `8.8`
