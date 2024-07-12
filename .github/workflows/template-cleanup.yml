@@ -17,7 +17,7 @@ jobs:
       contents: write
     steps:
 
-      # Check out current repository
+      # Check out the current repository
       - name: Fetch Sources
         uses: actions/checkout@v4
 
@@ -61,7 +61,6 @@ jobs:
             .idea/icon.png \
             src/main/kotlin/org \
             src/test/kotlin/org \
-            src/main/resources/META-INF/pluginIcon.svg \
             CODE_OF_CONDUCT.md \
             LICENSE
 
