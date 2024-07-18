@@ -1,6 +1,6 @@
 [versions]
 # libraries
-exampleLibrary = "24.1.0"
+junit = "4.13.2"
 
 # plugins
 changelog = "2.2.0"
@@ -10,7 +10,7 @@ kover = "0.8.1"
 qodana = "2024.1.5"
 
 [libraries]
-exampleLibrary = { group = "com.example", name = "exampleLibrary", version.ref = "exampleLibrary" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
 
 [plugins]
 changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
