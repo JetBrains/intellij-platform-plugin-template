@@ -27,7 +27,7 @@ jobs:
           - os: windows-latest
             runIde: start gradlew.bat runIdeForUiTests
           - os: macos-latest
-            runIde: ./gradlew testIdeUi &
+            runIde: ./gradlew runIdeForUiTests &
 
     steps:
 
