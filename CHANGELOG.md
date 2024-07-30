@@ -4,13 +4,9 @@
 
 ## [Unreleased]
 
-### Added
-
-- Use IntelliJ Platform Gradle Plugin `2.0`
-
 ### Changed
 
-- Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.0.0-beta6`
+- Migrate to [IntelliJ Platform Gradle Plugin 2.0](https://blog.jetbrains.com/platform/2024/07/intellij-platform-gradle-plugin-2-0/).
 
 ## [1.14.2] - 2024-07-12
 
