@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [2.0.0] - 2024-07-30
+
 ### Changed
 
 - Migrate to [IntelliJ Platform Gradle Plugin 2.0](https://blog.jetbrains.com/platform/2024/07/intellij-platform-gradle-plugin-2-0/).
@@ -738,7 +740,8 @@
 - GitHub Actions to automate testing and deployment
 - Kotlin support
 
-[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.14.2...HEAD
+[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.14.2...v2.0.0
 [1.14.2]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.14.1...v1.14.2
 [1.14.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.14.0...v1.14.1
 [1.14.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v1.13.0...v1.14.0
@@ -780,5 +783,5 @@
 [0.3.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v0.0.2...v0.1.0
-[0.0.2]: https://github.com/JetBrains/intellij-platform-plugin-template/commits/v0.0.2
-[0.0.1]: https://github.com/JetBrains/intellij-platform-plugin-template/commits
+[0.0.2]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v0.0.1...v0.0.2
+[0.0.1]: https://github.com/JetBrains/intellij-platform-plugin-template/commits/v0.0.1
