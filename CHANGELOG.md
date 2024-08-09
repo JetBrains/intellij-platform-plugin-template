@@ -11,6 +11,7 @@
 - Cleanup registering the `runIdeForUiTests` task
 - Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.0.1`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.9.25`
+- Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.8.3`
 
 ## [2.0.0] - 2024-07-30
 
