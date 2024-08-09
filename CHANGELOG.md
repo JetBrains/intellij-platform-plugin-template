@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Update `platformVersion` to `2023.3.7`
+- Change since/until build to `233-242.*` (2023.3-2024.2.*)
+
+
 ## [2.0.0] - 2024-07-30
 
 ### Changed
