@@ -6,10 +6,11 @@
 
 ### Changed
 
-- Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.0.1`
 - Update `platformVersion` to `2023.3.7`
 - Change since/until build to `233-242.*` (2023.3-2024.2.*)
 - Cleanup registering the `runIdeForUiTests` task
+- Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.0.1`
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.9.25`
 
 ## [2.0.0] - 2024-07-30
 
