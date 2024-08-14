@@ -9,6 +9,10 @@
 - Upgrade Gradle Wrapper to `8.10`
 - Dependencies (GitHub Actions) - upgrade `gradle/actions/setup-gradle` to `v4`
 
+### Fixed
+
+- Fixed _Run Plugin_ run configuration logs location
+
 ### Removed
 
 - Removed _Run Qodana_ and _Run UI for UI Tests_ run configurations
