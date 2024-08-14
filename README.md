@@ -133,7 +133,7 @@ In addition, extra behaviors are configured through the [`gradle.properties`][fi
 
 Some values used for the Gradle configuration shouldn't be stored in files to avoid publishing them to the Version Control System.
 
-To avoid that, environment variables are introduced, which can be provided within the *Run/Debug Configuration* within the IDE, or on the CI – like for GitHub: `⚙️ Settings > Secrets`.
+To avoid that, environment variables are introduced, which can be provided within the *Run/Debug Configuration* within the IDE, or on the CI – like for GitHub: `⚙️ Settings > Secrets and variables > Actions`.
 
 Environment variables used by the current project are related to the [plugin signing](#plugin-signing) and [publishing](#publishing-the-plugin).
 
@@ -146,7 +146,7 @@ Environment variables used by the current project are related to the [plugin sig
 
 For more details on how to generate proper values, check the relevant sections mentioned above.
 
-To configure GitHub secret environment variables, go to the `⚙️ Settings > Secrets` section of your project repository:
+To configure GitHub secret environment variables, go to the `⚙️ Settings > Secrets and variables > Actions` section of your project repository:
 
 ![Settings > Secrets][file:settings-secrets.png]
 
@@ -498,7 +498,7 @@ In addition, the [Release](.github/workflows/release.yml) workflow automates thi
 > [!NOTE]
 > Set a suffix to the plugin version to publish it in the custom repository channel, i.e. `v1.0.0-beta` will push your plugin to the `beta` [release channel][docs:release-channel].
 
-The authorization process relies on the `PUBLISH_TOKEN` secret environment variable, specified in the _Secrets_ section of the repository _Settings_.
+The authorization process relies on the `PUBLISH_TOKEN` secret environment variable, specified in the `⚙️ Settings > Secrets and variables > Actions` section of your project repository.
 
 You can get that token in your JetBrains Marketplace profile dashboard in the [My Tokens][jb:my-tokens] tab.
 
