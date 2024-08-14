@@ -235,13 +235,15 @@ These files are located in `src/main/kotlin`.
 This location indicates the language being used.
 So if you decide to use Java instead (or in addition to Kotlin), these sources should be located in the `src/main/java` directory.
 
+> [!TIP]
+> It is possible to use the [IntelliJ Platform Icons](https://jb.gg/new-ui-icons) in your plugin.
+
 To start with the actual implementation, you may check our [IntelliJ Platform SDK DevGuide][docs], which contains an introduction to the essential areas of the plugin development together with dedicated tutorials.
 
 > [!WARNING]
 > Remember to remove all non-needed sample code files with their corresponding registration entries in `plugin.xml`.
 
 For those who value example codes the most, there are also available [IntelliJ SDK Code Samples][gh:code-samples] and [IntelliJ Platform Explorer][jb:ipe] – a search tool for browsing Extension Points inside existing implementations of open-source IntelliJ Platform plugins.
-
 
 ## Testing
 
