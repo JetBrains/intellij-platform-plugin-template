@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Dependencies (GitHub Actions) - upgrade `gradle/actions/setup-gradle` to `v4`
+
 ## [2.0.1] - 2024-08-09
 
 ### Changed
