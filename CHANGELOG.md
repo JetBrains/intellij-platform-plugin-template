@@ -6,6 +6,7 @@
 
 ### Changed
 
+- Upgrade Gradle Wrapper to `8.10`
 - Dependencies (GitHub Actions) - upgrade `gradle/actions/setup-gradle` to `v4`
 
 ## [2.0.1] - 2024-08-09
