@@ -6,7 +6,7 @@
 
 ### Changed
 
-- Upgrade Gradle Wrapper to `8.10`
+- Upgrade Gradle Wrapper to `8.10.1`
 - Dependencies (GitHub Actions) - upgrade `gradle/actions/setup-gradle` to `v4`
 
 ### Fixed
