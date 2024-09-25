@@ -8,6 +8,7 @@
 
 - Upgrade Gradle Wrapper to `8.10.2`
 - Update `platformVersion` to `2023.3.8`
+- Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.1.0`
 - Dependencies (GitHub Actions) - upgrade `gradle/actions/setup-gradle` to `v4`
 
 ### Fixed
