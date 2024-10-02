@@ -11,6 +11,7 @@
 - Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.1.0`
 - Dependencies - upgrade `org.jetbrains.qodana` to `2024.2.3`
 - Dependencies (GitHub Actions) - upgrade `gradle/actions/setup-gradle` to `v4`
+- Add back the `org.gradle.toolchains.foojay-resolver-convention` Gradle settings plugin
 
 ### Fixed
 
