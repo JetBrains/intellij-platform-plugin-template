@@ -326,11 +326,11 @@ Within the default project structure, there is a `.run` directory provided conta
 
 ![Run/Debug configurations][file:run-debug-configurations.png]
 
-| Configuration name | Description                                                                                                                                                                |
-|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Run Plugin         | Runs [`:runIde`][gh:intellij-platform-gradle-plugin-runIde] Gradle IntelliJ Plugin task. Use the *Debug* icon for plugin debugging.                                        |
-| Run Tests          | Runs [`:test`][gradle:lifecycle-tasks] Gradle task.                                                                                                                        |
-| Run Verifications  | Runs [`:verifyPlugin`][gh:intellij-platform-gradle-plugin-verifyPlugin] Gradle IntelliJ Plugin task to check the plugin compatibility against the specified IntelliJ IDEs. |
+| Configuration name | Description                                                                                                                                               |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Run Plugin         | Runs [`:runIde`][gh:intellij-platform-gradle-plugin-runIde] IntelliJ Platform Gradle Plugin task. Use the *Debug* icon for plugin debugging.              |
+| Run Tests          | Runs [`:test`][gradle:lifecycle-tasks] Gradle task.                                                                                                       |
+| Run Verifications  | Runs [`:verifyPlugin`][gh:intellij-platform-gradle-plugin-verifyPlugin] IntelliJ Platform Gradle Plugin task to check the plugin compatibility against the specified IntelliJ IDEs. |
 
 > [!NOTE]
 > You can find the logs from the running task in the `idea.log` tab.
@@ -425,7 +425,7 @@ When they're provided, these lists are available in a few different places:
 There are many methods for handling the project's changelog.
 The one used in the current template project is the [Keep a Changelog][keep-a-changelog] approach.
 
-The [Gradle Changelog Plugin][gh:gradle-changelog-plugin] takes care of propagating information provided within the [CHANGELOG.md](./CHANGELOG.md) to the [Gradle IntelliJ Plugin][gh:intellij-platform-gradle-plugin].
+The [Gradle Changelog Plugin][gh:gradle-changelog-plugin] takes care of propagating information provided within the [CHANGELOG.md](./CHANGELOG.md) to the [IntelliJ Platform Gradle Plugin][gh:intellij-platform-gradle-plugin].
 You only have to take care of writing down the actual changes in proper sections of the `[Unreleased]` section.
 
 You start with an almost empty changelog:
@@ -530,7 +530,7 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 ## Useful links
 
 - [IntelliJ Platform SDK Plugin SDK][docs]
-- [Gradle IntelliJ Plugin Documentation][gh:intellij-platform-gradle-plugin-docs]
+- [IntelliJ Platform Gradle Plugin Documentation][gh:intellij-platform-gradle-plugin-docs]
 - [IntelliJ Platform Explorer][jb:ipe]
 - [JetBrains Marketplace Quality Guidelines][jb:quality-guidelines]
 - [IntelliJ Platform UI Guidelines][jb:ui-guidelines]
