@@ -342,6 +342,10 @@ Within the default project structure, there is a `.run` directory provided conta
 Continuous integration depends on [GitHub Actions][gh:actions], a set of workflows that make it possible to automate your testing and release process.
 Thanks to such automation, you can delegate the testing and verification phases to the Continuous Integration (CI) and instead focus on development (and writing more tests).
 
+> [!NOTE]
+> To ensure the "Create Pull Request" step functions correctly in the "Publish Plugin" job, make sure to enable "Read and write permissions" for actions by navigating to `⚙️ Settings > Actions > General > Workflow permissions`.
+
+
 In the `.github/workflows` directory, you can find definitions for the following GitHub Actions workflows:
 
 - [Build](.github/workflows/build.yml)
