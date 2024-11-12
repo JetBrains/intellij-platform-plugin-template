@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade Gradle Wrapper to `8.11`
+- Update `platformVersion` to `2024.1.7`
+
 ## [2.0.2] - 2024-10-07
 
 ### Changed
