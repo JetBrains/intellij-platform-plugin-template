@@ -9,6 +9,7 @@
 - Upgrade Gradle Wrapper to `8.11.1`
 - Update `platformVersion` to `2024.1.7`
 - Change since/until build to `241-243.*` (2024.1-2024.3.*)
+- Dependencies - upgrade `org.jetbrains.qodana` to `2024.2.6`
 - Dependencies (GitHub Actions) - upgrade `gradle/actions/wrapper-validation` to `v4`
 
 ## [2.0.2] - 2024-10-07
