@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Removed
+
+- Remove redundant IntelliJ Platform dependency helpers: `instrumentationTools()`, `pluginVerifier()`, `zipSigner()`
+
 ### Changed
 
 - Upgrade Gradle Wrapper to `8.11.1`
