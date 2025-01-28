@@ -8,7 +8,7 @@ import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import com.intellij.util.PsiErrorElementUtil
 import org.jetbrains.plugins.template.services.MyProjectService
 
-@TestDataPath("\$CONTENT_ROOT/src/test/testData")
+@TestDataPath("\$CONTENT_ROOT/src/test/testdata")
 class MyPluginTest : BasePlatformTestCase() {
 
     fun testXMLFile() {
@@ -35,5 +35,5 @@ class MyPluginTest : BasePlatformTestCase() {
         assertNotSame(projectService.getRandomNumber(), projectService.getRandomNumber())
     }
 
-    override fun getTestDataPath() = "src/test/testData/rename"
+    override fun getTestDataPath() = "src/test/testdata/rename"
 }
