@@ -19,10 +19,6 @@ version = providers.gradleProperty("pluginVersion").get()
 // pawrequest custom github repo/dependency adder
 val thisArtifactID = providers.gradleProperty("pluginRepositoryUrl").get().substringAfterLast("/")
 val thisVendorName = providers.gradleProperty("pluginRepositoryUrl").get().substringBeforeLast("/").substringAfterLast("/")
-//val theseCustomDependencies = providers.gradleProperty("customDependencies")
-//    .orNull // Returns null if the property is missing
-//    ?.split(",") // Split only if the property is present
-//    ?: emptyList() // Provide an empty list if the property is missing
 val theseCustomDependencies = providers.gradleProperty("customDependencies")
     .orNull // Returns null if the property is missing
     ?.split(",") // Split only if the property is present
