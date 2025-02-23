@@ -16,7 +16,7 @@ plugins {
 group = providers.gradleProperty("pluginGroup").get()
 version = providers.gradleProperty("pluginVersion").get()
 
-// pawrequest custom github repo/dependency adder
+// pawrequest custom github repo/dependency adder ASSUMES HTTPS://REPO_URL/.../VENDOR/ASSET
 val thisArtifactID = providers.gradleProperty("pluginRepositoryUrl").get().substringAfterLast("/")
 val thisVendorName = providers.gradleProperty("pluginRepositoryUrl").get().substringBeforeLast("/").substringAfterLast("/")
 val theseCustomDependencies = providers.gradleProperty("customDependencies")
