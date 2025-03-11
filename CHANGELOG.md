@@ -22,7 +22,7 @@
 - Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.2.1`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `2.1.10`
 - Dependencies - upgrade `org.jetbrains.qodana` to `2024.3.4`
-- Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.9.0`
+- Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.9.1`
 - Dependencies (GitHub Actions) - upgrade `gradle/actions/wrapper-validation` to `v4`
 - Dependencies (GitHub Actions) - upgrade `codecov/codecov-action` to `v5`
 
