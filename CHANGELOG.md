@@ -16,7 +16,7 @@
 
 ### Changed
 
-- Upgrade Gradle Wrapper to `8.11.1`
+- Upgrade Gradle Wrapper to `8.13`
 - Update `platformVersion` to `2024.1.7`
 - Change since/until build to `241-243.*` (2024.1-2024.3.*)
 - Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.2.1`
