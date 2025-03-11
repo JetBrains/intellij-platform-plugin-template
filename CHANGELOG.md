@@ -4,6 +4,28 @@
 
 ## [Unreleased]
 
+### Added
+
+- Example code – `ProjectActivity`
+
+### Removed
+
+- Example code – `MyApplicationActivationListener`
+- Remove redundant IntelliJ Platform dependency helpers: `instrumentationTools()`, `pluginVerifier()`, `zipSigner()`
+- GitHub Actions: Remove `gradle/actions/wrapper-validation` because validation is performed by default in `gradle/actions/setup-gradle@v4`
+
+### Changed
+
+- Upgrade Gradle Wrapper to `8.13`
+- Update `platformVersion` to `2024.1.7`
+- Change since/until build to `241-251.*` (2024.1-2025.1.*)
+- Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.2.1`
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `2.1.10`
+- Dependencies - upgrade `org.jetbrains.qodana` to `2024.3.4`
+- Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.9.1`
+- Dependencies (GitHub Actions) - upgrade `gradle/actions/wrapper-validation` to `v4`
+- Dependencies (GitHub Actions) - upgrade `codecov/codecov-action` to `v5`
+
 ## [2.0.2] - 2024-10-07
 
 ### Changed
