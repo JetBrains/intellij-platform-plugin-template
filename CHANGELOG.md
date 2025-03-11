@@ -6,6 +6,7 @@
 
 ### Removed
 
+- Example code – `MyApplicationActivationListener`
 - Remove redundant IntelliJ Platform dependency helpers: `instrumentationTools()`, `pluginVerifier()`, `zipSigner()`
 - GitHub Actions: Remove `gradle/actions/wrapper-validation` because validation is performed by default in `gradle/actions/setup-gradle@v4`
 
