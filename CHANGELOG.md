@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Example code – `MyPostStartupActivity`
+
 ### Removed
 
 - Example code – `MyApplicationActivationListener`
