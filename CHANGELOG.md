@@ -16,6 +16,7 @@
 
 ### Changed
 
+- Change JVM version to `21`
 - Upgrade Gradle Wrapper to `8.13`
 - Update `platformVersion` to `2024.2.5`
 - Change since/until build to `242-252.*` (2024.2-2025.2.*)
