@@ -7,6 +7,7 @@
 ### Added
 
 - Example code – `ProjectActivity`
+- Added `opentest4j` test dependency, see: [Missing opentest4j dependency in Test Framework](https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-faq.html#missing-opentest4j-dependency-in-test-framework)
 
 ### Removed
 
