@@ -20,7 +20,7 @@
 - Update `platformVersion` to `2024.2.5`
 - Change since/until build to `242-252.*` (2024.2-2025.2.*)
 - Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.5.0`
-- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `2.1.10`
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `2.1.20`
 - Dependencies - upgrade `org.jetbrains.qodana` to `2024.3.4`
 - Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.9.1`
 - Dependencies (GitHub Actions) - upgrade `gradle/actions/wrapper-validation` to `v4`
