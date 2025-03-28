@@ -1,6 +1,7 @@
 [versions]
 # libraries
 junit = "4.13.2"
+opentest4j = "1.3.0"
 
 # plugins
 changelog = "2.2.1"
@@ -11,6 +12,7 @@ qodana = "2024.3.4"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+opentest4j = { group = "org.opentest4j", name = "opentest4j", version.ref = "opentest4j" }
 
 [plugins]
 changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
