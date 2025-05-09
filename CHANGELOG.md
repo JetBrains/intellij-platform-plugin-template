@@ -4,6 +4,9 @@
 
 ## [Unreleased]
 
+### Changed
+- Update codecov configuration based on new required upload token
+
 ## [2.1.0] - 2025-03-28
 
 ### Added
