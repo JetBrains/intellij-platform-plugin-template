@@ -112,7 +112,6 @@ The project-specific configuration file [`gradle.properties`][file:gradle.proper
 | `pluginRepositoryUrl`    | Repository URL used for generating URLs by the [Gradle Changelog Plugin][gh:gradle-changelog-plugin] |
 | `pluginVersion`          | The current version of the plugin in [SemVer][semver] format.                                        |
 | `pluginSinceBuild`       | The `since-build` attribute of the `<idea-version>` tag.                                             |
-| `pluginUntilBuild`       | The `until-build` attribute of the `<idea-version>` tag.                                             |
 | `platformType`           | The type of IDE distribution.                                                                        |
 | `platformVersion`        | The version of the IntelliJ Platform IDE will be used to build the plugin.                           |
 | `platformPlugins`        | Comma-separated list of dependencies to the plugins from the Plugin Repositories.                    |
