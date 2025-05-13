@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+
+### Removed
+
+- Remove `pluginUntilBuild` obsolete property
+
 ### Changed
 
 - Upgrade Gradle Wrapper to `8.14`
