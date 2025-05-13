@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Upgrade Gradle Wrapper to `8.14`
+
 ## [2.1.0] - 2025-03-28
 
 ### Added
