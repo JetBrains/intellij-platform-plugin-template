@@ -12,6 +12,7 @@
 
 - Upgrade Gradle Wrapper to `8.14`
 - Update `platformVersion` to `2024.2.6`
+- Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.6.0`
 - Dependencies - upgrade `org.jetbrains.qodana` to `2025.1.1`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2025.1.1`
 - Gradle - upgrade `org.gradle.toolchains.foojay-resolver-convention` to `0.10.0`
