@@ -7,6 +7,7 @@
 ### Removed
 
 - Remove `pluginUntilBuild` obsolete property
+- GitHub Actions: Remove obsolete Plugin Verifier cache directory configuration 
 
 ### Changed
 
