@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- GitHub Actions: set Gradle cache to read-only for non-build jobs
+
 ### Removed
 
 - Remove `pluginUntilBuild` obsolete property

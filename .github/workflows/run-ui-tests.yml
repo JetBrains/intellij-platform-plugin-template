@@ -45,6 +45,8 @@ jobs:
       # Setup Gradle
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: true
 
       # Run IDEA prepared for UI testing
       - name: Run IDE
