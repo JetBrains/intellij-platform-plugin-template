@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.changelog) // Gradle Changelog Plugin
     alias(libs.plugins.qodana) // Gradle Qodana Plugin
     alias(libs.plugins.kover) // Gradle Kover Plugin
+    alias(libs.plugins.composeCompiler) // Gradle Compose Compiler Plugin
 }
 
 group = providers.gradleProperty("pluginGroup").get()
@@ -37,6 +38,21 @@ dependencies {
     // IntelliJ Platform Gradle Plugin Dependencies Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-dependencies-extension.html
     intellijPlatform {
         create(providers.gradleProperty("platformType"), providers.gradleProperty("platformVersion"))
+
+        // Compose support dependencies
+        bundledModules(
+            "intellij.libraries.skiko",
+            "intellij.libraries.compose.foundation.desktop",
+            "intellij.platform.jewel.foundation",
+            "intellij.platform.jewel.ui",
+            "intellij.platform.jewel.ideLafBridge",
+            "intellij.platform.jewel.markdown.core",
+            "intellij.platform.jewel.markdown.ideLafBridgeStyling",
+            "intellij.platform.jewel.markdown.extensions.gfmTables",
+            "intellij.platform.jewel.markdown.extensions.gfmStrikethrough",
+            "intellij.platform.jewel.markdown.extensions.gfmAlerts",
+            //"intellij.platform.jewel.markdown.extensions.autolink", // Not available in 2025.1.1
+        )
 
         // Plugin Dependencies. Uses `platformBundledPlugins` property from the gradle.properties file for bundled IntelliJ Platform plugins.
         bundledPlugins(providers.gradleProperty("platformBundledPlugins").map { it.split(',') })

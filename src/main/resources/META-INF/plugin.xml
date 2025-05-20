@@ -4,7 +4,18 @@
     <name>IntelliJ Platform Plugin Template</name>
     <vendor>JetBrains</vendor>
 
-    <depends>com.intellij.modules.platform</depends>
+    <dependencies>
+        <module name="intellij.libraries.skiko"></module>
+        <module name="intellij.libraries.compose.foundation.desktop"></module>
+        <module name="intellij.platform.jewel.foundation"></module>
+        <module name="intellij.platform.jewel.ui"></module>
+        <module name="intellij.platform.jewel.ideLafBridge"></module>
+        <module name="intellij.platform.jewel.markdown.core"></module>
+        <module name="intellij.platform.jewel.markdown.ideLafBridgeStyling"></module>
+        <module name="intellij.platform.jewel.markdown.extensions.gfmTables"></module>
+        <module name="intellij.platform.jewel.markdown.extensions.gfmStrikethrough"></module>
+        <module name="intellij.platform.jewel.markdown.extensions.gfmAlerts"></module>
+    </dependencies>
 
     <resource-bundle>messages.MyBundle</resource-bundle>
 
