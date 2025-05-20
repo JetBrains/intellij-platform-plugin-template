@@ -20,7 +20,7 @@
 - Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.6.0`
 - Dependencies - upgrade `org.jetbrains.qodana` to `2025.1.1`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2025.1.1`
-- Gradle - upgrade `org.gradle.toolchains.foojay-resolver-convention` to `0.10.0`
+- Gradle - upgrade `org.gradle.toolchains.foojay-resolver-convention` to `1.0.0`
 
 ## [2.1.0] - 2025-03-28
 
