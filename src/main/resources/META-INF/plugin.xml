@@ -17,7 +17,7 @@
         <module name="intellij.platform.jewel.markdown.extensions.gfmAlerts"></module>
     </dependencies>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
+    <resource-bundle>messages.ComposeTemplate</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
         <toolWindow factoryClass="org.jetbrains.plugins.template.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
