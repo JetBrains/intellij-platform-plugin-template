@@ -46,12 +46,6 @@ dependencies {
             "intellij.platform.jewel.foundation",
             "intellij.platform.jewel.ui",
             "intellij.platform.jewel.ideLafBridge",
-            "intellij.platform.jewel.markdown.core",
-            "intellij.platform.jewel.markdown.ideLafBridgeStyling",
-            "intellij.platform.jewel.markdown.extensions.gfmTables",
-            "intellij.platform.jewel.markdown.extensions.gfmStrikethrough",
-            "intellij.platform.jewel.markdown.extensions.gfmAlerts",
-            //"intellij.platform.jewel.markdown.extensions.autolink", // Not available in 2025.1.1
         )
 
         // Plugin Dependencies. Uses `platformBundledPlugins` property from the gradle.properties file for bundled IntelliJ Platform plugins.
