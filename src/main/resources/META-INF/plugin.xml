@@ -1,4 +1,3 @@
-<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>org.jetbrains.plugins.compose.template</id>
     <name>Compose Template Example</name>
@@ -10,11 +9,6 @@
         <module name="intellij.platform.jewel.foundation"></module>
         <module name="intellij.platform.jewel.ui"></module>
         <module name="intellij.platform.jewel.ideLafBridge"></module>
-        <module name="intellij.platform.jewel.markdown.core"></module>
-        <module name="intellij.platform.jewel.markdown.ideLafBridgeStyling"></module>
-        <module name="intellij.platform.jewel.markdown.extensions.gfmTables"></module>
-        <module name="intellij.platform.jewel.markdown.extensions.gfmStrikethrough"></module>
-        <module name="intellij.platform.jewel.markdown.extensions.gfmAlerts"></module>
     </dependencies>
 
     <resource-bundle>messages.ComposeTemplate</resource-bundle>
