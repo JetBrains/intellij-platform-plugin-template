@@ -8,6 +8,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.intellij.openapi.components.service
+import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
@@ -18,7 +19,7 @@ import org.jetbrains.jewel.ui.component.Text
 import org.jetbrains.plugins.template.ComposeTemplateBundle
 import org.jetbrains.plugins.template.services.MyProjectService
 
-class MyToolWindowFactory : ToolWindowFactory {
+class MyToolWindowFactory : ToolWindowFactory, DumbAware {
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
         val myToolWindow = MyToolWindow()
