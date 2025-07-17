@@ -74,7 +74,7 @@ jobs:
 
       # Push changes
       - name: Push changes
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@v0.8.0
         with:
           branch: main
           github_token: ${{ secrets.GITHUB_TOKEN }}
