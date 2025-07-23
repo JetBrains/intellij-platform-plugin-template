@@ -1,4 +1,4 @@
-package org.jetbrains.plugins.template.ui
+package org.jetbrains.plugins.template.weatherApp.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
