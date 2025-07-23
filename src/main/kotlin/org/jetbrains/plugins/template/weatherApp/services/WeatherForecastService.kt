@@ -12,7 +12,10 @@ import org.jetbrains.plugins.template.weatherApp.model.Location
 import org.jetbrains.plugins.template.weatherApp.model.WeatherForecastData
 import org.jetbrains.plugins.template.weatherApp.model.WeatherType
 import org.jetbrains.plugins.template.weatherApp.model.WindDirection
+import java.time.LocalDate
 import java.time.LocalDateTime
+import java.time.LocalTime
+import kotlin.random.Random
 
 @Service
 internal class WeatherForecastService(private val cs: CoroutineScope) {
@@ -45,11 +48,18 @@ internal class WeatherForecastService(private val cs: CoroutineScope) {
         return WeatherForecastData(
             cityName = location.name,
             temperature = temperature,
-            currentTime = LocalDateTime.now(),
+            currentTime = LocalDateTime.of(LocalDate.now(), getRandomTime()),
             windSpeed = windSpeed,
             windDirection = WindDirection.random(),
             humidity = humidity,
             weatherType = WeatherType.random()
         )
+    }
+
+    private fun getRandomTime(): LocalTime {
+        val hour = Random.nextInt(0, 24)
+        val minute = Random.nextInt(0, 60)
+        val second = Random.nextInt(0, 60)
+        return LocalTime.of(hour, minute, second)
     }
 }
