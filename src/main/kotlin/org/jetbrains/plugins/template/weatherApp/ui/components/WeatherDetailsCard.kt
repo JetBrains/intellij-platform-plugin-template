@@ -60,7 +60,7 @@ internal fun WeatherDetailsCard(
             ) {
                 // City name
                 Text(
-                    text = weatherForecastData.cityName,
+                    text = weatherForecastData.location.id,
                     color = textColor,
                     fontSize = 28.sp,
                     fontWeight = FontWeight.Bold

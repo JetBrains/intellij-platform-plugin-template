@@ -5,8 +5,8 @@ import java.time.LocalDateTime
 /**
  * Data class representing weather information to be displayed in the Weather Card.
  */
-data class WeatherForecastData(
-    val cityName: String,
+internal data class WeatherForecastData(
+    val location: Location,
     val temperature: Float,
     val currentTime: LocalDateTime,
     val windSpeed: Float,
@@ -16,7 +16,7 @@ data class WeatherForecastData(
 ) {
     companion object Companion {
         val EMPTY: WeatherForecastData = WeatherForecastData(
-            "",
+            Location("", ""),
             0f,
             LocalDateTime.now(),
             0f,

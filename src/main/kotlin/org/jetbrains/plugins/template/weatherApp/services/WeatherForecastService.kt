@@ -46,7 +46,7 @@ internal class WeatherForecastService(private val cs: CoroutineScope) {
         delay(100)
 
         return WeatherForecastData(
-            cityName = location.name,
+            location = location,
             temperature = temperature,
             currentTime = LocalDateTime.of(LocalDate.now(), getRandomTime()),
             windSpeed = windSpeed,
