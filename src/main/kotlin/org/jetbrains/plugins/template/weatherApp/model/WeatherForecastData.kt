@@ -1,5 +1,7 @@
 package org.jetbrains.plugins.template.weatherApp.model
 
+import org.jetbrains.jewel.ui.icon.IconKey
+import org.jetbrains.plugins.template.weatherApp.ui.WeatherIcons
 import java.time.LocalDateTime
 
 /**
@@ -22,7 +24,7 @@ internal data class WeatherForecastData(
             0f,
             WindDirection.NORTH,
             0,
-            WeatherType.SUNNY
+            WeatherType.CLEAR
         )
     }
 }
@@ -30,13 +32,26 @@ internal data class WeatherForecastData(
 /**
  * Enum representing different weather types.
  */
-enum class WeatherType(val label: String) {
-    SUNNY("Sunny"),
-    CLOUDY("Cloudy"),
-    PARTLY_CLOUDY("Partly Cloudy"),
-    RAINY("Rainy"),
-    SNOWY("Snowy"),
-    STORMY("Stormy");
+enum class WeatherType(val label: String, val dayIconKey: IconKey, val nightIconKey: IconKey) {
+    CLEAR("Sunny", WeatherIcons.dayClear, WeatherIcons.nightHalfMoonClear),
+    CLOUDY("Cloudy", dayIconKey = WeatherIcons.cloudy, nightIconKey = WeatherIcons.cloudy),
+    PARTLY_CLOUDY(
+        "Partly Cloudy",
+        dayIconKey = WeatherIcons.dayPartialCloud,
+        nightIconKey = WeatherIcons.nightHalfMoonPartialCloud
+    ),
+    RAINY("Rainy", dayIconKey = WeatherIcons.dayRain, nightIconKey = WeatherIcons.nightHalfMoonRain),
+    RAINY_AND_THUNDER(
+        "Rainy and Thunder",
+        dayIconKey = WeatherIcons.dayRainThunder,
+        nightIconKey = WeatherIcons.nightHalfMoonRainThunder
+    ),
+    THUNDER("Thunder", dayIconKey = WeatherIcons.thunder, nightIconKey = WeatherIcons.thunder),
+
+    SNOWY("Snowy", dayIconKey = WeatherIcons.daySnow, nightIconKey = WeatherIcons.nightHalfMoonSnow),
+    TORNADO("Stormy", dayIconKey = WeatherIcons.tornado, nightIconKey = WeatherIcons.tornado),
+    FOG("Fog", dayIconKey = WeatherIcons.fog, nightIconKey = WeatherIcons.fog),
+    MIST("Mist", dayIconKey = WeatherIcons.mist, nightIconKey = WeatherIcons.mist);
 
     companion object {
         fun random(): WeatherType = entries.toTypedArray().random()

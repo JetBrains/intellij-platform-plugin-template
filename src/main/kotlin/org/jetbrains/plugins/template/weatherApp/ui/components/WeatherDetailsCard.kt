@@ -12,12 +12,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.jetbrains.jewel.ui.component.*
+import org.jetbrains.jewel.foundation.theme.JewelTheme
+import org.jetbrains.jewel.ui.component.ActionButton
+import org.jetbrains.jewel.ui.component.Icon
+import org.jetbrains.jewel.ui.component.Text
 import org.jetbrains.jewel.ui.icons.AllIconsKeys
 import org.jetbrains.plugins.template.weatherApp.model.WeatherForecastData
 import org.jetbrains.plugins.template.weatherApp.model.WeatherType
+import org.jetbrains.plugins.template.weatherApp.ui.WeatherIcons
 import java.time.LocalDateTime
-import java.time.LocalTime
 import java.time.format.DateTimeFormatter
 import kotlin.random.Random
 
@@ -58,11 +61,11 @@ internal fun WeatherDetailsCard(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                // City name
+                // Current Time
                 Text(
-                    text = weatherForecastData.location.id,
+                    text = "Time: ${formatDateTime(weatherForecastData.currentTime)}",
                     color = textColor,
-                    fontSize = 28.sp,
+                    fontSize = JewelTheme.defaultTextStyle.fontSize,
                     fontWeight = FontWeight.Bold
                 )
 
@@ -81,6 +84,7 @@ internal fun WeatherDetailsCard(
                     )
                 }
             }
+
             Spacer(modifier = Modifier.height(16.dp))
 
             // Temperature and weather type column (vertically aligned)
@@ -88,37 +92,32 @@ internal fun WeatherDetailsCard(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
+
+                Icon(
+                    key = WeatherIcons.cloudy,
+//                    key = if (isNightTime) weatherForecastData.weatherType.nightIconKey else weatherForecastData.weatherType.dayIconKey,
+                    contentDescription = weatherForecastData.weatherType.label,
+                    hint = CssStyleInlinerSvgPatchHint
+                )
+
+                Spacer(modifier = Modifier.height(8.dp))
+
                 // Temperature (emphasized)
                 Text(
                     text = "${weatherForecastData.temperature.toInt()}°C",
                     color = textColor,
-                    fontSize = 48.sp,
+                    fontSize = 32.sp,
                     fontWeight = FontWeight.ExtraBold
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // Weather type
+                // City name
                 Text(
-                    text = weatherForecastData.weatherType.label,
+                    text = weatherForecastData.location.label,
                     color = textColor,
-                    fontSize = 24.sp,
+                    fontSize = 18.sp,
                     fontWeight = FontWeight.Bold
-                )
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Current time
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                // Simple text for time
-                Text(
-                    text = "Time: ${formatDateTime(weatherForecastData.currentTime)}",
-                    color = textColor,
-                    fontSize = 16.sp
                 )
             }
 
@@ -152,12 +151,17 @@ internal fun WeatherDetailsCard(
  */
 fun getWeatherTypeColor(weatherType: WeatherType, baseColor: Color): Color {
     return when (weatherType) {
-        WeatherType.SUNNY -> Color.Yellow.copy(alpha = 0.2f)
+        WeatherType.CLEAR -> Color.Yellow.copy(alpha = 0.2f)
         WeatherType.CLOUDY -> Color.Gray.copy(alpha = 0.2f)
         WeatherType.PARTLY_CLOUDY -> Color.LightGray.copy(alpha = 0.2f)
+        WeatherType.RAINY_AND_THUNDER,
         WeatherType.RAINY -> Color.Blue.copy(alpha = 0.2f)
+
         WeatherType.SNOWY -> Color.White.copy(alpha = 0.3f)
-        WeatherType.STORMY -> Color.DarkGray.copy(alpha = 0.2f)
+        WeatherType.TORNADO -> Color.DarkGray.copy(alpha = 0.2f)
+        WeatherType.THUNDER -> Color.DarkGray.copy(alpha = 0.2f)
+        WeatherType.FOG -> Color.LightGray.copy(alpha = 0.2f)
+        WeatherType.MIST -> Color.LightGray.copy(alpha = 0.2f)
     }
 }
 
