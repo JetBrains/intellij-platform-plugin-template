@@ -97,7 +97,7 @@ internal fun WeatherDetailsCard(
                     key = WeatherIcons.cloudy,
 //                    key = if (isNightTime) weatherForecastData.weatherType.nightIconKey else weatherForecastData.weatherType.dayIconKey,
                     contentDescription = weatherForecastData.weatherType.label,
-                    hint = CssStyleInlinerSvgPatchHint
+                    hint = EmbeddedToInlineCssSvgTransformerHint
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
