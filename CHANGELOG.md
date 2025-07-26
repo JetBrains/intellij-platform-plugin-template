@@ -7,6 +7,7 @@
 ### Added
 
 - GitHub Actions: set Gradle cache to read-only for non-build jobs
+- Added `.kotlin` directory to `.gitignore` for Kotlin 2.0
 
 ### Removed
 
