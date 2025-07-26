@@ -27,6 +27,7 @@
 - Dependencies (GitHub Actions) - upgrade `jlumbroso/free-disk-space` to `v1.3.1`
 - Gradle - upgrade `org.gradle.toolchains.foojay-resolver-convention` to `1.0.0`
 - Change since build to `243` (2024.3)
+- Update codecov configuration based on new required upload token
 
 ## [2.1.0] - 2025-03-28
 
