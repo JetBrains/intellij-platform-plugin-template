@@ -20,6 +20,7 @@
 - Update `platformVersion` to `2024.3.6`
 - Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.6.0`
 - Dependencies - upgrade `org.jetbrains.qodana` to `2025.1.1`
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `2.2.0`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2025.1.1`
 - Dependencies (GitHub Actions) - upgrade `ad-m/github-push-action` to `v0.8.0`
 - Dependencies (GitHub Actions) - upgrade `jlumbroso/free-disk-space` to `v1.3.1`
