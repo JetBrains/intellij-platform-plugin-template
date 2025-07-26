@@ -7,6 +7,7 @@
 ### Added
 
 - GitHub Actions: set Gradle cache to read-only for non-build jobs
+- GitHub Actions: add `jlumbroso/free-disk-space` action to build related steps to maximize build environment storage
 - Added `.kotlin` directory to `.gitignore` for Kotlin 2.0
 
 ### Removed
