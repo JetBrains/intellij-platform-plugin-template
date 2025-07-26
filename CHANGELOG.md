@@ -15,7 +15,7 @@
 
 ### Changed
 
-- Upgrade Gradle Wrapper to `8.14.1`
+- Upgrade Gradle Wrapper to `8.14.3`
 - Update `platformVersion` to `2024.3.6`
 - Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.6.0`
 - Dependencies - upgrade `org.jetbrains.qodana` to `2025.1.1`
