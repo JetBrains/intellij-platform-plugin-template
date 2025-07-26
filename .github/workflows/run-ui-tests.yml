@@ -35,7 +35,7 @@ jobs:
       - name: Fetch Sources
         uses: actions/checkout@v4
 
-      # Set up Java environment for the next steps
+      # Set up the Java environment for the next steps
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
@@ -45,6 +45,8 @@ jobs:
       # Setup Gradle
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: true
 
       # Run IDEA prepared for UI testing
       - name: Run IDE
