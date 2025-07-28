@@ -39,7 +39,7 @@ internal interface WeatherViewModelApi {
 }
 
 @Service
-internal class MyLocationsViewModel(cs: CoroutineScope) : MyLocationsViewModelApi, WeatherViewModelApi {
+internal class WeatherAppViewModel(cs: CoroutineScope) : MyLocationsViewModelApi, WeatherViewModelApi {
 
     private val weatherService = service<WeatherForecastService>()
 
