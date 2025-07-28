@@ -3,13 +3,13 @@ package org.jetbrains.plugins.template.weatherApp.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.intellij.openapi.components.service
 import org.jetbrains.jewel.bridge.retrieveColorOrUnspecified
 import org.jetbrains.jewel.foundation.lazy.SelectableLazyColumn
 import org.jetbrains.jewel.foundation.lazy.SelectionMode
@@ -24,16 +24,17 @@ import org.jetbrains.plugins.template.weatherApp.ui.components.SearchToolbarMenu
 import org.jetbrains.plugins.template.weatherApp.ui.components.WeatherDetailsCard
 
 @Composable
-internal fun WeatherAppSample() {
-    val viewModel: MyLocationsViewModel = service<MyLocationsViewModel>()
-    val searchAutoCompletionItemProvided = service<LocationsProvider>()
-
+internal fun WeatherAppSample(
+    myLocationViewModel: MyLocationsViewModelApi,
+    weatherViewModelApi: WeatherViewModelApi,
+    searchAutoCompletionItemProvided: LocationsProvider
+) {
     HorizontalSplitLayout(
-        first = { LeftColumn(viewModel, modifier = Modifier.fillMaxSize()) },
+        first = { LeftColumn(myLocationViewModel, modifier = Modifier.fillMaxSize()) },
         second = {
             RightColumn(
-                viewModel,
-                viewModel,
+                myLocationViewModel,
+                weatherViewModelApi,
                 searchAutoCompletionItemProvided,
                 modifier = Modifier.fillMaxSize()
             )
@@ -60,6 +61,12 @@ private fun LeftColumn(
         Spacer(modifier = Modifier.height(4.dp))
 
         val listState = rememberSelectableLazyListState()
+        LaunchedEffect(myLocations) {
+            listState
+                .selectedKeys = myLocations
+                .mapIndexedNotNull { index, item -> if (item.isSelected) index else null }
+                .toSet()
+        }
 
         SelectableLazyColumn(
             modifier = modifier.fillMaxSize(),
