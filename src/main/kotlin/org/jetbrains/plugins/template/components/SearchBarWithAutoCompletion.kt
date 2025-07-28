@@ -49,7 +49,6 @@ internal fun <T> SearchBarWithAutoCompletion(
 
     LaunchedEffect(Unit) {
         snapshotFlow { textFieldState.text.toString() }
-            .onEach { println("Text changed: $it") }
             .distinctUntilChanged()
             .collect { searchTerm -> popupController.onQueryChanged(searchTerm) }
     }
@@ -173,15 +172,11 @@ private class CompletionPopupController<T : Searchable>(
 
     fun onQueryChanged(searchTerm: String) {
         if (skipPopupShowing) {
-            println("Skipping opening the dropdown, because item was just autocompleted.")
-
             skipPopupShowing = false
             return
         }
 
         if (searchTerm.isEmpty()) {
-            println("Hiding popup, because query is empty.")
-
             hidePopup()
 
             return
@@ -191,10 +186,8 @@ private class CompletionPopupController<T : Searchable>(
         moveSelectionToFirstItem()
 
         if (filteredItems.isNotEmpty()) {
-            println("Showing popup, because there are items matching the query.")
             showPopup()
         } else {
-            println("Hiding popup, because there are no items matching the query.")
             hidePopup()
         }
     }
@@ -253,8 +246,6 @@ private fun <T : Searchable> Modifier.handlePopupCompletionKeyEvents(
 ): Modifier {
     return onPreviewKeyEvent { keyEvent ->
         if (keyEvent.type != KeyEventType.KeyDown) return@onPreviewKeyEvent false
-
-        println("${keyEvent.key}  key is pressed")
 
         return@onPreviewKeyEvent when (keyEvent.key) {
             Key.Tab, Key.Enter, Key.NumPadEnter -> {
