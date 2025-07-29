@@ -17,9 +17,13 @@ import org.jetbrains.jewel.foundation.lazy.items
 import org.jetbrains.jewel.foundation.lazy.rememberSelectableLazyListState
 import org.jetbrains.jewel.foundation.theme.JewelTheme
 import org.jetbrains.jewel.ui.component.*
+import org.jetbrains.plugins.template.ComposeTemplateBundle
 import org.jetbrains.plugins.template.weatherApp.model.Location
 import org.jetbrains.plugins.template.weatherApp.model.WeatherForecastData
-import org.jetbrains.plugins.template.weatherApp.services.*
+import org.jetbrains.plugins.template.weatherApp.services.LocationsProvider
+import org.jetbrains.plugins.template.weatherApp.services.MyLocationsViewModelApi
+import org.jetbrains.plugins.template.weatherApp.services.SearchAutoCompletionItemProvider
+import org.jetbrains.plugins.template.weatherApp.services.WeatherViewModelApi
 import org.jetbrains.plugins.template.weatherApp.ui.components.SearchToolbarMenu
 import org.jetbrains.plugins.template.weatherApp.ui.components.WeatherDetailsCard
 
@@ -30,16 +34,27 @@ internal fun WeatherAppSample(
     searchAutoCompletionItemProvided: LocationsProvider
 ) {
     HorizontalSplitLayout(
-        first = { LeftColumn(myLocationViewModel, modifier = Modifier.fillMaxSize()) },
+        first = {
+            LeftColumn(
+                myLocationViewModel,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(start = 8.dp, end = 8.dp)
+            )
+        },
         second = {
             RightColumn(
                 myLocationViewModel,
                 weatherViewModelApi,
                 searchAutoCompletionItemProvided,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(start = 8.dp, end = 8.dp)
             )
         },
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(all = 8.dp),
         firstPaneMinWidth = 100.dp,
         secondPaneMinWidth = 300.dp,
         state = rememberSplitLayoutState(.2f)
@@ -55,10 +70,10 @@ private fun LeftColumn(
 
     // TODO Set selected item on initial showing
 
-    Column(modifier.fillMaxSize().padding(8.dp)) {
-        GroupHeader("My Locations", modifier = Modifier.padding(bottom = 8.dp))
+    Column(modifier) {
+        GroupHeader("My Locations", modifier = Modifier.wrapContentHeight().fillMaxWidth())
 
-        Spacer(modifier = Modifier.height(4.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
         val listState = rememberSelectableLazyListState()
         LaunchedEffect(myLocations) {
@@ -69,7 +84,7 @@ private fun LeftColumn(
         }
 
         SelectableLazyColumn(
-            modifier = modifier.fillMaxSize(),
+            modifier = Modifier.fillMaxSize(),
             selectionMode = SelectionMode.Single,
             state = listState,
             onSelectedIndexesChange = { indices ->
@@ -120,7 +135,7 @@ private fun RightColumn(
 ) {
     val weatherForecastData = weatherViewModelApi.weatherForecast.collectAsState(WeatherForecastData.EMPTY).value
 
-    Column(modifier.fillMaxWidth().padding(8.dp)) {
+    Column(modifier) {
         SearchToolbarMenu(
             searchAutoCompletionItemProvider = searchAutoCompletionItemProvider,
             confirmButtonText = "Add",
@@ -135,7 +150,7 @@ private fun RightColumn(
         WeatherDetailsCard(
             modifier = Modifier
                 .fillMaxWidth()
-                .align(Alignment.CenterHorizontally), // optional for positioning
+                .align(Alignment.CenterHorizontally),
             weatherForecastData
         ) {
             weatherViewModelApi.onReloadWeatherForecast()

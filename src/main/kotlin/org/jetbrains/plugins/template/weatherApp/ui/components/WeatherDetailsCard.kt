@@ -46,7 +46,6 @@ internal fun WeatherDetailsCard(
 
     Box(
         modifier = modifier
-            .fillMaxWidth()
             .clip(RoundedCornerShape(16.dp))
             .background(cardColor)
             .padding(16.dp)
