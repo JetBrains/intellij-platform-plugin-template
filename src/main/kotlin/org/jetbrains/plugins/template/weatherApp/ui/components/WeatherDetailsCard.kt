@@ -23,6 +23,7 @@ import org.jetbrains.jewel.ui.component.HorizontallyScrollableContainer
 import org.jetbrains.jewel.ui.component.Icon
 import org.jetbrains.jewel.ui.component.Text
 import org.jetbrains.jewel.ui.icons.AllIconsKeys
+import org.jetbrains.plugins.template.ComposeTemplateBundle
 import org.jetbrains.plugins.template.weatherApp.WeatherAppColors
 import org.jetbrains.plugins.template.weatherApp.model.DailyForecast
 import org.jetbrains.plugins.template.weatherApp.model.WeatherForecastData
@@ -113,7 +114,10 @@ internal fun WeatherDetailsCard(
 
                 // Temperature (emphasized)
                 Text(
-                    text = "${currentWeatherForecast.temperature.toInt()}°C",
+                    text = ComposeTemplateBundle.message(
+                        "weather.app.temperature.text",
+                        currentWeatherForecast.temperature.toInt()
+                    ),
                     color = textColor,
                     fontSize = 32.sp,
                     fontWeight = FontWeight.ExtraBold
@@ -139,14 +143,21 @@ internal fun WeatherDetailsCard(
             ) {
                 // Wind info
                 Text(
-                    text = "Wind: ${currentWeatherForecast.windSpeed.toInt()} km/h ${currentWeatherForecast.windDirection.label}",
+                    text = ComposeTemplateBundle.message(
+                        "weather.app.wind.direction.text",
+                        currentWeatherForecast.windSpeed.toInt(),
+                        currentWeatherForecast.windDirection.label
+                    ),
                     color = textColor,
                     fontSize = 16.sp
                 )
 
                 // Humidity info
                 Text(
-                    text = "Humidity: ${currentWeatherForecast.humidity}%",
+                    text = ComposeTemplateBundle.message(
+                        "weather.app.humidity.text",
+                        currentWeatherForecast.humidity
+                    ),
                     color = textColor,
                     fontSize = 16.sp
                 )
@@ -176,7 +187,7 @@ private fun SevenDaysForecastWidget(
     if (weatherForecastData.dailyForecasts.isNotEmpty()) {
         Column(modifier) {
             Text(
-                text = "7-Day Forecast",
+                text = ComposeTemplateBundle.message("weather.app.7days.forecast.title.text"),
                 color = textColor,
                 fontSize = 18.sp,
                 fontWeight = FontWeight.Bold,
@@ -262,7 +273,10 @@ private fun DayForecastItem(
 
         // Temperature
         Text(
-            text = "${forecast.temperature.toInt()}°C",
+            text = ComposeTemplateBundle.message(
+                "weather.app.temperature.text",
+                forecast.temperature.toInt()
+            ),
             color = textColor,
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold
@@ -272,7 +286,10 @@ private fun DayForecastItem(
 
         // Humidity
         Text(
-            text = "Humidity: ${forecast.humidity}%",
+            text = ComposeTemplateBundle.message(
+                "weather.app.humidity.text",
+                forecast.humidity
+            ),
             color = textColor,
             fontSize = 12.sp
         )
@@ -281,7 +298,11 @@ private fun DayForecastItem(
 
         // Wind direction
         Text(
-            text = "Wind: ${forecast.windDirection.label}",
+            text = ComposeTemplateBundle.message(
+                "weather.app.wind.direction.text",
+                forecast.windSpeed.toInt(),
+                forecast.windDirection.label
+            ),
             color = textColor,
             fontSize = 12.sp
         )

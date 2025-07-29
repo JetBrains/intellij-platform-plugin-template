@@ -71,11 +71,18 @@ private fun LeftColumn(
     // TODO Set selected item on initial showing
 
     Column(modifier) {
-        GroupHeader("My Locations", modifier = Modifier.wrapContentHeight().fillMaxWidth())
+        GroupHeader(
+            ComposeTemplateBundle.message("weather.app.my.locations.header.text"),
+            modifier = Modifier
+                .wrapContentHeight()
+                .fillMaxWidth()
+        )
 
         Spacer(modifier = Modifier.height(10.dp))
 
         val listState = rememberSelectableLazyListState()
+
+        // TODO Check why preselection isn't working
         LaunchedEffect(myLocations) {
             listState
                 .selectedKeys = myLocations
@@ -95,7 +102,6 @@ private fun LeftColumn(
             items(
                 items = myLocations,
                 key = { item -> item },
-                contentType = { item -> item.location },
             ) { item ->
 
                 ContentItemRow(
@@ -138,7 +144,7 @@ private fun RightColumn(
     Column(modifier) {
         SearchToolbarMenu(
             searchAutoCompletionItemProvider = searchAutoCompletionItemProvider,
-            confirmButtonText = "Add",
+            confirmButtonText = ComposeTemplateBundle.message("weather.app.search.toolbar.menu.add.button.text"),
             onSearchPerformed = { place ->
                 weatherViewModelApi.onLoadWeatherForecast(place)
             },

@@ -54,7 +54,7 @@ internal fun <T> SearchToolbarMenu(
                 Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                     Icon(
                         AllIconsKeys.Actions.AddList,
-                        contentDescription = ComposeTemplateBundle.message("search.toolbar.menu.add.button.content.description")
+                        contentDescription = ComposeTemplateBundle.message("weather.app.search.toolbar.menu.add.button.content.description")
                     )
                     Text(confirmButtonText)
                 }
