@@ -149,7 +149,7 @@ internal fun WeatherDetailsCard(
                         currentWeatherForecast.windDirection.label
                     ),
                     color = textColor,
-                    fontSize = 16.sp
+                    fontSize = 18.sp,
                 )
 
                 // Humidity info
@@ -159,7 +159,7 @@ internal fun WeatherDetailsCard(
                         currentWeatherForecast.humidity
                     ),
                     color = textColor,
-                    fontSize = 16.sp
+                    fontSize = 18.sp,
                 )
             }
 
