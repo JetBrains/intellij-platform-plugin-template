@@ -68,8 +68,6 @@ private fun LeftColumn(
 ) {
     val myLocations = myLocationsViewModelApi.myLocationsFlow.collectAsState(emptyList()).value
 
-    // TODO Set selected item on initial showing
-
     Column(modifier) {
         GroupHeader(
             ComposeTemplateBundle.message("weather.app.my.locations.header.text"),
@@ -158,8 +156,8 @@ private fun RightColumn(
                 .fillMaxWidth()
                 .align(Alignment.CenterHorizontally),
             weatherForecastData
-        ) {
-            weatherViewModelApi.onReloadWeatherForecast()
+        ) { location ->
+            weatherViewModelApi.onLoadWeatherForecast(location)
         }
     }
 }

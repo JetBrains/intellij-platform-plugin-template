@@ -67,6 +67,8 @@ internal class MyLocationsViewModel(cs: CoroutineScope) : MyLocationsViewModelAp
             myLocations.value += locationToAdd
             selectedLocationIndex.value = myLocations.value.lastIndex
         }
+
+        onReloadWeatherForecast()
     }
 
     override fun onDeleteLocation(locationToDelete: Location) {
@@ -77,6 +79,8 @@ internal class MyLocationsViewModel(cs: CoroutineScope) : MyLocationsViewModelAp
         if (itemIndex in 0..currentSelectedIndex) {
             selectedLocationIndex.value = (currentSelectedIndex - 1).coerceAtLeast(0)
         }
+
+        onReloadWeatherForecast()
     }
 
     override fun onLocationSelected(selectedLocationIndex: Int) {

@@ -26,6 +26,7 @@ import org.jetbrains.jewel.ui.icons.AllIconsKeys
 import org.jetbrains.plugins.template.ComposeTemplateBundle
 import org.jetbrains.plugins.template.weatherApp.WeatherAppColors
 import org.jetbrains.plugins.template.weatherApp.model.DailyForecast
+import org.jetbrains.plugins.template.weatherApp.model.Location
 import org.jetbrains.plugins.template.weatherApp.model.WeatherForecastData
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -46,7 +47,7 @@ import java.util.*
 internal fun WeatherDetailsCard(
     modifier: Modifier = Modifier,
     weatherForecastData: WeatherForecastData,
-    onReloadWeatherData: () -> Unit
+    onReloadWeatherData: (Location) -> Unit
 ) {
     val currentWeatherForecast = weatherForecastData.currentWeatherForecast
     val isNightTime = isNightTime(currentWeatherForecast.date)
@@ -83,7 +84,7 @@ internal fun WeatherDetailsCard(
                         .background(Color.Transparent)
                         .padding(8.dp),
                     tooltip = { Text("Refresh weather data") },
-                    onClick = { onReloadWeatherData() },
+                    onClick = { onReloadWeatherData(weatherForecastData.location) },
                 ) {
                     Icon(
                         key = AllIconsKeys.Actions.Refresh,
