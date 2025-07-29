@@ -5,26 +5,37 @@ import org.jetbrains.plugins.template.weatherApp.ui.WeatherIcons
 import java.time.LocalDateTime
 
 /**
+ * Data class representing a daily weather forecast.
+ */
+internal data class DailyForecast(
+    val date: LocalDateTime,
+    val temperature: Float,
+    val weatherType: WeatherType,
+    val humidity: Int,
+    val windSpeed: Float,
+    val windDirection: WindDirection
+)
+
+/**
  * Data class representing weather information to be displayed in the Weather Card.
  */
 internal data class WeatherForecastData(
     val location: Location,
-    val temperature: Float,
-    val currentTime: LocalDateTime,
-    val windSpeed: Float,
-    val windDirection: WindDirection,
-    val humidity: Int, // Percentage
-    val weatherType: WeatherType
+    val currentWeatherForecast: DailyForecast,
+    val dailyForecasts: List<DailyForecast> = emptyList()
 ) {
     companion object Companion {
         val EMPTY: WeatherForecastData = WeatherForecastData(
             Location("", ""),
-            0f,
-            LocalDateTime.now(),
-            0f,
-            WindDirection.NORTH,
-            0,
-            WeatherType.CLEAR
+            DailyForecast(
+                LocalDateTime.now(),
+                0f,
+                WeatherType.CLEAR,
+                0,
+                0f,
+                WindDirection.NORTH,
+            ),
+            emptyList()
         )
     }
 }
