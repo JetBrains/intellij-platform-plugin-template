@@ -182,12 +182,12 @@ fun isNightTime(dateTime: LocalDateTime): Boolean {
  */
 fun getCardColorByTemperature(temperature: Float, isNightTime: Boolean): Color {
     return when {
-        isNightTime -> Color(0xFF1A237E) // Dark blue for night
-        temperature < 0 -> Color(0xFF3F51B5) // Cold: blue
-        temperature < 10 -> Color(0xFF5E35B1) // Cool: purple
-        temperature < 20 -> Color(0xFF039BE5) // Mild: light blue
-        temperature < 30 -> Color(0xFFFF9800) // Warm: orange
-        else -> Color(0xFFE91E63) // Hot: pink/red
+        isNightTime -> WeatherAppColors.nightWeatherColor
+        temperature < 0 -> WeatherAppColors.coldWeatherColor
+        temperature < 10 -> WeatherAppColors.coolWeatherColor
+        temperature < 20 -> WeatherAppColors.mildWeatherColor
+        temperature < 30 -> WeatherAppColors.warmWeatherColor
+        else -> WeatherAppColors.hotWeatherColor
     }
 }
 
