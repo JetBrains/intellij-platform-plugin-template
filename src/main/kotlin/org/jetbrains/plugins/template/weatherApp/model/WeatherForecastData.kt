@@ -73,14 +73,14 @@ enum class WeatherType(val label: String, val dayIconKey: IconKey, val nightIcon
  * Enum representing wind directions.
  */
 enum class WindDirection(val label: String) {
-    NORTH("N"),
-    NORTH_EAST("NE"),
-    EAST("E"),
-    SOUTH_EAST("SE"),
-    SOUTH("S"),
-    SOUTH_WEST("SW"),
-    WEST("W"),
-    NORTH_WEST("NW");
+    NORTH("↑"),
+    NORTH_EAST("↗"),
+    EAST("→"),
+    SOUTH_EAST("↘"),
+    SOUTH("↓"),
+    SOUTH_WEST("↙"),
+    WEST("←"),
+    NORTH_WEST("↖");
 
     companion object {
         fun random(): WindDirection = entries.toTypedArray().random()
