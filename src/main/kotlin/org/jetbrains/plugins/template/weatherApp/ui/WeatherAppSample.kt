@@ -80,12 +80,24 @@ private fun LeftColumn(
 
         val listState = rememberSelectableLazyListState()
 
-        // TODO Check why preselection isn't working
+        // JEWEL-938 This will trigger on SelectableLazyColum's `onSelectedIndexesChange` callback
         LaunchedEffect(myLocations) {
-            listState
-                .selectedKeys = myLocations
-                .mapIndexedNotNull { index, item -> if (item.isSelected) index else null }
-                .toSet()
+            var lastActiveItemIndex = -1
+            val selectedItemKeys = mutableSetOf<String>()
+            myLocations.forEachIndexed { index, location ->
+                if (location.isSelected) {
+                    if (lastActiveItemIndex == -1) {
+                        // Only the first selected item should be active
+                        lastActiveItemIndex = index
+                    }
+                    // Must match the key used in the `items()` call's `key` parameter to ensure correct item identity.
+                    selectedItemKeys.add(location.location.label)
+                }
+            }
+            // Sets the first selected item as an active item to avoid triggering on click event when user clocks on it
+            listState.lastActiveItemIndex = lastActiveItemIndex
+            // Sets keys of selected items
+            listState.selectedKeys = selectedItemKeys
         }
 
         SelectableLazyColumn(
@@ -99,7 +111,7 @@ private fun LeftColumn(
         ) {
             items(
                 items = myLocations,
-                key = { item -> item },
+                key = { item -> item.location.label },
             ) { item ->
 
                 ContentItemRow(

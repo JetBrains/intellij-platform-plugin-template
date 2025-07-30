@@ -84,6 +84,8 @@ internal class MyLocationsViewModel(cs: CoroutineScope) : MyLocationsViewModelAp
     }
 
     override fun onLocationSelected(selectedLocationIndex: Int) {
+        if (this.selectedLocationIndex.value == selectedLocationIndex) return
+
         this.selectedLocationIndex.value = selectedLocationIndex
 
         onReloadWeatherForecast()
