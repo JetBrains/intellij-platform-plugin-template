@@ -5,30 +5,33 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.junit4.ComposeContentTestRule
-import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.test.runTest
 import org.jetbrains.jewel.intui.standalone.theme.IntUiTheme
 import org.jetbrains.plugins.template.weatherApp.model.Location
 import org.jetbrains.plugins.template.weatherApp.model.SelectableLocation
 import org.jetbrains.plugins.template.weatherApp.services.MyLocationsViewModelApi
 import org.jetbrains.plugins.template.weatherApp.ui.MyLocationsListWithEmptyListPlaceholder
-import org.junit.Rule
 import org.junit.Test
 
-internal class MyLocationListTest {
-    @get:Rule
-    val composeRule = createComposeRule()
+internal class MyLocationListTest : ComposeBasedTestCase() {
     private val noLocations = emptyList<Location>()
     private val myLocationsViewModelApi = FakeMyLocationsViewModel(locations = noLocations)
 
+    override val contentUnderTest: @Composable () -> Unit = {
+        MyLocationsListWithEmptyListPlaceholder(
+            modifier = Modifier.fillMaxWidth(),
+            myLocationsViewModelApi = myLocationsViewModelApi
+        )
+    }
+
     @Test
-    fun `verify placeholder is shown when no locations is added`() = composeRule.runComposeTest {
+    fun `verify placeholder is shown when no locations is added`() = runComposeTest {
         val myLocationsRobot = MyLocationListRobot(this)
 
         myLocationsRobot
@@ -36,122 +39,108 @@ internal class MyLocationListTest {
     }
 
     @Test
-    fun `verify location is selected when user adds location`() = composeRule.runComposeTest { locationsViewModelApi ->
+    fun `verify location is selected when user adds location`() = runComposeTest {
         val myLocationsRobot = MyLocationListRobot(this)
 
-        locationsViewModelApi.onAddLocation(Location("Munich", "Germany"))
+        myLocationsViewModelApi.onAddLocation(Location("Munich", "Germany"))
 
         myLocationsRobot
             .verifyListItemWithTextIsSelected("Munich, Germany")
     }
 
     @Test
-    fun `verify item selection when multiple items are present`() = composeRule.runComposeTest { locationsViewModelApi ->
+    fun `verify item selection when multiple items are present`() = runComposeTest {
         val myLocationsRobot = MyLocationListRobot(this)
-        
+
         // Add multiple locations
-        locationsViewModelApi.onAddLocation(Location("Munich", "Germany"))
-        locationsViewModelApi.onAddLocation(Location("Berlin", "Germany"))
-        locationsViewModelApi.onAddLocation(Location("Paris", "France"))
-        
+        myLocationsViewModelApi.onAddLocation(Location("Munich", "Germany"))
+        myLocationsViewModelApi.onAddLocation(Location("Berlin", "Germany"))
+        myLocationsViewModelApi.onAddLocation(Location("Paris", "France"))
+
         // Initially, the last added location (Paris) should be selected
         myLocationsRobot.verifyListItemWithTextIsSelected("Paris, France")
-        
+
         // Select a different location
         myLocationsRobot.clickOnItemWithText("Berlin, Germany")
-        
+
         // Verify the clicked location is now selected
         myLocationsRobot.verifyListItemWithTextIsSelected("Berlin, Germany")
     }
-    
+
     @Test
-    fun `verify item deletion when multiple items are present`() = composeRule.runComposeTest { locationsViewModelApi ->
+    fun `verify item deletion when multiple items are present`() = runComposeTest {
         val myLocationsRobot = MyLocationListRobot(this)
-        
+
         // Add multiple locations
         val munich = Location("Munich", "Germany")
         val berlin = Location("Berlin", "Germany")
         val paris = Location("Paris", "France")
-        
-        locationsViewModelApi.onAddLocation(munich)
-        locationsViewModelApi.onAddLocation(berlin)
-        locationsViewModelApi.onAddLocation(paris)
-        
+
+        myLocationsViewModelApi.onAddLocation(munich)
+        myLocationsViewModelApi.onAddLocation(berlin)
+        myLocationsViewModelApi.onAddLocation(paris)
+
         // Initially, the last added location (Paris) should be selected
         myLocationsRobot.verifyListItemWithTextIsSelected("Paris, France")
-        
+
         // Delete the selected location (Paris)
-        locationsViewModelApi.onDeleteLocation(paris)
-        
+        myLocationsViewModelApi.onDeleteLocation(paris)
+
         // Verify Paris is no longer in the list and Berlin is now selected
         // (as it's the last item in the list after deletion)
         myLocationsRobot.verifyItemDoesNotExist("Paris, France")
         myLocationsRobot.verifyListItemWithTextIsSelected("Berlin, Germany")
     }
-    
+
     @Test
-    fun `verify middle item deletion when three items are present`() = composeRule.runComposeTest { locationsViewModelApi ->
+    fun `verify middle item deletion when three items are present`() = runComposeTest {
         val myLocationsRobot = MyLocationListRobot(this)
-        
+
         // Add three locations
         val munich = Location("Munich", "Germany")
         val berlin = Location("Berlin", "Germany")
         val paris = Location("Paris", "France")
-        
-        locationsViewModelApi.onAddLocation(munich)
-        locationsViewModelApi.onAddLocation(berlin)
-        locationsViewModelApi.onAddLocation(paris)
-        
+
+        myLocationsViewModelApi.onAddLocation(munich)
+        myLocationsViewModelApi.onAddLocation(berlin)
+        myLocationsViewModelApi.onAddLocation(paris)
+
         // Initially, the last added location (Paris) should be selected
         myLocationsRobot.verifyListItemWithTextIsSelected("Paris, France")
-        
+
         // Delete the middle location (Berlin)
-        locationsViewModelApi.onDeleteLocation(berlin)
-        
+        myLocationsViewModelApi.onDeleteLocation(berlin)
+
         // Verify Berlin is no longer in the list
         myLocationsRobot.verifyItemDoesNotExist("Berlin, Germany")
-        
+
         // Verify Munich and Paris still exist
         myLocationsRobot.verifyItemExists("Munich, Germany")
         myLocationsRobot.verifyItemExists("Paris, France")
-        
+
         // Paris should still be selected as it was the selected item before deletion
         myLocationsRobot.verifyListItemWithTextIsSelected("Paris, France")
     }
-    
+
     @Test
-    fun `verify deletion of the only item in list`() = composeRule.runComposeTest { locationsViewModelApi ->
+    fun `verify deletion of the only item in list`() = runComposeTest {
         val myLocationsRobot = MyLocationListRobot(this)
-        
+
         // Add one location
         val munich = Location("Munich", "Germany")
-        locationsViewModelApi.onAddLocation(munich)
-        
+        myLocationsViewModelApi.onAddLocation(munich)
+
         // Verify the location is selected
         myLocationsRobot.verifyListItemWithTextIsSelected("Munich, Germany")
-        
+
         // Delete the only location
-        locationsViewModelApi.onDeleteLocation(munich)
-        
+        myLocationsViewModelApi.onDeleteLocation(munich)
+
         // Verify the location is no longer in the list
         myLocationsRobot.verifyItemDoesNotExist("Munich, Germany")
-        
+
         // Verify the empty list placeholder is shown
         myLocationsRobot.verifyNoLocationsPlaceHolderVisible()
-    }
-
-    private fun ComposeContentTestRule.runComposeTest(
-        myLocationsViewModelApi: MyLocationsViewModelApi = this@MyLocationListTest.myLocationsViewModelApi,
-        block: suspend ComposeContentTestRule.(MyLocationsViewModelApi) -> Unit
-    ) = runTest {
-        this@runComposeTest.setContentWrappedInTheme {
-            MyLocationsListWithEmptyListPlaceholder(
-                modifier = Modifier.fillMaxWidth(),
-                myLocationsViewModelApi = myLocationsViewModelApi
-            )
-        }
-
-        this@runComposeTest.block(myLocationsViewModelApi)
     }
 
     private class FakeMyLocationsViewModel(
@@ -161,13 +150,13 @@ internal class MyLocationListTest {
         private val locationsFlow = MutableStateFlow(locations.toMutableList())
 
         private val selectedItemIndex = MutableStateFlow(if (locations.isNotEmpty()) 0 else -1)
-
         private val _myLocations = locationsFlow
             .combine(selectedItemIndex) { locations, selectedIndex ->
                 locations.mapIndexed { index, location ->
                     SelectableLocation(location, index == selectedIndex)
                 }
             }
+
         override val myLocationsFlow: Flow<List<SelectableLocation>> = _myLocations
 
         override fun onAddLocation(locationToAdd: Location) {
@@ -198,42 +187,42 @@ internal class MyLocationListTest {
             }
         }
     }
-}
 
-private class MyLocationListRobot(private val composableRule: ComposeContentTestRule) {
+    private class MyLocationListRobot(private val composableRule: ComposeTestRule) {
 
-    fun clickOnItemWithText(text: String) {
-        composableRule
-            .onNodeWithText(text)
-            .performClick()
-    }
+        fun clickOnItemWithText(text: String) {
+            composableRule
+                .onNodeWithText(text)
+                .performClick()
+        }
 
-    fun verifyNoLocationsPlaceHolderVisible() {
-        composableRule
-            .onNodeWithText("No locations added yet. Go and add the first location.")
-            .assertExists()
-        
-        composableRule
-            .onNodeWithContentDescription("Empty list icon.")
-            .assertExists()
-    }
+        fun verifyNoLocationsPlaceHolderVisible() {
+            composableRule
+                .onNodeWithText("No locations added yet. Go and add the first location.")
+                .assertExists()
 
-    fun verifyListItemWithTextIsSelected(text: String) {
-        composableRule
-            .onNodeWithText(text)
-            .assertExists()
-            .assertIsSelected()
-    }
-    
-    fun verifyItemDoesNotExist(text: String) {
-        composableRule
-            .onNodeWithText(text)
-            .assertDoesNotExist()
-    }
-    
-    fun verifyItemExists(text: String) {
-        composableRule
-            .onNodeWithText(text)
-            .assertExists()
+            composableRule
+                .onNodeWithContentDescription("Empty list icon.")
+                .assertExists()
+        }
+
+        fun verifyListItemWithTextIsSelected(text: String) {
+            composableRule
+                .onNodeWithText(text)
+                .assertExists()
+                .assertIsSelected()
+        }
+
+        fun verifyItemDoesNotExist(text: String) {
+            composableRule
+                .onNodeWithText(text)
+                .assertDoesNotExist()
+        }
+
+        fun verifyItemExists(text: String) {
+            composableRule
+                .onNodeWithText(text)
+                .assertExists()
+        }
     }
 }
