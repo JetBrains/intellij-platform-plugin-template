@@ -39,7 +39,6 @@ In this README, we will highlight the following elements of template-project cre
   - [Functional tests](#functional-tests)
   - [Code coverage](#code-coverage)
   - [UI tests](#ui-tests)
-- [Qodana integration](#qodana-integration)
 - [Predefined Run/Debug configurations](#predefined-rundebug-configurations)
 - [Continuous integration](#continuous-integration) based on GitHub Actions
   - [Dependencies management](#dependencies-management) with Dependabot
@@ -176,7 +175,6 @@ A generated IntelliJ Platform Plugin Template repository contains the following 
 ├── gradlew                 *nix Gradle Wrapper script
 ├── gradlew.bat             Windows Gradle Wrapper script
 ├── LICENSE                 License, MIT by default
-├── qodana.yml              Qodana configuration file
 ├── README.md               README
 └── settings.gradle.kts     Gradle project settings
 ```
@@ -296,29 +294,6 @@ class MyUITest {
 
 A dedicated [Run UI Tests](.github/workflows/run-ui-tests.yml) workflow is available for manual triggering to run UI tests against three different operating systems: macOS, Windows, and Linux.
 Due to its optional nature, this workflow isn't set as an automatic one, but this can be easily achieved by changing the `on` trigger event, like in the [Build](.github/workflows/build.yml) workflow file.
-
-## Qodana integration
-
-To increase the project value, the IntelliJ Platform Plugin Template got integrated with [Qodana][jb:qodana], a code quality monitoring platform that allows you to check the condition of your implementation and find any possible problems that may require enhancing.
-
-Qodana brings into your CI/CD pipelines all the smart features you love in the JetBrains IDEs and generates an HTML report with the actual inspection status.
-
-Qodana inspections are accessible within the project on two levels:
-
-- using the [Qodana IntelliJ GitHub Action][jb:qodana-github-action], run automatically within the [Build](.github/workflows/build.yml) workflow,
-- with the [Gradle Qodana Plugin][gh:gradle-qodana-plugin], so you can use it on the local environment or any CI other than GitHub Actions.
-
-Qodana inspection is configured with the `qodana { ... }` section in the Gradle build file and [`qodana.yml`][file:qodana.yml] YAML configuration file.
-
-> [!NOTE]
-> Qodana requires Docker to be installed and available in your environment.
-
-To run inspections, you can use a predefined *Run Qodana* configuration, which will provide a full report on `http://localhost:8080`, or invoke the Gradle task directly with the `./gradlew runInspections` command.
-
-A final report is available in the `./build/reports/inspections/` directory.
-
-![Qodana][file:qodana.png]
-
 
 ## Predefined Run/Debug configurations
 
@@ -565,8 +540,6 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [file:libs.versions.toml]: ./gradle/libs.versions.toml
 [file:project-structure-sdk.png]: ./.github/readme/project-structure-sdk.png
 [file:plugin.xml]: ./src/main/resources/META-INF/plugin.xml
-[file:qodana.png]: ./.github/readme/qodana.png
-[file:qodana.yml]: ./qodana.yml
 [file:run-debug-configurations.png]: ./.github/readme/run-debug-configurations.png
 [file:run-logs.png]: ./.github/readme/run-logs.png
 [file:settings-secrets.png]: ./.github/readme/settings-secrets.png
@@ -584,7 +557,6 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [gh:intellij-platform-gradle-plugin-docs]: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
 [gh:intellij-platform-gradle-plugin-runIde]: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-tasks.html#runIde
 [gh:intellij-platform-gradle-plugin-verifyPlugin]: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-tasks.html#verifyPlugin
-[gh:gradle-qodana-plugin]: https://github.com/JetBrains/gradle-qodana-plugin
 [gh:intellij-ui-test-robot]: https://github.com/JetBrains/intellij-ui-test-robot
 [gh:kover]: https://github.com/Kotlin/kotlinx-kover
 [gh:releases]: https://github.com/JetBrains/intellij-platform-plugin-template/releases
@@ -605,8 +577,6 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [jb:ipe]: https://jb.gg/ipe
 [jb:my-tokens]: https://plugins.jetbrains.com/author/me/tokens
 [jb:paid-plugins]: https://plugins.jetbrains.com/docs/marketplace/paid-plugins-marketplace.html
-[jb:qodana]: https://www.jetbrains.com/help/qodana
-[jb:qodana-github-action]: https://www.jetbrains.com/help/qodana/qodana-intellij-github-action.html
 [jb:quality-guidelines]: https://plugins.jetbrains.com/docs/marketplace/quality-guidelines.html
 [jb:slack]: https://plugins.jetbrains.com/slack
 [jb:twitter]: https://twitter.com/JBPlatform

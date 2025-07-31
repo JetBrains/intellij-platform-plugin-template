@@ -1,7 +1,6 @@
 # GitHub Actions Workflow is created for testing and preparing the plugin release in the following steps:
 # - Validate Gradle Wrapper.
 # - Run 'test' and 'verifyPlugin' tasks.
-# - Run Qodana inspections.
 # - Run the 'buildPlugin' task and prepare artifact for further tests.
 # - Run the 'runPluginVerifier' task.
 # - Create a draft release.
@@ -129,44 +128,6 @@ jobs:
         with:
           files: ${{ github.workspace }}/build/reports/kover/report.xml
 
-  # Run Qodana inspections and provide report
-  inspectCode:
-    name: Inspect code
-    needs: [ build ]
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      checks: write
-      pull-requests: write
-    steps:
-
-      # Free GitHub Actions Environment Disk Space
-      - name: Maximize Build Space
-        uses: jlumbroso/free-disk-space@main
-        with:
-          tool-cache: false
-          large-packages: false
-
-      # Check out the current repository
-      - name: Fetch Sources
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}  # to check out the actual pull request commit, not the merge commit
-          fetch-depth: 0  # a full history is required for pull request analysis
-
-      # Set up Java environment for the next steps
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: zulu
-          java-version: 21
-
-      # Run Qodana inspections
-      - name: Qodana - Code Inspection
-        uses: JetBrains/qodana-action@v2024.2
-        with:
-          cache-default-branch-only: true
-
   # Run plugin structure verification along with IntelliJ Plugin Verifier
   verify:
     name: Verify plugin
@@ -220,7 +181,7 @@ jobs:
   releaseDraft:
     name: Release draft
     if: github.event_name != 'pull_request'
-    needs: [ build, test, inspectCode, verify ]
+    needs: [ build, test, verify ]
     runs-on: ubuntu-latest
     permissions:
       contents: write
