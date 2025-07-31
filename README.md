@@ -258,43 +258,6 @@ In `src/test/kotlin`, you will find a basic `MyPluginTest` test that utilizes `B
 > [!NOTE]
 > Run your tests using predefined *Run Tests* configuration or by invoking the `./gradlew check` Gradle task.
 
-### Code coverage
-
-The [Kover][gh:kover] – a Gradle plugin for Kotlin code coverage agents: IntelliJ and JaCoCo – is integrated into the project to provide the code coverage feature.
-Code coverage makes it possible to measure and track the degree of plugin sources testing.
-The code coverage gets executed when running the `check` Gradle task.
-The final test report is sent to [CodeCov][codecov] for better results visualization.
-
-### UI tests
-
-If your plugin provides complex user interfaces, you should consider covering them with tests and the functionality they utilize.
-
-[IntelliJ UI Test Robot][gh:intellij-ui-test-robot] allows you to write and execute UI tests within the IntelliJ IDE running instance.
-You can use the [XPath query language][xpath] to find components in the currently available IDE view.
-Once IDE with `robot-server` has started, you can open the `http://localhost:8082` page that presents the currently available IDEA UI components hierarchy in HTML format and use a simple `XPath` generator, which can help test your plugin's interface.
-
-> [!NOTE]
-> Run IDE for UI tests by invoking the `./gradlew runIdeForUiTests` and `./gradlew check` Gradle tasks.
-
-Check the UI Test Example project you can use as a reference for setting up UI testing in your plugin: [intellij-ui-test-robot/ui-test-example][gh:ui-test-example].
-
-```kotlin
-class MyUITest {
-
-  @Test
-  fun openAboutFromWelcomeScreen() {
-    val robot = RemoteRobot("http://127.0.0.1:8082")
-    robot.find<ComponentFixture>(byXpath("//div[@myactionlink = 'gearHover.svg']")).click()
-    // ...
-  }
-}
-```
-
-![UI Testing][file:ui-testing.png]
-
-A dedicated [Run UI Tests](.github/workflows/run-ui-tests.yml) workflow is available for manual triggering to run UI tests against three different operating systems: macOS, Windows, and Linux.
-Due to its optional nature, this workflow isn't set as an automatic one, but this can be easily achieved by changing the `on` trigger event, like in the [Build](.github/workflows/build.yml) workflow file.
-
 ## Predefined Run/Debug configurations
 
 Within the default project structure, there is a `.run` directory provided containing predefined *Run/Debug configurations* that expose corresponding Gradle tasks:
@@ -311,7 +274,6 @@ Within the default project structure, there is a `.run` directory provided conta
 > You can find the logs from the running task in the `idea.log` tab.
 >
 > ![Run/Debug configuration logs][file:run-logs.png]
-
 
 ## Continuous integration
 
@@ -334,10 +296,6 @@ In the `.github/workflows` directory, you can find definitions for the following
   - Publishes the plugin to JetBrains Marketplace using the provided `PUBLISH_TOKEN`.
   - Sets publish channel depending on the plugin version, i.e. `1.0.0-beta` -> `beta` channel.
   - Patches the Changelog and commits.
-- [Run UI Tests](.github/workflows/run-ui-tests.yml)
-  - Triggered manually.
-  - Runs for macOS, Windows, and Linux separately.
-  - Runs `runIdeForUiTests` and `test` Gradle tasks.
 - [Template Cleanup](.github/workflows/template-cleanup.yml)
   - Triggered once on the `push` event when a new template-based repository has been created.
   - Overrides the scaffold with files from the `.github/template-cleanup` directory.
@@ -482,7 +440,6 @@ You can get that token in your JetBrains Marketplace profile dashboard in the [M
 > [!WARNING]
 > Before using the automated deployment process, it is necessary to manually create a new plugin in JetBrains Marketplace to specify options like the license, repository URL, etc.
 > Please follow the [Publishing a Plugin][docs:publishing] instructions.
-
 
 ## FAQ
 
