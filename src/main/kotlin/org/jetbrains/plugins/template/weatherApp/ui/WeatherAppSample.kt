@@ -7,7 +7,9 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.Transparent
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import org.jetbrains.jewel.bridge.retrieveColorOrUnspecified
@@ -17,8 +19,11 @@ import org.jetbrains.jewel.foundation.lazy.items
 import org.jetbrains.jewel.foundation.lazy.rememberSelectableLazyListState
 import org.jetbrains.jewel.foundation.theme.JewelTheme
 import org.jetbrains.jewel.ui.component.*
+import org.jetbrains.jewel.ui.icon.IconKey
+import org.jetbrains.jewel.ui.icons.AllIconsKeys
 import org.jetbrains.plugins.template.ComposeTemplateBundle
 import org.jetbrains.plugins.template.weatherApp.model.Location
+import org.jetbrains.plugins.template.weatherApp.model.SelectableLocation
 import org.jetbrains.plugins.template.weatherApp.model.WeatherForecastData
 import org.jetbrains.plugins.template.weatherApp.services.LocationsProvider
 import org.jetbrains.plugins.template.weatherApp.services.MyLocationsViewModelApi
@@ -76,14 +81,58 @@ private fun LeftColumn(
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        MyLocationsList(Modifier.fillMaxSize(), myLocationsViewModelApi)
+        MyLocationsListWithEmptyListPlaceholder(Modifier.fillMaxSize(), myLocationsViewModelApi)
     }
 }
 
 @Composable
-internal fun MyLocationsList(modifier: Modifier = Modifier, myLocationsViewModelApi: MyLocationsViewModelApi) {
+internal fun MyLocationsListWithEmptyListPlaceholder(
+    modifier: Modifier = Modifier,
+    myLocationsViewModelApi: MyLocationsViewModelApi
+) {
     val myLocations = myLocationsViewModelApi.myLocationsFlow.collectAsState(emptyList()).value
 
+    if (myLocations.isNotEmpty()) {
+        MyLocationList(myLocations, modifier, myLocationsViewModelApi)
+    } else {
+        EmptyListPlaceholder(modifier)
+    }
+}
+
+@Composable
+private fun EmptyListPlaceholder(
+    modifier: Modifier,
+    placeholderText: String = ComposeTemplateBundle.message("weather.app.my.locations.empty.list.placeholder.text"),
+    placeholderIcon: IconKey = AllIconsKeys.Actions.AddList
+) {
+    Column(
+        modifier = modifier.fillMaxSize().padding(16.dp),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Icon(
+            placeholderIcon,
+            contentDescription = ComposeTemplateBundle.message("weather.app.my.locations.empty.list.placeholder.icon.content.description"),
+            Modifier.size(32.dp),
+            tint = Color.White
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Text(
+            text = placeholderText,
+            style = JewelTheme.defaultTextStyle,
+            textAlign = TextAlign.Center
+        )
+    }
+}
+
+@Composable
+private fun MyLocationList(
+    myLocations: List<SelectableLocation>,
+    modifier: Modifier,
+    myLocationsViewModelApi: MyLocationsViewModelApi
+) {
     val listState = rememberSelectableLazyListState()
     // JEWEL-938 This will trigger on SelectableLazyColum's `onSelectedIndexesChange` callback
     LaunchedEffect(myLocations) {
