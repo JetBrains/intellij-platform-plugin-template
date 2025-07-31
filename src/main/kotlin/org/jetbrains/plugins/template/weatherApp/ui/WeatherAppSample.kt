@@ -66,8 +66,6 @@ private fun LeftColumn(
     myLocationsViewModelApi: MyLocationsViewModelApi,
     modifier: Modifier = Modifier,
 ) {
-    val myLocations = myLocationsViewModelApi.myLocationsFlow.collectAsState(emptyList()).value
-
     Column(modifier) {
         GroupHeader(
             ComposeTemplateBundle.message("weather.app.my.locations.header.text"),
@@ -78,46 +76,52 @@ private fun LeftColumn(
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        val listState = rememberSelectableLazyListState()
+        MyLocationsList(Modifier.fillMaxSize(), myLocationsViewModelApi)
+    }
+}
 
-        // JEWEL-938 This will trigger on SelectableLazyColum's `onSelectedIndexesChange` callback
-        LaunchedEffect(myLocations) {
-            var lastActiveItemIndex = -1
-            val selectedItemKeys = mutableSetOf<String>()
-            myLocations.forEachIndexed { index, location ->
-                if (location.isSelected) {
-                    if (lastActiveItemIndex == -1) {
-                        // Only the first selected item should be active
-                        lastActiveItemIndex = index
-                    }
-                    // Must match the key used in the `items()` call's `key` parameter to ensure correct item identity.
-                    selectedItemKeys.add(location.location.label)
+@Composable
+internal fun MyLocationsList(modifier: Modifier = Modifier, myLocationsViewModelApi: MyLocationsViewModelApi) {
+    val myLocations = myLocationsViewModelApi.myLocationsFlow.collectAsState(emptyList()).value
+
+    val listState = rememberSelectableLazyListState()
+    // JEWEL-938 This will trigger on SelectableLazyColum's `onSelectedIndexesChange` callback
+    LaunchedEffect(myLocations) {
+        var lastActiveItemIndex = -1
+        val selectedItemKeys = mutableSetOf<String>()
+        myLocations.forEachIndexed { index, location ->
+            if (location.isSelected) {
+                if (lastActiveItemIndex == -1) {
+                    // Only the first selected item should be active
+                    lastActiveItemIndex = index
                 }
+                // Must match the key used in the `items()` call's `key` parameter to ensure correct item identity.
+                selectedItemKeys.add(location.location.label)
             }
-            // Sets the first selected item as an active item to avoid triggering on click event when user clocks on it
-            listState.lastActiveItemIndex = lastActiveItemIndex
-            // Sets keys of selected items
-            listState.selectedKeys = selectedItemKeys
         }
+        // Sets the first selected item as an active item to avoid triggering on click event when user clocks on it
+        listState.lastActiveItemIndex = lastActiveItemIndex
+        // Sets keys of selected items
+        listState.selectedKeys = selectedItemKeys
+    }
 
-        SelectableLazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            selectionMode = SelectionMode.Single,
-            state = listState,
-            onSelectedIndexesChange = { indices ->
-                val selectedLocationIndex = indices.firstOrNull() ?: return@SelectableLazyColumn
-                myLocationsViewModelApi.onLocationSelected(selectedLocationIndex)
-            },
-        ) {
-            items(
-                items = myLocations,
-                key = { item -> item.location.label },
-            ) { item ->
+    SelectableLazyColumn(
+        modifier = modifier,
+        selectionMode = SelectionMode.Single,
+        state = listState,
+        onSelectedIndexesChange = { indices ->
+            val selectedLocationIndex = indices.firstOrNull() ?: return@SelectableLazyColumn
+            myLocationsViewModelApi.onLocationSelected(selectedLocationIndex)
+        },
+    ) {
+        items(
+            items = myLocations,
+            key = { item -> item.location.label },
+        ) { item ->
 
-                ContentItemRow(
-                    item = item.location, isSelected = item.isSelected, isActive = isActive
-                )
-            }
+            ContentItemRow(
+                item = item.location, isSelected = item.isSelected, isActive = isActive
+            )
         }
     }
 }
