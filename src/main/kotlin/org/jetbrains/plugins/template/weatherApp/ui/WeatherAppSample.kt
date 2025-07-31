@@ -25,7 +25,6 @@ import org.jetbrains.plugins.template.ComposeTemplateBundle
 import org.jetbrains.plugins.template.weatherApp.model.Location
 import org.jetbrains.plugins.template.weatherApp.model.SelectableLocation
 import org.jetbrains.plugins.template.weatherApp.model.WeatherForecastData
-import org.jetbrains.plugins.template.weatherApp.services.LocationsProvider
 import org.jetbrains.plugins.template.weatherApp.services.MyLocationsViewModelApi
 import org.jetbrains.plugins.template.weatherApp.services.SearchAutoCompletionItemProvider
 import org.jetbrains.plugins.template.weatherApp.services.WeatherViewModelApi
@@ -36,7 +35,7 @@ import org.jetbrains.plugins.template.weatherApp.ui.components.WeatherDetailsCar
 internal fun WeatherAppSample(
     myLocationViewModel: MyLocationsViewModelApi,
     weatherViewModelApi: WeatherViewModelApi,
-    searchAutoCompletionItemProvided: LocationsProvider
+    searchAutoCompletionItemProvider: SearchAutoCompletionItemProvider<Location>
 ) {
     HorizontalSplitLayout(
         first = {
@@ -51,7 +50,7 @@ internal fun WeatherAppSample(
             RightColumn(
                 myLocationViewModel,
                 weatherViewModelApi,
-                searchAutoCompletionItemProvided,
+                searchAutoCompletionItemProvider,
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(start = 8.dp, end = 8.dp)
