@@ -19,7 +19,6 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
-import androidx.compose.ui.zIndex
 import kotlinx.coroutines.flow.distinctUntilChanged
 import org.jetbrains.jewel.foundation.ExperimentalJewelApi
 import org.jetbrains.jewel.ui.component.Icon
@@ -90,10 +89,7 @@ internal fun <T> SearchBarWithAutoCompletion(
                 horizontalAlignment = Alignment.Start,
                 modifier = Modifier
                     // Aligns PopupMenu with TextField
-                    .width(with(LocalDensity.current) { textFieldWidth.toDp() })
-                    .wrapContentHeight()
-                    .padding(vertical = 4.dp, horizontal = 2.dp)
-                    .zIndex(5f),
+                    .width(with(LocalDensity.current) { textFieldWidth.toDp() }),
                 popupProperties = PopupProperties(focusable = false),
             ) {
                 popupController.filteredItems.forEach { item ->
