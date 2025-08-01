@@ -44,7 +44,7 @@ import java.util.*
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-internal fun WeatherDetailsCard(
+fun WeatherDetailsCard(
     modifier: Modifier = Modifier,
     weatherForecastData: WeatherForecastData,
     onReloadWeatherData: (Location) -> Unit

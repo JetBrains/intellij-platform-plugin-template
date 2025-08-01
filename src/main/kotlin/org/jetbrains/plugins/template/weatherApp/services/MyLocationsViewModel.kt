@@ -16,7 +16,7 @@ import org.jetbrains.plugins.template.weatherApp.model.WeatherForecastData
  * a flow to observe the list of selectable locations. Implementations are expected to handle
  * location-related logic and state management.
  */
-internal interface MyLocationsViewModelApi {
+interface MyLocationsViewModelApi {
     fun onAddLocation(locationToAdd: Location)
 
     fun onDeleteLocation(locationToDelete: Location)
@@ -30,7 +30,7 @@ internal interface MyLocationsViewModelApi {
  * Interface representing a ViewModel for managing weather-related data
  * and user interactions.
  */
-internal interface WeatherViewModelApi {
+interface WeatherViewModelApi {
     val weatherForecast: Flow<WeatherForecastData>
 
     fun onLoadWeatherForecast(location: Location)
@@ -39,7 +39,7 @@ internal interface WeatherViewModelApi {
 }
 
 @Service
-internal class MyLocationsViewModel(cs: CoroutineScope) : MyLocationsViewModelApi, WeatherViewModelApi {
+class MyLocationsViewModel(cs: CoroutineScope) : MyLocationsViewModelApi, WeatherViewModelApi {
 
     private val weatherService = service<WeatherForecastService>()
 

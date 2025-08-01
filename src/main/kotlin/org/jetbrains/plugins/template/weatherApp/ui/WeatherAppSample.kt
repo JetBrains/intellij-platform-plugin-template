@@ -32,7 +32,7 @@ import org.jetbrains.plugins.template.weatherApp.ui.components.SearchToolbarMenu
 import org.jetbrains.plugins.template.weatherApp.ui.components.WeatherDetailsCard
 
 @Composable
-internal fun WeatherAppSample(
+fun WeatherAppSample(
     myLocationViewModel: MyLocationsViewModelApi,
     weatherViewModelApi: WeatherViewModelApi,
     searchAutoCompletionItemProvider: SearchAutoCompletionItemProvider<Location>
@@ -85,7 +85,7 @@ private fun LeftColumn(
 }
 
 @Composable
-internal fun MyLocationsListWithEmptyListPlaceholder(
+fun MyLocationsListWithEmptyListPlaceholder(
     modifier: Modifier = Modifier,
     myLocationsViewModelApi: MyLocationsViewModelApi
 ) {

@@ -10,7 +10,7 @@ import androidx.compose.runtime.Immutable
  * @property id A derived unique identifier for the location in the format `name, country`.
  */
 @Immutable
-internal data class Location(val name: String, val country: String) : PreviewableItem, Searchable {
+data class Location(val name: String, val country: String) : PreviewableItem, Searchable {
     val id: String = "$name, $country"
 
     override fun isSearchApplicable(query: String): Boolean {
@@ -31,4 +31,4 @@ internal data class Location(val name: String, val country: String) : Previewabl
 }
 
 @Immutable
-internal data class SelectableLocation(val location: Location, val isSelected: Boolean)
+data class SelectableLocation(val location: Location, val isSelected: Boolean)

@@ -17,7 +17,7 @@ import javax.xml.transform.stream.StreamResult
 import javax.xml.xpath.XPathConstants
 import javax.xml.xpath.XPathFactory
 
-internal object EmbeddedToInlineCssSvgTransformerHint : PainterSvgPatchHint {
+object EmbeddedToInlineCssSvgTransformerHint : PainterSvgPatchHint {
     private val CSS_STYLEABLE_TAGS = listOf(
         "linearGradient", "radialGradient", "pattern",
         "filter", "clipPath", "mask", "symbol",

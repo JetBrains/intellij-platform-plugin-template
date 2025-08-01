@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 /**
  * Data class representing a daily weather forecast.
  */
-internal data class DailyForecast(
+data class DailyForecast(
     val date: LocalDateTime,
     val temperature: Float,
     val weatherType: WeatherType,
@@ -19,7 +19,7 @@ internal data class DailyForecast(
 /**
  * Data class representing weather information to be displayed in the Weather Card.
  */
-internal data class WeatherForecastData(
+data class WeatherForecastData(
     val location: Location,
     val currentWeatherForecast: DailyForecast,
     val dailyForecasts: List<DailyForecast> = emptyList()

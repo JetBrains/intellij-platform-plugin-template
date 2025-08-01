@@ -11,6 +11,6 @@ import org.jetbrains.plugins.template.weatherApp.model.Searchable
  *
  * @param T The type of items provided by this interface, which must extend [Searchable].
  */
-internal interface SearchAutoCompletionItemProvider<T : Searchable> {
+interface SearchAutoCompletionItemProvider<T : Searchable> {
     fun provideSearchableItems(searchTerm: String): List<T>
 }

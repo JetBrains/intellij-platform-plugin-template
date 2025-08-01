@@ -20,7 +20,7 @@ import org.jetbrains.plugins.template.weatherApp.model.Searchable
 import org.jetbrains.plugins.template.weatherApp.services.SearchAutoCompletionItemProvider
 
 @Composable
-internal fun <T> SearchToolbarMenu(
+fun <T> SearchToolbarMenu(
     searchAutoCompletionItemProvider: SearchAutoCompletionItemProvider<T>,
     confirmButtonText: String = "Confirm",
     onSearchPerformed: (T) -> Unit = {},

@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import org.jetbrains.plugins.template.weatherApp.model.Location
 
 @Service
-internal class LocationsProvider : SearchAutoCompletionItemProvider<Location> {
+class LocationsProvider : SearchAutoCompletionItemProvider<Location> {
     private val locationStateFlow = MutableStateFlow(
         listOf(
             Location("Munich", "Germany"),

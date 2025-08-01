@@ -36,7 +36,7 @@ import org.jetbrains.plugins.template.weatherApp.services.SearchAutoCompletionIt
 
 @OptIn(ExperimentalJewelApi::class)
 @Composable
-internal fun <T> SearchBarWithAutoCompletion(
+fun <T> SearchBarWithAutoCompletion(
     modifier: Modifier = Modifier,
     searchAutoCompletionItemProvider: SearchAutoCompletionItemProvider<T>,
     textFieldState: TextFieldState,
@@ -120,7 +120,7 @@ internal fun <T> SearchBarWithAutoCompletion(
 }
 
 @Composable
-internal fun CloseIconButton(onClick: () -> Unit) {
+fun CloseIconButton(onClick: () -> Unit) {
     val interactionSource = remember { MutableInteractionSource() }
     var hovered by remember { mutableStateOf(false) }
 

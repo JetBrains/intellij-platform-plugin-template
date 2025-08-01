@@ -15,7 +15,7 @@ import java.time.LocalTime
 import kotlin.random.Random
 
 @Service
-internal class WeatherForecastService(private val cs: CoroutineScope) {
+class WeatherForecastService(private val cs: CoroutineScope) {
     private val _weatherForecast: MutableStateFlow<WeatherForecastData> = MutableStateFlow(WeatherForecastData.EMPTY)
 
     val weatherForecast: StateFlow<WeatherForecastData> = _weatherForecast.asStateFlow()
