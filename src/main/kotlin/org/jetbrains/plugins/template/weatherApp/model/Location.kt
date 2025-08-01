@@ -7,15 +7,27 @@ import androidx.compose.runtime.Immutable
  *
  * @property name The name of the location.
  * @property country The associated country of the location.
- * @property id A derived unique identifier for the location in the format `name, country`.
+ * @property label A textual representation of the location.
  */
 @Immutable
 data class Location(val name: String, val country: String) : PreviewableItem, Searchable {
-    val id: String = "$name, $country"
+
+    override val label: String
+        get() {
+            if (country.isBlank()) {
+                return name.takeIf { it.isNotBlank() } ?: "-"
+            }
+
+            if (name.isBlank()) {
+                return country.takeIf { it.isNotBlank() } ?: "-"
+            }
+
+            return "$name, $country"
+        }
 
     override fun matches(query: String): Boolean {
         val applicableCandidates = listOf(
-            id,
+            label,
             name,
             country,
             name.split(" ").map { it.first() }.joinToString(""),
@@ -25,9 +37,6 @@ data class Location(val name: String, val country: String) : PreviewableItem, Se
 
         return applicableCandidates.any { it.contains(query, ignoreCase = true) }
     }
-
-    override val label: String
-        get() = id
 }
 
 @Immutable

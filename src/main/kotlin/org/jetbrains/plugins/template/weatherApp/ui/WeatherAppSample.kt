@@ -190,7 +190,7 @@ private fun ContentItemRow(item: Location, isSelected: Boolean, isActive: Boolea
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(4.dp),
     ) {
-        Text(text = item.id, modifier = Modifier.weight(1f), overflow = TextOverflow.Ellipsis, maxLines = 1)
+        Text(text = item.label, modifier = Modifier.weight(1f), overflow = TextOverflow.Ellipsis, maxLines = 1)
     }
 }
 
