@@ -72,7 +72,7 @@ fun WeatherDetailsCard(
             ) {
                 // Current Time
                 Text(
-                    text = "Time: ${formatDateTime(currentWeatherForecast.date)}",
+                    text = ComposeTemplateBundle.message("weather.app.time.text", timeToDisplay),
                     color = textColor,
                     fontSize = JewelTheme.defaultTextStyle.fontSize,
                     fontWeight = FontWeight.Bold
