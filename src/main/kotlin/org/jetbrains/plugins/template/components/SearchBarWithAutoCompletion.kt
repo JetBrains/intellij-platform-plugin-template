@@ -51,63 +51,60 @@ internal fun <T> SearchBarWithAutoCompletion(
             .collect { searchTerm -> popupController.onQueryChanged(searchTerm) }
     }
 
-    Column(modifier = modifier) {
-        Box(
+    Box(
+        modifier = modifier
+            .padding(8.dp)
+    ) {
+        var textFieldWidth by remember { mutableIntStateOf(-1) }
+        TextField(
+            state = textFieldState,
             modifier = Modifier
+                .onGloballyPositioned { coordinates -> textFieldWidth = coordinates.size.width }
                 .fillMaxWidth()
-                .padding(8.dp)
-        ) {
-            var textFieldWidth by remember { mutableIntStateOf(-1) }
-            TextField(
-                state = textFieldState,
-                modifier = Modifier
-                    .onGloballyPositioned { coordinates -> textFieldWidth = coordinates.size.width }
-                    .fillMaxWidth()
-                    .handlePopupCompletionKeyEvents(popupController) { item ->
-                        textFieldState.setTextAndPlaceCursorAtEnd(item.label)
-                        onSelectCompletion(item)
+                .handlePopupCompletionKeyEvents(popupController) { item ->
+                    textFieldState.setTextAndPlaceCursorAtEnd(item.label)
+                    onSelectCompletion(item)
+                }
+                .focusRequester(focusRequester),
+            placeholder = { Text(searchFieldPlaceholder) },
+            leadingIcon = {
+                Icon(AllIconsKeys.Actions.Find, contentDescription = "Find icon", Modifier.padding(end = 8.dp))
+            },
+            trailingIcon = {
+                if (textFieldState.text.isNotBlank()) {
+                    CloseIconButton {
+                        onClear()
+                        textFieldState.setTextAndPlaceCursorAtEnd("")
                     }
-                    .focusRequester(focusRequester),
-                placeholder = { Text(searchFieldPlaceholder) },
-                leadingIcon = {
-                    Icon(AllIconsKeys.Actions.Find, contentDescription = "Find icon", Modifier.padding(end = 8.dp))
-                },
-                trailingIcon = {
-                    if (textFieldState.text.isNotBlank()) {
-                        CloseIconButton {
-                            onClear()
-                            textFieldState.setTextAndPlaceCursorAtEnd("")
-                        }
-                    }
-                },
-            )
+                }
+            },
+        )
 
-            if (popupController.isVisible) {
-                PopupMenu(
-                    onDismissRequest = {
-                        popupController.reset()
-                        true
-                    },
-                    horizontalAlignment = Alignment.Start,
-                    modifier = Modifier
-                        // Aligns PopupMenu with TextField
-                        .width(with(LocalDensity.current) { textFieldWidth.toDp() })
-                        .wrapContentHeight()
-                        .padding(vertical = 4.dp, horizontal = 2.dp)
-                        .zIndex(5f),
-                    popupProperties = PopupProperties(focusable = false),
-                ) {
-                    popupController.filteredItems.forEach { item ->
-                        selectableItem(
-                            popupController.    isItemSelected(item),
-                            onClick = {
-                                onSelectCompletion(item)
-                                popupController.onItemAutocompleteConfirmed()
-                                textFieldState.setTextAndPlaceCursorAtEnd(item.label)
-                            },
-                        ) {
-                            Text(item.label)
-                        }
+        if (popupController.isVisible) {
+            PopupMenu(
+                onDismissRequest = {
+                    popupController.reset()
+                    true
+                },
+                horizontalAlignment = Alignment.Start,
+                modifier = Modifier
+                    // Aligns PopupMenu with TextField
+                    .width(with(LocalDensity.current) { textFieldWidth.toDp() })
+                    .wrapContentHeight()
+                    .padding(vertical = 4.dp, horizontal = 2.dp)
+                    .zIndex(5f),
+                popupProperties = PopupProperties(focusable = false),
+            ) {
+                popupController.filteredItems.forEach { item ->
+                    selectableItem(
+                        popupController.isItemSelected(item),
+                        onClick = {
+                            onSelectCompletion(item)
+                            popupController.onItemAutocompleteConfirmed()
+                            textFieldState.setTextAndPlaceCursorAtEnd(item.label)
+                        },
+                    ) {
+                        Text(item.label)
                     }
                 }
             }
