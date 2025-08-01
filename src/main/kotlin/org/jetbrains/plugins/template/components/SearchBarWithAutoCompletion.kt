@@ -68,7 +68,7 @@ internal fun <T> SearchBarWithAutoCompletion(
                 .focusRequester(focusRequester),
             placeholder = { Text(searchFieldPlaceholder) },
             leadingIcon = {
-                Icon(AllIconsKeys.Actions.Find, contentDescription = "Find icon", Modifier.padding(end = 8.dp))
+                Icon(AllIconsKeys.Actions.Find, contentDescription = null, Modifier.padding(end = 8.dp))
             },
             trailingIcon = {
                 if (textFieldState.text.isNotBlank()) {
