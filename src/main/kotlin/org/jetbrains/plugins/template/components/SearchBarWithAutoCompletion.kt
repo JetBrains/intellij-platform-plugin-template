@@ -14,7 +14,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.input.key.*
 import androidx.compose.ui.input.pointer.PointerIcon
 import androidx.compose.ui.input.pointer.pointerHoverIcon
-import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
@@ -59,7 +59,7 @@ internal fun <T> SearchBarWithAutoCompletion(
         TextField(
             state = textFieldState,
             modifier = Modifier
-                .onGloballyPositioned { coordinates -> textFieldWidth = coordinates.size.width }
+                .onSizeChanged { coordinates -> textFieldWidth = coordinates.width }
                 .fillMaxWidth()
                 .handlePopupCompletionKeyEvents(popupController) { item ->
                     textFieldState.setTextAndPlaceCursorAtEnd(item.label)
