@@ -44,6 +44,7 @@ internal fun <T> SearchBarWithAutoCompletion(
     val focusRequester = remember { FocusRequester() }
 
     val popupController = remember { CompletionPopupController(searchAutoCompletionItemProvider) }
+    val isInputFieldEmpty by remember { derivedStateOf { textFieldState.text.isBlank() } }
 
     LaunchedEffect(Unit) {
         snapshotFlow { textFieldState.text.toString() }
@@ -71,7 +72,7 @@ internal fun <T> SearchBarWithAutoCompletion(
                 Icon(AllIconsKeys.Actions.Find, contentDescription = null, Modifier.padding(end = 8.dp))
             },
             trailingIcon = {
-                if (textFieldState.text.isNotBlank()) {
+                if (!isInputFieldEmpty) {
                     CloseIconButton {
                         onClear()
                         textFieldState.setTextAndPlaceCursorAtEnd("")
