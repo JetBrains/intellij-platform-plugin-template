@@ -26,6 +26,7 @@ import org.jetbrains.jewel.ui.component.PopupMenu
 import org.jetbrains.jewel.ui.component.Text
 import org.jetbrains.jewel.ui.component.TextField
 import org.jetbrains.jewel.ui.icons.AllIconsKeys
+import org.jetbrains.plugins.template.ComposeTemplateBundle
 import org.jetbrains.plugins.template.weatherApp.model.PreviewableItem
 import org.jetbrains.plugins.template.weatherApp.model.Searchable
 import org.jetbrains.plugins.template.weatherApp.services.SearchAutoCompletionItemProvider
@@ -125,12 +126,14 @@ internal fun CloseIconButton(onClick: () -> Unit) {
 
     Icon(
         key = if (hovered) AllIconsKeys.Actions.CloseHovered else AllIconsKeys.Actions.Close,
-        contentDescription = "Clear",
-        modifier = Modifier.pointerHoverIcon(PointerIcon.Default).clickable(
-            interactionSource = interactionSource,
-            indication = null,
-            role = Role.Button,
-        ) { onClick() },
+        contentDescription = ComposeTemplateBundle.message("weather.app.clear.button.content.description"),
+        modifier = Modifier
+            .pointerHoverIcon(PointerIcon.Default)
+            .clickable(
+                interactionSource = interactionSource,
+                indication = null,
+                role = Role.Button,
+            ) { onClick() },
     )
 }
 
