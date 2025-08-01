@@ -3,7 +3,10 @@ package org.jetbrains.plugins.template.components
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.HoverInteraction
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.setTextAndPlaceCursorAtEnd
 import androidx.compose.runtime.*
@@ -43,13 +46,20 @@ internal fun <T> SearchBarWithAutoCompletion(
 ) where T : Searchable, T : PreviewableItem {
     val focusRequester = remember { FocusRequester() }
 
-    val popupController = remember { CompletionPopupController(searchAutoCompletionItemProvider) }
+    val popupController = remember {
+        CompletionPopupController(searchAutoCompletionItemProvider) { completionItem ->
+            textFieldState.setTextAndPlaceCursorAtEnd(completionItem.item.label)
+            onSelectCompletion(completionItem.item)
+        }
+    }
     val isInputFieldEmpty by remember { derivedStateOf { textFieldState.text.isBlank() } }
 
     LaunchedEffect(Unit) {
         snapshotFlow { textFieldState.text.toString() }
             .distinctUntilChanged()
-            .collect { searchTerm -> popupController.onQueryChanged(searchTerm) }
+            .collect { searchTerm ->
+                popupController.onQueryChanged(searchTerm)
+            }
     }
 
     Box(
@@ -62,10 +72,7 @@ internal fun <T> SearchBarWithAutoCompletion(
             modifier = Modifier
                 .onSizeChanged { coordinates -> textFieldWidth = coordinates.width }
                 .fillMaxWidth()
-                .handlePopupCompletionKeyEvents(popupController) { item ->
-                    textFieldState.setTextAndPlaceCursorAtEnd(item.label)
-                    onSelectCompletion(item)
-                }
+                .handlePopupCompletionKeyEvents(popupController)
                 .focusRequester(focusRequester),
             placeholder = { Text(searchFieldPlaceholder) },
             leadingIcon = {
@@ -93,16 +100,15 @@ internal fun <T> SearchBarWithAutoCompletion(
                     .width(with(LocalDensity.current) { textFieldWidth.toDp() }),
                 popupProperties = PopupProperties(focusable = false),
             ) {
-                popupController.filteredItems.forEach { item ->
+                popupController.completionItems.forEach { completionItem ->
                     selectableItem(
-                        popupController.isItemSelected(item),
+                        completionItem.isSelected,
                         onClick = {
-                            onSelectCompletion(item)
-                            popupController.onItemAutocompleteConfirmed()
-                            textFieldState.setTextAndPlaceCursorAtEnd(item.label)
+                            popupController.onSelectCompletion()
+                            textFieldState.setTextAndPlaceCursorAtEnd(completionItem.item.label)
                         },
                     ) {
-                        Text(item.label)
+                        Text(completionItem.item.label)
                     }
                 }
             }
@@ -137,22 +143,30 @@ internal fun CloseIconButton(onClick: () -> Unit) {
     )
 }
 
+
+private data class CompletionItem<T : Searchable>(
+    val item: T,
+    val isSelected: Boolean,
+)
+
 private class CompletionPopupController<T : Searchable>(
     private val itemsProvider: SearchAutoCompletionItemProvider<T>,
+    private val onSelectCompletion: (CompletionItem<T>) -> Unit = {},
 ) {
-    var selectedItemIndex by mutableIntStateOf(0)
-        private set
+    private var selectedItemIndex by mutableIntStateOf(-1)
 
     /**
      * Ensures a popup is not shown when the user autocompletes an item.
      * Suppresses making popup once onQueryChanged is called after text to TextField is set after autocompletion.
      */
     private var skipPopupShowing by mutableStateOf(false)
-    var filteredItems by mutableStateOf(emptyList<T>())
-        private set
 
-    val selectedItem: T
-        get() = filteredItems[selectedItemIndex]
+    private val _filteredCompletionItems = mutableStateListOf<CompletionItem<T>>()
+
+    val completionItems: List<CompletionItem<T>> get() = _filteredCompletionItems
+
+    val selectedItem: CompletionItem<T>
+        get() = _filteredCompletionItems[selectedItemIndex]
 
     var isVisible by mutableStateOf(false)
         private set
@@ -177,10 +191,14 @@ private class CompletionPopupController<T : Searchable>(
             return
         }
 
-        updateFilteredItems(itemsProvider.provideSearchableItems(searchTerm))
+        val newItems = itemsProvider.provideSearchableItems(searchTerm)
+            .map { CompletionItem(it, false) }
+
+        updateFilteredItems(newItems)
+
         moveSelectionToFirstItem()
 
-        if (filteredItems.isNotEmpty()) {
+        if (completionItems.isNotEmpty()) {
             showPopup()
         } else {
             hidePopup()
@@ -196,29 +214,31 @@ private class CompletionPopupController<T : Searchable>(
     }
 
     fun reset() {
-        moveSelectionToFirstItem()
         hidePopup()
+        moveSelectionToFirstItem()
         clearFilteredItems()
     }
 
-    fun isItemSelected(item: T): Boolean = (filteredItems[selectedItemIndex] == item)
+    fun onSelectCompletion() {
+        if (!isVisible) return
 
-    fun onItemAutocompleteConfirmed(): T {
-        val selectedItem = this.selectedItem
+        val completionPopupItem = selectedItem
 
         skipPopupShowing = true
 
         reset()
 
-        return selectedItem
+        onSelectCompletion(completionPopupItem)
     }
 
-    private fun updateFilteredItems(filteredItems: List<T>) {
-        this.filteredItems = filteredItems
+    private fun updateFilteredItems(newItems: List<CompletionItem<T>>) {
+        // TODO Can be done in a more efficient way
+        clearFilteredItems()
+        _filteredCompletionItems.addAll(newItems)
     }
 
     private fun clearFilteredItems() {
-        filteredItems = emptyList()
+        _filteredCompletionItems.clear()
     }
 
     private fun moveSelectionToFirstItem() {
@@ -226,25 +246,37 @@ private class CompletionPopupController<T : Searchable>(
     }
 
     private fun moveSelectionTo(index: Int) {
+        if (index == selectedItemIndex) return
+
+        // Deselect previous item
+        val previousIndex = selectedItemIndex
+        if (previousIndex in _filteredCompletionItems.indices) {
+            _filteredCompletionItems[previousIndex] = _filteredCompletionItems[previousIndex].copy(isSelected = false)
+        }
+
+        // Select a new item
+        if (index in _filteredCompletionItems.indices) {
+            _filteredCompletionItems[index] = _filteredCompletionItems[index].copy(isSelected = true)
+        }
+
         selectedItemIndex = index
     }
 
-    private fun normalizeIndex(index: Int) = index.coerceIn(0..filteredItems.lastIndex)
+    private fun normalizeIndex(index: Int) = index.coerceIn(0..completionItems.lastIndex)
 }
 
 /**
  * Handles navigation keyboard key events for the completion popup.
  */
 private fun <T : Searchable> Modifier.handlePopupCompletionKeyEvents(
-    popupController: CompletionPopupController<T>,
-    onItemAutocompleteConfirmed: (T) -> Unit = {},
+    popupController: CompletionPopupController<T>
 ): Modifier {
     return onPreviewKeyEvent { keyEvent ->
         if (keyEvent.type != KeyEventType.KeyDown) return@onPreviewKeyEvent false
 
         return@onPreviewKeyEvent when (keyEvent.key) {
             Key.Tab, Key.Enter, Key.NumPadEnter -> {
-                onItemAutocompleteConfirmed(popupController.onItemAutocompleteConfirmed())
+                popupController.onSelectCompletion()
                 true
             }
 
