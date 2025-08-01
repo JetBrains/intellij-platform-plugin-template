@@ -58,6 +58,10 @@ internal fun <T> SearchBarWithAutoCompletion(
         snapshotFlow { textFieldState.text.toString() }
             .distinctUntilChanged()
             .collect { searchTerm ->
+                if (searchTerm.isEmpty()) {
+                    onClear()
+                }
+
                 popupController.onQueryChanged(searchTerm)
             }
     }
@@ -81,7 +85,6 @@ internal fun <T> SearchBarWithAutoCompletion(
             trailingIcon = {
                 if (!isInputFieldEmpty) {
                     CloseIconButton {
-                        onClear()
                         textFieldState.setTextAndPlaceCursorAtEnd("")
                     }
                 }
