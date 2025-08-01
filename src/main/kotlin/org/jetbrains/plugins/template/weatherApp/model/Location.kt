@@ -13,7 +13,7 @@ import androidx.compose.runtime.Immutable
 data class Location(val name: String, val country: String) : PreviewableItem, Searchable {
     val id: String = "$name, $country"
 
-    override fun isSearchApplicable(query: String): Boolean {
+    override fun matches(query: String): Boolean {
         val applicableCandidates = listOf(
             id,
             name,

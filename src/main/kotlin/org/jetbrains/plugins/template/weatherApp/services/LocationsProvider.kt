@@ -27,6 +27,6 @@ class LocationsProvider : SearchAutoCompletionItemProvider<Location> {
     override fun provideSearchableItems(searchTerm: String): List<Location> {
         return locationStateFlow
             .value
-            .filter { it.isSearchApplicable(searchTerm) }
+            .filter { it.matches(searchTerm) }
     }
 }
