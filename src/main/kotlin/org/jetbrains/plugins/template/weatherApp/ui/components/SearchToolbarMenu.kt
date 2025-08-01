@@ -70,11 +70,11 @@ internal fun <T> SearchToolbarMenu(
                 .align(Alignment.CenterVertically),
             searchAutoCompletionItemProvider = searchAutoCompletionItemProvider,
             textFieldState = searchTextFieldState,
-            onInputCleared = {
+            onClear = {
                 isConfirmButtonVisible.value = false
                 previewItem.value = null
             },
-            onItemAutocomplete = { autocompletedItem ->
+            onSelectCompletion = { autocompletedItem ->
                 isConfirmButtonVisible.value = true
                 previewItem.value = autocompletedItem
                 onSearchPerformed(autocompletedItem)

@@ -5,7 +5,6 @@ import androidx.compose.foundation.interaction.HoverInteraction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.input.TextFieldState
-import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.foundation.text.input.setTextAndPlaceCursorAtEnd
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -22,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
 import androidx.compose.ui.zIndex
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.onEach
 import org.jetbrains.jewel.foundation.ExperimentalJewelApi
 import org.jetbrains.jewel.ui.component.Icon
 import org.jetbrains.jewel.ui.component.PopupMenu
@@ -38,10 +36,10 @@ import org.jetbrains.plugins.template.weatherApp.services.SearchAutoCompletionIt
 internal fun <T> SearchBarWithAutoCompletion(
     modifier: Modifier = Modifier,
     searchAutoCompletionItemProvider: SearchAutoCompletionItemProvider<T>,
-    textFieldState: TextFieldState = rememberTextFieldState(""),
+    textFieldState: TextFieldState,
     searchFieldPlaceholder: String = "Type a place name...",
-    onInputCleared: () -> Unit = {},
-    onItemAutocomplete: (T) -> Unit = {},
+    onClear: () -> Unit = {},
+    onSelectCompletion: (T) -> Unit = {},
 ) where T : Searchable, T : PreviewableItem {
     val focusRequester = remember { FocusRequester() }
 
@@ -67,7 +65,7 @@ internal fun <T> SearchBarWithAutoCompletion(
                     .fillMaxWidth()
                     .handlePopupCompletionKeyEvents(popupController) { item ->
                         textFieldState.setTextAndPlaceCursorAtEnd(item.label)
-                        onItemAutocomplete(item)
+                        onSelectCompletion(item)
                     }
                     .focusRequester(focusRequester),
                 placeholder = { Text(searchFieldPlaceholder) },
@@ -77,7 +75,7 @@ internal fun <T> SearchBarWithAutoCompletion(
                 trailingIcon = {
                     if (textFieldState.text.isNotBlank()) {
                         CloseIconButton {
-                            onInputCleared()
+                            onClear()
                             textFieldState.setTextAndPlaceCursorAtEnd("")
                         }
                     }
@@ -101,9 +99,9 @@ internal fun <T> SearchBarWithAutoCompletion(
                 ) {
                     popupController.filteredItems.forEach { item ->
                         selectableItem(
-                            popupController.isItemSelected(item),
+                            popupController.    isItemSelected(item),
                             onClick = {
-                                onItemAutocomplete(item)
+                                onSelectCompletion(item)
                                 popupController.onItemAutocompleteConfirmed()
                                 textFieldState.setTextAndPlaceCursorAtEnd(item.label)
                             },
