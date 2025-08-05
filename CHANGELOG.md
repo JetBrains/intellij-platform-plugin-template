@@ -10,6 +10,7 @@
 
 ### Changed
 
+- GitHub Actions: simplify changelog handling
 - Dependencies - upgrade `org.jetbrains.changelog` to `2.4.0`
 
 ## [2.2.0] - 2025-08-05
