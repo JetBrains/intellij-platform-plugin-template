@@ -10,7 +10,7 @@
 
 ### Changed
 
-- Upgrade Gradle Wrapper to `9.0.0`
+- Dependencies - upgrade `org.jetbrains.changelog` to `2.4.0`
 
 ## [2.2.0] - 2025-08-05
 
