@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.assertIsSelected
-import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import androidx.compose.ui.test.junit4.ComposeTestRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
@@ -12,7 +11,6 @@ import androidx.compose.ui.test.performClick
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
-import org.jetbrains.jewel.intui.standalone.theme.IntUiTheme
 import org.jetbrains.plugins.template.weatherApp.model.Location
 import org.jetbrains.plugins.template.weatherApp.model.SelectableLocation
 import org.jetbrains.plugins.template.weatherApp.services.MyLocationsViewModelApi
@@ -177,14 +175,6 @@ internal class MyLocationListTest : ComposeBasedTestCase() {
 
         override fun onLocationSelected(selectedLocationIndex: Int) {
             selectedItemIndex.value = selectedLocationIndex
-        }
-    }
-
-    private fun ComposeContentTestRule.setContentWrappedInTheme(content: @Composable () -> Unit) {
-        setContent {
-            IntUiTheme {
-                content()
-            }
         }
     }
 
