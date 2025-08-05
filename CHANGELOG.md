@@ -4,7 +4,13 @@
 
 ## [Unreleased]
 
+### Added
+
 - Added `.DS_Store` directory to `.gitignore`
+
+### Changed
+
+- Upgrade Gradle Wrapper to `9.0.0`
 
 ## [2.2.0] - 2025-08-05
 
