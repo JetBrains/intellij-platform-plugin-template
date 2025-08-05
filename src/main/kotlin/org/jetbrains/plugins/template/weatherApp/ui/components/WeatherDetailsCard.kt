@@ -18,10 +18,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.jewel.foundation.theme.JewelTheme
-import org.jetbrains.jewel.ui.component.ActionButton
-import org.jetbrains.jewel.ui.component.HorizontallyScrollableContainer
-import org.jetbrains.jewel.ui.component.Icon
-import org.jetbrains.jewel.ui.component.Text
+import org.jetbrains.jewel.ui.component.*
 import org.jetbrains.jewel.ui.icons.AllIconsKeys
 import org.jetbrains.plugins.template.ComposeTemplateBundle
 import org.jetbrains.plugins.template.weatherApp.WeatherAppColors
@@ -54,127 +51,170 @@ fun WeatherDetailsCard(
     val cardColor = getCardColorByTemperature(currentWeatherForecast.temperature, isNightTime)
     val textColor = Color.White
 
-    Box(
-        modifier = modifier
-            .clip(RoundedCornerShape(16.dp))
-            .background(cardColor)
-            .padding(16.dp)
-    ) {
-
-        // Card content
-        Column(
+    VerticallyScrollableContainer(modifier = modifier.safeContentPadding()) {
+        Box(
             modifier = Modifier
-                .fillMaxWidth()
+                .clip(RoundedCornerShape(16.dp))
+                .background(cardColor)
+                .padding(16.dp)
         ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                // Current Time
-                Text(
-                    text = ComposeTemplateBundle.message("weather.app.time.text", timeToDisplay),
-                    color = textColor,
-                    fontSize = JewelTheme.defaultTextStyle.fontSize,
-                    fontWeight = FontWeight.Bold
-                )
 
-                ActionButton(
-                    modifier = Modifier
-                        .clip(RoundedCornerShape(8.dp))
-                        .background(Color.Transparent)
-                        .padding(8.dp),
-                    tooltip = { Text("Refresh weather data") },
-                    onClick = { onReloadWeatherData(weatherForecastData.location) },
+            // Card content
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
                 ) {
+                    // Current Time
+                    /**
+                     * Jewel org.jetbrains.jewel.ui.component.Text
+                     * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
+                     */
+                    Text(
+                        text = ComposeTemplateBundle.message(
+                            "weather.app.time.text",
+                            formatDateTime(currentWeatherForecast.date)
+                        ),
+                        color = textColor,
+                        fontSize = JewelTheme.defaultTextStyle.fontSize,
+                        fontWeight = FontWeight.Bold
+                    )
+
+                    /**
+                     * Jewel org.jetbrains.jewel.ui.component.ActionButton
+                     * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Button.kt
+                     */
+                    ActionButton(
+                        modifier = Modifier
+                            .clip(RoundedCornerShape(8.dp))
+                            .background(Color.Transparent)
+                            .padding(8.dp),
+                        tooltip = {
+                            /**
+                             * Jewel org.jetbrains.jewel.ui.component.Text
+                             * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
+                             */
+                            Text("Refresh weather data")
+                        },
+                        onClick = { onReloadWeatherData(weatherForecastData.location) },
+                    ) {
+                        /**
+                         * Jewel org.jetbrains.jewel.ui.component.Icon
+                         * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Icon.kt
+                         */
+                        Icon(
+                            key = AllIconsKeys.Actions.Refresh,
+                            contentDescription = "Refresh",
+                            tint = Color.White
+                        )
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                // Temperature and weather type column (vertically aligned)
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+
+                    /**
+                     * Jewel org.jetbrains.jewel.ui.component.Icon
+                     * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Icon.kt
+                     */
                     Icon(
-                        key = AllIconsKeys.Actions.Refresh,
-                        contentDescription = "Refresh",
-                        tint = Color.White
+                        key = when {
+                            isNightTime -> currentWeatherForecast.weatherType.nightIconKey
+                            else -> currentWeatherForecast.weatherType.dayIconKey
+                        },
+                        contentDescription = currentWeatherForecast.weatherType.label,
+                        hint = EmbeddedToInlineCssSvgTransformerHint
+                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    // Temperature (emphasized)
+                    /**
+                     * Jewel org.jetbrains.jewel.ui.component.Text
+                     * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
+                     */
+                    Text(
+                        text = ComposeTemplateBundle.message(
+                            "weather.app.temperature.text",
+                            currentWeatherForecast.temperature.toInt()
+                        ),
+                        color = textColor,
+                        fontSize = 32.sp,
+                        fontWeight = FontWeight.ExtraBold
+                    )
+
+                    Spacer(modifier = Modifier.height(8.dp))
+
+                    // City name
+                    /**
+                     * Jewel org.jetbrains.jewel.ui.component.Text
+                     * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
+                     */
+                    Text(
+                        text = weatherForecastData.location.label,
+                        color = textColor,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold
                     )
                 }
-            }
 
-            Spacer(modifier = Modifier.height(16.dp))
+                Spacer(modifier = Modifier.height(16.dp))
 
-            // Temperature and weather type column (vertically aligned)
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
+                // Wind and humidity info
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    // Wind info
+                    /**
+                     * Jewel org.jetbrains.jewel.ui.component.Text
+                     * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
+                     */
+                    Text(
+                        text = ComposeTemplateBundle.message(
+                            "weather.app.wind.direction.text",
+                            currentWeatherForecast.windSpeed.toInt(),
+                            currentWeatherForecast.windDirection.label
+                        ),
+                        color = textColor,
+                        fontSize = 18.sp,
+                    )
 
-                Icon(
-                    key = when {
-                        isNightTime -> currentWeatherForecast.weatherType.nightIconKey
-                        else -> currentWeatherForecast.weatherType.dayIconKey
-                    },
-                    contentDescription = currentWeatherForecast.weatherType.label,
-                    hint = EmbeddedToInlineCssSvgTransformerHint
-                )
+                    // Humidity info
+                    /**
+                     * Jewel org.jetbrains.jewel.ui.component.Text
+                     * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
+                     */
+                    Text(
+                        text = ComposeTemplateBundle.message(
+                            "weather.app.humidity.text",
+                            currentWeatherForecast.humidity
+                        ),
+                        color = textColor,
+                        fontSize = 18.sp,
+                    )
+                }
 
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(24.dp))
 
-                // Temperature (emphasized)
-                Text(
-                    text = ComposeTemplateBundle.message(
-                        "weather.app.temperature.text",
-                        currentWeatherForecast.temperature.toInt()
-                    ),
-                    color = textColor,
-                    fontSize = 32.sp,
-                    fontWeight = FontWeight.ExtraBold
-                )
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                // City name
-                Text(
-                    text = weatherForecastData.location.label,
-                    color = textColor,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold
-                )
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            // Wind and humidity info
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                // Wind info
-                Text(
-                    text = ComposeTemplateBundle.message(
-                        "weather.app.wind.direction.text",
-                        currentWeatherForecast.windSpeed.toInt(),
-                        currentWeatherForecast.windDirection.label
-                    ),
-                    color = textColor,
-                    fontSize = 18.sp,
-                )
-
-                // Humidity info
-                Text(
-                    text = ComposeTemplateBundle.message(
-                        "weather.app.humidity.text",
-                        currentWeatherForecast.humidity
-                    ),
-                    color = textColor,
-                    fontSize = 18.sp,
+                // 7-day forecast section
+                SevenDaysForecastWidget(
+                    weatherForecastData,
+                    Modifier
+                        .fillMaxWidth()
+                        .wrapContentHeight()
+                        .align(Alignment.CenterHorizontally),
+                    textColor
                 )
             }
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            // 7-day forecast section
-            SevenDaysForecastWidget(
-                weatherForecastData,
-                Modifier
-                    .fillMaxWidth()
-                    .wrapContentHeight()
-                    .align(Alignment.CenterHorizontally),
-                textColor
-            )
         }
     }
 }
@@ -187,6 +227,10 @@ private fun SevenDaysForecastWidget(
 ) {
     if (weatherForecastData.dailyForecasts.isNotEmpty()) {
         Column(modifier) {
+            /**
+             * Jewel org.jetbrains.jewel.ui.component.Text
+             * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
+             */
             Text(
                 text = ComposeTemplateBundle.message("weather.app.7days.forecast.title.text"),
                 color = textColor,
@@ -198,8 +242,12 @@ private fun SevenDaysForecastWidget(
             Spacer(modifier = Modifier.height(8.dp))
 
             val scrollState = rememberLazyListState()
+            /**
+             * Jewel org.jetbrains.jewel.ui.component.HorizontallyScrollableContainer
+             * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/ScrollableContainer.kt
+             */
             HorizontallyScrollableContainer(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth().safeContentPadding(),
                 scrollState = scrollState,
             ) {
                 LazyRow(
@@ -244,6 +292,10 @@ private fun DayForecastItem(
             .padding(8.dp)
     ) {
         // Day name
+        /**
+         * Jewel org.jetbrains.jewel.ui.component.Text
+         * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
+         */
         Text(
             text = dayName,
             color = textColor,
@@ -252,6 +304,10 @@ private fun DayForecastItem(
             textAlign = TextAlign.Center
         )
 
+        /**
+         * Jewel org.jetbrains.jewel.ui.component.Text
+         * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
+         */
         Text(
             text = date,
             color = textColor,
@@ -263,6 +319,10 @@ private fun DayForecastItem(
         Spacer(modifier = Modifier.height(8.dp))
 
         // Weather icon
+        /**
+         * Jewel org.jetbrains.jewel.ui.component.Icon
+         * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Icon.kt
+         */
         Icon(
             key = if (isNightTime(forecast.date)) forecast.weatherType.nightIconKey else forecast.weatherType.dayIconKey,
             contentDescription = forecast.weatherType.label,
@@ -273,6 +333,10 @@ private fun DayForecastItem(
         Spacer(modifier = Modifier.height(8.dp))
 
         // Temperature
+        /**
+         * Jewel org.jetbrains.jewel.ui.component.Text
+         * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
+         */
         Text(
             text = ComposeTemplateBundle.message(
                 "weather.app.temperature.text",
@@ -286,6 +350,10 @@ private fun DayForecastItem(
         Spacer(modifier = Modifier.height(8.dp))
 
         // Humidity
+        /**
+         * Jewel org.jetbrains.jewel.ui.component.Text
+         * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
+         */
         Text(
             text = ComposeTemplateBundle.message(
                 "weather.app.humidity.text",
@@ -298,6 +366,10 @@ private fun DayForecastItem(
         Spacer(modifier = Modifier.height(8.dp))
 
         // Wind direction
+        /**
+         * Jewel org.jetbrains.jewel.ui.component.Text
+         * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
+         */
         Text(
             text = ComposeTemplateBundle.message(
                 "weather.app.wind.direction.text",
