@@ -52,7 +52,7 @@ interface WeatherViewModelApi {
  * @property viewModelScope The coroutine scope in which this ViewModel operates.
  * @property weatherService The service responsible for fetching weather forecasts for given locations.
  */
-class MyLocationsViewModel(
+class WeatherAppViewModel(
     myInitialLocations: List<Location>,
     private val viewModelScope: CoroutineScope,
     private val weatherService: WeatherForecastServiceApi,

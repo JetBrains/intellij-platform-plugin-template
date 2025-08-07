@@ -13,7 +13,7 @@ import org.jetbrains.plugins.template.CoroutineScopeHolder
 import org.jetbrains.plugins.template.ui.ChatAppSample
 import org.jetbrains.plugins.template.weatherApp.model.Location
 import org.jetbrains.plugins.template.weatherApp.services.LocationsProvider
-import org.jetbrains.plugins.template.weatherApp.services.MyLocationsViewModel
+import org.jetbrains.plugins.template.weatherApp.services.WeatherAppViewModel
 import org.jetbrains.plugins.template.weatherApp.services.WeatherForecastService
 import org.jetbrains.plugins.template.weatherApp.ui.WeatherAppSample
 
@@ -26,10 +26,10 @@ class ComposeSamplesToolWindowFactory : ToolWindowFactory, DumbAware {
             val locationProviderApi = remember { service<LocationsProvider>() }
             val viewModel = remember {
                 val weatherForecastServiceApi = WeatherForecastService(Dispatchers.IO)
-                MyLocationsViewModel(
+                WeatherAppViewModel(
                     listOf(Location("Munich", "Germany")),
                     coroutineScopeHolder
-                        .createScope(MyLocationsViewModel::class.java.simpleName),
+                        .createScope(WeatherAppViewModel::class.java.simpleName),
                     weatherForecastServiceApi
                 )
             }
