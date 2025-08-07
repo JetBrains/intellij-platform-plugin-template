@@ -75,6 +75,129 @@ sealed class WeatherForecastUIState {
 }
 
 /**
+ * UI state object for locations and selection
+ */
+class LocationsUIState private constructor(
+    val locations: List<Location>,
+    val selectedIndex: Int
+) {
+
+    private constructor(locations: List<Location>) : this(locations, if (locations.isEmpty()) -1 else 0)
+
+    init {
+        if (locations.isEmpty()) {
+            require(selectedIndex == -1) {
+                "For an empty list, selected index has to be -1."
+            }
+        } else {
+            require(selectedIndex in locations.indices) {
+                "Selected index has to be in range from 0 to ${locations.lastIndex}."
+            }
+        }
+    }
+
+    /**
+     * Get the currently selected location
+     */
+    val selectedLocation: Location?
+        get() = locations.getOrNull(selectedIndex)
+
+    /**
+     * Convert to UI representation with selection state
+     */
+    fun toSelectableLocations(): List<SelectableLocation> {
+        return locations.mapIndexed { index, location ->
+            SelectableLocation(location, index == selectedIndex)
+        }
+    }
+
+    /**
+     * Create new state with a location added
+     */
+    fun withLocationAdded(locationToAdd: Location): LocationsUIState {
+        val existingIndex = locations.indexOf(locationToAdd)
+        return if (existingIndex >= 0) {
+            // Location exists, just select it
+            LocationsUIState(locations = locations, selectedIndex = existingIndex)
+        } else {
+            // Add a new location and select it
+            val newLocations = locations + locationToAdd
+            LocationsUIState(
+                locations = newLocations,
+                selectedIndex = newLocations.lastIndex
+            )
+        }
+    }
+
+    /**
+     * Create a new state with a location removed
+     */
+    fun withLocationDeleted(locationToRemove: Location): LocationsUIState {
+        val indexToDelete = locations.indexOf(locationToRemove)
+        if (indexToDelete < 0) return this // Location not found
+
+        val newLocations = locations - locationToRemove
+
+        val newSelectedIndex = when {
+            newLocations.isEmpty() -> -1
+            indexToDelete <= selectedIndex -> (selectedIndex - 1).coerceIn(0, newLocations.lastIndex)
+            else -> selectedIndex // Deleted item after selected, no change
+        }
+
+        return LocationsUIState(
+            locations = newLocations,
+            selectedIndex = newSelectedIndex
+        )
+    }
+
+    /**
+     * Create new state with different selection
+     */
+    fun withItemAtIndexSelected(newIndex: Int): LocationsUIState {
+        if (newIndex == selectedIndex) return this
+
+        return LocationsUIState(locations = locations, selectedIndex = newIndex)
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as LocationsUIState
+
+        if (selectedIndex != other.selectedIndex) return false
+        if (locations != other.locations) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = selectedIndex
+        result = 31 * result + locations.hashCode()
+        return result
+    }
+
+    companion object {
+        /**
+         * Initializes a `LocationsUIState` object with the given list of locations.
+         * The initial selection index is set to `-1` if the list is empty or `0` if it contains locations.
+         *
+         * @param locations The list of locations to initialize the state with.
+         * @return The initialized `LocationsUIState` containing the provided locations and selection state.
+         */
+        fun initial(locations: List<Location>): LocationsUIState = LocationsUIState(locations = locations)
+
+        /**
+         * Creates an empty instance of `LocationsUIState` with no locations and a default selection state.
+         *
+         * @return A `LocationsUIState` initialized with an empty list of locations.
+         */
+        fun empty(): LocationsUIState = initial(emptyList())
+    }
+}
+
+
+/**
  * A ViewModel responsible for managing the user's locations and corresponding weather data.
  *
  * This class coordinates the interaction between the UI, locations, and weather data. It provides
