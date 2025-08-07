@@ -92,7 +92,9 @@ class WeatherAppViewModel(
             selectedLocationIndex.value = myLocations.value.lastIndex
         }
 
-        onReloadWeatherForecast()
+        if (_weatherForecast.value.location != locationToAdd) {
+            onReloadWeatherForecast()
+        }
     }
 
     override fun onDeleteLocation(locationToDelete: Location) {
