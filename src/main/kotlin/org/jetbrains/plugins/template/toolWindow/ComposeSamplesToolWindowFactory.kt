@@ -13,7 +13,7 @@ import org.jetbrains.plugins.template.CoroutineScopeHolder
 import org.jetbrains.plugins.template.ui.ChatAppSample
 import org.jetbrains.plugins.template.weatherApp.model.Location
 import org.jetbrains.plugins.template.weatherApp.services.LocationsProvider
-import org.jetbrains.plugins.template.weatherApp.services.WeatherAppViewModel
+import org.jetbrains.plugins.template.weatherApp.ui.WeatherAppViewModel
 import org.jetbrains.plugins.template.weatherApp.services.WeatherForecastService
 import org.jetbrains.plugins.template.weatherApp.ui.WeatherAppSample
 

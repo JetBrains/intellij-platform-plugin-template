@@ -1,6 +1,7 @@
 package org.jetbrains.plugins.template.weatherApp.services
 
 import org.jetbrains.plugins.template.weatherApp.model.Location
+import org.jetbrains.plugins.template.weatherApp.ui.LocationsUIState
 import org.junit.Assert.*
 import org.junit.Test
 

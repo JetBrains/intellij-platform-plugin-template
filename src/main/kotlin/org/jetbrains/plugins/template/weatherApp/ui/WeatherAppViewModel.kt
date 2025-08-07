@@ -1,4 +1,4 @@
-package org.jetbrains.plugins.template.weatherApp.services
+package org.jetbrains.plugins.template.weatherApp.ui
 
 import com.intellij.openapi.Disposable
 import kotlinx.coroutines.*
@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import org.jetbrains.plugins.template.weatherApp.model.Location
 import org.jetbrains.plugins.template.weatherApp.model.SelectableLocation
 import org.jetbrains.plugins.template.weatherApp.model.WeatherForecastData
+import org.jetbrains.plugins.template.weatherApp.services.WeatherForecastServiceApi
 
 
 /**

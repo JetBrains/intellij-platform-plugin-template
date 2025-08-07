@@ -12,8 +12,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.jetbrains.plugins.template.weatherApp.model.Location
-import org.jetbrains.plugins.template.weatherApp.services.LocationsUIState
-import org.jetbrains.plugins.template.weatherApp.services.MyLocationsViewModelApi
+import org.jetbrains.plugins.template.weatherApp.ui.LocationsUIState
+import org.jetbrains.plugins.template.weatherApp.ui.MyLocationsViewModelApi
 import org.jetbrains.plugins.template.weatherApp.ui.MyLocationsListWithEmptyListPlaceholder
 import org.junit.Test
 

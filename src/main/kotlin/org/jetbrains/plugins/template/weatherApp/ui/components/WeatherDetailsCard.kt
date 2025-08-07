@@ -28,7 +28,7 @@ import org.jetbrains.plugins.template.weatherApp.WeatherAppColors
 import org.jetbrains.plugins.template.weatherApp.model.DailyForecast
 import org.jetbrains.plugins.template.weatherApp.model.Location
 import org.jetbrains.plugins.template.weatherApp.model.WeatherForecastData
-import org.jetbrains.plugins.template.weatherApp.services.WeatherForecastUIState
+import org.jetbrains.plugins.template.weatherApp.ui.WeatherForecastUIState
 import org.jetbrains.plugins.template.weatherApp.ui.WeatherIcons
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
