@@ -107,7 +107,7 @@ fun <T> SearchBarWithAutoCompletion(
                     selectableItem(
                         completionItem.isSelected,
                         onClick = {
-                            popupController.onSelectCompletion()
+                            popupController.onItemClicked(completionItem)
                             textFieldState.setTextAndPlaceCursorAtEnd(completionItem.item.label)
                         },
                     ) {
@@ -147,12 +147,12 @@ fun CloseIconButton(onClick: () -> Unit) {
 }
 
 
-private data class CompletionItem<T : Searchable>(
+internal data class CompletionItem<T : Searchable>(
     val item: T,
     val isSelected: Boolean,
 )
 
-private class CompletionPopupController<T : Searchable>(
+internal class CompletionPopupController<T : Searchable>(
     private val itemsProvider: SearchAutoCompletionItemProvider<T>,
     private val onSelectCompletion: (CompletionItem<T>) -> Unit = {},
 ) {
@@ -222,16 +222,22 @@ private class CompletionPopupController<T : Searchable>(
         clearFilteredItems()
     }
 
-    fun onSelectCompletion() {
-        if (!isVisible) return
+    fun onItemClicked(clickedItem: CompletionItem<T>) {
+        doCompleteSelection(clickedItem)
+    }
 
-        val completionPopupItem = selectedItem
+    fun onSelectionConfirmed() {
+        doCompleteSelection(this.selectedItem)
+    }
+
+    private fun doCompleteSelection(selectedItem: CompletionItem<T>) {
+        if (!isVisible) return
 
         skipPopupShowing = true
 
         reset()
 
-        onSelectCompletion(completionPopupItem)
+        onSelectCompletion(selectedItem)
     }
 
     private fun updateFilteredItems(newItems: List<CompletionItem<T>>) {
@@ -279,7 +285,7 @@ private fun <T : Searchable> Modifier.handlePopupCompletionKeyEvents(
 
         return@onPreviewKeyEvent when (keyEvent.key) {
             Key.Tab, Key.Enter, Key.NumPadEnter -> {
-                popupController.onSelectCompletion()
+                popupController.onSelectionConfirmed()
                 true
             }
 
