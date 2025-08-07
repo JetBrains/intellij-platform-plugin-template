@@ -1,5 +1,6 @@
 package org.jetbrains.plugins.template.weatherApp.services
 
+import com.intellij.openapi.Disposable
 import com.intellij.openapi.application.EDT
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +19,7 @@ import org.jetbrains.plugins.template.weatherApp.model.WeatherForecastData
  * a flow to observe the list of selectable locations. Implementations are expected to handle
  * location-related logic and state management.
  */
-interface MyLocationsViewModelApi {
+interface MyLocationsViewModelApi : Disposable {
     fun onAddLocation(locationToAdd: Location)
 
     fun onDeleteLocation(locationToDelete: Location)
@@ -32,7 +33,7 @@ interface MyLocationsViewModelApi {
  * Interface representing a ViewModel for managing weather-related data
  * and user interactions.
  */
-interface WeatherViewModelApi {
+interface WeatherViewModelApi : Disposable {
     val weatherForecast: Flow<WeatherForecastData>
 
     fun onLoadWeatherForecast(location: Location)
@@ -134,7 +135,7 @@ class WeatherAppViewModel(
      * This method is used to release resources and stop ongoing tasks when the ViewModel
      * is no longer needed, ensuring proper cleanup of coroutine-based operations.
      */
-    fun cancel() {
+    override fun dispose() {
         viewModelScope.cancel()
     }
 }

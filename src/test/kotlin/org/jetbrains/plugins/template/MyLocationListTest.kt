@@ -176,6 +176,10 @@ internal class MyLocationListTest : ComposeBasedTestCase() {
         override fun onLocationSelected(selectedLocationIndex: Int) {
             selectedItemIndex.value = selectedLocationIndex
         }
+
+        override fun dispose() {
+
+        }
     }
 
     private class MyLocationListRobot(private val composableRule: ComposeTestRule) {

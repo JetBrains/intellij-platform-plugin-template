@@ -37,7 +37,7 @@ class ComposeSamplesToolWindowFactory : ToolWindowFactory, DumbAware {
             DisposableEffect(Unit) {
                 viewModel.onReloadWeatherForecast()
 
-                onDispose { viewModel.cancel() }
+                onDispose { viewModel.dispose() }
             }
 
             WeatherAppSample(
