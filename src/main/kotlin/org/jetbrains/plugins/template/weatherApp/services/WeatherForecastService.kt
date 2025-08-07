@@ -53,7 +53,7 @@ class WeatherForecastService(
 
         // Simulates a network request and stops the execution in case the coroutine
         // that launched the getWeatherData task is canceled
-        delay(100)
+        delay(3000)
 
         return WeatherForecastData(
             location = location,
