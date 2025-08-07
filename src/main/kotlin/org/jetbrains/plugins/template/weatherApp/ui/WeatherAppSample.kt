@@ -1,6 +1,5 @@
 package org.jetbrains.plugins.template.weatherApp.ui
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -8,11 +7,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import org.jetbrains.jewel.bridge.retrieveColorOrUnspecified
 import org.jetbrains.jewel.foundation.lazy.SelectableLazyColumn
 import org.jetbrains.jewel.foundation.lazy.SelectionMode
 import org.jetbrains.jewel.foundation.lazy.itemsIndexed
@@ -164,30 +160,8 @@ private fun MyLocationList(
             key = { _, item -> item.label },
         ) { index, item ->
 
-            ContentItemRow(
-                item = item, isSelected = myLocationsUIState.selectedIndex == index, isActive = isActive
-            )
+            SimpleListItem(text = item.label, isSelected = myLocationsUIState.selectedIndex == index, isActive = isActive)
         }
-    }
-}
-
-@Composable
-private fun ContentItemRow(item: Location, isSelected: Boolean, isActive: Boolean) {
-    val color = when {
-        isSelected && isActive -> retrieveColorOrUnspecified("List.selectionBackground")
-        isSelected && !isActive -> retrieveColorOrUnspecified("List.selectionInactiveBackground")
-        else -> Transparent
-    }
-    Row(
-        modifier = Modifier
-            .height(JewelTheme.globalMetrics.rowHeight)
-            .background(color)
-            .padding(horizontal = 4.dp)
-            .padding(end = scrollbarContentSafePadding()),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(4.dp),
-    ) {
-        Text(text = item.label, modifier = Modifier.weight(1f), overflow = TextOverflow.Ellipsis, maxLines = 1)
     }
 }
 
