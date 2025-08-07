@@ -10,9 +10,9 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.asStateFlow
 import org.jetbrains.plugins.template.weatherApp.model.Location
-import org.jetbrains.plugins.template.weatherApp.model.SelectableLocation
+import org.jetbrains.plugins.template.weatherApp.services.LocationsUIState
 import org.jetbrains.plugins.template.weatherApp.services.MyLocationsViewModelApi
 import org.jetbrains.plugins.template.weatherApp.ui.MyLocationsListWithEmptyListPlaceholder
 import org.junit.Test
@@ -145,40 +145,27 @@ internal class MyLocationListTest : ComposeBasedTestCase() {
         locations: List<Location> = emptyList()
     ) : MyLocationsViewModelApi {
 
-        private val locationsFlow = MutableStateFlow(locations.toMutableList())
+        private val _myLocationsUIStateFlow: MutableStateFlow<LocationsUIState> =
+            MutableStateFlow(LocationsUIState.initial(locations))
 
-        private val selectedItemIndex = MutableStateFlow(if (locations.isNotEmpty()) 0 else -1)
-        private val _myLocations = locationsFlow
-            .combine(selectedItemIndex) { locations, selectedIndex ->
-                locations.mapIndexed { index, location ->
-                    SelectableLocation(location, index == selectedIndex)
-                }
-            }
-
-        override val myLocationsFlow: Flow<List<SelectableLocation>> = _myLocations
 
         override fun onAddLocation(locationToAdd: Location) {
-            val currentLocations = locationsFlow.value
-            currentLocations.add(locationToAdd)
-
-            locationsFlow.value = currentLocations
-            selectedItemIndex.value = currentLocations.lastIndex
+            _myLocationsUIStateFlow.value = _myLocationsUIStateFlow.value.withLocationAdded(locationToAdd)
         }
 
         override fun onDeleteLocation(locationToDelete: Location) {
-            val currentLocations = locationsFlow.value
-            currentLocations.remove(locationToDelete)
+            _myLocationsUIStateFlow.value = _myLocationsUIStateFlow.value.withLocationDeleted(locationToDelete)
 
-            locationsFlow.value = currentLocations
-            selectedItemIndex.value = currentLocations.lastIndex
         }
 
         override fun onLocationSelected(selectedLocationIndex: Int) {
-            selectedItemIndex.value = selectedLocationIndex
+            _myLocationsUIStateFlow.value = _myLocationsUIStateFlow.value.withItemAtIndexSelected(selectedLocationIndex)
         }
 
-        override fun dispose() {
+        override val myLocationsUIStateFlow: Flow<LocationsUIState>
+            get() = _myLocationsUIStateFlow.asStateFlow()
 
+        override fun dispose() {
         }
     }
 

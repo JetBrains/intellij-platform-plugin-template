@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import org.jetbrains.jewel.bridge.retrieveColorOrUnspecified
 import org.jetbrains.jewel.foundation.lazy.SelectableLazyColumn
 import org.jetbrains.jewel.foundation.lazy.SelectionMode
-import org.jetbrains.jewel.foundation.lazy.items
+import org.jetbrains.jewel.foundation.lazy.itemsIndexed
 import org.jetbrains.jewel.foundation.lazy.rememberSelectableLazyListState
 import org.jetbrains.jewel.foundation.theme.JewelTheme
 import org.jetbrains.jewel.ui.component.*
@@ -23,11 +23,7 @@ import org.jetbrains.jewel.ui.icon.IconKey
 import org.jetbrains.jewel.ui.icons.AllIconsKeys
 import org.jetbrains.plugins.template.ComposeTemplateBundle
 import org.jetbrains.plugins.template.weatherApp.model.Location
-import org.jetbrains.plugins.template.weatherApp.model.SelectableLocation
-import org.jetbrains.plugins.template.weatherApp.services.MyLocationsViewModelApi
-import org.jetbrains.plugins.template.weatherApp.services.SearchAutoCompletionItemProvider
-import org.jetbrains.plugins.template.weatherApp.services.WeatherForecastUIState
-import org.jetbrains.plugins.template.weatherApp.services.WeatherViewModelApi
+import org.jetbrains.plugins.template.weatherApp.services.*
 import org.jetbrains.plugins.template.weatherApp.ui.components.SearchToolbarMenu
 import org.jetbrains.plugins.template.weatherApp.ui.components.WeatherDetailsCard
 
@@ -89,10 +85,11 @@ fun MyLocationsListWithEmptyListPlaceholder(
     modifier: Modifier = Modifier,
     myLocationsViewModelApi: MyLocationsViewModelApi
 ) {
-    val myLocations = myLocationsViewModelApi.myLocationsFlow.collectAsState(emptyList()).value
+    val myLocationsUIState =
+        myLocationsViewModelApi.myLocationsUIStateFlow.collectAsState(LocationsUIState.empty()).value
 
-    if (myLocations.isNotEmpty()) {
-        MyLocationList(myLocations, modifier, myLocationsViewModelApi)
+    if (!myLocationsUIState.isEmpty) {
+        MyLocationList(myLocationsUIState, modifier, myLocationsViewModelApi)
     } else {
         EmptyListPlaceholder(modifier)
     }
@@ -128,23 +125,23 @@ private fun EmptyListPlaceholder(
 
 @Composable
 private fun MyLocationList(
-    myLocations: List<SelectableLocation>,
+    myLocationsUIState: LocationsUIState,
     modifier: Modifier,
     myLocationsViewModelApi: MyLocationsViewModelApi
 ) {
     val listState = rememberSelectableLazyListState()
     // JEWEL-938 This will trigger on SelectableLazyColum's `onSelectedIndexesChange` callback
-    LaunchedEffect(myLocations) {
+    LaunchedEffect(myLocationsUIState) {
         var lastActiveItemIndex = -1
         val selectedItemKeys = mutableSetOf<String>()
-        myLocations.forEachIndexed { index, location ->
-            if (location.isSelected) {
+        myLocationsUIState.locations.forEachIndexed { index, location ->
+            if (index == myLocationsUIState.selectedIndex) {
                 if (lastActiveItemIndex == -1) {
                     // Only the first selected item should be active
                     lastActiveItemIndex = index
                 }
                 // Must match the key used in the `items()` call's `key` parameter to ensure correct item identity.
-                selectedItemKeys.add(location.location.label)
+                selectedItemKeys.add(location.label)
             }
         }
         // Sets the first selected item as an active item to avoid triggering on click event when user clocks on it
@@ -162,13 +159,13 @@ private fun MyLocationList(
             myLocationsViewModelApi.onLocationSelected(selectedLocationIndex)
         },
     ) {
-        items(
-            items = myLocations,
-            key = { item -> item.location.label },
-        ) { item ->
+        itemsIndexed(
+            items = myLocationsUIState.locations,
+            key = { _, item -> item.label },
+        ) { index, item ->
 
             ContentItemRow(
-                item = item.location, isSelected = item.isSelected, isActive = isActive
+                item = item, isSelected = myLocationsUIState.selectedIndex == index, isActive = isActive
             )
         }
     }
@@ -201,7 +198,9 @@ private fun RightColumn(
     searchAutoCompletionItemProvider: SearchAutoCompletionItemProvider<Location>,
     modifier: Modifier = Modifier,
 ) {
-    val weatherForecastData = weatherViewModelApi.weatherForecastUIState.collectAsState(WeatherForecastUIState.Empty).value
+    val weatherForecastData = weatherViewModelApi
+        .weatherForecastUIState
+        .collectAsState(WeatherForecastUIState.Empty).value
 
     Column(modifier) {
         SearchToolbarMenu(

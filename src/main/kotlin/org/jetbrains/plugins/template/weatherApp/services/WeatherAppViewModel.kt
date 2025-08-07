@@ -2,7 +2,9 @@ package org.jetbrains.plugins.template.weatherApp.services
 
 import com.intellij.openapi.Disposable
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import org.jetbrains.plugins.template.weatherApp.model.Location
 import org.jetbrains.plugins.template.weatherApp.model.SelectableLocation
 import org.jetbrains.plugins.template.weatherApp.model.WeatherForecastData
@@ -22,7 +24,7 @@ interface MyLocationsViewModelApi : Disposable {
 
     fun onLocationSelected(selectedLocationIndex: Int)
 
-    val myLocationsFlow: Flow<List<SelectableLocation>>
+    val myLocationsUIStateFlow: Flow<LocationsUIState>
 }
 
 /**
@@ -101,6 +103,8 @@ class LocationsUIState private constructor(
      */
     val selectedLocation: Location?
         get() = locations.getOrNull(selectedIndex)
+
+    val isEmpty: Boolean get() = locations.isEmpty()
 
     /**
      * Convert to UI representation with selection state
@@ -217,9 +221,19 @@ class WeatherAppViewModel(
 
     private var currentWeatherJob: Job? = null
 
-    private val myLocations = MutableStateFlow(myInitialLocations)
+    private val _myLocationsUIStateFlow = MutableStateFlow(LocationsUIState.initial(myInitialLocations))
 
-    private val selectedLocationIndex = MutableStateFlow(myLocations.value.lastIndex)
+    /**
+     * A state flow representing the current UI state of locations, including the list of locations
+     * and the selected location index. This is observed by the UI layer to render location data and
+     * selection state dynamically.
+     *
+     * This ensures that the state is safely encapsulated and modifications only occur through
+     * authorized ViewModel methods.
+     *
+     * @see LocationsUIState
+     */
+    override val myLocationsUIStateFlow: Flow<LocationsUIState> = _myLocationsUIStateFlow.asStateFlow()
 
     private val _weatherState = MutableStateFlow<WeatherForecastUIState>(WeatherForecastUIState.Empty)
 
@@ -235,24 +249,10 @@ class WeatherAppViewModel(
      */
     override val weatherForecastUIState: Flow<WeatherForecastUIState> = _weatherState.asStateFlow()
 
-    /**
-     * A [StateFlow] that emits a list of [SelectableLocation] objects representing the user's
-     * current locations along with the selection state of each location.
-     */
-    override val myLocationsFlow: StateFlow<List<SelectableLocation>> = myLocations
-        .combine(selectedLocationIndex) { locations, selectedIndex ->
-            locations.mapIndexed { index, location ->
-                SelectableLocation(location, index == selectedIndex)
-            }
-        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
-
     override fun onAddLocation(locationToAdd: Location) {
-        if (myLocations.value.contains(locationToAdd)) {
-            selectedLocationIndex.value = myLocations.value.indexOf(locationToAdd)
-        } else {
-            myLocations.value += locationToAdd
-            selectedLocationIndex.value = myLocations.value.lastIndex
-        }
+        val newState = _myLocationsUIStateFlow.value.withLocationAdded(locationToAdd)
+        updateLocationsUIStateWith(newState)
+
 
         if (_weatherState.value.getLocationOrNull() != locationToAdd) {
             onReloadWeatherForecast()
@@ -260,27 +260,23 @@ class WeatherAppViewModel(
     }
 
     override fun onDeleteLocation(locationToDelete: Location) {
-        myLocations.value -= locationToDelete
-
-        val itemIndex = myLocations.value.indexOf(locationToDelete)
-        val currentSelectedIndex = selectedLocationIndex.value
-        if (itemIndex in 0..currentSelectedIndex) {
-            selectedLocationIndex.value = (currentSelectedIndex - 1).coerceAtLeast(0)
-        }
+        val newState = _myLocationsUIStateFlow.value.withLocationDeleted(locationToDelete)
+        updateLocationsUIStateWith(newState)
 
         onReloadWeatherForecast()
     }
 
     override fun onLocationSelected(selectedLocationIndex: Int) {
-        if (this.selectedLocationIndex.value == selectedLocationIndex) return
+        val newState = _myLocationsUIStateFlow.value.withItemAtIndexSelected(selectedLocationIndex)
+        updateLocationsUIStateWith(newState)
 
-        this.selectedLocationIndex.value = selectedLocationIndex
-
-        onReloadWeatherForecast()
+        if (_weatherState.value.getLocationOrNull() != newState.selectedLocation) {
+            onReloadWeatherForecast()
+        }
     }
 
     override fun onReloadWeatherForecast() {
-        myLocations.value.getOrNull(selectedLocationIndex.value)?.let { location ->
+        _myLocationsUIStateFlow.value.selectedLocation?.let { location ->
             onLoadWeatherForecast(location)
         }
     }
@@ -312,6 +308,10 @@ class WeatherAppViewModel(
      */
     override fun dispose() {
         viewModelScope.cancel()
+    }
+
+    private fun updateLocationsUIStateWith(newState: LocationsUIState) {
+        _myLocationsUIStateFlow.value = newState
     }
 
     private fun errorStateFor(
