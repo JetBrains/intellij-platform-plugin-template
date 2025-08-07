@@ -1,9 +1,11 @@
 package org.jetbrains.plugins.template.weatherApp.services
 
-import com.intellij.openapi.components.Service
-import com.intellij.openapi.components.service
+import com.intellij.openapi.application.EDT
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.launch
 import org.jetbrains.plugins.template.weatherApp.model.Location
 import org.jetbrains.plugins.template.weatherApp.model.SelectableLocation
 import org.jetbrains.plugins.template.weatherApp.model.WeatherForecastData
@@ -38,27 +40,48 @@ interface WeatherViewModelApi {
     fun onReloadWeatherForecast()
 }
 
-@Service
-class MyLocationsViewModel(cs: CoroutineScope) : MyLocationsViewModelApi, WeatherViewModelApi {
+/**
+ * A ViewModel responsible for managing the user's locations and corresponding weather data.
+ *
+ * This class coordinates the interaction between the UI, locations, and weather data. It provides
+ * functionality to add, delete, select locations, and reload weather forecasts. Additionally, it
+ * supplies observable state flows for the list of selectable locations and the currently selected
+ * location's weather forecast.
+ *
+ * @property myInitialLocations The initial list of user-defined locations.
+ * @property viewModelScope The coroutine scope in which this ViewModel operates.
+ * @property weatherService The service responsible for fetching weather forecasts for given locations.
+ */
+class MyLocationsViewModel(
+    myInitialLocations: List<Location>,
+    private val viewModelScope: CoroutineScope,
+    private val weatherService: WeatherForecastServiceApi,
+) : MyLocationsViewModelApi, WeatherViewModelApi {
 
-    private val weatherService = service<WeatherForecastService>()
-
-    private val myLocations = MutableStateFlow(listOf(Location("Munich", "Germany")))
+    private val myLocations = MutableStateFlow(myInitialLocations)
 
     private val selectedLocationIndex = MutableStateFlow(myLocations.value.lastIndex)
 
-    override val weatherForecast: Flow<WeatherForecastData> = weatherService.weatherForecast
+    private val _weatherForecast = MutableStateFlow(WeatherForecastData.EMPTY)
 
+    /**
+     * A stream of weather forecast data that emits updates whenever the forecast changes.
+     *
+     * This property exposes a Flow of [WeatherForecastData], which allows consumers to observe
+     * the weather forecast information for a selected location.
+     */
+    override val weatherForecast: Flow<WeatherForecastData> = _weatherForecast.asStateFlow()
+
+    /**
+     * A [StateFlow] that emits a list of [SelectableLocation] objects representing the user's
+     * current locations along with the selection state of each location.
+     */
     override val myLocationsFlow: StateFlow<List<SelectableLocation>> = myLocations
         .combine(selectedLocationIndex) { locations, selectedIndex ->
             locations.mapIndexed { index, location ->
                 SelectableLocation(location, index == selectedIndex)
             }
-        }.stateIn(cs, SharingStarted.WhileSubscribed(), emptyList())
-
-    init {
-        onReloadWeatherForecast()
-    }
+        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
     override fun onAddLocation(locationToAdd: Location) {
         if (myLocations.value.contains(locationToAdd)) {
@@ -98,6 +121,20 @@ class MyLocationsViewModel(cs: CoroutineScope) : MyLocationsViewModelApi, Weathe
     }
 
     override fun onLoadWeatherForecast(location: Location) {
-        weatherService.loadWeatherForecastFor(location)
+        viewModelScope.launch {
+            val weatherForecastData = weatherService.loadWeatherForecastFor(location).getOrNull() ?: return@launch
+
+            _weatherForecast.value = weatherForecastData
+        }
+    }
+
+    /**
+     * Cancels all coroutines running within the context of the ViewModel's scope.
+     *
+     * This method is used to release resources and stop ongoing tasks when the ViewModel
+     * is no longer needed, ensuring proper cleanup of coroutine-based operations.
+     */
+    fun cancel() {
+        viewModelScope.cancel()
     }
 }
