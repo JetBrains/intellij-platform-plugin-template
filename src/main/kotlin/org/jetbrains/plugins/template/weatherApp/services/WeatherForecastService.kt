@@ -3,6 +3,7 @@ package org.jetbrains.plugins.template.weatherApp.services
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.yield
 import org.jetbrains.plugins.template.weatherApp.model.*
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -45,10 +46,13 @@ class WeatherForecastService(
     private suspend fun getWeatherData(location: Location): WeatherForecastData {
         val currentTime = LocalDateTime.of(LocalDate.now(), getRandomTime())
 
+        yield() // Check cancellation
+
         // Generate 7-day forecast data
         val dailyForecasts = generateDailyForecasts(currentTime)
 
-        // Simulates a network request
+        // Simulates a network request and stops the execution in case the coroutine
+        // that launched the getWeatherData task is canceled
         delay(100)
 
         return WeatherForecastData(

@@ -1,9 +1,8 @@
 package org.jetbrains.plugins.template.weatherApp.services
 
 import com.intellij.openapi.Disposable
-import com.intellij.openapi.application.EDT
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -58,6 +57,8 @@ class WeatherAppViewModel(
     private val viewModelScope: CoroutineScope,
     private val weatherService: WeatherForecastServiceApi,
 ) : MyLocationsViewModelApi, WeatherViewModelApi {
+
+    private var currentWeatherJob: Job? = null
 
     private val myLocations = MutableStateFlow(myInitialLocations)
 
@@ -124,7 +125,9 @@ class WeatherAppViewModel(
     }
 
     override fun onLoadWeatherForecast(location: Location) {
-        viewModelScope.launch {
+        currentWeatherJob?.cancel()
+
+        currentWeatherJob = viewModelScope.launch {
             val weatherForecastData = weatherService.loadWeatherForecastFor(location).getOrNull() ?: return@launch
 
             _weatherForecast.value = weatherForecastData
