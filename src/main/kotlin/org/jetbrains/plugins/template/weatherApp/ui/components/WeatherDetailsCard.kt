@@ -1,5 +1,6 @@
 package org.jetbrains.plugins.template.weatherApp.ui.components
 
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -12,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -21,35 +23,53 @@ import org.jetbrains.jewel.foundation.theme.JewelTheme
 import org.jetbrains.jewel.ui.component.*
 import org.jetbrains.jewel.ui.icons.AllIconsKeys
 import org.jetbrains.plugins.template.ComposeTemplateBundle
+import org.jetbrains.plugins.template.components.PulsingText
 import org.jetbrains.plugins.template.weatherApp.WeatherAppColors
 import org.jetbrains.plugins.template.weatherApp.model.DailyForecast
 import org.jetbrains.plugins.template.weatherApp.model.Location
 import org.jetbrains.plugins.template.weatherApp.model.WeatherForecastData
+import org.jetbrains.plugins.template.weatherApp.services.WeatherForecastUIState
+import org.jetbrains.plugins.template.weatherApp.ui.WeatherIcons
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
 import java.util.*
 
+
 /**
- * A composable function that displays a weather card with Jewel theme.
- * The card displays city name, temperature, current time, wind information,
- * humidity, and a background icon representing the weather state.
- * The card and text color change based on temperature and time of day.
+ * Displays the weather details in a styled card format. This card presents various weather information
+ * including the current time, temperature, city name, wind details, humidity, and a 7-day forecast.
+ * The appearance and content dynamically change based on the given weather state.
  *
- * @param weatherForecastData The weather data to display
- * @param modifier Additional modifier for the card
+ * @param modifier Modifier to be applied to the card layout.
+ * @param weatherForecastState The current state of the weather forecast, which dictates the displayed content
+ * and appearance. It can represent loading, success, error, or empty states.
+ * @param onReloadWeatherData Callback invoked to reload weather data when the refresh action is triggered. It
+ * provides the location for which the weather data should be fetched.
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun WeatherDetailsCard(
     modifier: Modifier = Modifier,
-    weatherForecastData: WeatherForecastData,
+    weatherForecastState: WeatherForecastUIState,
     onReloadWeatherData: (Location) -> Unit
 ) {
-    val currentWeatherForecast = weatherForecastData.currentWeatherForecast
-    val isNightTime = isNightTime(currentWeatherForecast.date)
-    val cardColor = getCardColorByTemperature(currentWeatherForecast.temperature, isNightTime)
-    val textColor = Color.White
+
+    val (cardColor, textColor) = when (weatherForecastState) {
+        is WeatherForecastUIState.Success -> {
+            val isNightTime = isNightTime(weatherForecastState.weatherForecastData.currentWeatherForecast.date)
+            val color =
+                getCardColorByTemperature(
+                    weatherForecastState.weatherForecastData.currentWeatherForecast.temperature,
+                    isNightTime
+                )
+            color to Color.White
+        }
+
+        is WeatherForecastUIState.Loading -> WeatherAppColors.mildWeatherColor to Color.White
+        is WeatherForecastUIState.Error -> WeatherAppColors.hotWeatherColor to Color.White // Brown for errors
+        is WeatherForecastUIState.Empty -> WeatherAppColors.coolWeatherColor to Color.White
+    }
 
     VerticallyScrollableContainer(modifier = modifier.safeContentPadding()) {
         Box(
@@ -69,42 +89,18 @@ fun WeatherDetailsCard(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     // Current Time
-                    /**
-                     * Jewel org.jetbrains.jewel.ui.component.Text
-                     * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
-                     */
-                    Text(
-                        text = ComposeTemplateBundle.message(
-                            "weather.app.time.text",
-                            formatDateTime(currentWeatherForecast.date)
-                        ),
-                        color = textColor,
-                        fontSize = JewelTheme.defaultTextStyle.fontSize,
-                        fontWeight = FontWeight.Bold
-                    )
+                    TimeDisplay(weatherForecastState, textColor)
 
-                    /**
-                     * Jewel org.jetbrains.jewel.ui.component.ActionButton
-                     * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Button.kt
-                     */
                     ActionButton(
                         modifier = Modifier
                             .clip(RoundedCornerShape(8.dp))
                             .background(Color.Transparent)
                             .padding(8.dp),
-                        tooltip = {
-                            /**
-                             * Jewel org.jetbrains.jewel.ui.component.Text
-                             * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
-                             */
-                            Text("Refresh weather data")
+                        tooltip = { Text("Refresh weather data") },
+                        onClick = {
+                            weatherForecastState.getLocationOrNull()?.let { onReloadWeatherData(it) }
                         },
-                        onClick = { onReloadWeatherData(weatherForecastData.location) },
                     ) {
-                        /**
-                         * Jewel org.jetbrains.jewel.ui.component.Icon
-                         * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Icon.kt
-                         */
                         Icon(
                             key = AllIconsKeys.Actions.Refresh,
                             contentDescription = "Refresh",
@@ -121,98 +117,33 @@ fun WeatherDetailsCard(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
 
-                    /**
-                     * Jewel org.jetbrains.jewel.ui.component.Icon
-                     * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Icon.kt
-                     */
-                    Icon(
-                        key = when {
-                            isNightTime -> currentWeatherForecast.weatherType.nightIconKey
-                            else -> currentWeatherForecast.weatherType.dayIconKey
-                        },
-                        contentDescription = currentWeatherForecast.weatherType.label,
-                        hint = EmbeddedToInlineCssSvgTransformerHint
-                    )
+                    WeatherIconDisplay(weatherForecastState)
 
                     Spacer(modifier = Modifier.height(8.dp))
 
-                    // Temperature (emphasized)
-                    /**
-                     * Jewel org.jetbrains.jewel.ui.component.Text
-                     * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
-                     */
-                    Text(
-                        text = ComposeTemplateBundle.message(
-                            "weather.app.temperature.text",
-                            currentWeatherForecast.temperature.toInt()
-                        ),
-                        color = textColor,
-                        fontSize = 32.sp,
-                        fontWeight = FontWeight.ExtraBold
-                    )
+                    TemperatureDisplay(weatherForecastState, textColor)
 
                     Spacer(modifier = Modifier.height(8.dp))
 
                     // City name
-                    /**
-                     * Jewel org.jetbrains.jewel.ui.component.Text
-                     * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
-                     */
-                    Text(
-                        text = weatherForecastData.location.label,
-                        color = textColor,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold
-                    )
+                    CityNameDisplay(weatherForecastState, textColor)
                 }
 
                 Spacer(modifier = Modifier.height(16.dp))
 
                 // Wind and humidity info
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    // Wind info
-                    /**
-                     * Jewel org.jetbrains.jewel.ui.component.Text
-                     * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
-                     */
-                    Text(
-                        text = ComposeTemplateBundle.message(
-                            "weather.app.wind.direction.text",
-                            currentWeatherForecast.windSpeed.toInt(),
-                            currentWeatherForecast.windDirection.label
-                        ),
-                        color = textColor,
-                        fontSize = 18.sp,
-                    )
-
-                    // Humidity info
-                    /**
-                     * Jewel org.jetbrains.jewel.ui.component.Text
-                     * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
-                     */
-                    Text(
-                        text = ComposeTemplateBundle.message(
-                            "weather.app.humidity.text",
-                            currentWeatherForecast.humidity
-                        ),
-                        color = textColor,
-                        fontSize = 18.sp,
-                    )
-                }
+                WeatherDetailsRow(Modifier.fillMaxWidth(), weatherForecastState, textColor)
 
                 Spacer(modifier = Modifier.height(24.dp))
 
                 // 7-day forecast section
                 SevenDaysForecastWidget(
-                    weatherForecastData,
+                    weatherForecastState,
+                    textColor,
                     Modifier
                         .fillMaxWidth()
                         .wrapContentHeight()
-                        .align(Alignment.CenterHorizontally),
-                    textColor
+                        .align(Alignment.CenterHorizontally)
                 )
             }
         }
@@ -227,10 +158,6 @@ private fun SevenDaysForecastWidget(
 ) {
     if (weatherForecastData.dailyForecasts.isNotEmpty()) {
         Column(modifier) {
-            /**
-             * Jewel org.jetbrains.jewel.ui.component.Text
-             * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
-             */
             Text(
                 text = ComposeTemplateBundle.message("weather.app.7days.forecast.title.text"),
                 color = textColor,
@@ -242,10 +169,7 @@ private fun SevenDaysForecastWidget(
             Spacer(modifier = Modifier.height(8.dp))
 
             val scrollState = rememberLazyListState()
-            /**
-             * Jewel org.jetbrains.jewel.ui.component.HorizontallyScrollableContainer
-             * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/ScrollableContainer.kt
-             */
+
             HorizontallyScrollableContainer(
                 modifier = Modifier.fillMaxWidth().safeContentPadding(),
                 scrollState = scrollState,
@@ -292,10 +216,6 @@ private fun DayForecastItem(
             .padding(8.dp)
     ) {
         // Day name
-        /**
-         * Jewel org.jetbrains.jewel.ui.component.Text
-         * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
-         */
         Text(
             text = dayName,
             color = textColor,
@@ -304,10 +224,6 @@ private fun DayForecastItem(
             textAlign = TextAlign.Center
         )
 
-        /**
-         * Jewel org.jetbrains.jewel.ui.component.Text
-         * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
-         */
         Text(
             text = date,
             color = textColor,
@@ -319,10 +235,6 @@ private fun DayForecastItem(
         Spacer(modifier = Modifier.height(8.dp))
 
         // Weather icon
-        /**
-         * Jewel org.jetbrains.jewel.ui.component.Icon
-         * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Icon.kt
-         */
         Icon(
             key = if (isNightTime(forecast.date)) forecast.weatherType.nightIconKey else forecast.weatherType.dayIconKey,
             contentDescription = forecast.weatherType.label,
@@ -333,10 +245,6 @@ private fun DayForecastItem(
         Spacer(modifier = Modifier.height(8.dp))
 
         // Temperature
-        /**
-         * Jewel org.jetbrains.jewel.ui.component.Text
-         * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
-         */
         Text(
             text = ComposeTemplateBundle.message(
                 "weather.app.temperature.text",
@@ -350,10 +258,6 @@ private fun DayForecastItem(
         Spacer(modifier = Modifier.height(8.dp))
 
         // Humidity
-        /**
-         * Jewel org.jetbrains.jewel.ui.component.Text
-         * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
-         */
         Text(
             text = ComposeTemplateBundle.message(
                 "weather.app.humidity.text",
@@ -366,10 +270,6 @@ private fun DayForecastItem(
         Spacer(modifier = Modifier.height(8.dp))
 
         // Wind direction
-        /**
-         * Jewel org.jetbrains.jewel.ui.component.Text
-         * @see https://github.com/JetBrains/intellij-community/blob/master/platform/jewel/ui/src/main/kotlin/org/jetbrains/jewel/ui/component/Text.kt
-         */
         Text(
             text = ComposeTemplateBundle.message(
                 "weather.app.wind.direction.text",
@@ -380,6 +280,327 @@ private fun DayForecastItem(
             fontSize = 12.sp
         )
     }
+}
+
+/**
+ * Time display component with loading state
+ */
+@Composable
+private fun TimeDisplay(
+    weatherState: WeatherForecastUIState,
+    textColor: Color
+) {
+    val text = when (weatherState) {
+        is WeatherForecastUIState.Success -> formatDateTime(weatherState.weatherForecastData.currentWeatherForecast.date)
+        else -> "-"
+    }.let { time -> ComposeTemplateBundle.message("weather.app.time.text", time) }
+
+    PulsingText(
+        text,
+        weatherState.isLoading,
+        color = textColor,
+        fontSize = JewelTheme.defaultTextStyle.fontSize,
+        fontWeight = FontWeight.Bold
+    )
+}
+
+/**
+ * Weather icon that shows spinning progress during loading
+ */
+@Composable
+private fun WeatherIconDisplay(
+    weatherState: WeatherForecastUIState,
+    modifier: Modifier = Modifier
+) {
+    when (weatherState) {
+        is WeatherForecastUIState.Loading -> {
+            val infiniteTransition = rememberInfiniteTransition(label = "rotating_weather_icon")
+
+            val rotation = infiniteTransition.animateFloat(
+                initialValue = 0f,
+                targetValue = 360f,
+                animationSpec = infiniteRepeatable(
+                    animation = tween(
+                        durationMillis = 3000, // 3 seconds per rotation
+                        easing = FastOutSlowInEasing
+                    ),
+                    repeatMode = RepeatMode.Reverse
+                ),
+                label = "icon_rotation"
+            ).value
+
+            Icon(
+                key = WeatherIcons.dayClear,
+                contentDescription = null,
+                modifier = modifier.rotate(rotation),
+                hint = EmbeddedToInlineCssSvgTransformerHint
+            )
+        }
+
+        is WeatherForecastUIState.Success -> {
+            val currentForecast = weatherState.weatherForecastData.currentWeatherForecast
+            val isNightTime = isNightTime(currentForecast.date)
+
+            Icon(
+                key = if (isNightTime) {
+                    currentForecast.weatherType.nightIconKey
+                } else {
+                    currentForecast.weatherType.dayIconKey
+                },
+                contentDescription = currentForecast.weatherType.label,
+                hint = EmbeddedToInlineCssSvgTransformerHint,
+                modifier = modifier
+            )
+        }
+
+        is WeatherForecastUIState.Error -> {
+            Icon(
+                key = AllIconsKeys.General.Warning,
+                contentDescription = "Weather data error",
+                tint = Color.White.copy(alpha = 0.8f),
+                modifier = modifier
+            )
+        }
+
+        is WeatherForecastUIState.Empty -> {
+            Icon(
+                key = AllIconsKeys.Actions.Find,
+                contentDescription = "No location selected",
+                tint = Color.White.copy(alpha = 0.6f),
+                modifier = modifier
+            )
+        }
+    }
+}
+
+/**
+ * Temperature display with loading animation
+ */
+@Composable
+private fun TemperatureDisplay(
+    weatherState: WeatherForecastUIState,
+    textColor: Color
+) {
+    val temperatureText = when (weatherState) {
+        is WeatherForecastUIState.Success -> ComposeTemplateBundle.message(
+            "weather.app.temperature.text",
+            weatherState.weatherForecastData.currentWeatherForecast.temperature.toInt()
+        )
+
+        is WeatherForecastUIState.Loading -> "--°"
+        is WeatherForecastUIState.Error -> "N/A°"
+        is WeatherForecastUIState.Empty -> "--°"
+    }
+
+    PulsingText(
+        text = temperatureText,
+        isLoading = weatherState.isLoading,
+        color = textColor,
+        fontSize = 32.sp,
+        fontWeight = FontWeight.ExtraBold
+    )
+}
+
+/**
+ * City name display that shows "Loading..." during loading state
+ */
+@Composable
+private fun CityNameDisplay(
+    weatherState: WeatherForecastUIState,
+    textColor: Color
+) {
+    val loadingText = when (weatherState) {
+        is WeatherForecastUIState.Success -> weatherState.weatherForecastData.location.label
+        is WeatherForecastUIState.Loading -> weatherState.location.label
+        is WeatherForecastUIState.Error -> "weatherState.location.label} - Error"
+        is WeatherForecastUIState.Empty -> "Select a location"
+    }
+
+    PulsingText(
+        text = loadingText,
+        isLoading = weatherState.isLoading,
+        color = textColor,
+        fontSize = 18.sp,
+        fontWeight = FontWeight.Bold
+    )
+}
+
+/**
+ * Composable function to display a row of weather details including wind and humidity information.
+ *
+ * @param modifier A [Modifier] that can be used to customize the layout or add behavior to the composable.
+ * @param weatherState The current state of the weather forecast, represented by [WeatherForecastUIState].
+ *                     This determines the display of wind and humidity information based on state.
+ * @param textColor The color to be applied to the text of the weather details.
+ */
+@Composable
+private fun WeatherDetailsRow(
+    modifier: Modifier,
+    weatherState: WeatherForecastUIState,
+    textColor: Color
+) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        // Wind info
+        val windText = when (weatherState) {
+            is WeatherForecastUIState.Success -> {
+                val forecast = weatherState.weatherForecastData.currentWeatherForecast
+                ComposeTemplateBundle.message(
+                    "weather.app.wind.direction.text",
+                    forecast.windSpeed.toInt(),
+                    forecast.windDirection.label
+                )
+            }
+
+            is WeatherForecastUIState.Loading -> "Wind: --"
+            is WeatherForecastUIState.Error -> "Wind: N/A"
+            is WeatherForecastUIState.Empty -> "Wind: --"
+        }
+
+        PulsingText(
+            windText,
+            weatherState.isLoading,
+            color = textColor,
+            fontSize = 18.sp
+        )
+
+        // Humidity info
+        val humidityText = when (weatherState) {
+            is WeatherForecastUIState.Success -> ComposeTemplateBundle.message(
+                "weather.app.humidity.text",
+                weatherState.weatherForecastData.currentWeatherForecast.humidity
+            )
+
+            is WeatherForecastUIState.Loading -> "Humidity: -- %"
+            is WeatherForecastUIState.Error -> "Humidity: N/A"
+            is WeatherForecastUIState.Empty -> "Humidity: -- %"
+        }
+        PulsingText(
+            text = humidityText,
+            weatherState.isLoading,
+            color = textColor,
+            fontSize = 18.sp
+        )
+
+    }
+}
+
+/**
+ * Forecast section that shows skeleton during loading
+ */
+@Composable
+private fun SevenDaysForecastWidget(
+    weatherState: WeatherForecastUIState,
+    textColor: Color,
+    modifier: Modifier
+) {
+    when (weatherState) {
+        is WeatherForecastUIState.Success -> {
+            if (weatherState.weatherForecastData.dailyForecasts.isNotEmpty()) {
+                SevenDaysForecastWidget(
+                    weatherState.weatherForecastData,
+                    modifier,
+                    textColor
+                )
+            }
+        }
+
+        is WeatherForecastUIState.Loading -> LoadingForecastSkeleton(textColor)
+        is WeatherForecastUIState.Error -> ErrorForecastMessage(textColor)
+        is WeatherForecastUIState.Empty -> EmptyForecastMessage(textColor)
+    }
+}
+
+/**
+ * Loading skeleton for forecast section
+ */
+@Composable
+private fun LoadingForecastSkeleton(textColor: Color) {
+    Column {
+        Text(
+            text = ComposeTemplateBundle.message("weather.app.7days.forecast.title.text"),
+            color = textColor.copy(alpha = 0.7f),
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(bottom = 8.dp)
+        )
+
+        val scrollState = rememberLazyListState()
+        HorizontallyScrollableContainer(
+            modifier = Modifier.fillMaxWidth().safeContentPadding(),
+            scrollState = scrollState,
+        ) {
+            LazyRow(
+                state = scrollState,
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                items(count = 7) { LoadingForecastItem(textColor) }
+            }
+        }
+    }
+}
+
+@Composable
+private fun LoadingForecastItem(textColor: Color) {
+    val infiniteTransition = rememberInfiniteTransition()
+    val alpha = infiniteTransition.animateFloat(
+        initialValue = 0.3f,
+        targetValue = 0.6f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(1000),
+            repeatMode = RepeatMode.Reverse
+        )
+    ).value
+
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier
+            .width(120.dp)
+            .border(1.dp, textColor.copy(alpha = 0.3f), RoundedCornerShape(8.dp))
+            .padding(8.dp)
+    ) {
+        Text("--", color = textColor.copy(alpha = alpha), fontSize = 14.sp)
+        Text("", color = textColor.copy(alpha = alpha), fontSize = 14.sp)
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Box(
+            modifier = Modifier
+                .size(48.dp)
+                .background(textColor.copy(alpha = alpha), RoundedCornerShape(4.dp))
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Text("--°", color = textColor.copy(alpha = alpha), fontSize = 16.sp)
+        Text("", color = textColor.copy(alpha = alpha), fontSize = 14.sp)
+    }
+}
+
+@Composable
+private fun ErrorForecastMessage(textColor: Color) {
+    Text(
+        text = "Forecast unavailable",
+        color = textColor.copy(alpha = 0.7f),
+        fontSize = 16.sp,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.fillMaxWidth()
+    )
+}
+
+@Composable
+private fun EmptyForecastMessage(textColor: Color) {
+    Text(
+        text = "Select a location to view forecast",
+        color = textColor.copy(alpha = 0.7f),
+        fontSize = 16.sp,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.fillMaxWidth()
+    )
 }
 
 /**

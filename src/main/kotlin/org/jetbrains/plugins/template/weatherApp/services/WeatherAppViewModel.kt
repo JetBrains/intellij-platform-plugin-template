@@ -1,11 +1,8 @@
 package org.jetbrains.plugins.template.weatherApp.services
 
 import com.intellij.openapi.Disposable
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.cancel
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import org.jetbrains.plugins.template.weatherApp.model.Location
 import org.jetbrains.plugins.template.weatherApp.model.SelectableLocation
 import org.jetbrains.plugins.template.weatherApp.model.WeatherForecastData
@@ -33,11 +30,48 @@ interface MyLocationsViewModelApi : Disposable {
  * and user interactions.
  */
 interface WeatherViewModelApi : Disposable {
-    val weatherForecast: Flow<WeatherForecastData>
+    val weatherForecastUIState: Flow<WeatherForecastUIState>
 
     fun onLoadWeatherForecast(location: Location)
 
     fun onReloadWeatherForecast()
+}
+
+/**
+ * Represents the state of a weather data fetching process.
+ *
+ * This class is sealed, meaning it can have a fixed set of subclasses
+ * that represent each possible state of the process. It is designed to
+ * handle and encapsulate the different phases or outcomes when fetching
+ * weather information, such as loading, success, error, or empty state.
+ *
+ * Subclasses:
+ * - `Loading`: Indicates that the weather data is currently being fetched.
+ * - `Success`: Indicates that the weather data was successfully fetched and
+ *   contains the loaded data of type `WeatherForecastData`.
+ * - `Error`: Indicates a failure in fetching the weather data, carrying the
+ *   error message and optional cause details.
+ * - `Empty`: Indicates that no weather data is available, typically because
+ *   no location has been selected.
+ */
+sealed class WeatherForecastUIState {
+    data class Loading(val location: Location) : WeatherForecastUIState()
+    data class Success(val weatherForecastData: WeatherForecastData) : WeatherForecastUIState()
+    data class Error(val message: String, val location: Location, val cause: Throwable? = null) :
+        WeatherForecastUIState()
+
+    object Empty : WeatherForecastUIState() // When no location is selected
+
+    fun getLocationOrNull(): Location? {
+        return when (this) {
+            Empty -> null
+            is Error -> location
+            is Loading -> location
+            is Success -> weatherForecastData.location
+        }
+    }
+
+    val isLoading: Boolean get() = this is Loading
 }
 
 /**
@@ -64,15 +98,19 @@ class WeatherAppViewModel(
 
     private val selectedLocationIndex = MutableStateFlow(myLocations.value.lastIndex)
 
-    private val _weatherForecast = MutableStateFlow(WeatherForecastData.EMPTY)
+    private val _weatherState = MutableStateFlow<WeatherForecastUIState>(WeatherForecastUIState.Empty)
 
     /**
-     * A stream of weather forecast data that emits updates whenever the forecast changes.
+     * A flow representing the current UI state of the weather forecast.
      *
-     * This property exposes a Flow of [WeatherForecastData], which allows consumers to observe
-     * the weather forecast information for a selected location.
+     * This flow emits instances of [WeatherForecastUIState], which encapsulate information
+     * about the state of weather data loading and processing. The emitted states can represent
+     * scenarios such as the data being loaded, successfully fetched, an error occurring, or
+     * the absence of data when no location is selected.
+     *
+     * Observers of this flow can react to these state changes to update the UI accordingly.
      */
-    override val weatherForecast: Flow<WeatherForecastData> = _weatherForecast.asStateFlow()
+    override val weatherForecastUIState: Flow<WeatherForecastUIState> = _weatherState.asStateFlow()
 
     /**
      * A [StateFlow] that emits a list of [SelectableLocation] objects representing the user's
@@ -93,7 +131,7 @@ class WeatherAppViewModel(
             selectedLocationIndex.value = myLocations.value.lastIndex
         }
 
-        if (_weatherForecast.value.location != locationToAdd) {
+        if (_weatherState.value.getLocationOrNull() != locationToAdd) {
             onReloadWeatherForecast()
         }
     }
@@ -128,9 +166,18 @@ class WeatherAppViewModel(
         currentWeatherJob?.cancel()
 
         currentWeatherJob = viewModelScope.launch {
-            val weatherForecastData = weatherService.loadWeatherForecastFor(location).getOrNull() ?: return@launch
+            _weatherState.value = WeatherForecastUIState.Loading(location)
 
-            _weatherForecast.value = weatherForecastData
+            weatherService.loadWeatherForecastFor(location)
+                .onSuccess { weatherData ->
+                    _weatherState.value = WeatherForecastUIState.Success(weatherData)
+                }.onFailure { error ->
+                    if (error is CancellationException) {
+                        throw error
+                    }
+
+                    _weatherState.value = errorStateFor(location, error)
+                }
         }
     }
 
@@ -143,4 +190,13 @@ class WeatherAppViewModel(
     override fun dispose() {
         viewModelScope.cancel()
     }
+
+    private fun errorStateFor(
+        location: Location,
+        error: Throwable
+    ): WeatherForecastUIState.Error = WeatherForecastUIState.Error(
+        "Failed to load weather forecast for ${location.label}",
+        location,
+        error
+    )
 }

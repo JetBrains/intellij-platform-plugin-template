@@ -24,9 +24,9 @@ import org.jetbrains.jewel.ui.icons.AllIconsKeys
 import org.jetbrains.plugins.template.ComposeTemplateBundle
 import org.jetbrains.plugins.template.weatherApp.model.Location
 import org.jetbrains.plugins.template.weatherApp.model.SelectableLocation
-import org.jetbrains.plugins.template.weatherApp.model.WeatherForecastData
 import org.jetbrains.plugins.template.weatherApp.services.MyLocationsViewModelApi
 import org.jetbrains.plugins.template.weatherApp.services.SearchAutoCompletionItemProvider
+import org.jetbrains.plugins.template.weatherApp.services.WeatherForecastUIState
 import org.jetbrains.plugins.template.weatherApp.services.WeatherViewModelApi
 import org.jetbrains.plugins.template.weatherApp.ui.components.SearchToolbarMenu
 import org.jetbrains.plugins.template.weatherApp.ui.components.WeatherDetailsCard
@@ -201,7 +201,7 @@ private fun RightColumn(
     searchAutoCompletionItemProvider: SearchAutoCompletionItemProvider<Location>,
     modifier: Modifier = Modifier,
 ) {
-    val weatherForecastData = weatherViewModelApi.weatherForecast.collectAsState(WeatherForecastData.EMPTY).value
+    val weatherForecastData = weatherViewModelApi.weatherForecastUIState.collectAsState(WeatherForecastUIState.Empty).value
 
     Column(modifier) {
         SearchToolbarMenu(
