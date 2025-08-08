@@ -25,11 +25,16 @@ repositories {
     intellijPlatform {
         defaultRepositories()
     }
+    // Needed for tests
+    google()
 }
 
 dependencies {
     testImplementation(libs.junit)
     testImplementation(libs.opentest4j)
+    testImplementation(libs.hamcrest)
+    testImplementation(libs.composeuitest)
+    testImplementation(libs.jewelstandalone)
 
     intellijPlatform {
         create(providers.gradleProperty("platformType"), providers.gradleProperty("platformVersion"))
