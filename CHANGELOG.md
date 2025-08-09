@@ -8,6 +8,10 @@
 
 - Add `platformBundledModules` to `gradle.properties` along with `bundledModules()` helper to the Gradle build file
 
+### Changed
+
+- Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.7.1`
+
 ### Fixed
 
 - GitHub: Fixed the missing `$RELEASE_NOTE ` parent directory in the Release workflow
