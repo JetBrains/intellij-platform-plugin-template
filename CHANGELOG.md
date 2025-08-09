@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### Added
+
+- Add `platformBundledModules` to `gradle.properties` along with `bundledModules()` helper to the Gradle build file
+
+### Fixed
+
+- GitHub: Fixed the missing `$RELEASE_NOTE ` parent directory in the Release workflow
+
 ## [2.3.0] - 2025-08-09
 
 ### Added
