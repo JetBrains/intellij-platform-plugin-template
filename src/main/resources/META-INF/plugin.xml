@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>org.jetbrains.plugins.compose.template</id>
     <name>Compose Template Example</name>
-    <vendor>JetBrains</vendor>
+    <vendor url="https://www.yourcompany.com">YourCompany</vendor>
 
     <dependencies>
         <module name="intellij.libraries.skiko"></module>
