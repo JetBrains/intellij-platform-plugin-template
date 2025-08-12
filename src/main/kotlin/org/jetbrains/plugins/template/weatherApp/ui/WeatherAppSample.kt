@@ -1,14 +1,20 @@
 package org.jetbrains.plugins.template.weatherApp.ui
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.PointerEventType
+import androidx.compose.ui.input.pointer.isSecondaryPressed
+import androidx.compose.ui.input.pointer.onPointerEvent
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.layout.positionInWindow
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.*
+import androidx.compose.ui.window.PopupPositionProvider
 import org.jetbrains.jewel.foundation.lazy.SelectableLazyColumn
 import org.jetbrains.jewel.foundation.lazy.SelectionMode
 import org.jetbrains.jewel.foundation.lazy.itemsIndexed
@@ -18,8 +24,10 @@ import org.jetbrains.jewel.ui.component.*
 import org.jetbrains.jewel.ui.icon.IconKey
 import org.jetbrains.jewel.ui.icons.AllIconsKeys
 import org.jetbrains.plugins.template.ComposeTemplateBundle
+import org.jetbrains.plugins.template.components.ContextPopupMenu
+import org.jetbrains.plugins.template.components.ContextPopupMenuItem
 import org.jetbrains.plugins.template.weatherApp.model.Location
-import org.jetbrains.plugins.template.weatherApp.services.*
+import org.jetbrains.plugins.template.weatherApp.services.SearchAutoCompletionItemProvider
 import org.jetbrains.plugins.template.weatherApp.ui.components.SearchToolbarMenu
 import org.jetbrains.plugins.template.weatherApp.ui.components.WeatherDetailsCard
 
@@ -119,6 +127,7 @@ private fun EmptyListPlaceholder(
     }
 }
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun MyLocationList(
     myLocationsUIState: LocationsUIState,
@@ -158,9 +167,66 @@ private fun MyLocationList(
         itemsIndexed(
             items = myLocationsUIState.locations,
             key = { _, item -> item.label },
-        ) { index, item ->
+        ) { index, locationItem ->
 
-            SimpleListItem(text = item.label, isSelected = myLocationsUIState.selectedIndex == index, isActive = isActive)
+            Box(Modifier.wrapContentSize()) {
+                val showPopup = remember { mutableStateOf(false) }
+                val popupPosition = remember { mutableStateOf(IntOffset.Zero) }
+                val itemPosition = remember { mutableStateOf(Offset.Zero) }
+
+                SimpleListItem(
+                    text = locationItem.label,
+                    isSelected = myLocationsUIState.selectedIndex == index,
+                    isActive = isActive,
+                    modifier = Modifier
+                        .onGloballyPositioned { coordinates ->
+                            itemPosition.value = coordinates.positionInWindow()
+                        }
+                        .onPointerEvent(PointerEventType.Press) { pointerEvent ->
+                            if (!pointerEvent.buttons.isSecondaryPressed) return@onPointerEvent
+
+                            // Calculate exact click position
+                            val clickOffset = pointerEvent.changes.first().position
+                            popupPosition.value = IntOffset(
+                                x = (itemPosition.value.x + clickOffset.x).toInt(),
+                                y = (itemPosition.value.y + clickOffset.y).toInt()
+                            )
+
+                            showPopup.value = true
+                        }
+                )
+
+                if (showPopup.value) {
+                    val popupPositionProvider = remember(popupPosition.value) {
+                        object : PopupPositionProvider {
+                            override fun calculatePosition(
+                                anchorBounds: IntRect,
+                                windowSize: IntSize,
+                                layoutDirection: LayoutDirection,
+                                popupContentSize: IntSize
+                            ): IntOffset = popupPosition.value
+                        }
+                    }
+
+                    ContextPopupMenu(
+                        popupPositionProvider,
+                        onDismissRequest = {
+                            showPopup.value = false
+                            popupPosition.value = IntOffset.Zero
+                            itemPosition.value = Offset.Zero
+                        }
+                    ) {
+                        ContextPopupMenuItem(
+                            ComposeTemplateBundle.getMessage("weather.app.context.menu.delete.option"),
+                            AllIconsKeys.General.Delete
+                        ) {
+                            showPopup.value = false
+
+                            myLocationsViewModelApi.onDeleteLocation(locationItem)
+                        }
+                    }
+                }
+            }
         }
     }
 }
