@@ -31,9 +31,7 @@ repositories {
     }
 }
 
-
-
-
+// Configure the uiTest SourceSet
 sourceSets {
     create("uiTest", Action<SourceSet> {
         compileClasspath += sourceSets["main"].output + sourceSets["test"].output
@@ -48,7 +46,6 @@ idea {
         testResources.from(sourceSets["uiTest"].resources.srcDirs)
     }
 }
-
 
 val uiTestImplementation: Configuration by configurations.getting {
     extendsFrom(configurations.testImplementation.get())
@@ -77,7 +74,6 @@ dependencies {
 
         // Test framework dependencies
         testFramework(TestFrameworkType.Platform)
-        testFramework(TestFrameworkType.JUnit5)
 
         // UI Test framework dependencies
         testFramework(TestFrameworkType.Starter, configurationName = "uiTestImplementation")
@@ -104,15 +100,6 @@ kotlin {
         vendor = JvmVendorSpec.JETBRAINS
     }
 
-    compilerOptions {
-        apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_2)
-        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
-        languageVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_2)
-        freeCompilerArgs.addAll(
-            "-Xjvm-default=all",
-            "-opt-in=kotlinx.serialization.ExperimentalSerializationApi"
-        )
-    }
 }
 
 intellijPlatform {
@@ -207,31 +194,7 @@ tasks {
     publishPlugin {
         dependsOn(patchChangelog)
     }
-
-    test {
-        useJUnitPlatform {
-            excludeTags("ui")
-        }
-
-        // Enable process-level parallelism (safer than method-level parallelism)
-        maxParallelForks = minOf(Runtime.getRuntime().availableProcessors() / 2, 3)
-
-        // Keep JUnit execution sequential within each process for stability
-        systemProperty("junit.jupiter.execution.parallel.enabled", "false")
-
-
-        systemProperty("idea.home.path", prepareTestSandbox.get().getDestinationDir().parentFile.absolutePath)
-        systemProperty("idea.force.use.core.classloader", "true")
-
-        jvmArgs = listOf(
-            "-Didea.trust.all.projects=true",
-            "--add-opens=java.base/java.lang=ALL-UNNAMED",
-            "--add-opens=java.desktop/javax.swing=ALL-UNNAMED"
-        )
-
-        dependsOn("buildPlugin")
-    }
-
+    
     register<Test>("uiTest") {
         description = "Runs only the UI tests that start the IDE"
         group = "verification"
