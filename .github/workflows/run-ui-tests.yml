@@ -14,7 +14,7 @@ on:
 jobs:
   # UI Test Jobs (one per OS/test combination)
   testUI:
-    name: Run UI Test (${{ matrix.osName }} - ${{ matrix.test }})
+    name: Run UI Test on ${{ matrix.osName }}
     runs-on: ${{ matrix.runner }}
     permissions:
       contents: write
@@ -27,11 +27,9 @@ jobs:
           # Linux test
           - runner: ubuntu-latest
             osName: Linux
-            test: org.jetbrains.plugins.template.ui.MyProjectUITest
           # macOS test
           - runner: macos-latest
             osName: macOS
-            test: org.jetbrains.plugins.template.ui.MyProjectUITest
 
     steps:
       - name: Fetch Sources
@@ -62,16 +60,15 @@ jobs:
           echo "DISPLAY=:99.0" >> $GITHUB_ENV
 
       # Run UI test with IDE Starter framework
-      - name: Run UI Test ${{ matrix.test }}
+      - name: Run UI Test
         env:
           CODECOV_API_TOKEN: ${{ secrets.CODECOV_API_TOKEN }}
           LICENSE_KEY: ${{ secrets.LICENSE_KEY }}
           UI_BRANCH_NAME: "${{ matrix.osName }}-${{ github.ref_name }}"
           DISPLAY: ${{ runner.os == 'Linux' && ':99.0' || '' }}
         run: |
-          echo "Running UI test ${{ matrix.test }} on ${{ matrix.osName }}"
           echo "UI on ${{ matrix.osName }} run #: ${{ github.run_number }} and id: ${{ github.run_id }}"
-          ./gradlew uiTest --tests "${{ matrix.test }}" --info
+          ./gradlew uiTest  
         timeout-minutes: 30
 
       # List build directory for debugging
@@ -92,7 +89,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4.6.2
         with:
-          name: tests-result-${{ matrix.test }}-${{ matrix.osName }}
+          name: tests-result-${{ matrix.osName }}
           path: |
             build/reports/
             build/test-results/
@@ -108,7 +105,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4.6.2
         with:
-          name: test-report-${{ matrix.test }}-${{ matrix.osName }}
+          name: test-report-${{ matrix.osName }}
           path: ${{ github.workspace }}/build/test-results/uiTest/*.xml
 
   # Test report job using dorny/test-reporter
