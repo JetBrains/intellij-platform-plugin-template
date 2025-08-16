@@ -7,14 +7,21 @@
 ### Added
 
 - Add `platformBundledModules` to `gradle.properties` along with `bundledModules()` helper to the Gradle build file
+- UI Test support using IntelliJ IDE Starter framework
+- New `uiTest` source set with example UI test demonstrating project creation
+- GitHub Actions workflow for running UI tests on Linux and macOS
+- UI test configuration with proper dependencies and Gradle task
 
 ### Changed
 
-- Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.7.1`
+- Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.7.2`
+- Update documentation to reference IntelliJ IDE Starter instead of UI Test Robot framework
+- Simplified repository configuration, removing unnecessary Maven repositories
 
 ### Fixed
 
 - GitHub: Fixed the missing `$RELEASE_NOTE ` parent directory in the Release workflow
+- UI Test: Added initialization check to prevent `UninitializedPropertyAccessException` in test teardown
 
 ## [2.3.0] - 2025-08-09
 
