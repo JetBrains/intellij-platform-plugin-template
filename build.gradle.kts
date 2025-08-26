@@ -234,5 +234,3 @@ tasks {
         dependsOn(buildPlugin)
     }
 }
-
-
