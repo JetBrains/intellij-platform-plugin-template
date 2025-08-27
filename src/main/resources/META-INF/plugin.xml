@@ -4,11 +4,7 @@
     <vendor url="https://www.yourcompany.com">YourCompany</vendor>
 
     <dependencies>
-        <module name="intellij.libraries.skiko"></module>
-        <module name="intellij.libraries.compose.foundation.desktop"></module>
-        <module name="intellij.platform.jewel.foundation"></module>
-        <module name="intellij.platform.jewel.ui"></module>
-        <module name="intellij.platform.jewel.ideLafBridge"></module>
+        <module name="intellij.platform.compose"/>
     </dependencies>
 
     <resource-bundle>messages.ComposeTemplate</resource-bundle>
