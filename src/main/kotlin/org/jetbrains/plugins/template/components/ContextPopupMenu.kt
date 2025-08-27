@@ -1,6 +1,5 @@
 package org.jetbrains.plugins.template.components
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.onClick
 import androidx.compose.runtime.Composable
@@ -30,7 +29,6 @@ fun ContextPopupMenu(
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ContextPopupMenuItem(
     actionText: String,
