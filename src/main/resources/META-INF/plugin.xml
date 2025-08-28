@@ -10,6 +10,6 @@
     <resource-bundle>messages.ComposeTemplate</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="org.jetbrains.plugins.template.toolWindow.ComposeSamplesToolWindowFactory" id="ComposeSamplesToolWindow"/>
+        <toolWindow factoryClass="com.github.nebojsavuksic.intellijplatformcomposeplugintemplate.toolWindow.ComposeSamplesToolWindowFactory" id="ComposeSamplesToolWindow"/>
     </extensions>
 </idea-plugin>
