@@ -1,7 +1,6 @@
 package org.jetbrains.plugins.template.weatherApp.ui.components
 
 import androidx.compose.animation.core.*
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -47,7 +46,6 @@ import java.util.*
  * @param onReloadWeatherData Callback invoked to reload weather data when the refresh action is triggered. It
  * provides the location for which the weather data should be fetched.
  */
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun WeatherDetailsCard(
     modifier: Modifier = Modifier,
