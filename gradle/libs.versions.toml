@@ -4,8 +4,9 @@ junit = "4.13.2"
 opentest4j = "1.3.0"
 hamcrest = "2.2"
 # Has to be in sync with IntelliJ Platform
-composeuitest="1.8.0-alpha04"
-jewelstandalone="0.29.0-251.27828"
+composeuitest = "1.8.0-alpha04"
+jewelstandalone = "0.29.0-251.27828"
+skikoAwtRuntimeAll = "0.9.22"
 
 # plugins
 changelog = "2.2.1"
@@ -16,8 +17,10 @@ kotlin = "2.1.20"
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 opentest4j = { group = "org.opentest4j", name = "opentest4j", version.ref = "opentest4j" }
 hamcrest = { group = "org.hamcrest", name = "hamcrest", version.ref = "hamcrest" }
-composeuitest = { group = "org.jetbrains.compose.ui", name ="ui-test-junit4-desktop", version.ref="composeuitest" }
-jewelstandalone = { group = "org.jetbrains.jewel", name ="jewel-int-ui-standalone", version.ref="jewelstandalone" }
+composeuitest = { group = "org.jetbrains.compose.ui", name = "ui-test-junit4-desktop", version.ref = "composeuitest" }
+jewelstandalone = { group = "org.jetbrains.jewel", name = "jewel-int-ui-standalone", version.ref = "jewelstandalone" }
+skikoAwtRuntimeAll = { group = "org.jetbrains.skiko", name = "skiko-awt-runtime-all", version.ref = "skikoAwtRuntimeAll" }
+
 
 [plugins]
 changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }

@@ -44,6 +44,9 @@ dependencies {
     testImplementation(libs.hamcrest)
     testImplementation(libs.composeuitest)
     testImplementation(libs.jewelstandalone)
+    // Workaround for running tests on Windows and Linux
+    // It provides necessary Skiko runtime native binaries
+    testImplementation(libs.skikoAwtRuntimeAll)
 
     intellijPlatform {
         create(providers.gradleProperty("platformType"), providers.gradleProperty("platformVersion"))
