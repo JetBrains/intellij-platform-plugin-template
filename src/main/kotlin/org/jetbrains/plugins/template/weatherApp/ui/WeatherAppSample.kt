@@ -217,7 +217,7 @@ private fun MyLocationList(
                         }
                     ) {
                         ContextPopupMenuItem(
-                            ComposeTemplateBundle.getMessage("weather.app.context.menu.delete.option"),
+                            ComposeTemplateBundle.message("weather.app.context.menu.delete.option"),
                             AllIconsKeys.General.Delete
                         ) {
                             showPopup.value = false
