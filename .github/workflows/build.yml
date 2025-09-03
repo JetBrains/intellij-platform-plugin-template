@@ -47,6 +47,8 @@ jobs:
       - name: Setup Java
         uses: actions/setup-java@v4
         with:
+
+        
           distribution: zulu
           java-version: 21
 
@@ -244,3 +246,5 @@ jobs:
             --draft \
             --title $VERSION \
             --notes-file $RELEASE_NOTE
+
+            
