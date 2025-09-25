@@ -55,7 +55,7 @@ In this README, we will highlight the following elements of template-project cre
 
 Before we dive into plugin development and everything related to it, it's worth mentioning the benefits of using GitHub Templates.
 By creating a new project using the current template, you start with no history or reference to this repository.
-This allows you to create a new repository easily without copying and pasting previous content, clone repositories, or clearing the history manually.
+This allows you to create a new repository easily without copying and pasting previous content, cloning repositories, or clearing the history manually.
 
 All you have to do is click the <kbd>Use this template</kbd> button (you must be logged in with your GitHub account).
 
@@ -66,7 +66,7 @@ Once this is complete, open the newly created project's _Settings | Actions | Ge
 
 Now the project is ready to be cloned to your local environment and opened with [IntelliJ IDEA][jb:download-ij].
 
-The most convenient way for getting your new project from GitHub is the <kbd>Get from VCS</kbd> action available on the Welcome Screen, where you can filter your GitHub  repository by its name.
+The most convenient way for getting your new project from GitHub is the <kbd>Get from VCS</kbd> action available on the Welcome Screen, where you can filter your GitHub repository by its name.
 
 ![Get from Version Control][file:get-from-version-control]
 
@@ -74,7 +74,7 @@ The next step, after opening your project in IntelliJ IDEA, is to set the proper
 
 ![Project Structure — SDK][file:project-structure-sdk.png]
 
-For the last step, you have to manually review the configuration variables described in the [`gradle.properties`][file:gradle.properties] file and *optionally* move sources from the *com.github.username.repository* package to the one that works best for you.
+For the last step, you have to manually review the configuration variables described in the [`gradle.properties`][file:gradle.properties] file and *optionally* move sources from the `com.github.username.repository` package to the one that works best for you.
 Then you can get to work implementing your ideas.
 
 > [!NOTE]
@@ -268,9 +268,9 @@ The final test report is sent to [CodeCov][codecov] for better results visualiza
 
 ### UI tests
 
-If your plugin provides complex user interfaces, you should consider covering them with tests and the functionality they utilize.
+If your plugin provides complex user interfaces, you should consider covering them with tests and the functionality they use.
 
-[IntelliJ UI Test Robot][gh:intellij-ui-test-robot] allows you to write and execute UI tests within the IntelliJ IDE running instance.
+[IntelliJ UI Test Robot][gh:intellij-ui-test-robot] allows you to write and execute UI tests within the JetBrains IDE running instance.
 You can use the [XPath query language][xpath] to find components in the currently available IDE view.
 Once IDE with `robot-server` has started, you can open the `http://localhost:8082` page that presents the currently available IDEA UI components hierarchy in HTML format and use a simple `XPath` generator, which can help test your plugin's interface.
 
@@ -357,10 +357,10 @@ In the `.github/workflows` directory, you can find definitions for the following
   - Prepares a draft release of the GitHub Releases page for manual verification.
 - [Release](.github/workflows/release.yml)
   - Triggered on `released` event.
-  - Updates `CHANGELOG.md` file with the content provided with the release note.
+  - Updates `CHANGELOG.md` file with the content provided the release note.
   - Signs the plugin with a provided certificate before publishing.
   - Publishes the plugin to JetBrains Marketplace using the provided `PUBLISH_TOKEN`.
-  - Sets publish channel depending on the plugin version, i.e. `1.0.0-beta` -> `beta` channel.
+  - Sets a publication channel depending on the plugin version, i.e. `1.0.0-beta` -> `beta` channel.
   - Patches the Changelog and commits.
 - [Run UI Tests](.github/workflows/run-ui-tests.yml)
   - Triggered manually.
@@ -398,7 +398,7 @@ All plugins and dependencies used by Gradle are managed with [Gradle version cat
 > annotations = { group = "org.jetbrains", name = "annotations", version.ref = "annotations" }
 > ```
 
-Keeping the project in good shape and having all the dependencies up-to-date requires time and effort, but it is possible to automate that process using [Dependabot][gh:dependabot].
+Keeping the project in good shape and having all the dependencies up to date requires time and effort, but it is possible to automate that process using [Dependabot][gh:dependabot].
 
 Dependabot is a bot provided by GitHub to check the build configuration files and review any outdated or insecure dependencies of yours – in case if any update is available, it creates a new pull request providing [the proper change][gh:dependabot-pr].
 
@@ -444,7 +444,7 @@ You start with an almost empty changelog:
 Now proceed with providing more entries to the `Added` group, or any other one that suits your change the most (see [How do I make a good changelog?][keep-a-changelog-how] for more details).
 
 When releasing a plugin update, you don't have to care about bumping the `[Unreleased]` header to the upcoming version – it will be handled automatically on the Continuous Integration (CI) after you publish your plugin.
-GitHub Actions will swap it and provide you an empty section for the next release so that you can proceed with your development:
+GitHub Actions will swap it and provide you with an empty section for the next release so that you can proceed with your development:
 
 ```
 # YourPlugin Changelog
@@ -522,7 +522,7 @@ You can still replace it or add the `/src/main/java` directory to start working 
 
 ### How to disable *tests* or *build* job using the `[skip ci]` commit message?
 
-Since February 2021, GitHub Actions [support the skip CI feature][github-actions-skip-ci].
+Since February 2021, GitHub Actions [has supported the skip CI feature][github-actions-skip-ci].
 If the message contains one of the following strings: `[skip ci]`, `[ci skip]`, `[no ci]`, `[skip actions]`, or `[actions skip]` – workflows will not be triggered.
 
 ### Why does the draft release no longer contain a built plugin artifact?
