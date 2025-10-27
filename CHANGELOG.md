@@ -11,6 +11,7 @@
 - Change since build to `251` (2025.1)
 - Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.10.2`
 - Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.9.3`
+- Dependencies - upgrade `org.jetbrains.qodana` to `2025.2.1`
 
 ## [2.3.1] - 2025-08-09
 
