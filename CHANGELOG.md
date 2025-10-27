@@ -4,8 +4,9 @@
 
 ## [Unreleased]
 
-### Changed 
+### Changed
 
+- Upgrade Gradle Wrapper to `9.1.0`
 - Update `platformVersion` to `2025.1.6`
 - Change since build to `251` (2025.1)
 
