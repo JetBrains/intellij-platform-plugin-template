@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### Changed 
+
+- Update `platformVersion` to `2025.1.6`
+- Change since build to `251` (2025.1)
+
 ## [2.3.1] - 2025-08-09
 
 ### Added
