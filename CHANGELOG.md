@@ -9,7 +9,7 @@
 - Upgrade Gradle Wrapper to `9.2.0`
 - Update `platformVersion` to `2025.1.6`
 - Change since build to `251` (2025.1)
-- Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.10.3`
+- Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.10.4`
 - Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.9.3`
 - Dependencies - upgrade `org.jetbrains.qodana` to `2025.2.1`
 
