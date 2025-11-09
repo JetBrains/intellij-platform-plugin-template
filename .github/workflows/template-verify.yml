@@ -29,7 +29,7 @@ jobs:
       - name: Verify gradle.properties
         run: |
           echo "\`\`\`diff" >> $GITHUB_STEP_SUMMARY
-          
+
           diff -U 0 \
             -I '^pluginVersion' \
             -I '^pluginGroup' \
@@ -39,5 +39,5 @@ jobs:
             --label gradle.properties \
             .github/template-cleanup/gradle.properties gradle.properties \
             >> $GITHUB_STEP_SUMMARY
-          
+
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
