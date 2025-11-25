@@ -10,6 +10,7 @@
 
 ### Changed
 
+- Use `intellijIdea(version)` dependency helper instead of `create(type,  version)`
 - Upgrade Gradle Wrapper to `9.2.1`
 - Update `platformVersion` to `2025.2.5`
 - Change since build to `252` (2025.2)
