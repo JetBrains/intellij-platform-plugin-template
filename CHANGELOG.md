@@ -24,6 +24,10 @@
 - Dependencies (GitHub Actions) - upgrade `gradle/actions/setup-gradle` to `v5`
 - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2025.2.2`
 
+### Removed
+
+- Remove the `platformType` Gradle property
+
 ## [2.3.1] - 2025-08-09
 
 ### Added
