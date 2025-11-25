@@ -12,7 +12,7 @@
 
 - Upgrade Gradle Wrapper to `9.2.1`
 - Update `platformVersion` to `2025.1.7`
-- Change since build to `251` (2025.1)
+- Change since build to `252` (2025.2)
 - Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.10.5`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `2.2.21`
 - Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.9.3`
