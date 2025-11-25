@@ -6,7 +6,7 @@
 
 ### Changed
 
-- Upgrade Gradle Wrapper to `9.2.0`
+- Upgrade Gradle Wrapper to `9.2.1`
 - Update `platformVersion` to `2025.1.6`
 - Change since build to `251` (2025.1)
 - Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.10.4`
