@@ -15,6 +15,7 @@
 - Update `platformVersion` to `2025.2.5`
 - Change since build to `252` (2025.2)
 - Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.10.5`
+- Dependencies - upgrade `org.jetbrains.changelog` to `2.5.0`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `2.2.21`
 - Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.9.3`
 - Dependencies - upgrade `org.jetbrains.qodana` to `2025.2.2`
