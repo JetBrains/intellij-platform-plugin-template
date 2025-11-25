@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- Use the GitHub event release body for a condition when creating the Release Draft
+
 ### Changed
 
 - Upgrade Gradle Wrapper to `9.2.1`
@@ -12,6 +16,11 @@
 - Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.10.4`
 - Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.9.3`
 - Dependencies - upgrade `org.jetbrains.qodana` to `2025.2.1`
+- Dependencies (GitHub Actions) - upgrade `actions/checkout` to `v5`
+- Dependencies (GitHub Actions) - upgrade `actions/setup-java` to `v5`
+- Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `v5`
+- Dependencies (GitHub Actions) - upgrade `gradle/actions/setup-gradle` to `v5`
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2025.2.2`
 
 ## [2.3.1] - 2025-08-09
 
