@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [2.4.0] - 2025-11-25
+
 ### Fixed
 
 - Use the GitHub event release body for a condition when creating the Release Draft
@@ -875,7 +877,8 @@
 - GitHub Actions to automate testing and deployment
 - Kotlin support
 
-[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.3.1...HEAD
+[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.4.0...HEAD
+[2.4.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.3.1...v2.4.0
 [2.3.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.3.0...v2.3.1
 [2.3.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.1.0...v2.2.0
