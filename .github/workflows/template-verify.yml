@@ -23,13 +23,13 @@ jobs:
 
       # Check out the current repository
       - name: Fetch Sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Compare `gradle.properties` with `.github/template-cleanup/gradle.properties`
       - name: Verify gradle.properties
         run: |
           echo "\`\`\`diff" >> $GITHUB_STEP_SUMMARY
-          
+
           diff -U 0 \
             -I '^pluginVersion' \
             -I '^pluginGroup' \
@@ -39,5 +39,5 @@ jobs:
             --label gradle.properties \
             .github/template-cleanup/gradle.properties gradle.properties \
             >> $GITHUB_STEP_SUMMARY
-          
+
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY

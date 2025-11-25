@@ -4,6 +4,26 @@
 
 ## [Unreleased]
 
+### Fixed
+
+- Use the GitHub event release body for a condition when creating the Release Draft
+
+### Changed
+
+- Upgrade Gradle Wrapper to `9.2.1`
+- Update `platformVersion` to `2025.1.7`
+- Change since build to `251` (2025.1)
+- Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.10.4`
+- Dependencies - upgrade `org.jetbrains.kotlinx.kover` to `0.9.3`
+- Dependencies - upgrade `org.jetbrains.qodana` to `2025.2.1`
+- Dependencies (GitHub Actions) - upgrade `actions/checkout` to `v5`
+- Dependencies (GitHub Actions) - upgrade `actions/setup-java` to `v5`
+- Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `v5`
+- Dependencies (GitHub Actions) - upgrade `gradle/actions/setup-gradle` to `v5`
+- Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `v2025.2.2`
+
+## [2.3.1] - 2025-08-09
+
 ### Added
 
 - Add `platformBundledModules` to `gradle.properties` along with `bundledModules()` helper to the Gradle build file
@@ -848,7 +868,8 @@
 - GitHub Actions to automate testing and deployment
 - Kotlin support
 
-[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.3.0...HEAD
+[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.3.1...HEAD
+[2.3.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.3.0...v2.3.1
 [2.3.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.2.0...v2.3.0
 [2.2.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.1.0...v2.2.0
 [2.1.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/v2.0.2...v2.1.0

@@ -28,10 +28,10 @@ To keep everything working, do not remove `<!-- ... -->` sections.
 ## Installation
 
 - Using the IDE built-in plugin system:
-  
+
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "%NAME%"</kbd> >
   <kbd>Install</kbd>
-  
+
 - Using JetBrains Marketplace:
 
   Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.

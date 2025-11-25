@@ -195,11 +195,11 @@ It provides general information about the plugin, its dependencies, extensions, 
   <id>org.jetbrains.plugins.template</id>
   <name>Template</name>
   <vendor>JetBrains</vendor>
-  
+
   <depends>com.intellij.modules.platform</depends>
 
   <resource-bundle>messages.MyBundle</resource-bundle>
-  
+
   <extensions defaultExtensionNs="com.intellij">
     <toolWindow factoryClass="..." id="..."/>
   </extensions>

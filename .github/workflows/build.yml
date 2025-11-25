@@ -23,7 +23,7 @@ on:
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
-  
+
 jobs:
 
   # Prepare the environment and build the plugin
@@ -41,18 +41,18 @@ jobs:
 
       # Check out the current repository
       - name: Fetch Sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Set up the Java environment for the next steps
       - name: Setup Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: zulu
           java-version: 21
 
       # Setup Gradle
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
 
       # Build plugin
       - name: Build plugin
@@ -71,7 +71,7 @@ jobs:
 
       # Store an already-built plugin as an artifact for downloading
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ steps.artifact.outputs.filename }}
           path: ./build/distributions/content/*/*
@@ -92,18 +92,18 @@ jobs:
 
       # Check out the current repository
       - name: Fetch Sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Set up the Java environment for the next steps
       - name: Setup Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: zulu
           java-version: 21
 
       # Setup Gradle
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
         with:
           cache-read-only: true
 
@@ -114,7 +114,7 @@ jobs:
       # Collect Tests Result of failed tests
       - name: Collect Tests Result
         if: ${{ failure() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: tests-result
           path: ${{ github.workspace }}/build/reports/tests
@@ -146,14 +146,14 @@ jobs:
 
       # Check out the current repository
       - name: Fetch Sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
-          ref: ${{ github.event.pull_request.head.sha }}  # to check out the actual pull request commit, not the merge commit
-          fetch-depth: 0  # a full history is required for pull request analysis
+          ref: ${{ github.event.pull_request.head.sha }} # to check out the actual pull request commit, not the merge commit
+          fetch-depth: 0 # a full history is required for pull request analysis
 
       # Set up the Java environment for the next steps
       - name: Setup Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: zulu
           java-version: 21
@@ -180,18 +180,18 @@ jobs:
 
       # Check out the current repository
       - name: Fetch Sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Set up the Java environment for the next steps
       - name: Setup Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: zulu
           java-version: 21
 
       # Setup Gradle
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
         with:
           cache-read-only: true
 
@@ -202,7 +202,7 @@ jobs:
       # Collect Plugin Verifier Result
       - name: Collect Plugin Verifier Result
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: pluginVerifier-result
           path: ${{ github.workspace }}/build/reports/pluginVerifier
@@ -220,7 +220,7 @@ jobs:
 
       # Check out the current repository
       - name: Fetch Sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Remove old release drafts by using the curl request for the available releases with a draft flag
       - name: Remove Old Release Drafts
@@ -239,7 +239,7 @@ jobs:
           VERSION=$(./gradlew properties --property version --quiet --console=plain | tail -n 1 | cut -f2- -d ' ')
           RELEASE_NOTE="./build/tmp/release_note.txt"
           ./gradlew getChangelog --unreleased --no-header --quiet --console=plain --output-file=$RELEASE_NOTE
-          
+
           gh release create $VERSION \
             --draft \
             --title $VERSION \
