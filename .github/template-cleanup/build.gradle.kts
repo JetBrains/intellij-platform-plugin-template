@@ -114,27 +114,6 @@ intellijPlatform {
 changelog {
     groups.empty()
     repositoryUrl = providers.gradleProperty("pluginRepositoryUrl")
-    // Handle some of GitHub release tags missing the default "v" prefix
-    sectionUrlBuilder = ChangelogSectionUrlBuilder { repositoryUrl, currentVersion, previousVersion, isUnreleased ->
-        val prefix: (String?) -> String = { version -> when (version) {
-            "2.3.0" -> ""
-            "2.3.1" -> ""
-            "2.4.0" -> ""
-            else -> "v"
-        } }
-        val previousPrefix = prefix(previousVersion)
-        val currentPrefix = prefix(currentVersion)
-        repositoryUrl + when {
-            isUnreleased -> when (previousVersion) {
-                null -> "/commits"
-                else -> "/compare/$previousPrefix$previousVersion...HEAD"
-            }
-
-            previousVersion == null -> "/commits/$currentPrefix$currentVersion"
-
-            else -> "/compare/$previousPrefix$previousVersion...$currentPrefix$currentVersion"
-        }
-    }
 }
 
 // Configure Gradle Kover Plugin - read more: https://kotlin.github.io/kotlinx-kover/gradle-plugin/#configuration-details

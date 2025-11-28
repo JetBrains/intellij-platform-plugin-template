@@ -240,7 +240,7 @@ jobs:
           RELEASE_NOTE="./build/tmp/release_note.txt"
           ./gradlew getChangelog --unreleased --no-header --quiet --console=plain --output-file=$RELEASE_NOTE
 
-          gh release create $VERSION \
+          gh release create v$VERSION \
             --draft \
             --title $VERSION \
             --notes-file $RELEASE_NOTE
