@@ -6,12 +6,11 @@
 
 ### Added
 
-- GitHub Actions: template `build.gradle.kts` without the Changelog `sectionUrlBuilder` for tag prefix handling
+- GitHub Actions: template `build.gradle.kts` with `versionPrefix` to set default tag prefix
 
 ### Fixed
 
-- GitHub Actions - release tag version missing "v" prefix when created
-- Gradle - comparison links in CHANGELOG.md using "v" prefix for tags that don't have it
+- Add `sectionUrlBuilder` Changelog property to `build.gradle.kts` so comparison links in `CHANGELOG.md` will use correct tag prefix
 
 ## [2.4.0] - 2025-11-25
 

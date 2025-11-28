@@ -116,14 +116,15 @@ changelog {
     repositoryUrl = providers.gradleProperty("pluginRepositoryUrl")
     // Handle some of GitHub release tags missing the default "v" prefix
     sectionUrlBuilder = ChangelogSectionUrlBuilder { repositoryUrl, currentVersion, previousVersion, isUnreleased ->
+        val vVersions = listOf("2.2.0", "2.1.0", "2.0.2", "2.0.1", "2.0.0", "1.14.2", "1.14.1", "1.14.0", "1.13.0", "1.12.0", "1.11.3", "1.11.2", "1.11.1", "1.11.0", "1.10.0", "1.9.0", "1.8.0", "1.7.0", "1.6.0", "1.5.0", "1.4.0", "1.3.0", "1.2.0", "1.1.2", "1.1.1", "1.1.0", "1.0.0", "0.10.1", "0.10.0", "0.9.0", "0.8.3", "0.8.2", "0.8.1", "0.8.0", "0.7.1", "0.7.0", "0.6.1", "0.6.0", "0.5.1", "0.5.0", "0.4.0", "0.3.2", "0.3.1", "0.3.0", "0.2.0", "0.1.0", "0.0.2", "0.0.1")
         val prefix: (String?) -> String = { version -> when (version) {
-            "2.3.0" -> ""
-            "2.3.1" -> ""
-            "2.4.0" -> ""
-            else -> "v"
+            in vVersions -> "v"
+            else -> ""
         } }
+
         val previousPrefix = prefix(previousVersion)
         val currentPrefix = prefix(currentVersion)
+
         repositoryUrl + when {
             isUnreleased -> when (previousVersion) {
                 null -> "/commits"
