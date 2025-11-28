@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### Added
+
+- GitHub Actions: template `build.gradle.kts` with `versionPrefix` to set default tag prefix
+
+### Fixed
+
+- Add `sectionUrlBuilder` Changelog property to `build.gradle.kts` so comparison links in `CHANGELOG.md` will use correct tag prefix
+
 ## [2.4.0] - 2025-11-25
 
 ### Fixed
