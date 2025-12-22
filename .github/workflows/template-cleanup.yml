@@ -4,7 +4,7 @@
 name: Template Cleanup
 on:
   push:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
 
