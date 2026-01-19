@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Set empty `versionPrefix` for changelog in Gradle build file.
+
 ## [2.4.0] - 2025-11-25
 
 ### Fixed
