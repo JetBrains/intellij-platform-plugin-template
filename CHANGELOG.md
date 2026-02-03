@@ -6,6 +6,7 @@
 
 ### Changed
 
+- Upgrade Gradle Wrapper to `9.3.1`
 - Set empty `versionPrefix` for changelog in Gradle build file.
 - Dependencies (GitHub Actions) - upgrade `actions/checkout` to `v6`
 - Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `v6`
