@@ -9,6 +9,7 @@
 - Set empty `versionPrefix` for changelog in Gradle build file.
 - Dependencies (GitHub Actions) - upgrade `actions/checkout` to `v6`
 - Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `v6`
+- GitHub Actions: Setup Java and Gradle actions for the `releaseDraft` build step
 
 ## [2.4.0] - 2025-11-25
 
