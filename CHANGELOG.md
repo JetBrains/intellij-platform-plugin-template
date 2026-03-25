@@ -6,6 +6,10 @@
 
 ## [2.4.1] - 2026-03-20
 
+### Fixed
+
+- GitHub Actions: handle empty releases list in draft cleanup step using `xargs -r`
+
 ### Changed
 
 - Upgrade Gradle Wrapper to `9.4.1`
