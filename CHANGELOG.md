@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [2.5.0] - 2026-04-17
+
 ### Changed
 
 - Migrate IntelliJ Platform repository configuration to `settings.gradle.kts`
@@ -925,7 +927,8 @@
 - GitHub Actions to automate testing and deployment
 - Kotlin support
 
-[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/2.4.1...HEAD
+[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/2.5.0...HEAD
+[2.5.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/2.4.1...2.5.0
 [2.4.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/2.4.0...2.4.1
 [2.4.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/2.3.1...2.4.0
 [2.3.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/2.3.0...2.3.1
