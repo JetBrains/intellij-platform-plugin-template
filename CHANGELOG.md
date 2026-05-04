@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [2.6.0] - 2026-05-04
+
 ### Added
 
 - Add operator function for resource bundle key access in `MyBundle`
@@ -27,7 +29,6 @@
 
 - Update Run Plugin configuration to fix sandbox log file path
 - Remove `settings.gradle.kts` for cleanup of unused project configuration.
-- Update Run Plugin configuration to fix sandbox log file path
 
 ## [2.5.0] - 2026-04-17
 
@@ -952,7 +953,9 @@
 - GitHub Actions to automate testing and deployment
 - Kotlin support
 
-[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/2.4.1...HEAD
+[Unreleased]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/2.6.0...HEAD
+[2.6.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/2.5.0...2.6.0
+[2.5.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/2.4.1...2.5.0
 [2.4.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/2.4.0...2.4.1
 [2.4.0]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/2.3.1...2.4.0
 [2.3.1]: https://github.com/JetBrains/intellij-platform-plugin-template/compare/2.3.0...2.3.1
