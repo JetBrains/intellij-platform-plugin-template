@@ -4,10 +4,6 @@
 
 ## [Unreleased]
 
-### Added
-
-- Add operator function for resource bundle key access in `MyBundle`
-
 ### Changed
 
 - Dependencies (GitHub Actions) - upgrade `ad-m/github-push-action` to `v1.3.0`
@@ -18,6 +14,15 @@
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `2.4.20`
 - Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.19.0`
 - Upgrade Gradle Wrapper to `9.8.0`
+
+## [2.6.0] - 2026-05-04
+
+### Added
+
+- Add operator function for resource bundle key access in `MyBundle`
+
+### Changed
+
 - Upgrade Gradle Wrapper to `9.5.0`
 - Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.16.0`
 - Dependencies - upgrade IntelliJ IDEA to `2025.2.6.2`
