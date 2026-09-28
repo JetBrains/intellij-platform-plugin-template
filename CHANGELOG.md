@@ -10,6 +10,7 @@
 
 ### Changed
 
+- Dependencies (GitHub Actions) - upgrade `actions/setup-java` to `v6`
 - Dependencies (GitHub Actions) - upgrade `actions/checkout` to `v7`
 - Dependencies - upgrade IntelliJ IDEA to `2025.2.6.3`
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `2.4.20`
