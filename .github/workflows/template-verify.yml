@@ -20,7 +20,7 @@ jobs:
 
       # Check out the current repository
       - name: Fetch Sources
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       # Compare `gradle.properties` with `.github/template-cleanup/gradle.properties`
       - name: Verify gradle.properties
