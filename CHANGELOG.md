@@ -10,6 +10,7 @@
 
 ### Changed
 
+- Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `2.4.20`
 - Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.19.0`
 - Upgrade Gradle Wrapper to `9.8.0`
 - Upgrade Gradle Wrapper to `9.5.0`
