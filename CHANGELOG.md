@@ -10,6 +10,7 @@
 
 ### Changed
 
+- Upgrade Gradle Wrapper to `9.8.0`
 - Upgrade Gradle Wrapper to `9.5.0`
 - Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.16.0`
 - Dependencies - upgrade IntelliJ IDEA to `2025.2.6.2`
