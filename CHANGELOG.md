@@ -10,6 +10,7 @@
 
 ### Changed
 
+- Dependencies (GitHub Actions) - upgrade `ad-m/github-push-action` to `v1.3.0`
 - Dependencies (GitHub Actions) - upgrade `jlumbroso/free-disk-space` to `v2.0.0`
 - Dependencies (GitHub Actions) - upgrade `actions/setup-java` to `v6`
 - Dependencies (GitHub Actions) - upgrade `actions/checkout` to `v7`
