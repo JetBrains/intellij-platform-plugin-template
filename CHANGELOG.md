@@ -6,6 +6,7 @@
 
 ### Changed
 
+- Update `intellijIdea` to `2025.3.6.1`
 - Dependencies (GitHub Actions) - upgrade `ad-m/github-push-action` to `v1.3.0`
 - Dependencies (GitHub Actions) - upgrade `jlumbroso/free-disk-space` to `v2.0.0`
 - Dependencies (GitHub Actions) - upgrade `actions/setup-java` to `v6`
