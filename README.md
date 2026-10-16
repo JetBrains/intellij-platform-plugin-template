@@ -99,6 +99,9 @@ The most significant parts of the current configuration are:
 
 For more details regarding Kotlin integration, please see [Kotlin for Plugin Developers][docs:kotlin] in the IntelliJ Platform Plugin SDK documentation.
 
+The current target is IntelliJ IDEA 2026.2, with minimum platform build `262` and Java 25 required for compilation and testing.
+The IntelliJ Platform Gradle Plugin provisions the matching toolchain; Gradle itself can still run on Java 21, as it does in CI.
+
 ### Gradle properties
 
 The project-specific configuration file [`gradle.properties`][file:gradle.properties] starts with values expected to vary between repositories created from this template:
