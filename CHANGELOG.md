@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Add `out` directory to `.gitignore`.
+
 ### Changed
 
 - GitHub Actions - migrate the deprecated `jlumbroso/free-disk-space` input to `preinstalled-runtimes`

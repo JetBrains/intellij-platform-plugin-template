@@ -4,3 +4,4 @@
 .intellijPlatform
 .kotlin
 build
+out
