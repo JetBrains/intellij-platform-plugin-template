@@ -533,7 +533,7 @@ That approach gives more possibilities for testing and debugging pre-releases, f
 [jb:quality-guidelines]: https://plugins.jetbrains.com/docs/marketplace/quality-guidelines.html
 [jb:slack]: https://plugins.jetbrains.com/slack
 [jb:twitter]: https://twitter.com/JBPlatform
-[jb:ui-guidelines]: https://jetbrains.github.io/ui
+[jb:ui-guidelines]: https://plugins.jetbrains.com/docs/intellij/ui-guidelines-welcome.html
 
 [github-actions-skip-ci]: https://github.blog/changelog/2021-02-08-github-actions-skip-pull-request-and-push-workflows-with-skip-ci/
 [keep-a-changelog]: https://keepachangelog.com
