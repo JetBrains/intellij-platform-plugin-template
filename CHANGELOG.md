@@ -12,7 +12,7 @@
 
 - Dependencies - upgrade `org.jetbrains.intellij.platform` to `2.20.1`
 - GitHub Actions - migrate the deprecated `jlumbroso/free-disk-space` input to `preinstalled-runtimes`
-- Dependencies - upgrade IntelliJ IDEA to `2026.2.3` (minimum platform `262`, Java `25`)
+- Dependencies - upgrade IntelliJ IDEA to `2026.2.5` (minimum platform `262`, Java `25`)
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `2.4.21`
 - Upgrade Gradle Wrapper to `9.9.2`
 - Use JetBrains Runtime 21 (`jbr-21`) for the IDE Gradle JVM
