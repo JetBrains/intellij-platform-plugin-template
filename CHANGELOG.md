@@ -13,7 +13,7 @@
 - GitHub Actions - migrate the deprecated `jlumbroso/free-disk-space` input to `preinstalled-runtimes`
 - Dependencies - upgrade IntelliJ IDEA to `2026.2.3` (minimum platform `262`, Java `25`)
 - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `2.4.21`
-- Upgrade Gradle Wrapper to `9.8.1`
+- Upgrade Gradle Wrapper to `9.9.2`
 - Update `intellijIdea` to `2025.3.6.1`
 - Dependencies (GitHub Actions) - upgrade `ad-m/github-push-action` to `v1.3.0`
 - Dependencies (GitHub Actions) - upgrade `jlumbroso/free-disk-space` to `v2.0.0`
