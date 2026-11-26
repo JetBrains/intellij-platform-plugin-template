@@ -1,3 +1,4 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.jetbrains.intellij.platform.gradle.TestFrameworkType
 
 plugins {
@@ -14,5 +15,23 @@ dependencies {
     intellijPlatform {
         intellijIdea("2026.2.5")
         testFramework(TestFrameworkType.Platform)
+    }
+}
+
+tasks.named<Test>("testUi") {
+    systemProperty("ui.test.screenshots.path", layout.buildDirectory.dir("reports/ui-test-screenshots").get().asFile.absolutePath)
+
+    failOnNoDiscoveredTests = true
+    filter {
+        isFailOnNoMatchingTests = true
+    }
+    reports {
+        html.required = true
+        junitXml.required = true
+    }
+    testLogging {
+        events("passed", "failed", "skipped")
+        exceptionFormat = TestExceptionFormat.FULL
+        showStandardStreams = true
     }
 }

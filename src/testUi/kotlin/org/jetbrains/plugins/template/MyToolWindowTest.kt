@@ -16,6 +16,7 @@ import com.intellij.ide.starter.runner.Starter
 import com.intellij.tools.ide.starter.product.idea.ultimate.IdeaUltimate
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
+import java.nio.file.Files
 import java.nio.file.Path
 import kotlin.time.Duration.Companion.minutes
 
@@ -26,6 +27,10 @@ class MyToolWindowTest {
 
     @Test
     fun testShuffleDisplaysRandomNumber() {
+        val screenshotsDir = Files.createDirectories(
+            Path.of(System.getProperty("ui.test.screenshots.path", "build/reports/ui-test-screenshots")).toAbsolutePath()
+        )
+
         Starter.newContext(
             testName = "myToolWindowShuffle",
             TestCase(IdeInfo.IdeaUltimate, LocalProjectInfo(projectDir))
@@ -45,11 +50,18 @@ class MyToolWindowTest {
                     randomLabel.shouldBe("The initial random number should be unknown") {
                         getText() == "The random number is: ?"
                     }
+                    println("Before Shuffle: ${randomLabel.getText()}")
+                    driver.takeScreenshot(screenshotsDir.resolve("before-shuffle").toString())
 
                     button("Shuffle").click()
 
-                    randomLabel.shouldBe("Shuffle should display a number from 1 to 100") {
-                        getText().matches(Regex("The random number is: ([1-9][0-9]?|100)"))
+                    try {
+                        randomLabel.shouldBe("Shuffle should display a number from 1 to 100") {
+                            getText().matches(Regex("The random number is: ([1-9][0-9]?|100)"))
+                        }
+                        println("After Shuffle: ${randomLabel.getText()}")
+                    } finally {
+                        driver.takeScreenshot(screenshotsDir.resolve("after-shuffle").toString())
                     }
                 }
             }

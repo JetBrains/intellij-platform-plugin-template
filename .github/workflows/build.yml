@@ -107,7 +107,7 @@ jobs:
           name: tests-result
           path: ${{ github.workspace }}/build/reports/tests
 
-  # Run UI tests and upload test reports on failure
+  # Run UI tests, verify execution, and always upload reports and diagnostics
   uiTest:
     name: UI Test
     needs: [ build ]
@@ -138,17 +138,32 @@ jobs:
         with:
           cache-read-only: true
 
-      # Run tests
-      - name: Run Tests
-        run: ./gradlew testUi
+      - name: Test UI result verification
+        run: python3 -B -m unittest discover -s .github/scripts -p 'test_*.py' -v
 
-      # Collect Tests Result of failed tests
-      - name: Collect Tests Result
-        if: ${{ failure() }}
+      # Force fresh UI execution and expose test outcomes in the job log
+      - name: Run UI Tests
+        run: ./gradlew testUi --rerun-tasks --info
+
+      # A successful task is not sufficient: the expected test must pass
+      - name: Verify UI Test Results
+        if: ${{ always() }}
+        run: python3 .github/scripts/verify_ui_test_results.py
+
+      - name: Collect UI Test Results
+        if: ${{ always() }}
         uses: actions/upload-artifact@v7
         with:
-          name: tests-result
-          path: ${{ github.workspace }}/build/reports/tests
+          name: ui-tests-results
+          if-no-files-found: error
+          path: |
+            ${{ github.workspace }}/build/reports/tests/testUi/
+            ${{ github.workspace }}/build/test-results/testUi/
+            ${{ github.workspace }}/build/reports/ui-test-screenshots/
+            ${{ github.workspace }}/out/ide-tests/tests/**/log/
+            ${{ github.workspace }}/out/ide-tests/tests/**/logs/
+            ${{ github.workspace }}/out/ide-tests/tests/**/reports/
+            ${{ github.workspace }}/out/artifacts/
 
   # Run plugin structure verification along with IntelliJ Plugin Verifier
   verify:
