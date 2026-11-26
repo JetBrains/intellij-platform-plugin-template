@@ -245,7 +245,7 @@ For those who value example codes the most, there are also available [IntelliJ S
 ## Testing
 
 [Testing plugins][docs:testing-plugins] is an essential part of the plugin development to make sure that everything works as expected between IDE releases and plugin refactorings.
-The IntelliJ Platform Plugin Template project ships with functional test examples and leaves UI testing setup to the plugin author.
+The IntelliJ Platform Plugin Template project ships with functional and UI test examples.
 
 ### Functional tests
 
@@ -261,8 +261,32 @@ In `src/test/kotlin`, you will find a basic `MyPluginTest` test that utilizes `B
 
 If your plugin provides complex user interfaces, you should consider covering them with tests and the functionality they use.
 
-The template does not wire UI testing into the Gradle build by default anymore.
-If you need UI coverage, start with the IntelliJ Platform SDK guides for [Integration Tests][docs:integration-tests] and [Integration Tests: UI Testing][docs:integration-tests-ui], then add your own test source set, Gradle tasks, and CI workflow for the operating systems you support.
+The `src/testUi/kotlin` source set includes `MyToolWindowTest.testShuffleDisplaysRandomNumber`.
+It launches the IDE with the plugin installed, opens MyToolWindow, clicks **Shuffle**, and checks that the initial `?` becomes a number from 1 to 100.
+Run all UI tests with `./gradlew testUi` on a machine with a graphical session (macOS may require accessibility permissions for UI automation).
+See [Integration Tests][docs:integration-tests] and [Integration Tests: UI Testing][docs:integration-tests-ui] for details.
+
+For a fresh diagnostic run of the sample test:
+
+```bash
+./gradlew testUi --tests 'org.jetbrains.plugins.template.MyToolWindowTest.testShuffleDisplaysRandomNumber' --rerun-tasks --info
+python3 .github/scripts/verify_ui_test_results.py
+```
+
+The **UI Test** CI job runs fresh tests, logs passed/failed/skipped outcomes, and verifies that the expected sample test passed rather than being skipped or omitted.
+It always uploads the `ui-tests-results` artifact, including:
+
+- `build/reports/tests/testUi/`: HTML test report.
+- `build/test-results/testUi/`: JUnit XML results.
+- `build/reports/ui-test-screenshots/`: IDE screenshots before and after Shuffle, including an after-click capture when the assertion fails.
+- Starter logs and reports from `out/ide-tests/tests/` and artifacts from `out/artifacts/`.
+
+When renaming or replacing the sample test, update the expected class and method in `.github/scripts/verify_ui_test_results.py` and its tests.
+
+To validate failure propagation once, use a temporary branch to change the post-Shuffle assertion to an impossible value, such as `getText() == "The random number is: 0"`.
+Run the diagnostic command or open a pull request and confirm the **UI Test** job fails at that assertion and retains its reports and screenshots.
+The result verifier must also fail for that run.
+Then restore the original 1–100 assertion and confirm both the test and verifier pass; do not merge the deliberately broken assertion.
 
 
 ## Predefined Run/Debug configurations
@@ -298,6 +322,7 @@ In the `.github/workflows` directory, you can find definitions for the following
   - Triggered on `push` and `pull_request` events.
   - Builds the plugin with the `buildPlugin` Gradle task and uploads the plugin ZIP as a workflow artifact.
   - Runs the `check` Gradle task in a dedicated test job.
+  - Runs fresh `testUi` tests, verifies the expected UI test passed, and always uploads UI reports, screenshots, and logs.
   - Runs the `verifyPlugin` Gradle task in a dedicated verification job.
   - Prepares a draft release of the GitHub Releases page for manual verification.
 - [Release](.github/workflows/release.yml)
