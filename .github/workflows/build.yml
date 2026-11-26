@@ -107,6 +107,49 @@ jobs:
           name: tests-result
           path: ${{ github.workspace }}/build/reports/tests
 
+  # Run UI tests and upload test reports on failure
+  uiTest:
+    name: UI Test
+    needs: [ build ]
+    runs-on: ubuntu-latest
+    steps:
+
+      # Free GitHub Actions Environment Disk Space
+      - name: Maximize Build Space
+        uses: jlumbroso/free-disk-space@v2.0.0
+        with:
+          preinstalled-runtimes: false
+          large-packages: false
+
+      # Check out the current repository
+      - name: Fetch Sources
+        uses: actions/checkout@v7
+
+      # Set up the Java environment for the next steps
+      - name: Setup Java
+        uses: actions/setup-java@v6
+        with:
+          distribution: zulu
+          java-version: 21
+
+      # Setup Gradle
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v6
+        with:
+          cache-read-only: true
+
+      # Run tests
+      - name: Run Tests
+        run: ./gradlew testUi
+
+      # Collect Tests Result of failed tests
+      - name: Collect Tests Result
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: tests-result
+          path: ${{ github.workspace }}/build/reports/tests
+
   # Run plugin structure verification along with IntelliJ Plugin Verifier
   verify:
     name: Verify plugin
